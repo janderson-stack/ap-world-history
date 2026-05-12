@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AP World 1.1 Interactive eBook | Developments in East Asia, 1200-1450</title>
+<style>
+:root{
+  --ink:#172033; --muted:#5c667a; --paper:#fbf7ef; --card:#ffffff; --navy:#0d1b2a; --blue:#1f4e79; --gold:#c7932b; --jade:#1e7f71; --red:#9d2a2a; --line:#e7ddcc; --soft:#f4ead9; --success:#1f7a4d; --warn:#a26200;
+}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65} a{color:var(--blue)}
+.progress{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--gold),var(--jade));width:0%;z-index:20}.topbar{position:sticky;top:5px;z-index:19;background:rgba(13,27,42,.96);color:white;border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px)}.topbar-inner{max-width:1180px;margin:auto;display:flex;gap:18px;align-items:center;justify-content:space-between;padding:10px 18px}.brand{font-weight:800;letter-spacing:.03em}.nav a{color:#f7e9c6;text-decoration:none;font-size:.9rem;margin-left:14px}.hero{background:radial-gradient(circle at 20% 10%,rgba(199,147,43,.38),transparent 30%),linear-gradient(135deg,#0d1b2a,#17334f 50%,#102a2b);color:white;padding:78px 18px 50px}.hero-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:.15em;color:#f8d98c;font-size:.78rem;font-weight:800}.hero h1{font-size:clamp(2.2rem,5vw,4.7rem);line-height:.95;margin:12px 0}.hero p{font-size:1.14rem;color:#e8edf4;max-width:760px}.hero-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:28px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.25)}.hero-card img{width:100%;display:block;height:330px;object-fit:cover}.caption{font-size:.78rem;color:#f4ead9;padding:11px 14px;background:rgba(0,0,0,.25)}
+main{max-width:1180px;margin:auto;padding:28px 18px 80px}.standards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:-48px}.standard{background:#fff;border-radius:20px;padding:18px;border:1px solid var(--line);box-shadow:0 16px 36px rgba(50,35,20,.12)}.standard b{color:var(--red)}.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.btn{border:none;border-radius:999px;padding:10px 15px;background:var(--navy);color:white;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.btn.alt{background:var(--soft);color:var(--ink);border:1px solid var(--line)}.btn.gold{background:var(--gold);color:#1d1403}.section{background:var(--card);border:1px solid var(--line);border-radius:28px;margin:24px 0;overflow:hidden;box-shadow:0 18px 44px rgba(84,63,34,.1)}.section-head{padding:22px 26px;background:linear-gradient(90deg,#fff8eb,#eef8f5);border-bottom:1px solid var(--line)}.section-head h2{margin:0;font-size:1.9rem;line-height:1.1}.phase-tag{display:inline-block;background:var(--navy);color:white;border-radius:999px;padding:6px 11px;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:10px}.content{padding:26px}.ebook-grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px}.reading h3{font-size:1.45rem;margin:28px 0 8px}.reading p{font-size:1.04rem}.lead{font-size:1.18rem}.margin-card{background:#fffdf9;border:1px solid var(--line);border-radius:22px;padding:16px;margin-bottom:16px}.margin-card h4{margin:0 0 8px;color:var(--blue)}.image-card{overflow:hidden;padding:0}.image-card img{width:100%;height:220px;object-fit:cover;display:block}.image-card .cap{font-size:.78rem;color:var(--muted);padding:10px 12px}.note{border-left:5px solid var(--gold);background:#fff8e8;padding:14px 16px;border-radius:14px;margin:18px 0}.skill{border-left:5px solid var(--jade);background:#eef8f5;padding:14px 16px;border-radius:14px;margin:18px 0}.apbox{background:#f3f6fb;border:1px solid #d7e2f0;border-radius:18px;padding:16px;margin:20px 0}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mini{background:#fffdf9;border:1px solid var(--line);border-radius:18px;padding:16px}.mini b{color:var(--red)}.timeline{border-left:4px solid var(--gold);margin:20px 0;padding-left:18px}.timeline div{margin:12px 0}.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.video{position:relative;background:#111927;color:white;border-radius:20px;overflow:hidden;text-decoration:none;min-height:210px;display:flex;align-items:end;padding:18px;border:1px solid rgba(255,255,255,.2)}.video:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.76));z-index:1}.video .vtext{position:relative;z-index:2}.play{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#fff;color:#111;margin-bottom:10px;font-weight:900}.video.song{background-image:url('https://img.youtube.com/vi/Wc1YgOeVEwI/hqdefault.jpg');background-size:cover;background-position:center}.video.neo{background-image:url('https://img.youtube.com/vi/061EQN4wZVM/hqdefault.jpg');background-size:cover;background-position:center}.video.heian{background-image:url('https://img.youtube.com/vi/ZnZEoOJ-cxE/hqdefault.jpg');background-size:cover;background-position:center}.quiz{background:#fffdf9;border:1px solid var(--line);border-radius:20px;padding:18px;margin:18px 0}.choice{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);padding:12px;border-radius:12px;margin:8px 0;cursor:pointer}.choice:hover{background:#f6efe1}.feedback{font-weight:700;margin-top:10px}.writebox{width:100%;min-height:120px;border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit;background:#fff}.counter{text-align:right;color:var(--muted);font-size:.82rem}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;cursor:pointer;font-weight:700}.tab.active{background:var(--navy);color:#fff}.tabpane{display:none}.tabpane.active{display:block}.sourcebox{background:#fbfaf7;border:1px solid var(--line);border-radius:18px;padding:18px}.sourcebox blockquote{margin:0;border-left:5px solid var(--red);padding-left:14px;color:#2a2a2a}.accordion details{background:#fffdf9;border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0}.accordion summary{font-weight:800;cursor:pointer}.checklist label{display:block;padding:8px 0}.teacher{background:#102a2b;color:#f1fff9}.teacher .section-head{background:#0d1b2a;color:white;border-color:rgba(255,255,255,.1)}.teacher .content{color:#e8fff7}.teacher a{color:#ffd77c}.sources li{margin:8px 0}.hidden{display:none}.toc{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.toc a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;font-weight:750}.toc a:hover{background:#fff7e4}.callout-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:#0d1b2a;color:white;border-radius:18px;padding:16px}.stat strong{font-size:1.6rem;color:#ffd77c;display:block}.print-note{font-size:.85rem;color:var(--muted)}
+
+.visual-source-link{display:inline-flex;align-items:center;gap:6px;margin:8px 12px 12px;padding:7px 10px;border-radius:999px;background:#f4ead9;color:#172033;text-decoration:none;font-size:.78rem;font-weight:800;border:1px solid #e7ddcc}.visual-source-link:hover{background:#fff1ca}.image-card img.fallback-art,.hero-card img.fallback-art{object-fit:cover;background:#183047}.sourcebox img.fallback-art{min-height:260px;object-fit:cover;background:#183047}.img-note{display:block;color:#5c667a;font-size:.75rem;padding:0 12px 12px}.hero-card .visual-source-link{color:#172033;background:#fff8e8}.sourcebox .visual-source-link{margin-left:0}.image-card{background:#fffdf9}.hero-card{background:#102a2b}
+
+
+/* Story + Notes Learning Layer */
+.mode-switch{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.mode-pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-weight:800;color:var(--ink)}
+.journal{background:linear-gradient(135deg,#fffaf0,#f3efe4);border:1px solid #dfcfaa;border-radius:24px;padding:20px 22px;margin:18px 0 24px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}
+.journal .label{display:inline-block;background:#7c4a1d;color:#fff;border-radius:999px;padding:5px 10px;font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900;margin-bottom:10px}.journal h3{margin-top:0;color:#5a3514}.journal p{font-family:Georgia,serif;font-size:1.08rem;line-height:1.75}.journal-question{background:#fffdf8;border-left:5px solid var(--gold);padding:12px 14px;border-radius:14px;margin-top:12px;font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-size:.96rem}.notes-panel{background:#f8fbff;border:1px solid #dce7f5;border-radius:22px;padding:18px 20px;margin:20px 0}.notes-panel h3{margin-top:0;color:var(--blue)}.notes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.note-card{background:white;border:1px solid #dce7f5;border-radius:16px;padding:14px}.note-card b{color:var(--red)}.remember-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.remember-strip div{background:#0d1b2a;color:#fff;border-radius:16px;padding:13px}.remember-strip b{display:block;color:#ffd77c}.turntalk{border:1px dashed var(--jade);background:#f0fbf8;border-radius:18px;padding:14px;margin:16px 0}.annotation-task{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin:16px 0}.annotation-task label{display:block;margin:6px 0}
+@media(max-width:950px){.notes-grid,.remember-strip{grid-template-columns:1fr}}
+
+@media(max-width:950px){.hero-grid,.ebook-grid,.twocol{grid-template-columns:1fr}.standards,.cards,.video-grid,.toc,.callout-row{grid-template-columns:1fr}.nav{display:none}.hero-card img{height:240px}}
+@media print{.topbar,.toolbar,.btn,.progress{display:none}.section{box-shadow:none;break-inside:avoid}.hero{color:#000;background:#fff}.standards{margin-top:0}.ebook-grid{grid-template-columns:1fr}.margin{display:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="topbar"><div class="topbar-inner"><div class="brand">AP World Interactive eBook</div><nav class="nav"><a href="#gov">Government</a><a href="#culture">Belief Systems</a><a href="#economy">Economy</a><a href="#japan">Japan</a><a href="#assess">Assess</a></nav></div></header>
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Unit 1: The Global Tapestry | Topic 1.1</div>
+      <h1>Developments in East Asia, 1200-1450</h1>
+      <p>How did Song China use government, culture, and innovation to create one of the most sophisticated societies in the world, and how did Chinese traditions influence Korea, Japan, and Vietnam?</p>
+      <div class="toolbar"><a class="btn gold" href="#start">Begin Reading</a><button class="btn alt" onclick="toggleTeacher()">Teacher Notes</button><button class="btn alt" onclick="window.print()">Print / Save PDF</button></div>
+    </div>
+    <figure class="hero-card">
+      <img src="https://images.metmuseum.org/CRDImages/as/original/DP205730.jpg" alt="Detailed riverside city scene inspired by Qingming handscroll tradition" / loading="lazy" decoding="async" data-title="Detailed riverside city scene inspired by Qingming handscroll tradition" data-source="https://www.metmuseum.org/art/collection/search/41428" onerror="imageFallback(this)">
+      <figcaption class="caption">Visual anchor: a later handscroll in the Qingming tradition helps students see the dense urban life, trade, transport, and social hierarchy associated with Song-era China.</figcaption>
+    </figure>
+  </div>
+</section>
+<main id="start">
+  <div class="standards">
+    <div class="standard"><b>LO 1.1.A</b><br>Explain the systems of government employed by Chinese dynasties and how they developed over time.</div>
+    <div class="standard"><b>LO 1.1.B</b><br>Explain the effects of Chinese cultural traditions on East Asia over time.</div>
+    <div class="standard"><b>LO 1.1.C</b><br>Explain the effects of innovation on the Chinese economy over time.</div>
+  </div>
+
+  <section class="section">
+    <div class="section-head"><span class="phase-tag">Orientation</span><h2>How to Use This Interactive Reading</h2></div>
+    <div class="content">
+      <div class="toc">
+        <a href="#gov">1. State Power and the Mandate of Heaven</a>
+        <a href="#culture">2. Confucianism, Daoism, Buddhism, and Neo-Confucianism</a>
+        <a href="#economy">3. Innovation, Trade, and the Song Economy</a>
+        <a href="#japan">4. Chinese Influence and Japanese Feudalism</a>
+      </div>
+      <div class="callout-row" style="margin-top:18px">
+        <div class="stat"><strong>I Do</strong>Read, watch, and annotate core ideas.</div>
+        <div class="stat"><strong>We Do</strong>Analyze sources and visuals together.</div>
+        <div class="stat"><strong>Collaborate</strong>Solve a historical problem with classmates.</div>
+        <div class="stat"><strong>You Do</strong>Write an AP-style response with evidence.</div>
+      </div>
+      <div class="mode-switch"><span class="mode-pill">Story Mode: read like a historical journal</span><span class="mode-pill">Study Mode: use notes for review</span><span class="mode-pill">AP Mode: answer evidence questions</span></div><p class="print-note">Student task: As you read, collect evidence for this claim: <b>Song China combined tradition and innovation in ways that strengthened the state, transformed the economy, and shaped East Asian culture.</b></p>
+    </div>
+  </section>
+
+  <section class="section" id="gov">
+    <div class="section-head"><span class="phase-tag">I Do: Interactive Reading</span><h2>1. State Power: Mandate, Bureaucracy, and Scholar-Officials</h2></div>
+    <div class="content ebook-grid">
+      <article class="reading">
+        <div class="journal"><span class="label">Historical Journal</span><h3>Morning at the Examination Hall</h3><p>The sun has barely lifted over the tiled roofs when the examination compound begins to fill. Young men arrive carrying brushes, ink, food, and the hopes of entire families. Some have studied since childhood. Some have memorized Confucian passages until the words feel carved into their bones. At the gate, guards check identities and supplies. Inside, rows of tiny cells wait like silent rooms of possibility.</p><p>For a student from a wealthy family, the exam is a doorway into honor, office, and influence. For the Song state, it is something even larger: a way to turn learning into government power. If officials can be selected for their command of texts, moral language, and administrative skill, then the emperor can govern through scholar-officials rather than depending only on nobles or generals.</p><div class="journal-question"><b>Pause and think:</b> Why would an emperor prefer educated civilian officials over powerful military families?</div></div>
+        <div class="notes-panel"><h3>Study Notes: How Song Government Worked</h3><div class="notes-grid"><div class="note-card"><b>Mandate of Heaven</b><br>A political and moral theory that explained why a dynasty had the right to rule. Good rule suggested Heaven's support; disasters, rebellion, corruption, and disorder could be interpreted as signs that a dynasty had lost the mandate.</div><div class="note-card"><b>Bureaucracy</b><br>A government system organized through specialized offices, departments, and trained officials. This helped the state collect taxes, manage canals, maintain order, and communicate across a large territory.</div><div class="note-card"><b>Civil Service Exams</b><br>Competitive tests based on Confucian learning and literary skill. They expanded under the Song and helped create a scholar-official class.</div><div class="note-card"><b>Merit and Inequality</b><br>The system promoted the ideal of meritocracy, but wealthy families had major advantages because they could afford books, tutors, and years of study.</div></div></div>
+        <p class="lead">Around 1200, Song China was not the largest empire in Afro-Eurasia by land, but it was one of the most administratively sophisticated societies in the world. Its strength came from combining older ideas of legitimacy with a highly developed bureaucracy.</p>
+        <h3>The Mandate of Heaven</h3><p>The Mandate of Heaven gave Chinese rulers a powerful language of legitimacy. The emperor was supposed to govern morally, protect the people, and preserve harmony between Heaven, Earth, and society. This idea strengthened dynastic rule, but it also created a justification for rebellion when a dynasty appeared corrupt, weak, or unable to protect its people.</p>
+        <h3>Bureaucracy and Scholar-Officials</h3><p>Song rulers relied heavily on civilian scholar-officials. These officials staffed a complex bureaucracy that handled taxation, courts, public works, military supply, granaries, and local administration. In AP terms, this is a major example of <b>state building</b>: rulers used institutions, not just armies, to govern.</p>
+        <h3>The Civil Service Examination System</h3><p>The examination system rewarded mastery of Confucian texts and helped connect political power to education. It did not create full equality, but it did make scholarship a central pathway to elite status. This helped Song China produce officials who shared a common intellectual culture and a common language of moral governance.</p>
+        <div class="remember-strip"><div><b>Legitimacy</b>Mandate of Heaven</div><div><b>Administration</b>Bureaucracy</div><div><b>Elite Pathway</b>Civil service exams</div></div>
+        <div class="turntalk"><b>Turn and Talk:</b> Was the civil service exam system more fair or more unequal? Use one piece of evidence from the reading.</div>
+        <div class="skill"><b>Skill Move: Continuity and Change</b><br>Continuity: Confucian values continued to shape politics. Change: the Song expanded the examination system and increased the influence of scholar-officials.</div>
+        <div class="quiz" data-answer="B"><b>Knowledge Check 1</b><p>Which statement best explains the relationship between the civil service exam system and Song government?</p><button class="choice">A. It eliminated inequality by allowing every social class equal access to office.</button><button class="choice">B. It strengthened the bureaucracy by selecting educated officials trained in Confucian ideas.</button><button class="choice">C. It replaced Confucianism with Buddhism as the official ideology of the state.</button><button class="choice">D. It gave military leaders direct control over local government offices.</button><div class="feedback"></div></div>
+      </article>
+      <aside class="margin">
+        <div class="margin-card image-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Song%20Imperial%20Examination.JPG" alt="Song civil service examination illustration" loading="lazy" decoding="async" data-title="Song civil service examination illustration" data-source="https://commons.wikimedia.org/wiki/File:Song_Imperial_Examination.JPG" onerror="imageFallback(this)"><div class="cap"><b>Look closely:</b> What details show that government service required literacy, discipline, and hierarchy?</div></div>
+        <div class="margin-card"><h4>Vocabulary</h4><p><b>Bureaucracy:</b> government organized by specialized departments.</p><p><b>Meritocracy:</b> rule or advancement based on ability or achievement, though access may still be unequal.</p><p><b>Scholar-official:</b> an educated official trained in Confucian classics and state service.</p></div>
+        <div class="margin-card"><h4>Fast Evidence</h4><ul><li>Mandate of Heaven justified rule and rebellion.</li><li>Civil service exams expanded under the Song.</li><li>Confucian education became a path to political status.</li></ul></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="culture">
+    <div class="section-head"><span class="phase-tag">I Do: Culture and Ideas</span><h2>2. Belief Systems: Confucianism, Daoism, Buddhism, and Neo-Confucianism</h2></div>
+    <div class="content ebook-grid">
+      <article class="reading">
+        <div class="journal"><span class="label">Historical Journal</span><h3>A Conversation in a Scholar's Courtyard</h3><p>Imagine a courtyard in southern China. A student sits before his teacher with a worn copy of the classics open on the table. Nearby, incense curls upward from a small shrine. The teacher asks a deceptively simple question: What makes a person good?</p><p>The answer is not only religious. It is political. If children honor parents, subjects honor rulers, husbands and wives fulfill expected roles, and officials cultivate virtue, then the family and the state can mirror one another. But this world is not shaped by Confucianism alone. Buddhist monasteries offer paths away from suffering. Daoist ideas invite people to live in harmony with the Way. Song thinkers respond by building Neo-Confucianism, a powerful synthesis that places moral cultivation back at the center of family, society, and government.</p><div class="journal-question"><b>Pause and think:</b> How can a belief system help a government maintain order without using force?</div></div>
+        <div class="notes-panel"><h3>Study Notes: Major Belief Systems</h3><div class="notes-grid"><div class="note-card"><b>Confucianism</b><br>Emphasized hierarchy, education, ritual, filial piety, and proper behavior in social relationships.</div><div class="note-card"><b>Daoism</b><br>Emphasized harmony with the Dao, natural balance, simplicity, and <i>wuwei</i>, or effortless action.</div><div class="note-card"><b>Buddhism</b><br>Originated in South Asia and spread into China. Focused on suffering, desire, disciplined practice, and liberation.</div><div class="note-card"><b>Neo-Confucianism</b><br>A Song-era revival and reworking of Confucianism that responded to Buddhist and Daoist ideas while reinforcing hierarchy, education, patriarchy, and moral self-cultivation.</div></div></div>
+        <p class="lead">East Asian societies were shaped by a shared cultural vocabulary. Confucianism, Buddhism, Daoism, writing systems, elite education, art, and political models moved across borders through trade, diplomacy, migration, conquest, and imitation.</p>
+        <h3>Confucianism: Order Through Relationships</h3><p>Confucianism taught that harmony came when people fulfilled obligations within relationships: ruler and subject, parent and child, husband and wife, older sibling and younger sibling, and friend and friend. These relationships were not equal, but they were supposed to be reciprocal: superiors owed care and moral leadership; inferiors owed respect and obedience.</p>
+        <div class="cards"><div class="mini"><b>Ren</b><br>Humaneness, compassion, benevolence.</div><div class="mini"><b>Li</b><br>Ritual propriety and correct behavior.</div><div class="mini"><b>Xiao</b><br>Filial piety: respect and duty toward parents and ancestors.</div></div>
+        <h3>Daoism and Buddhism</h3><p>Daoism offered a vision of harmony with nature and the Dao rather than constant social striving. Buddhism offered teachings about suffering, desire, and liberation. Both traditions shaped art, literature, meditation, ritual, and everyday life. Their influence also pushed Confucian scholars to clarify what made Confucianism distinct.</p>
+        <h3>Neo-Confucianism</h3><p>Neo-Confucianism became especially influential because it connected personal morality to social and political order. Thinkers such as Zhu Xi argued that study, ritual, self-discipline, and proper relationships could cultivate virtue. In practice, Neo-Confucianism reinforced social hierarchy and patriarchy while shaping education and government across East Asia.</p>
+        <div class="annotation-task"><b>Annotate:</b><label><input type="checkbox"> Underline one sentence showing how Confucianism supported political order.</label><label><input type="checkbox"> Circle one example of cultural blending or synthesis.</label><label><input type="checkbox"> Star one idea that spread beyond China.</label></div>
+        <div class="apbox"><b>AP Caution:</b> Do not write that Neo-Confucianism simply rejected Buddhism and Daoism. It often criticized Buddhist influence, but it also developed in conversation with Buddhist and Daoist ideas.</div>
+        <div class="quiz" data-answer="C"><b>Knowledge Check 2</b><p>Which claim best describes Neo-Confucianism in Song China?</p><button class="choice">A. It ended the civil service examination system.</button><button class="choice">B. It made Daoism the official state ideology.</button><button class="choice">C. It revived Confucian ethics while responding to Buddhist and Daoist ideas.</button><button class="choice">D. It rejected education as a path to moral improvement.</button><div class="feedback"></div></div>
+      </article>
+      <aside class="margin">
+        <div class="margin-card image-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Zhu_xi.jpg" alt="Portrait of Zhu Xi" loading="lazy" decoding="async" data-title="Portrait of Zhu Xi" data-source="https://commons.wikimedia.org/wiki/File:Zhu_xi.jpg" onerror="imageFallback(this)"><div class="cap">Zhu Xi became one of the most influential Neo-Confucian thinkers in East Asian history.</div></div>
+        <div class="margin-card image-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Confucius_Tang_Dynasty.jpg" alt="Confucius portrait" loading="lazy" decoding="async" data-title="Confucius portrait" data-source="https://commons.wikimedia.org/wiki/File:Confucius_Tang_Dynasty.jpg" onerror="imageFallback(this)"><div class="cap">Confucianism linked moral cultivation to social and political order.</div></div>
+        <div class="margin-card"><h4>Video Clip</h4><a class="btn alt" href="https://www.khanacademy.org/humanities/ap-world-history/600-1450-regional-and-interregional-interactions/copy-of-song-china/v/neo-confucianism-and-zhu-xi" target="_blank" rel="noopener">Open Khan Academy: Neo-Confucianism and Zhu Xi</a><p>Viewing question: How did Zhu Xi connect learning, morality, and social order?</p></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="economy">
+    <div class="section-head"><span class="phase-tag">I Do: Economy and Innovation</span><h2>3. The Song Economic Revolution</h2></div>
+    <div class="content ebook-grid">
+      <article class="reading">
+        <div class="journal"><span class="label">Historical Journal</span><h3>Crossing the Bridge in Kaifeng</h3><p>The bridge is packed before noon. Porters bend under sacks of grain. Shopkeepers shout prices. Boats slide through the water below, carrying rice, timber, ceramics, and silk. A family stops near a food stall. A merchant checks an account. Somewhere nearby, a printed book changes hands. Somewhere else, a government clerk records taxes that will move through the same networks as goods.</p><p>This is the Song economy in motion. It is not only farms and villages. It is canals, cities, markets, workshops, money, ships, books, tools, and people. The state depends on the economy, and the economy depends on the state. Food feeds cities. Canals move taxes. Paper money solves problems created by expanding trade. Innovation is not just invention; it is a system changing how people live.</p><div class="journal-question"><b>Pause and think:</b> What would a crowded city street reveal about agriculture, government, technology, and trade?</div></div>
+        <div class="notes-panel"><h3>Study Notes: The Song Economic Revolution</h3><div class="notes-grid"><div class="note-card"><b>Champa Rice</b><br>Fast-ripening rice from Vietnam increased food production, especially in southern China, and supported population growth.</div><div class="note-card"><b>Grand Canal</b><br>Connected southern rice regions to northern political centers and helped move grain, taxes, goods, and people.</div><div class="note-card"><b>Manufacturing</b><br>Iron, steel, porcelain, textiles, and printing expanded production and trade.</div><div class="note-card"><b>Commercialization</b><br>Markets, cities, merchants, credit, and paper money became more important in daily economic life.</div></div></div>
+        <p class="lead">Song China experienced major economic growth because agricultural productivity, urbanization, manufacturing, commercialization, and transportation reinforced one another.</p>
+        <h3>Agriculture: Champa Rice and Population Growth</h3><p>Fast-ripening Champa rice allowed farmers in southern China to produce more food and sometimes harvest more than once per year. More food supported population growth, and population growth encouraged urbanization and specialization. Not everyone had to farm, so more people could become artisans, merchants, boatmen, officials, soldiers, or scholars.</p>
+        <h3>The Grand Canal: Infrastructure and State Power</h3><p>The Grand Canal linked productive southern regions with northern capitals and administrative centers. It moved grain, tax revenue, and goods over long distances. This made China more governable and helped integrate regional economies into a larger commercial system.</p>
+        <h3>Manufacturing, Technology, and Trade</h3><p>Song China produced iron and steel on a massive scale and became famous for porcelain and textiles. Printing increased the circulation of books, which supported education and the examination system. Gunpowder weapons, improved shipbuilding, and the magnetic compass influenced warfare and maritime trade.</p>
+        <h3>Paper Money and Expanding Markets</h3><p>As trade expanded, heavy metal coins became inconvenient for large transactions. Paper money developed as a practical response to the needs of a complex market economy. The rise of paper money shows that the Song economy had become more commercial, urban, and interconnected.</p>
+        <div class="timeline"><div><b>Cause:</b> Champa rice and irrigation increased food supply.</div><div><b>Effect:</b> Population growth and urbanization expanded markets.</div><div><b>Effect:</b> Commercialization encouraged paper money, credit, and long-distance trade.</div></div>
+        <div class="turntalk"><b>Turn and Talk:</b> Which mattered more to Song power: agriculture, canals, or paper money? Defend your answer with evidence.</div>
+        <div class="quiz" data-answer="D"><b>Knowledge Check 3</b><p>Which development most directly helped Song China support population growth and urbanization?</p><button class="choice">A. The end of all foreign trade</button><button class="choice">B. The collapse of the examination system</button><button class="choice">C. The replacement of farming with nomadic pastoralism</button><button class="choice">D. Increased agricultural productivity, including fast-ripening rice</button><div class="feedback"></div></div>
+      </article>
+      <aside class="margin">
+        <div class="margin-card image-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jiaozi.jpg" alt="Song dynasty paper money" loading="lazy" decoding="async" data-title="Song dynasty paper money" data-source="https://commons.wikimedia.org/wiki/File:Jiaozi.jpg" onerror="imageFallback(this)"><div class="cap">Paper money reflected the complexity and scale of commercial exchange in Song China.</div></div>
+        <div class="margin-card image-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Grand-Canal.png" alt="Map of the Grand Canal" loading="lazy" decoding="async" data-title="Map of the Grand Canal" data-source="https://commons.wikimedia.org/wiki/File:Grand-Canal.png" onerror="imageFallback(this)"><div class="cap">The Grand Canal connected regional production to imperial administration and trade.</div></div>
+        <div class="margin-card image-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chinese_Junk_Keying.jpg" alt="Chinese junk sailing vessel" loading="lazy" decoding="async" data-title="Chinese junk sailing vessel" data-source="https://commons.wikimedia.org/wiki/File:Chinese_Junk_Keying.jpg" onerror="imageFallback(this)"><div class="cap">Shipbuilding and navigation supported maritime trade networks.</div></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="phase-tag">Media Lab</span><h2>Video Clips With Purpose</h2></div>
+    <div class="content">
+      <p>Use these as short clips rather than full passive videos. Students should answer the viewing question before moving on.</p>
+      <div class="video-grid">
+        <a class="video song" href="https://www.youtube.com/watch?v=Wc1YgOeVEwI" target="_blank" rel="noopener"><div class="vtext"><span class="play">▶</span><h3>Song China Overview</h3><p>What made Song government different from rule by warrior elites?</p></div></a>
+        <a class="video neo" href="https://www.youtube.com/watch?v=061EQN4wZVM" target="_blank" rel="noopener"><div class="vtext"><span class="play">▶</span><h3>Neo-Confucianism</h3><p>How did Neo-Confucianism reinforce social hierarchy?</p></div></a>
+        <a class="video heian" href="https://www.youtube.com/watch?v=ZnZEoOJ-cxE" target="_blank" rel="noopener"><div class="vtext"><span class="play">▶</span><h3>Heian Japan</h3><p>What did Japan borrow from China, and what did it adapt?</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="phase-tag">We Do: Source Analysis</span><h2>Reading a Song City as a Primary Source</h2></div>
+    <div class="content">
+      <div class="twocol">
+        <div class="sourcebox"><h3>Visual Source: Qingming Handscroll Tradition</h3><img src="https://images.metmuseum.org/CRDImages/as/original/DP205731.jpg" alt="Detail from a Qingming tradition handscroll" style="width:100%;border-radius:14px" loading="lazy" decoding="async" data-title="Detail from a Qingming tradition handscroll" data-source="https://www.metmuseum.org/art/collection/search/41428" onerror="imageFallback(this)"><p>Rather than treating an image as decoration, historians read it as evidence. Look for social hierarchy, transportation, labor, shops, animals, bridges, boats, and crowding.</p></div>
+        <div>
+          <div class="tabs"><button class="tab active" data-tab="observe">Observe</button><button class="tab" data-tab="infer">Infer</button><button class="tab" data-tab="connect">Connect</button></div>
+          <div class="tabpane active" id="observe"><h3>Observe</h3><p>List five visible details from the image.</p><textarea class="writebox" data-count="c1"></textarea><div class="counter" id="c1">0 words</div></div>
+          <div class="tabpane" id="infer"><h3>Infer</h3><p>What do these details suggest about Song urban life, commerce, or government?</p><textarea class="writebox" data-count="c2"></textarea><div class="counter" id="c2">0 words</div></div>
+          <div class="tabpane" id="connect"><h3>Connect to AP</h3><p>Use one detail from the image to support a claim about commercialization in Song China.</p><textarea class="writebox" data-count="c3"></textarea><div class="counter" id="c3">0 words</div></div>
+        </div>
+      </div>
+      <div class="apbox"><b>Teacher Option:</b> Project the image first with no caption. Ask students: "What do you see? What do you think is happening? What does this make you wonder?" Then reveal the historical context.</div>
+    </div>
+  </section>
+
+  <section class="section" id="japan">
+    <div class="section-head"><span class="phase-tag">I Do + We Do</span><h2>4. Chinese Influence, Heian Japan, and the Rise of Warrior Rule</h2></div>
+    <div class="content ebook-grid">
+      <article class="reading">
+        <div class="journal"><span class="label">Historical Journal</span><h3>At the Heian Court</h3><p>In the capital of Heian-kyo, aristocrats move through a world of poetry, ceremony, layered robes, calligraphy, music, and careful etiquette. Chinese characters appear in official writing. Buddhist temples and Confucian ideas shape elite culture. Yet this is not simply China copied onto Japanese soil. Japanese elites borrow, adapt, and transform.</p><p>At court, a writer such as Murasaki Shikibu observes the ambitions and emotions of aristocratic life. Far from the capital, however, powerful landholding families and warriors are becoming more important. Over time, the elegance of court culture will exist alongside a very different political reality: decentralized warrior rule, samurai loyalty, and the rise of the shogunate.</p><div class="journal-question"><b>Pause and think:</b> Why do societies borrow from powerful neighbors but still change what they borrow?</div></div>
+        <div class="notes-panel"><h3>Study Notes: China’s Influence and Japanese Adaptation</h3><div class="notes-grid"><div class="note-card"><b>Cultural Diffusion</b><br>Chinese influence spread to Japan through writing, Buddhism, Confucian ideas, court models, architecture, and elite education.</div><div class="note-card"><b>Selective Borrowing</b><br>Japan adapted Chinese traditions to local needs rather than copying them completely.</div><div class="note-card"><b>Heian Period</b><br>Known for court culture, literature, poetry, refined etiquette, and aristocratic life.</div><div class="note-card"><b>Feudalism</b><br>Political power shifted toward regional warrior elites, samurai, and shoguns, creating a more decentralized order.</div></div></div>
+        <p class="lead">China influenced neighboring societies, but influence did not mean uniformity. Korea, Japan, and Vietnam adopted and adapted Chinese political, cultural, and religious traditions in different ways.</p>
+        <h3>Nara and Heian Japan</h3><p>Japanese elites borrowed Chinese writing, Buddhism, Confucian ideas, city planning, court rituals, and bureaucratic models. During the Heian period, aristocratic culture flourished around the imperial court. Literature, poetry, and aesthetics became markers of elite identity.</p>
+        <h3>Women and Literature</h3><p>Elite women played an important role in Heian literary culture. Murasaki Shikibu's <i>The Tale of Genji</i> is often described as one of the world's earliest novels. It reveals courtly values, gender expectations, emotional complexity, and the social world of the aristocracy.</p>
+        <h3>From Court Culture to Warrior Rule</h3><p>Over time, aristocratic court power weakened as regional warrior families gained influence. Japan developed a feudal order in which shoguns, daimyo, and samurai held significant power. Samurai followed codes of loyalty and martial discipline later associated with bushido. This shift shows that East Asian societies could share cultural influences while developing very different political systems.</p>
+        <div class="apbox"><b>Comparison Move:</b> Song China strengthened centralized rule through bureaucracy and scholar-officials. Japan moved toward more decentralized warrior rule. Both were influenced by Chinese culture, but their political systems developed differently.</div>
+        <div class="turntalk"><b>Turn and Talk:</b> What is one Chinese influence visible in Japan, and what is one way Japan developed differently?</div>
+      </article>
+      <aside class="margin">
+        <div class="margin-card image-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Genji_emaki_azumaya.jpg" alt="Tale of Genji handscroll" loading="lazy" decoding="async" data-title="Tale of Genji handscroll" data-source="https://commons.wikimedia.org/wiki/File:Genji_emaki_azumaya.jpg" onerror="imageFallback(this)"><div class="cap">Heian court culture produced major literary and artistic achievements.</div></div>
+        <div class="margin-card image-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Minamoto_no_Yoritomo.jpg" alt="Minamoto no Yoritomo portrait" loading="lazy" decoding="async" data-title="Minamoto no Yoritomo portrait" data-source="https://commons.wikimedia.org/wiki/File:Minamoto_no_Yoritomo.jpg" onerror="imageFallback(this)"><div class="cap">Minamoto Yoritomo is associated with the establishment of the Kamakura shogunate.</div></div>
+        <div class="margin-card"><h4>Vocabulary</h4><p><b>Shogun:</b> military ruler.</p><p><b>Samurai:</b> warrior aristocracy.</p><p><b>Bushido:</b> later idealized warrior code emphasizing loyalty and honor.</p></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="phase-tag">Collaborate</span><h2>Decision Room: Advisers to the Song Emperor</h2></div>
+    <div class="content">
+      <p>Your group is advising the Song emperor. The state is wealthy but faces challenges: rapid population growth, military pressure from northern peoples, unequal access to exams, and anxiety about foreign ideas.</p>
+      <div class="cards"><div class="mini"><b>Scholar-Official</b><br>Defend Confucian education and exams.</div><div class="mini"><b>Merchant</b><br>Argue for trade, paper money, and maritime commerce.</div><div class="mini"><b>Farmer</b><br>Explain irrigation, rice, taxes, and labor.</div><div class="mini"><b>Buddhist Monk</b><br>Respond to Neo-Confucian criticism of Buddhism.</div><div class="mini"><b>Military Commander</b><br>Warn about frontier threats.</div><div class="mini"><b>Urban Artisan</b><br>Explain printing, porcelain, textiles, iron, and city markets.</div></div>
+      <h3>Group Product</h3><p>Write a three-part recommendation: one policy to strengthen government, one policy to strengthen the economy, and one policy to manage cultural tensions.</p><textarea class="writebox" data-count="c5"></textarea><div class="counter" id="c5">0 words</div>
+    </div>
+  </section>
+
+  <section class="section" id="assess">
+    <div class="section-head"><span class="phase-tag">You Do: AP Practice</span><h2>Independent SAQ: Developments in East Asia</h2></div>
+    <div class="content">
+      <div class="apbox"><b>Prompt</b><br>A. Identify ONE way Chinese dynasties used systems of government to maintain power during the period 1200-1450.<br>B. Explain ONE way Chinese cultural traditions influenced East Asia during the period 1200-1450.<br>C. Explain ONE way innovation affected the Chinese economy during the period 1200-1450.</div>
+      <div class="checklist"><label><input type="checkbox"> I identified a specific example for part A.</label><label><input type="checkbox"> I explained, rather than merely named, cultural influence for part B.</label><label><input type="checkbox"> I connected innovation to an economic effect for part C.</label><label><input type="checkbox"> I used AP vocabulary accurately.</label><label><input type="checkbox"> I avoided vague claims like "China was advanced."</label></div>
+      <textarea class="writebox" data-count="c6" placeholder="Write your SAQ response here..."></textarea><div class="counter" id="c6">0 words</div>
+      <div class="accordion"><details><summary>Reveal scoring guide</summary><p><b>A:</b> Acceptable evidence includes Mandate of Heaven, bureaucracy, civil service exams, Confucian scholar-officials, or administrative specialization. Must connect to maintaining power.</p><p><b>B:</b> Acceptable evidence includes filial piety, Confucian social hierarchy, Neo-Confucianism, Buddhism, literary/scholarly traditions, or influence on Japan/Korea/Vietnam. Must explain influence.</p><p><b>C:</b> Acceptable evidence includes Champa rice, Grand Canal, paper money, printing, iron/steel, porcelain/textiles, shipbuilding, compass, or gunpowder. Must explain economic impact.</p></details></div>
+    </div>
+  </section>
+
+  <section class="section teacher hidden" id="teacherNotes">
+    <div class="section-head"><span class="phase-tag">Teacher Notes</span><h2>Facilitation, Pacing, and Canvas/GitHub Use</h2></div>
+    <div class="content">
+      <p><b>Recommended pacing:</b> This is a full class-and-homework interactive eBook resource. For a 50-minute class, assign the Government and Economy sections as pre-reading, then use Source Analysis and Collaborate in class. For a block period, run the full gradual release sequence.</p>
+      <p><b>Canvas:</b> Host this HTML file on GitHub Pages, then embed the live URL in Canvas with an iframe. Canvas page editors may strip JavaScript if pasted directly.</p>
+      <p><b>Assessment integration:</b> Students can copy SAQ responses into Canvas, a Google Form, MagicSchool, or your existing LMS workflow. This file intentionally avoids collecting student data.</p>
+      <p><b>Image reliability:</b> This corrected version uses exact source filenames where possible and includes built-in fallback art plus “Open image source” links. If a district blocks external images, students still see a clean visual card instead of a broken image icon. For a production launch, download the public-domain/source-approved images into an <code>assets/images</code> folder and update the paths locally.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="phase-tag">Source Base</span><h2>Reference and Media Sources</h2></div>
+    <div class="content sources">
+      <ul>
+        <li>College Board, AP World History: Modern Course and Exam Description, Unit 1 Topic 1.1.</li>
+        <li>Teacher-provided Adobe Express presentation: Chapter 13, The Resurgence of Empire in East Asia.</li>
+        <li>Columbia University Asia for Educators, Song Dynasty China module.</li>
+        <li>Metropolitan Museum of Art Open Access collection, Qingming handscroll tradition images.</li>
+        <li>Wikimedia Commons public-domain files: Song Imperial Examination, Zhu Xi, Confucius, Jiaozi paper money, Grand Canal map, Tale of Genji handscroll, Minamoto no Yoritomo.</li>
+        <li>Video links selected as launch points for teacher review before classroom use: Heimler's History, Khan Academy, AP World review and world history channels. Teachers should preview videos and confirm district access.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('progress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+document.querySelectorAll('.quiz').forEach(q=>{q.querySelectorAll('.choice').forEach(btn=>btn.addEventListener('click',()=>{const ans=q.dataset.answer;const letter=btn.textContent.trim()[0];const f=q.querySelector('.feedback');if(letter===ans){f.style.color='var(--success)';f.textContent='Correct. Now explain why this answer is stronger than the others.'}else{f.style.color='var(--red)';f.textContent='Not quite. Re-read the section and look for the answer that links cause and effect.'}}))});
+document.querySelectorAll('.writebox').forEach(t=>{t.addEventListener('input',()=>{const id=t.dataset.count;if(!id)return;const words=t.value.trim()?t.value.trim().split(/\s+/).length:0;document.getElementById(id).textContent=words+' words'})});
+document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tabpane').forEach(p=>p.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.tab).classList.add('active')}));
+
+function makeFallbackSVG(title){
+  const safe=(title||'Historical visual source').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#102a2b"/><stop offset=".52" stop-color="#1f4e79"/><stop offset="1" stop-color="#c7932b"/></linearGradient><pattern id="p" width="52" height="52" patternUnits="userSpaceOnUse"><path d="M0 52 52 0M-13 13 13-13M39 65 65 39" stroke="rgba(255,255,255,.16)" stroke-width="3"/></pattern></defs><rect width="1200" height="720" fill="url(#g)"/><rect width="1200" height="720" fill="url(#p)"/><circle cx="970" cy="130" r="120" fill="rgba(255,255,255,.12)"/><rect x="70" y="80" width="1060" height="560" rx="38" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.35)" stroke-width="3"/><text x="110" y="178" fill="#f8d98c" font-family="Georgia, serif" font-size="34" font-weight="700">Visual Source</text><text x="110" y="306" fill="#ffffff" font-family="Arial, sans-serif" font-size="54" font-weight="800">${safe}</text><text x="110" y="386" fill="#eef8f5" font-family="Arial, sans-serif" font-size="28">Open the source link below for the original museum or Commons image.</text><path d="M110 525 H650" stroke="#f8d98c" stroke-width="10" stroke-linecap="round"/><path d="M110 565 H470" stroke="rgba(255,255,255,.55)" stroke-width="10" stroke-linecap="round"/></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+}
+function imageFallback(img){
+  img.onerror=null;
+  img.classList.add('fallback-art');
+  img.src=makeFallbackSVG(img.dataset.title || img.alt);
+  if(img.parentElement && !img.parentElement.querySelector('.img-note')){
+    const note=document.createElement('span'); note.className='img-note'; note.textContent='Fallback shown because the live image was blocked by the host or network.'; img.parentElement.appendChild(note);
+  }
+}
+function addImageSourceLinks(){
+  document.querySelectorAll('img[data-source]').forEach(img=>{
+    const parent=img.parentElement; if(!parent || parent.querySelector('.visual-source-link')) return;
+    const a=document.createElement('a'); a.className='visual-source-link'; a.href=img.dataset.source; a.target='_blank'; a.rel='noopener'; a.textContent='Open image source';
+    const cap=parent.querySelector('.cap,.caption');
+    if(cap) cap.insertAdjacentElement('afterend', a); else img.insertAdjacentElement('afterend', a);
+  });
+}
+addImageSourceLinks();
+
+function toggleTeacher(){document.getElementById('teacherNotes').classList.toggle('hidden');location.hash='teacherNotes'}
+</script>
+</body>
+</html>
