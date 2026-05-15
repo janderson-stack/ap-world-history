@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">BeHistorical instructional map of Song China around c. 1200</title>
+  <desc id="desc">A simplified but historically grounded classroom map showing Southern Song China around c. 1200, the earlier Northern Song core, neighboring Jin and Western Xia states, the Grand Canal, Kaifeng, Lin'an Hangzhou, the Yangtze and Yellow Rivers, and the Champa rice connection from Vietnam.</desc>
+  <defs>
+    <linearGradient id="sea" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#d9e2df"/>
+      <stop offset="1" stop-color="#edf1ec"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffdf7"/>
+      <stop offset="1" stop-color="#f0e6d3"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#1a1c1d" flood-opacity="0.22"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#8C5A2B"/>
+    </marker>
+    <style>
+      .title{font-family:Georgia, 'Times New Roman', serif;font-weight:700;fill:#1A1C1D;font-size:42px;letter-spacing:.5px}
+      .subtitle{font-family:Arial, sans-serif;font-size:18px;fill:#3E4447;letter-spacing:1px;text-transform:uppercase}
+      .label{font-family:Arial, sans-serif;font-size:22px;font-weight:700;fill:#1A1C1D}
+      .small{font-family:Arial, sans-serif;font-size:16px;fill:#2B2F31}
+      .tiny{font-family:Arial, sans-serif;font-size:13px;fill:#3E4447}
+      .region{font-family:Georgia, 'Times New Roman', serif;font-size:30px;font-weight:700;letter-spacing:1px}
+      .waterlabel{font-family:Georgia, 'Times New Roman', serif;font-size:22px;font-style:italic;fill:#49646d;opacity:.85}
+      .city{fill:#1A1C1D;stroke:#fffdf7;stroke-width:4}
+      .former{fill:#5A5F5C;stroke:#fffdf7;stroke-width:4}
+      .river{fill:none;stroke:#6f99a4;stroke-width:7;stroke-linecap:round;opacity:.9}
+      .canal{fill:none;stroke:#1A1C1D;stroke-width:8;stroke-linecap:round;stroke-dasharray:18 12}
+      .route{fill:none;stroke:#8C5A2B;stroke-width:8;stroke-linecap:round;stroke-dasharray:1 14;marker-end:url(#arrow)}
+      .outline{fill:none;stroke:#2B2F31;stroke-width:5;stroke-dasharray:14 10;opacity:.7}
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#paper)"/>
+  <path d="M1110,160 C1260,210 1395,330 1470,500 C1530,640 1500,800 1425,920 L1600,920 L1600,0 L1110,0 Z" fill="url(#sea)" opacity=".95"/>
+  <path d="M1240,190 C1360,270 1450,395 1490,550 C1520,670 1492,790 1430,900" fill="none" stroke="#b6c8c5" stroke-width="3" opacity=".65"/>
+
+  <text x="70" y="75" class="title">Song China and Its Neighbors</text>
+  <text x="72" y="108" class="subtitle">A BeHistorical instructional map for AP World History Topic 1.1</text>
+
+  <!-- Neighboring states / regions -->
+  <path d="M360,115 C515,65 775,70 980,130 C1110,170 1190,245 1220,330 C1105,350 985,345 875,320 C745,292 640,300 520,340 C440,365 350,352 305,305 C265,260 285,170 360,115 Z" fill="#ccd4c7" stroke="#5A5F5C" stroke-width="3" opacity=".95"/>
+  <text x="640" y="190" text-anchor="middle" class="region" fill="#3E4447">JIN</text>
+  <text x="640" y="221" text-anchor="middle" class="small">Jurchen state north of the Southern Song</text>
+
+  <path d="M170,250 C250,210 350,220 430,285 C500,342 500,435 435,493 C355,565 225,535 165,455 C112,382 105,300 170,250 Z" fill="#d7c4a4" stroke="#8C5A2B" stroke-width="3" opacity=".92"/>
+  <text x="295" y="355" text-anchor="middle" class="region" fill="#6B3E1F">WESTERN XIA</text>
+  <text x="295" y="385" text-anchor="middle" class="small">Tangut state</text>
+
+  <path d="M440,735 C505,690 590,695 650,755 C690,798 675,870 615,910 C545,960 455,925 420,850 C405,805 410,760 440,735 Z" fill="#d2c6ad" stroke="#5A5F5C" stroke-width="3" opacity=".85"/>
+  <text x="540" y="820" text-anchor="middle" class="region" fill="#5A5F5C">DALI</text>
+
+  <path d="M875,778 C945,802 1005,860 1025,940 L850,940 C825,880 820,818 875,778 Z" fill="#c9b589" stroke="#8C5A2B" stroke-width="3" opacity=".9"/>
+  <text x="930" y="875" text-anchor="middle" class="region" fill="#6B3E1F">CHAMPA</text>
+  <text x="930" y="902" text-anchor="middle" class="small">Vietnam region</text>
+
+  <path d="M1170,360 C1230,400 1260,480 1245,560 C1232,632 1190,690 1130,740 C1135,640 1120,555 1088,482 C1065,430 1095,385 1170,360 Z" fill="#d7d0b6" stroke="#5A5F5C" stroke-width="3" opacity=".85"/>
+  <text x="1180" y="545" text-anchor="middle" class="region" fill="#5A5F5C" transform="rotate(75 1180 545)">KOREA</text>
+  <path d="M1320,430 C1375,442 1425,500 1438,565 C1450,625 1410,675 1350,660 C1290,645 1260,585 1274,520 C1285,470 1295,440 1320,430 Z" fill="#d7d0b6" stroke="#5A5F5C" stroke-width="3" opacity=".85"/>
+  <text x="1360" y="555" text-anchor="middle" class="region" fill="#5A5F5C">JAPAN</text>
+
+  <!-- Earlier Northern Song core outline -->
+  <path class="outline" d="M430,280 C555,230 735,235 905,290 C1045,335 1110,430 1090,540 C1068,660 940,735 785,725 C645,718 545,665 478,575 C410,485 360,360 430,280 Z"/>
+  <text x="790" y="295" class="small" fill="#3E4447">earlier Northern Song core before 1127</text>
+
+  <!-- Southern Song c. 1200 -->
+  <path d="M535,500 C625,440 735,438 850,490 C955,538 1035,628 1018,738 C1002,845 895,910 738,902 C592,895 472,830 430,730 C392,638 444,560 535,500 Z" fill="#C9A46A" stroke="#6B3E1F" stroke-width="5" opacity=".94" filter="url(#shadow)"/>
+  <text x="725" y="665" text-anchor="middle" class="region" fill="#1A1C1D">SOUTHERN SONG</text>
+  <text x="725" y="696" text-anchor="middle" class="small">Song court after retreat south of the Yangtze, c. 1200</text>
+
+  <!-- Rivers -->
+  <path class="river" d="M250,382 C410,340 565,352 710,378 C850,405 1005,420 1150,395"/>
+  <text x="930" y="374" class="waterlabel">Yellow River</text>
+  <path class="river" d="M360,645 C510,595 665,600 785,630 C910,662 1008,660 1110,625"/>
+  <text x="895" y="620" class="waterlabel">Yangtze River</text>
+
+  <!-- Grand Canal -->
+  <path class="canal" d="M745,350 C748,430 760,500 785,565 C805,615 820,665 805,720"/>
+  <text x="828" y="520" class="label" fill="#1A1C1D" transform="rotate(78 828 520)">Grand Canal</text>
+
+  <!-- Champa rice arrow -->
+  <path class="route" d="M900,815 C850,775 820,725 795,680"/>
+  <text x="1035" y="792" class="label" fill="#6B3E1F">Champa rice connection</text>
+  <text x="1035" y="820" class="small">fast-ripening rice spread from Champa/Vietnam into Song China</text>
+
+  <!-- Cities -->
+  <circle class="former" cx="742" cy="370" r="12"/>
+  <text x="760" y="366" class="label">Kaifeng</text>
+  <text x="760" y="390" class="tiny">Northern Song capital / former capital by c.1200</text>
+  <circle class="city" cx="802" cy="735" r="13"/>
+  <text x="825" y="735" class="label">Lin'an / Hangzhou</text>
+  <text x="825" y="759" class="tiny">Southern Song capital</text>
+  <circle class="city" cx="602" cy="650" r="10"/>
+  <text x="620" y="647" class="small">lower Yangzi</text>
+  <text x="620" y="668" class="tiny">rice + commercial region</text>
+
+  <text x="1240" y="745" class="waterlabel">East China Sea</text>
+  <text x="1140" y="900" class="waterlabel">South China Sea</text>
+
+  <!-- Legend -->
+  <g transform="translate(70,760)">
+    <rect x="0" y="0" width="460" height="185" rx="14" fill="#fffdf7" stroke="#5A5F5C" stroke-width="2" opacity=".96"/>
+    <text x="24" y="36" class="label">Map Key</text>
+    <rect x="25" y="58" width="36" height="24" fill="#C9A46A" stroke="#6B3E1F" stroke-width="3"/><text x="75" y="77" class="small">Southern Song territory, c. 1200</text>
+    <line x1="25" x2="61" y1="105" y2="105" stroke="#2B2F31" stroke-width="4" stroke-dasharray="10 6"/><text x="75" y="111" class="small">Earlier Northern Song core before 1127</text>
+    <line x1="25" x2="61" y1="135" y2="135" stroke="#1A1C1D" stroke-width="5" stroke-dasharray="12 8"/><text x="75" y="142" class="small">Grand Canal</text>
+    <line x1="25" x2="61" y1="164" y2="164" stroke="#8C5A2B" stroke-width="6" stroke-dasharray="1 9"/><text x="75" y="171" class="small">Champa rice movement</text>
+  </g>
+
+  <text x="70" y="970" class="tiny">BeHistorical instructional map. Simplified for classroom use; based on standard Song geography: Southern Song centered south of the Huai/Yangtze with capital at Lin'an/Hangzhou after the Jin conquest of the north, and the earlier Northern Song capital at Kaifeng.</text>
+</svg>
