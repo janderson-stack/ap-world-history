@@ -466,3 +466,94 @@ blockquote{margin:0; padding:20px; background:#f6efe3; border-left:6px solid var
   box-shadow:0 10px 30px rgba(0,0,0,.28);
 }
 .video-card .media-card p{color:var(--ink)}
+
+/* =========================================================
+   OFFICIAL BEHISTORICAL LEARNING TARGETS + SUCCESS CRITERIA
+   Every topic page requires 3 Learning Targets and 3 Success Criteria.
+   These remain student-facing, concise, and tied to KC anchors.
+   ========================================================= */
+.target-success-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:18px;
+}
+.target-card,
+.success-card{
+  background:var(--clean-paper) !important;
+  color:var(--ink) !important;
+  border-top:6px solid var(--aged-iron) !important;
+}
+.target-card h3,
+.success-card h3{
+  color:var(--blackened-steel) !important;
+  margin-bottom:16px !important;
+}
+.target-item{
+  display:grid;
+  grid-template-columns:42px 1fr;
+  grid-template-areas:
+    "num text"
+    "num kc";
+  gap:2px 12px;
+  padding:13px 0;
+  border-top:1px solid rgba(26,28,29,.12);
+  color:var(--ink) !important;
+}
+.target-item:first-of-type{border-top:0;}
+.target-number{
+  grid-area:num;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg, var(--gunmetal-gray), var(--charcoal-steel));
+  color:var(--muted-sandstone) !important;
+  font-family:"Montserrat", Inter, Arial, sans-serif;
+  font-weight:900;
+  font-size:.85rem;
+  border:1px solid rgba(201,164,106,.35);
+}
+.target-item p{
+  grid-area:text;
+  margin:0;
+  color:var(--ink) !important;
+  font-size:.98rem;
+  line-height:1.55;
+}
+.target-kc{
+  grid-area:kc;
+  margin-top:5px;
+  display:inline-flex;
+  width:max-content;
+  max-width:100%;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#f1e6d3;
+  color:var(--oxidized-brown) !important;
+  font-family:"Montserrat", Inter, Arial, sans-serif;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.dark-panel .target-card,
+.dark-panel .success-card{
+  background:var(--clean-paper) !important;
+  color:var(--ink) !important;
+}
+.dark-panel .target-card *,
+.dark-panel .success-card *{
+  color:inherit;
+}
+.dark-panel .target-card h3,
+.dark-panel .success-card h3,
+.dark-panel .target-item p{
+  color:var(--ink) !important;
+}
+.dark-panel .target-number{color:var(--muted-sandstone) !important;}
+.dark-panel .target-kc{color:var(--oxidized-brown) !important;}
+@media (max-width:820px){
+  .target-success-grid{grid-template-columns:1fr;}
+}

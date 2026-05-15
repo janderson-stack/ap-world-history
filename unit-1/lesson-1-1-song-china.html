@@ -15,7 +15,7 @@
       <nav class="nav">
         <a class="brand-mini" href="#top"><img src="../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a>
         <div class="nav-links">
-          <a href="#first10">First &amp; 10</a><a href="#lecture">Lecture</a><a href="#evidence">Evidence Lab</a><a href="#practice">AP Checkpoint</a>
+          <a href="#targets">Targets</a><a href="#first10">First &amp; 10</a><a href="#lecture">Lecture</a><a href="#evidence">Evidence Lab</a><a href="#practice">AP Checkpoint</a>
         </div>
       </nav>
     </header>
@@ -24,9 +24,10 @@
       <h1 class="logo-title" aria-label="BeHistorical">Be<span class="hero-h">H</span>ist<span class="globe-o" aria-label="o as globe"><span class="lat"></span></span>rical</h1>
       <p class="subtitle">AP WORLD HISTORY</p>
       <p class="hero-copy"><strong id="lesson-title">Topic 1.1 — Song China</strong><br><span id="lesson-subtitle">Developments in East Asia, c. 1200 to c. 1450</span></p>
-      <div class="quick-nav"><a class="btn" href="#first10">Start First &amp; 10</a><a class="btn secondary" href="#framework">Framework Anchor</a></div>
+      <div class="quick-nav"><a class="btn" href="#targets">Learning Targets</a><a class="btn secondary" href="#first10">Start First &amp; 10</a></div>
     </section>
     <main>
+      <section class="section" id="targets"></section>
       <section class="section" id="framework"></section>
       <section class="section" id="first10"></section>
       <section class="section dark-panel" id="lecture"></section>
@@ -62,7 +63,15 @@
     byId('lesson-title').textContent = `${L.meta.topic} — ${L.meta.title}`;
     byId('lesson-subtitle').textContent = L.meta.subtitle;
 
-    byId('framework').innerHTML = `
+
+    byId('targets').innerHTML = `
+      <div class="section-header"><div class="eyebrow">Learning Focus</div><h2>Learning Targets &amp; Success Criteria</h2><p>Use these to track what you should understand and be able to explain by the end of the topic.</p></div>
+      <div class="target-success-grid">
+        <article class="card target-card"><h3>Learning Targets</h3>${L.learningTargets.map((t,i)=>`<div class="target-item"><span class="target-number">${i+1}</span><p>${t.target}</p><span class="target-kc">${t.kc}</span></div>`).join('')}</article>
+        <article class="card success-card"><h3>Success Criteria</h3>${L.successCriteria.map((c,i)=>`<div class="target-item"><span class="target-number">${i+1}</span><p>${c.criteria}</p><span class="target-kc">${c.kc}</span></div>`).join('')}</article>
+      </div>`;
+
+        byId('framework').innerHTML = `
       <details open><summary>College Board Framework Anchor</summary>
         <div class="framework">${L.framework.map(k => `<div class="kc"><span class="kc-code">${k.code}</span><br>${k.text}</div>`).join('')}</div>
       </details>`;
