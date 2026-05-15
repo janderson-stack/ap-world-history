@@ -366,3 +366,81 @@ blockquote{margin:0; padding:20px; background:#f6efe3; border-left:6px solid var
   .lecture-modal-image-wrap{min-height:260px !important;}
   .lecture-modal-image-wrap img{min-height:240px !important;}
 }
+
+
+/* =========================================================
+   OFFICIAL BEHISTORICAL LECTURE CARD APPEARANCE LOCK
+   Matches approved two-across lecture card look.
+   Cards show only title + bullets. Entire card triggers modal.
+   ========================================================= */
+#lecture .lecture-card-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(320px,1fr)) !important;
+  gap:28px 24px !important;
+  align-items:stretch !important;
+  margin:0 0 22px !important;
+}
+#lecture .lecture-topic-card{
+  background:linear-gradient(180deg, #3E4447 0%, #303638 100%) !important;
+  color:#FFFDF7 !important;
+  border:1px solid rgba(201,164,106,.34) !important;
+  border-radius:20px !important;
+  padding:28px 30px 30px !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.22) !important;
+  min-height:250px !important;
+  cursor:pointer !important;
+  overflow:hidden !important;
+}
+#lecture .lecture-topic-card:hover,
+#lecture .lecture-topic-card:focus{
+  transform:translateY(-3px) !important;
+  border-color:rgba(201,164,106,.72) !important;
+  box-shadow:0 24px 62px rgba(0,0,0,.32) !important;
+  outline:none !important;
+}
+#lecture .lecture-topic-card h3{
+  margin:0 0 18px !important;
+  color:#C9A46A !important;
+  font-family:"Cinzel", "Trajan Pro", "Times New Roman", Georgia, serif !important;
+  font-size:clamp(1.25rem, 2vw, 1.65rem) !important;
+  line-height:1.1 !important;
+  letter-spacing:.015em !important;
+  font-weight:900 !important;
+  font-variant:small-caps !important;
+}
+#lecture .lecture-topic-card .lecture-list{
+  margin:0 !important;
+  padding-left:1.1rem !important;
+  color:#FFFDF7 !important;
+}
+#lecture .lecture-topic-card .lecture-list li{
+  margin:.58rem 0 !important;
+  color:#FFFDF7 !important;
+  font-size:clamp(1rem, 1.45vw, 1.22rem) !important;
+  line-height:1.48 !important;
+}
+#lecture .lecture-topic-card .lecture-list strong{
+  color:#D2B48C !important;
+  font-weight:900 !important;
+}
+#lecture .lecture-topic-card *:not(h3):not(strong){
+  color:#FFFDF7 !important;
+}
+#lecture .lecture-topic-card strong{color:#D2B48C !important;}
+#lecture .lecture-card-topline,
+#lecture .open-hint,
+#lecture .lecture-modal-note,
+#lecture .lecture-topic-card .open-hint,
+#lecture .lecture-topic-card .lecture-card-topline,
+#lecture .lecture-topic-card [class*="hint"],
+#lecture .lecture-topic-card [class*="open"]{
+  display:none !important;
+  visibility:hidden !important;
+  height:0 !important;
+  width:0 !important;
+  overflow:hidden !important;
+}
+@media (max-width:760px){
+  #lecture .lecture-card-grid{grid-template-columns:1fr !important;}
+  #lecture .lecture-topic-card{min-height:auto !important; padding:22px !important;}
+}
