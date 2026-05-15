@@ -51,7 +51,18 @@ window.BEHISTORICAL_LESSON = {
       { title: "Economy, Agriculture, and Infrastructure", bullets: ["**Champa rice** increased agricultural productivity.", "More food supported **population growth** and larger cities.", "The **Grand Canal** moved grain, taxes, goods, and people.", "**Paper money** supported trade in a commercial economy.", "Song China produced major goods like **silk**, **porcelain**, **iron**, **steel**, and **textiles**."], image: { title: "Jiaozi Paper Money", url: "https://commons.wikimedia.org/wiki/Special:FilePath/Jiao%20zi.jpg", sourceUrl: "https://commons.wikimedia.org/wiki/File:Jiao_zi.jpg", caption: "Song paper money shows the sophistication of commercial life and the importance of trust in government-backed exchange." } }
     ],
     videos: [
-      { title: "Neo-Confucianism and Zhu Xi", url: "https://www.khanacademy.org/humanities/world-history/medieval-times/song-china/v/neo-confucianism-and-zhu-xi", prompt: "How did Neo-Confucianism respond to Buddhism and Daoism while preserving Confucian ideas?" }
+      {
+        title: "Discovering China: The Song Dynasty",
+        url: "https://youtu.be/QO7NHZJ-eE4",
+        youtubeId: "QO7NHZJ-eE4",
+        prompt: "As you watch, listen for how the Song Dynasty rebuilt order after political chaos and how its innovations changed Chinese society."
+      },
+      {
+        title: "Developments in East Asia — AP World Review Unit 1 Topic 1",
+        url: "https://youtu.be/HfIWZhXt7fY",
+        youtubeId: "HfIWZhXt7fY",
+        prompt: "As you watch, identify which Song developments connect most clearly to AP World themes: government, belief systems, economy, and cultural influence."
+      }
     ]
   },
   images: [

@@ -444,3 +444,25 @@ blockquote{margin:0; padding:20px; background:#f6efe3; border-left:6px solid var
   #lecture .lecture-card-grid{grid-template-columns:1fr !important;}
   #lecture .lecture-topic-card{min-height:auto !important; padding:22px !important;}
 }
+
+/* Video clip cards */
+.video-thumb{
+  background-size:cover !important;
+  background-position:center !important;
+  position:relative;
+  overflow:hidden;
+  min-height:170px !important;
+  border:1px solid rgba(201,164,106,.42);
+}
+.video-thumb span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(26,28,29,.74);
+  color:var(--muted-sandstone);
+  border:1px solid rgba(210,180,140,.38);
+  box-shadow:0 10px 30px rgba(0,0,0,.28);
+}
+.video-card .media-card p{color:var(--ink)}
