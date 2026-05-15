@@ -1,39 +1,39 @@
-# BeHistorical Modular Lesson Package — Fixed CSS Version
+# BeHistorical Modular Lesson Package — Google Form Response Workflow
 
-This package includes the missing stylesheet and a corrected folder structure.
+This package adds response-capture tools to Lesson 1.1.
 
-## Place files like this in your GitHub repository
+## Files to replace in GitHub
 
-```text
-ap-world-history/
-├── index.html
-├── unit-1/
-│   └── lesson-1-1-song-china.html
-└── assets/
-    ├── css/
-    │   └── behistorical.css
-    ├── data/
-    │   └── lesson-1-1-song-china.js
-    └── logos/
-        └── behistorical-logo.jpeg
-```
-
-## Important
-
-The lesson page is inside `unit-1/`, so it uses paths like:
-
-```html
-../assets/css/behistorical.css
-../assets/data/lesson-1-1-song-china.js
-../assets/logos/behistorical-logo.jpeg
-```
-
-## Commit message
+Copy these files/folders into your `ap-world-history` repository:
 
 ```text
-Add fixed modular Lesson 1.1 package with stylesheet
+unit-1/lesson-1-1-song-china.html
+assets/css/behistorical.css
+assets/data/lesson-1-1-song-china.js
+assets/logos/behistorical-logo.jpeg
 ```
 
+If you already have the logo file, replacing it is optional.
 
-## Locked Lecture Card Format
-Lecture cards should remain side by side in a two-column grid on the lesson page. Do not place phrases such as "open," "click to enlarge," or "lecture card" on the cards. The cards themselves act as the trigger. When clicked, each card opens a larger modal with the enlarged bullets and one corresponding historical image. Lecture images should appear only in the modal, not on the standard lecture cards.
+## New response workflow
+
+Each response box now includes:
+
+- Save Draft
+- Copy Response
+- Send to Response Form
+- Run Self-Check where appropriate
+
+The response form is already configured to use this Google Form:
+
+```text
+https://docs.google.com/forms/d/e/1FAIpQLSfBMy2v9tjXnA9aWZLwBjMdl-snJc2RWljKUxgRwUNxYQPq_g/viewform
+```
+
+Students still need to click **Submit** inside Google Forms after the prefilled form opens.
+
+## GitHub commit message
+
+```text
+Add Google Form response capture to Lesson 1.1
+```

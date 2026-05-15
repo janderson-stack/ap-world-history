@@ -80,7 +80,8 @@
     byId('first10').innerHTML = `
       <div class="section-header"><div class="eyebrow">Start Here</div><h2>${L.first10.title}</h2></div>
       <div class="card reading">${L.first10.paragraphs.map(p => `<p>${p}</p>`).join('')}</div>
-      <div class="card"><h3>First &amp; 10 Response Questions</h3>${L.first10.questions.map((q,i)=>`<div class="question"><strong>Question ${i+1}</strong><br>${q}</div>`).join('')}</div>`;
+      <div class="card"><h3>First &amp; 10 Response Questions</h3>${L.first10.questions.map((q,i)=>`<div class="question"><strong>Question ${i+1}</strong><br>${q}</div>`).join('')}</div>
+      ${responseBlock('first10-response', L.first10.questions.join(' '), 'First and 10', false)}`;
 
 
 
@@ -96,6 +97,7 @@
             <h3>Why this map matters</h3>
             <ul>${L.map.notes.map(n=>`<li>${md(n)}</li>`).join('')}</ul>
             <div class="question"><strong>Map Question</strong><br>${L.map.prompt}</div>
+            ${responseBlock('map-check-response', L.map.prompt, 'Map Check', false)}
           </div>
         </div>
       </article>`;
@@ -108,23 +110,101 @@
     byId('evidence').innerHTML = `
       <div class="section-header"><div class="eyebrow">Evidence Lab</div><h2>${L.evidenceLab.title}</h2><p>${L.evidenceLab.task}</p></div>
       <div class="grid">${L.images.map((img,i)=>`<article class="card image-card half"><img src="${img.url}" alt="${img.title}" onclick="openLightbox('${i}')"><div class="image-caption"><strong>${img.title}</strong><br>${img.caption}<br><em>${img.prompt}</em><br><a class="source-link" href="${img.url}" target="_blank" rel="noopener">Open source/image</a></div></article>`).join('')}</div>
-      ${responseBlock('evidence-response', L.evidenceLab.prompt, 'Copy Evidence Lab Response')}`;
+      ${responseBlock('evidence-response', L.evidenceLab.prompt, 'Evidence Lab', false)}`;
 
     byId('primary-source').innerHTML = `
       <div class="section-header"><div class="eyebrow">Primary Source</div><h2>${L.primarySource.title}</h2></div>
-      <div class="grid"><article class="card two-third"><p>${L.primarySource.intro}</p><blockquote>${L.primarySource.text}</blockquote></article><aside class="card third"><h3>Discussion Questions</h3>${L.primarySource.questions.map((q,i)=>`<div class="question"><strong>${i+1}</strong><br>${q}</div>`).join('')}</aside></div>`;
+      <div class="grid"><article class="card two-third"><p>${L.primarySource.intro}</p><blockquote>${L.primarySource.text}</blockquote></article><aside class="card third"><h3>Discussion Questions</h3>${L.primarySource.questions.map((q,i)=>`<div class="question"><strong>${i+1}</strong><br>${q}</div>`).join('')}</aside></div>
+      ${responseBlock('primary-source-response', L.primarySource.questions.join(' '), 'Primary Source', false)}`;
 
     byId('practice').innerHTML = `
       <div class="section-header"><div class="eyebrow">Skill Practice</div><h2>${L.practice.title}</h2></div>
-      ${responseBlock('practice-response', L.practice.prompt, 'Copy Practice Response', true)}
-      <section class="section dark-panel" style="margin-top:28px"><div class="section-header"><div class="eyebrow">AP Checkpoint</div><h2>${L.checkpoint.title}</h2><p>${L.checkpoint.prompt}</p></div><ul>${L.checkpoint.checklist.map(c=>`<li>${c}</li>`).join('')}</ul>${responseBlock('checkpoint-response', L.checkpoint.prompt, 'Copy AP Checkpoint Response', true)}</section>`;
+      ${responseBlock('practice-response', L.practice.prompt, 'Practice', true)}
+      <section class="section dark-panel" style="margin-top:28px"><div class="section-header"><div class="eyebrow">AP Checkpoint</div><h2>${L.checkpoint.title}</h2><p>${L.checkpoint.prompt}</p></div><ul>${L.checkpoint.checklist.map(c=>`<li>${c}</li>`).join('')}</ul>${responseBlock('checkpoint-response', L.checkpoint.prompt, 'AP Checkpoint', true)}</section>`;
 
-    function responseBlock(id, prompt, buttonText, includeFeedback=false){
-      return `<div class="prompt-box"><h3>Write Your Response</h3><p>${prompt}</p><textarea class="response-area" id="${id}" placeholder="Type your response here..."></textarea><div class="tool-row"><button class="btn" onclick="copyResponse('${id}')">${buttonText}</button>${includeFeedback ? `<button class="btn secondary" onclick="selfCheck('${id}')">Run Self-Check</button><a class="btn" href="${L.meta.feedbackToolUrl}" target="_blank" rel="noopener">Open Feedback Tool</a><button class="btn secondary" onclick="toggleFeedbackPrompt('${id}-feedback')">Show Feedback Prompt</button>` : ''}</div><div id="${id}-result" class="check-result"></div><div class="feedback-panel" id="${id}-feedback"><strong>Copy/paste prompt for AI feedback:</strong><p>Evaluate my AP World History response for quality and accuracy. Tell me whether I made a clear claim, used specific historical evidence, explained cause/effect, and avoided inaccurate statements. Give me one strength and two specific revision suggestions. My response is:</p></div></div>`;
+    const responseFormConfig = {
+      formBaseUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfBMy2v9tjXnA9aWZLwBjMdl-snJc2RWljKUxgRwUNxYQPq_g/viewform",
+      entries: {
+        studentName: "entry.1203454783",
+        classPeriod: "entry.1732954465",
+        responseType: "entry.1335443862",
+        studentResponse: "entry.1590650308",
+        revisionNotes: "entry.1271515630",
+        confidenceLevel: "entry.1366844489"
+      }
+    };
+
+    function responseBlock(id, prompt, responseType, includeFeedback=false){
+      return `<div class="prompt-box"><h3>Write Your Response</h3><p>${prompt}</p><textarea class="response-area" id="${id}" data-response-type="${responseType}" placeholder="Type your response here..."></textarea><div class="tool-row"><button class="btn" type="button" onclick="saveDraft('${id}')">Save Draft</button><button class="btn secondary" type="button" onclick="copyResponse('${id}')">Copy Response</button><button class="btn" type="button" onclick="sendToGoogleForm('${id}')">Send to Response Form</button>${includeFeedback ? `<button class="btn secondary" type="button" onclick="selfCheck('${id}')">Run Self-Check</button>` : ''}</div><div id="${id}-result" class="check-result"></div></div>`;
     }
-    function copyResponse(id){const t=byId(id);t.select();navigator.clipboard.writeText(t.value || '').then(()=>{byId(id+'-result').textContent='Response copied.'}).catch(()=>{byId(id+'-result').textContent='Copy failed. Select your text and copy manually.'})}
-    function selfCheck(id){const text=(byId(id).value||'').toLowerCase();const terms=L.practice.terms.filter(term=>text.includes(term.toLowerCase()));const reasoning=['because','therefore','as a result','led to','caused','helped','strengthened'].filter(w=>text.includes(w));byId(id+'-result').textContent=`Self-check: ${text.split(/\s+/).filter(Boolean).length} words; evidence terms found: ${terms.length ? terms.join(', ') : 'none yet'}; reasoning language: ${reasoning.length ? reasoning.join(', ') : 'none yet'}.`;}
-    function toggleFeedbackPrompt(id){byId(id).classList.toggle('show')}
+
+    function saveDraft(id){
+      const t=byId(id);
+      if(!t) return;
+      localStorage.setItem(`behistorical-draft-${id}`, t.value || '');
+      byId(id+'-result').textContent='Draft saved on this device.';
+    }
+
+    function loadDraft(id){
+      const t=byId(id);
+      if(!t) return;
+      const saved=localStorage.getItem(`behistorical-draft-${id}`);
+      if(saved){ t.value=saved; }
+    }
+
+    function loadAllDrafts(){
+      document.querySelectorAll('textarea.response-area').forEach(t=>loadDraft(t.id));
+    }
+
+    function copyResponse(id){
+      const t=byId(id);
+      if(!t) return;
+      navigator.clipboard.writeText(t.value || '').then(()=>{byId(id+'-result').textContent='Response copied.'}).catch(()=>{byId(id+'-result').textContent='Copy failed. Select your text and copy manually.'});
+    }
+
+    function getStudentInfo(){
+      let studentName=localStorage.getItem('behistorical-student-name') || '';
+      let classPeriod=localStorage.getItem('behistorical-class-period') || '';
+      if(!studentName){ studentName=prompt('Enter your name:') || ''; }
+      if(!studentName.trim()) return null;
+      if(!classPeriod){ classPeriod=prompt('Enter your class period exactly as it appears in the form, such as Silver 1:') || ''; }
+      if(!classPeriod.trim()) return null;
+      localStorage.setItem('behistorical-student-name', studentName.trim());
+      localStorage.setItem('behistorical-class-period', classPeriod.trim());
+      return {studentName: studentName.trim(), classPeriod: classPeriod.trim()};
+    }
+
+    function sendToGoogleForm(id){
+      const t=byId(id);
+      if(!t) return;
+      const studentResponse=(t.value || '').trim();
+      if(!studentResponse){
+        byId(id+'-result').textContent='Write a response before sending it to the form.';
+        return;
+      }
+      const info=getStudentInfo();
+      if(!info) return;
+      const responseType=t.dataset.responseType || 'Practice';
+      const confidenceLevel=prompt('Confidence level? Enter a number from 1 to 5:', '4') || '4';
+      const params=new URLSearchParams();
+      params.set('usp','pp_url');
+      params.set(responseFormConfig.entries.studentName, info.studentName);
+      params.set(responseFormConfig.entries.classPeriod, info.classPeriod);
+      params.set(responseFormConfig.entries.responseType, responseType);
+      params.set(responseFormConfig.entries.studentResponse, studentResponse);
+      params.set(responseFormConfig.entries.revisionNotes, '');
+      params.set(responseFormConfig.entries.confidenceLevel, confidenceLevel);
+      const formUrl=`${responseFormConfig.formBaseUrl}?${params.toString()}`;
+      window.open(formUrl,'_blank');
+      byId(id+'-result').textContent='Response sent to the form preview. Review it and click Submit in Google Forms.';
+    }
+
+    function selfCheck(id){
+      const text=(byId(id).value||'').toLowerCase();
+      const terms=L.practice.terms.filter(term=>text.includes(term.toLowerCase()));
+      const reasoning=['because','therefore','as a result','led to','caused','helped','strengthened'].filter(w=>text.includes(w));
+      byId(id+'-result').textContent=`Self-check: ${text.split(/\s+/).filter(Boolean).length} words; evidence terms found: ${terms.length ? terms.join(', ') : 'none yet'}; reasoning language: ${reasoning.length ? reasoning.join(', ') : 'none yet'}.`;
+    }
     function openLightbox(i){const img=L.images[i];byId('lightbox-img').src=img.url;byId('lightbox-img').alt=img.title;byId('lightbox-caption').textContent=`${img.title} — ${img.caption}`;byId('lightbox').classList.add('show')}
     function openMapLightbox(){const img=L.map;byId('lightbox-img').src=img.url;byId('lightbox-img').alt=img.title;byId('lightbox-caption').textContent=`${img.title} — ${img.caption}`;byId('lightbox').classList.add('show')}
     function closeLightbox(){byId('lightbox').classList.remove('show')}
@@ -139,6 +219,7 @@
     }
     function closeLectureModal(){byId('lecture-modal').classList.remove('show')}
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLightbox();closeLectureModal()}});
+    loadAllDrafts();
   </script>
 </body>
 </html>
