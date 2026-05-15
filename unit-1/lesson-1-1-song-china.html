@@ -15,7 +15,7 @@
       <nav class="nav">
         <a class="brand-mini" href="#top"><img src="../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a>
         <div class="nav-links">
-          <a href="#targets">Targets</a><a href="#first10">First &amp; 10</a><a href="#lecture">Lecture</a><a href="#evidence">Evidence Lab</a><a href="#practice">AP Checkpoint</a>
+          <a href="#targets">Targets</a><a href="#first10">First &amp; 10</a><a href="#map">Map</a><a href="#lecture">Lecture</a><a href="#evidence">Evidence Lab</a><a href="#practice">AP Checkpoint</a>
         </div>
       </nav>
     </header>
@@ -30,6 +30,7 @@
       <section class="section" id="targets"></section>
       <section class="section" id="framework"></section>
       <section class="section" id="first10"></section>
+      <section class="section" id="map"></section>
       <section class="section dark-panel" id="lecture"></section>
       <section class="section" id="evidence"></section>
       <section class="section" id="primary-source"></section>
@@ -81,6 +82,24 @@
       <div class="card reading">${L.first10.paragraphs.map(p => `<p>${p}</p>`).join('')}</div>
       <div class="card"><h3>First &amp; 10 Response Questions</h3>${L.first10.questions.map((q,i)=>`<div class="question"><strong>Question ${i+1}</strong><br>${q}</div>`).join('')}</div>`;
 
+
+
+    byId('map').innerHTML = `
+      <div class="section-header"><div class="eyebrow">Geography Check</div><h2>${L.map.title}</h2><p>${L.map.intro}</p></div>
+      <article class="card map-card">
+        <div class="map-grid">
+          <figure class="map-figure">
+            <img src="${L.map.url}" alt="${L.map.title}" onclick="openMapLightbox()">
+            <figcaption><strong>${L.map.caption}</strong><br><a class="source-link" href="${L.map.sourceUrl}" target="_blank" rel="noopener">Open map source</a></figcaption>
+          </figure>
+          <div class="map-notes">
+            <h3>Why this map matters</h3>
+            <ul>${L.map.notes.map(n=>`<li>${md(n)}</li>`).join('')}</ul>
+            <div class="question"><strong>Map Question</strong><br>${L.map.prompt}</div>
+          </div>
+        </div>
+      </article>`;
+
     byId('lecture').innerHTML = `
       <div class="section-header"><div class="eyebrow">Content Delivery</div><h2>${L.lecture.title}</h2><p>${L.lecture.intro}</p></div>
       <div class="lecture-card-grid">${L.lecture.segments.map((seg,i) => `<article class="card dark-card lecture-topic-card" role="button" tabindex="0" aria-label="${seg.title}" onclick="openLectureModal(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLectureModal(${i})}"><h3>${seg.title}</h3><ul class="lecture-list">${seg.bullets.map(b=>`<li>${md(b)}</li>`).join('')}</ul></article>`).join('')}</div>
@@ -107,6 +126,7 @@
     function selfCheck(id){const text=(byId(id).value||'').toLowerCase();const terms=L.practice.terms.filter(term=>text.includes(term.toLowerCase()));const reasoning=['because','therefore','as a result','led to','caused','helped','strengthened'].filter(w=>text.includes(w));byId(id+'-result').textContent=`Self-check: ${text.split(/\s+/).filter(Boolean).length} words; evidence terms found: ${terms.length ? terms.join(', ') : 'none yet'}; reasoning language: ${reasoning.length ? reasoning.join(', ') : 'none yet'}.`;}
     function toggleFeedbackPrompt(id){byId(id).classList.toggle('show')}
     function openLightbox(i){const img=L.images[i];byId('lightbox-img').src=img.url;byId('lightbox-img').alt=img.title;byId('lightbox-caption').textContent=`${img.title} — ${img.caption}`;byId('lightbox').classList.add('show')}
+    function openMapLightbox(){const img=L.map;byId('lightbox-img').src=img.url;byId('lightbox-img').alt=img.title;byId('lightbox-caption').textContent=`${img.title} — ${img.caption}`;byId('lightbox').classList.add('show')}
     function closeLightbox(){byId('lightbox').classList.remove('show')}
     function openLectureModal(i){
       const seg=L.lecture.segments[i];

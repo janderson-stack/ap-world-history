@@ -69,6 +69,20 @@ window.BEHISTORICAL_LESSON = {
       "Which development seems most important to Song China's success: civil service exams, Confucianism, Champa rice, the Grand Canal, paper money, or printing? Defend your answer with evidence from the reading."
     ]
   },
+
+  map: {
+    title: "Map: Song China and Its Neighbors",
+    intro: "Before the lecture begins, locate the Song Dynasty in East Asia and notice the neighboring states that shaped Song political and military decisions.",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/China%20-%20Song%20Dynasty-en.svg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:China_-_Song_Dynasty-en.svg",
+    caption: "The Song Dynasty at its greatest extent in 1111, shown alongside neighboring powers such as Liao and Western Xia.",
+    notes: [
+      "The **Song Dynasty** controlled a major portion of eastern and southern China, but it did not control all of Inner Asia.",
+      "Neighboring states such as the **Liao** and **Western Xia** limited Song expansion and shaped Song diplomacy and defense.",
+      "The map helps explain why Song strength depended on **administration**, **economic productivity**, and **infrastructure**, not just territorial conquest."
+    ],
+    prompt: "How does the map help explain why Song China needed strong bureaucracy, infrastructure, and economic systems to maintain power?"
+  },
   lecture: {
     title: "Lecture: Song China as a System",
     intro: "Use these concise notes to follow how government, belief, agriculture, infrastructure, and commerce worked together in Song China.",
