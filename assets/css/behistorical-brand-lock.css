@@ -1,7 +1,7 @@
 /* Official BeHistorical logo/title lock
    Applies to all BeHistorical pages that include this stylesheet.
-   The globe O must match Lesson 1.1: same size, same 3D fill/highlight,
-   main vertical line only, no extra latitude/meridian clutter. */
+   Locked globe O standard: same size, 3D fill/highlight, black grid lines,
+   no light grid lines, centered between the t and r. */
 .logo-title .globe-o{
   display:inline-block !important;
   position:relative !important;
@@ -37,9 +37,51 @@
 .logo-title .globe-o .lat,
 .logo-title .globe-o .lat-1,
 .logo-title .globe-o .lat-2,
-.logo-title .globe-o .lat-3,
-.logo-title .globe-o .meridian{
+.logo-title .globe-o .lat-3{
+  display:block !important;
+  border-color:rgba(26,28,29,.58) !important;
+  background:transparent !important;
+}
+.logo-title .globe-o .lat{
+  width:96% !important;
+  height:.045em !important;
+  background:rgba(26,28,29,.72) !important;
+  border:0 !important;
+  border-radius:999px !important;
+}
+.logo-title .globe-o .lat-1{
+  width:84% !important;
+  height:34% !important;
+  border-top:.032em solid rgba(26,28,29,.50) !important;
+  border-bottom:.032em solid rgba(26,28,29,.50) !important;
+  border-left:0 !important;
+  border-right:0 !important;
+  border-radius:50% !important;
+}
+.logo-title .globe-o .lat-2,
+.logo-title .globe-o .lat-3{
   display:none !important;
+}
+.logo-title .globe-o .meridian{
+  display:block !important;
+  height:105% !important;
+  border-radius:50% !important;
+  background:transparent !important;
+}
+.logo-title .globe-o .mer-1{
+  width:28% !important;
+  border-left:.032em solid rgba(26,28,29,.58) !important;
+  border-right:.032em solid rgba(26,28,29,.58) !important;
+}
+.logo-title .globe-o .mer-2{
+  width:54% !important;
+  border-left:.024em solid rgba(26,28,29,.48) !important;
+  border-right:.024em solid rgba(26,28,29,.48) !important;
+}
+.logo-title .globe-o .mer-3{
+  width:78% !important;
+  border-left:.019em solid rgba(26,28,29,.38) !important;
+  border-right:.019em solid rgba(26,28,29,.38) !important;
 }
 .logo-title .globe-o .prime{
   display:block !important;
