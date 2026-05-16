@@ -569,3 +569,21 @@ blockquote{margin:0; padding:20px; background:#f6efe3; border-left:6px solid var
 @media (max-width:820px){
   .target-success-grid{grid-template-columns:1fr;}
 }
+
+/* =========================================================
+   BEHISTORICAL GLOBE O MICRO-ADJUSTMENT
+   Overrides inline globe details without changing the footprint.
+   ========================================================= */
+.logo-title .globe-o{
+  margin-left:.018em !important;
+  margin-right:.018em !important;
+  transform:translateX(0) !important;
+}
+.logo-title .globe-o .mer-4{
+  border-color:rgba(26,28,29,.42) !important;
+  opacity:.58 !important;
+}
+.logo-title .globe-o .mer-5{
+  border-color:rgba(26,28,29,.34) !important;
+  opacity:.50 !important;
+}
