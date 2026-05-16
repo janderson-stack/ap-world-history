@@ -1,13 +1,38 @@
 /* Official BeHistorical logo/title lock
-   Applies to all future BeHistorical pages that include this stylesheet. */
+   Applies to all BeHistorical pages that include this stylesheet.
+   The globe O must match Lesson 1.1: same size, same 3D fill/highlight,
+   main vertical line only, no extra latitude/meridian clutter. */
 .logo-title .globe-o{
-  display:inline-block;
-  position:relative;
+  display:inline-block !important;
+  position:relative !important;
   vertical-align:-.022em !important;
   top:.026em !important;
+  width:.63em !important;
+  height:.63em !important;
   margin-left:.018em !important;
   margin-right:.018em !important;
   transform:translateX(0) !important;
+  border:.075em solid currentColor !important;
+  border-radius:50% !important;
+  overflow:hidden !important;
+  text-indent:0 !important;
+  color:inherit !important;
+  background:
+    radial-gradient(ellipse at 28% 22%, rgba(255,255,255,.62) 0%, rgba(255,255,255,.32) 17%, transparent 36%),
+    linear-gradient(135deg, #d8c18e 0%, #c9a46a 28%, #8c5a2b 68%, #34251c 100%) !important;
+  box-shadow:inset -.08em -.08em .16em rgba(0,0,0,.35), inset .05em .05em .1em rgba(255,255,255,.35) !important;
+}
+.logo-title .globe-o::before,
+.logo-title .globe-o::after{
+  content:none !important;
+  display:none !important;
+}
+.logo-title .globe-o span{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  transform:translate(-50%,-50%) !important;
+  pointer-events:none !important;
 }
 .logo-title .globe-o .lat,
 .logo-title .globe-o .lat-1,
@@ -18,22 +43,23 @@
 }
 .logo-title .globe-o .prime{
   display:block !important;
-  height:106%;
-  width:.055em;
-  background:rgba(26,28,29,.78);
+  height:106% !important;
+  width:.055em !important;
+  background:rgba(26,28,29,.78) !important;
   border:0 !important;
-  border-radius:999px;
-  left:50%;
-  top:50%;
+  border-radius:999px !important;
+  left:50% !important;
+  top:50% !important;
   transform:translate(-50%,-50%) !important;
 }
 .logo-title .globe-o .shine{
-  width:42%;
-  height:24%;
-  background:rgba(255,255,255,.42);
-  border-radius:50%;
-  left:32%;
-  top:27%;
-  transform:translate(-50%,-50%) rotate(-22deg);
-  filter:blur(.01em);
+  display:block !important;
+  width:42% !important;
+  height:24% !important;
+  background:rgba(255,255,255,.42) !important;
+  border-radius:50% !important;
+  left:32% !important;
+  top:27% !important;
+  transform:translate(-50%,-50%) rotate(-22deg) !important;
+  filter:blur(.01em) !important;
 }
