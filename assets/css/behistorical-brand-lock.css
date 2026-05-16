@@ -1,8 +1,7 @@
 /* Official BeHistorical logo/title lock
-   Applies to all BeHistorical pages that include this stylesheet.
-   Locked globe O standard: same size, 3D fill/highlight,
-   exactly three black meridian lines and one black equator line.
-   No additional latitude, longitude, or light grid lines. */
+   Applies to BeHistorical pages that include this stylesheet.
+   Globe O standard: same size, 3D fill/highlight, exactly three black
+   meridian lines plus one black equator line. No other grid lines. */
 .logo-title .globe-o,
 body .logo-title .globe-o{
   display:inline-block !important;
@@ -35,6 +34,7 @@ body .logo-title .globe-o::after{
 body .logo-title .globe-o span{
   position:absolute !important;
   pointer-events:none !important;
+  box-sizing:border-box !important;
 }
 .logo-title .globe-o .lat-1,
 .logo-title .globe-o .lat-2,
@@ -46,20 +46,18 @@ body .logo-title .globe-o .lat-3,
 body .logo-title .globe-o .prime{
   display:none !important;
 }
-/* One black equator line only. */
 .logo-title .globe-o .lat,
 body .logo-title .globe-o .lat{
   display:block !important;
   left:50% !important;
   top:50% !important;
-  width:96% !important;
+  width:94% !important;
   height:.055em !important;
-  background:rgba(26,28,29,.82) !important;
+  background:rgba(26,28,29,.84) !important;
   border:0 !important;
   border-radius:999px !important;
   transform:translate(-50%,-50%) !important;
 }
-/* Exactly three black meridian lines: center, left, right. */
 .logo-title .globe-o .meridian,
 body .logo-title .globe-o .meridian{
   display:block !important;
@@ -73,22 +71,22 @@ body .logo-title .globe-o .meridian{
 body .logo-title .globe-o .mer-1{
   left:50% !important;
   height:106% !important;
-  border-left:.055em solid rgba(26,28,29,.82) !important;
+  border-left:.055em solid rgba(26,28,29,.84) !important;
   transform:translate(-50%,-50%) !important;
 }
 .logo-title .globe-o .mer-2,
 body .logo-title .globe-o .mer-2{
-  left:34% !important;
+  left:35% !important;
   height:88% !important;
   border-left:.032em solid rgba(26,28,29,.62) !important;
-  transform:translate(-50%,-50%) rotate(-8deg) !important;
+  transform:translate(-50%,-50%) rotate(-7deg) !important;
 }
 .logo-title .globe-o .mer-3,
 body .logo-title .globe-o .mer-3{
-  left:66% !important;
+  left:65% !important;
   height:88% !important;
   border-left:.032em solid rgba(26,28,29,.62) !important;
-  transform:translate(-50%,-50%) rotate(8deg) !important;
+  transform:translate(-50%,-50%) rotate(7deg) !important;
 }
 .logo-title .globe-o .shine,
 body .logo-title .globe-o .shine{
