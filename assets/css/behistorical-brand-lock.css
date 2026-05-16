@@ -1,7 +1,7 @@
 /* Official BeHistorical logo/title lock
    Applies to BeHistorical pages that include this stylesheet.
-   Globe O standard: preserve the current circle size, border, 3D fill,
-   and highlight, with only a minimal simple black grid. */
+   Globe O standard: keep the current circle, size, border, color system,
+   3D fill, and highlight. Internal grid is intentionally minimal. */
 .logo-title .globe-o,
 body .logo-title .globe-o{
   display:inline-block !important;
@@ -16,10 +16,18 @@ body .logo-title .globe-o{
   border:.075em solid currentColor !important;
   border-radius:50% !important;
   overflow:hidden !important;
-  text-indent:0 !important;
+  text-indent:-9999px !important;
   color:inherit !important;
   background:
+    /* soft highlight */
     radial-gradient(ellipse at 28% 22%, rgba(255,255,255,.62) 0%, rgba(255,255,255,.32) 17%, transparent 36%),
+    /* one simple equator */
+    linear-gradient(to bottom, transparent 48.6%, rgba(21,23,24,.58) 48.6%, rgba(21,23,24,.58) 51.4%, transparent 51.4%),
+    /* one center meridian */
+    linear-gradient(to right, transparent 48.7%, rgba(21,23,24,.56) 48.7%, rgba(21,23,24,.56) 51.3%, transparent 51.3%),
+    /* two subtle side meridians */
+    linear-gradient(to right, transparent 34.8%, rgba(21,23,24,.36) 34.8%, rgba(21,23,24,.36) 36.1%, transparent 36.1%, transparent 63.9%, rgba(21,23,24,.36) 63.9%, rgba(21,23,24,.36) 65.2%, transparent 65.2%),
+    /* globe color */
     linear-gradient(135deg, #d8c18e 0%, #c9a46a 28%, #8c5a2b 68%, #34251c 100%) !important;
   box-shadow:inset -.08em -.08em .16em rgba(0,0,0,.35), inset .05em .05em .1em rgba(255,255,255,.35) !important;
 }
@@ -31,18 +39,15 @@ body .logo-title .globe-o::after{
   display:none !important;
 }
 .logo-title .globe-o span,
-body .logo-title .globe-o span{
-  position:absolute !important;
-  pointer-events:none !important;
-  box-sizing:border-box !important;
-}
-/* Hide every old grid line first. */
+.logo-title .globe-o .shine,
 .logo-title .globe-o .lat,
 .logo-title .globe-o .lat-1,
 .logo-title .globe-o .lat-2,
 .logo-title .globe-o .lat-3,
 .logo-title .globe-o .meridian,
 .logo-title .globe-o .prime,
+body .logo-title .globe-o span,
+body .logo-title .globe-o .shine,
 body .logo-title .globe-o .lat,
 body .logo-title .globe-o .lat-1,
 body .logo-title .globe-o .lat-2,
@@ -50,47 +55,4 @@ body .logo-title .globe-o .lat-3,
 body .logo-title .globe-o .meridian,
 body .logo-title .globe-o .prime{
   display:none !important;
-}
-/* Minimal simple grid: one equator, one center meridian, two very light side meridians. */
-.logo-title .globe-o .lat,
-body .logo-title .globe-o .lat{
-  display:block !important;
-  left:50% !important;
-  top:50% !important;
-  width:86% !important;
-  height:.026em !important;
-  background:rgba(21,23,24,.62) !important;
-  border:0 !important;
-  border-radius:999px !important;
-  transform:translate(-50%,-50%) !important;
-}
-.logo-title .globe-o .meridian,
-body .logo-title .globe-o .meridian{
-  display:block !important;
-  top:50% !important;
-  height:82% !important;
-  width:0 !important;
-  background:transparent !important;
-  border:0 !important;
-  border-left:.024em solid rgba(21,23,24,.52) !important;
-  border-radius:999px !important;
-  transform:translate(-50%,-50%) !important;
-}
-.logo-title .globe-o .mer-1,
-body .logo-title .globe-o .mer-1{left:50% !important; height:88% !important; border-left-width:.028em !important; opacity:.82 !important;}
-.logo-title .globe-o .mer-2,
-body .logo-title .globe-o .mer-2{left:37% !important; opacity:.54 !important;}
-.logo-title .globe-o .mer-3,
-body .logo-title .globe-o .mer-3{left:63% !important; opacity:.54 !important;}
-.logo-title .globe-o .shine,
-body .logo-title .globe-o .shine{
-  display:block !important;
-  width:42% !important;
-  height:24% !important;
-  background:rgba(255,255,255,.42) !important;
-  border-radius:50% !important;
-  left:32% !important;
-  top:27% !important;
-  transform:translate(-50%,-50%) rotate(-22deg) !important;
-  filter:blur(.01em) !important;
 }
