@@ -1,0 +1,39 @@
+/* Official BeHistorical logo/title lock
+   Applies to all future BeHistorical pages that include this stylesheet. */
+.logo-title .globe-o{
+  display:inline-block;
+  position:relative;
+  vertical-align:-.022em !important;
+  top:.026em !important;
+  margin-left:.018em !important;
+  margin-right:.018em !important;
+  transform:translateX(0) !important;
+}
+.logo-title .globe-o .lat,
+.logo-title .globe-o .lat-1,
+.logo-title .globe-o .lat-2,
+.logo-title .globe-o .lat-3,
+.logo-title .globe-o .meridian{
+  display:none !important;
+}
+.logo-title .globe-o .prime{
+  display:block !important;
+  height:106%;
+  width:.055em;
+  background:rgba(26,28,29,.78);
+  border:0 !important;
+  border-radius:999px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) !important;
+}
+.logo-title .globe-o .shine{
+  width:42%;
+  height:24%;
+  background:rgba(255,255,255,.42);
+  border-radius:50%;
+  left:32%;
+  top:27%;
+  transform:translate(-50%,-50%) rotate(-22deg);
+  filter:blur(.01em);
+}
