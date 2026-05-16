@@ -1,3 +1,28 @@
+(() => {
+  const brandCss = '../assets/css/behistorical-brand-lock.css';
+  if (!document.querySelector(`link[href="${brandCss}"]`)) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = brandCss;
+    document.head.appendChild(link);
+  }
+  const topLogo = document.querySelector('.brand-mini');
+  if (topLogo) {
+    topLogo.href = '../index.html';
+    topLogo.setAttribute('aria-label', 'Return to BeHistorical landing page');
+  }
+  const heroLogoFrame = document.querySelector('.hero .logo-frame');
+  if (heroLogoFrame && !heroLogoFrame.closest('a')) {
+    const homeLink = document.createElement('a');
+    homeLink.href = '../index.html';
+    homeLink.className = 'logo-home-link';
+    homeLink.setAttribute('aria-label', 'Return to BeHistorical landing page');
+    homeLink.style.display = 'inline-block';
+    heroLogoFrame.parentNode.insertBefore(homeLink, heroLogoFrame);
+    homeLink.appendChild(heroLogoFrame);
+  }
+})();
+
 window.BEHISTORICAL_LESSON = {
   meta: {
     course: "AP WORLD HISTORY",
