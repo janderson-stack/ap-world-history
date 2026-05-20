@@ -16,15 +16,15 @@ const UNIT1_MODULE_CARD_IMAGES={
     checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/Jiao%20zi.jpg'
   },
   'Topic 1.2':{
-    map:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Muslim_world_map.svg/1024px-Muslim_world_map.svg.png',
-    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
-    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Great_Mosque_of_Kairouan_panoramic_view.jpg',
-    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/Abbasid_coin.jpg',
-    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/Blue_Quran_Sura_30.jpg',
-    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Abbasid_coin.jpg',
-    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Arabic%20manuscript%20on%20astronomy.jpg',
+    map:'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
+    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_archer10_%28Dennis%29_-_Egypt-13A-061_%28cropped%29.jpg',
+    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Qutb%20Minar%20in%20the%20Monsoon.jpg',
+    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
+    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_archer10_%28Dennis%29_-_Egypt-13A-061_%28cropped%29.jpg',
+    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Qutb%20Minar%20in%20the%20Monsoon.jpg',
+    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Catalan_Atlas_BNF_Sheet_6_Mansa_Musa.jpg',
     source:'https://commons.wikimedia.org/wiki/Special:FilePath/Blue_Quran_Sura_30.jpg',
-    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Baghdad_1258.jpg',
+    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_archer10_%28Dennis%29_-_Egypt-13A-061_%28cropped%29.jpg',
     checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/Dhow_in_Indian_Ocean.jpg'
   },
   'Topic 1.3':{
