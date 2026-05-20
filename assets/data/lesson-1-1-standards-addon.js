@@ -42,7 +42,7 @@
     const style = document.createElement('style');
     style.id = 'topic-11-standards-styles';
     style.textContent = `
-      .college-board-framework{margin-top:-10px}.cb-framework-grid{display:grid;grid-template-columns:1fr;gap:16px}.cb-card{background:var(--clean-paper);border:1px solid var(--paper-line);border-left:7px solid var(--aged-iron);border-radius:18px;padding:20px;box-shadow:var(--soft-shadow)}.cb-card h3{font-family:"Cinzel","Trajan Pro","Times New Roman",Georgia,serif;color:var(--blackened-steel);margin:0 0 10px}.cb-code{display:inline-flex;margin-bottom:10px;padding:5px 10px;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);font-family:"Montserrat",Inter,Arial,sans-serif;font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.cb-card p{margin:0 0 12px;line-height:1.55}.cb-examples{margin-top:10px;padding-top:10px;border-top:1px solid rgba(26,28,29,.1)}.cb-examples strong{font-family:"Montserrat",Inter,Arial,sans-serif;color:var(--oxidized-brown);text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}.cb-examples ul{margin:8px 0 0}.map-key{margin-top:16px;background:#f6efe3;border-left:6px solid var(--aged-iron);border-radius:14px;padding:14px 16px}.map-key h4{margin:0 0 10px;font-family:"Montserrat",Inter,Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown)}.map-key-item{display:grid;grid-template-columns:minmax(150px,.45fr) 1fr;gap:10px;padding:8px 0;border-top:1px solid rgba(26,28,29,.1)}.map-key-item:first-of-type{border-top:0}.map-key-label{font-weight:900;color:var(--blackened-steel)}@media(max-width:720px){.map-key-item{grid-template-columns:1fr}}
+      .college-board-framework{margin-top:-10px}.cb-framework-grid{display:grid;grid-template-columns:1fr;gap:16px}.cb-card{background:var(--clean-paper);border:1px solid var(--paper-line);border-left:7px solid var(--aged-iron);border-radius:18px;padding:20px;box-shadow:var(--soft-shadow)}.cb-card h3{font-family:"Cinzel","Trajan Pro","Times New Roman",Georgia,serif;color:var(--blackened-steel);margin:0 0 10px}.cb-code{display:inline-flex;margin-bottom:10px;padding:5px 10px;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);font-family:"Montserrat",Inter,Arial,sans-serif;font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.cb-card p{margin:0 0 12px;line-height:1.55}.cb-examples{margin-top:10px;padding-top:10px;border-top:1px solid rgba(26,28,29,.1)}.cb-examples strong{font-family:"Montserrat",Inter,Arial,sans-serif;color:var(--oxidized-brown);text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}.cb-examples ul{margin:8px 0 0}.map-key{margin-top:16px;background:#f6efe3;border-left:6px solid var(--aged-iron);border-radius:14px;padding:14px 16px}.map-key h4{margin:0 0 10px;font-family:"Montserrat",Inter,Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown)}.map-key-item{display:grid;grid-template-columns:minmax(150px,.45fr) 1fr;gap:10px;padding:8px 0;border-top:1px solid rgba(26,28,29,.1)}.map-key-item:first-of-type{border-top:0}.map-key-label{font-weight:900;color:var(--blackened-steel)}.first10-frame-wrap{width:100%;height:72vh;border:1px solid rgba(26,28,29,.12);border-radius:18px;overflow:hidden;background:var(--blackened-steel);box-shadow:var(--soft-shadow)}.first10-frame{width:100%;height:100%;border:0;display:block}.first10-note{margin:0 0 14px;background:#f6efe3;border-left:6px solid var(--burnished-bronze);border-radius:14px;padding:14px 16px;color:var(--ink)}@media(max-width:720px){.map-key-item{grid-template-columns:1fr}.first10-frame-wrap{height:78vh}}
     `;
     document.head.appendChild(style);
   }
@@ -102,25 +102,34 @@
     });
   }
 
+  function openFirstAndTenPopout() {
+    const modal = document.getElementById('pop-modal');
+    const eyebrow = document.getElementById('pop-eyebrow');
+    const title = document.getElementById('pop-title');
+    const body = document.getElementById('pop-body');
+    if (!modal || !eyebrow || !title || !body) return;
+    eyebrow.textContent = 'Module 02';
+    title.textContent = 'First & 10 Reading';
+    body.innerHTML = `
+      <div class="first10-note"><strong>The World That Song Built</strong><br>This upgraded First &amp; 10 remains inside the lesson pop-out system. Use the embedded reading window below, then close this pop-out to return to the 1.1 lesson path.</div>
+      <div class="first10-frame-wrap"><iframe class="first10-frame" src="first-and-10-topic-1-1-song-china.html" title="First and 10 Reading: The World That Song Built"></iframe></div>
+    `;
+    modal.classList.add('show');
+  }
+
   function connectUpgradedFirstAndTen() {
-    const upgradedUrl = 'first-and-10-topic-1-1-song-china.html';
-    const openFirstAndTen = event => {
+    const handleFirstAndTen = event => {
       const card = event.target.closest('.module-card');
       if (!card || !card.textContent.includes('First & 10 Reading')) return;
       event.preventDefault();
       event.stopPropagation();
       event.stopImmediatePropagation();
-      window.open(upgradedUrl, '_blank');
+      openFirstAndTenPopout();
     };
-    document.addEventListener('click', openFirstAndTen, true);
+    document.addEventListener('click', handleFirstAndTen, true);
     document.addEventListener('keydown', event => {
       if (event.key !== 'Enter' && event.key !== ' ') return;
-      const card = event.target.closest('.module-card');
-      if (!card || !card.textContent.includes('First & 10 Reading')) return;
-      event.preventDefault();
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-      window.open(upgradedUrl, '_blank');
+      handleFirstAndTen(event);
     }, true);
   }
 
