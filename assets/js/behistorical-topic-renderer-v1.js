@@ -2,7 +2,24 @@ const L=window.BEHISTORICAL_LESSON;
 const byId=id=>document.getElementById(id);
 const md=s=>String(s||'').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
 
+function applyKeyConceptLabels(){
+  if(!L||!L.meta)return;
+  const labels={
+    'Topic 1.2':{lt:['KC-3.1.III.D.iii','KC-3.2.I.B','KC-3.1.I.D; KC-3.1.III.D.iii'],sc:['KC-3.2.I.B','KC-3.1.III.D.iii','KC-3.1.I.D; KC-3.1.III.D.iii']},
+    'Topic 1.3':{lt:['KC-3.1.III.D.ii; KC-3.1.III.D.iii','KC-3.2.I; KC-3.1.I.D','KC-3.1.I.D'],sc:['KC-3.1.III.D.ii; KC-3.1.III.D.iii','KC-3.2.I','KC-3.1.I.D']},
+    'Topic 1.4':{lt:['KC-3.2.I','KC-3.2.I; KC-3.3','Comparison'],sc:['KC-3.2.I','KC-3.2.I; KC-3.3','Comparison']},
+    'Topic 1.5':{lt:['KC-3.2.I','KC-3.1.I.D; KC-3.1.III.D.iii','Comparison'],sc:['KC-3.1.I.D','KC-3.1.I.D; KC-3.1.III.D.iii','KC-3.2.I']},
+    'Topic 1.6':{lt:['KC-3.2.I','KC-3.1.III.D; KC-3.3','Comparison'],sc:['KC-3.2.I','KC-3.3','Comparison']},
+    'Topic 1.7':{lt:['Topic 1.7; Comparison','KC-3.1.III.D; Comparison','AP Historical Thinking Skill: Comparison'],sc:['Comparison','Evidence','Reasoning']}
+  };
+  const match=labels[L.meta.topic];
+  if(!match)return;
+  (L.learningTargets||[]).forEach((item,i)=>{if(match.lt[i])item.kc=match.lt[i];});
+  (L.successCriteria||[]).forEach((item,i)=>{if(match.sc[i])item.kc=match.sc[i];});
+}
+
 if(L){
+  applyKeyConceptLabels();
   document.title=`BeHistorical | AP World ${L.meta.topic} ${L.meta.title}`;
   byId('lesson-title').textContent=`${L.meta.topic} — ${L.meta.title}`;
   byId('lesson-subtitle').textContent=L.meta.subtitle;
