@@ -2,6 +2,100 @@ const L=window.BEHISTORICAL_LESSON;
 const byId=id=>document.getElementById(id);
 const md=s=>String(s||'').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
 
+const UNIT1_MODULE_CARD_IMAGES={
+  'Topic 1.1':{
+    map:'https://commons.wikimedia.org/wiki/Special:FilePath/China_-_Song_Dynasty-en.svg',
+    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg',
+    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Huizong.jpg',
+    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/Jiao%20zi.jpg',
+    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/Song%20Imperial%20Examination.JPG',
+    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Palastexamen-SongDynastie.jpg',
+    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Zhu%20xi.jpg',
+    source:'https://commons.wikimedia.org/wiki/Special:FilePath/Confucius_Tang_Dynasty.jpg',
+    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Emperor_Huizong.jpg',
+    checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/Jiao%20zi.jpg'
+  },
+  'Topic 1.2':{
+    map:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Muslim_world_map.svg/1024px-Muslim_world_map.svg.png',
+    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
+    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Great_Mosque_of_Kairouan_panoramic_view.jpg',
+    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/Abbasid_coin.jpg',
+    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/Blue_Quran_Sura_30.jpg',
+    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Abbasid_coin.jpg',
+    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Arabic%20manuscript%20on%20astronomy.jpg',
+    source:'https://commons.wikimedia.org/wiki/Special:FilePath/Blue_Quran_Sura_30.jpg',
+    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Baghdad_1258.jpg',
+    checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/Dhow_in_Indian_Ocean.jpg'
+  },
+  'Topic 1.3':{
+    map:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Khmer_Empire_1203_Map_%28cropped%29.png/500px-Khmer_Empire_1203_Map_%28cropped%29.png',
+    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/Angkor%20Wat.jpg',
+    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Borobudur%20ship.JPG',
+    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/Angkor%20Wat.jpg',
+    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
+    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Qutb%20Minar%20in%20the%20Monsoon.jpg',
+    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Hampi%20virupaksha%20temple.jpg',
+    source:'https://commons.wikimedia.org/wiki/Special:FilePath/Borobudur%20ship.JPG',
+    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Majapahit_Empire.svg',
+    checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/Khmer_Empire_1203_Map_(cropped).png'
+  },
+  'Topic 1.4':{
+    map:'https://commons.wikimedia.org/wiki/Special:FilePath/Inca%20road%20system%20map-en.svg',
+    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/Mexico-Tenochtitlan.jpg',
+    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Machu%20Picchu%2C%20Peru.jpg',
+    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/Quipu.png',
+    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/Inca%20road%20system%20map-en.svg',
+    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Chinampas%20Xochimilco.jpg',
+    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Mexico-Tenochtitlan.jpg',
+    source:'https://commons.wikimedia.org/wiki/Special:FilePath/Quipu.png',
+    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Machu%20Picchu%2C%20Peru.jpg',
+    checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/Inca%20road%20system%20map-en.svg'
+  },
+  'Topic 1.5':{
+    map:'../assets/maps/unit1-5-africa.svg',
+    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/Catalan_Atlas_BNF_Sheet_6_Mansa_Musa.jpg',
+    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Great-Zimbabwe-2.jpg',
+    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/Catalan_Atlas_BNF_Sheet_6_Mansa_Musa.jpg',
+    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/Caravan_near_Sphinx.jpg',
+    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Timbuktu%20Sankore%20Mosque.jpg',
+    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Great-Zimbabwe-2.jpg',
+    source:'https://commons.wikimedia.org/wiki/Special:FilePath/Old_Town_of_Lamu.jpg',
+    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Old_Town_of_Lamu.jpg',
+    checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/Caravan_near_Sphinx.jpg'
+  },
+  'Topic 1.6':{
+    map:'../assets/maps/unit1-6-europe.svg',
+    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/Chartres%20Cathedral%20Exterior.jpg',
+    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Hommage%20au%20Moyen%20Age.jpg',
+    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/Les%20Tres%20Riches%20Heures%20du%20duc%20de%20Berry%20mars.jpg',
+    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/Bologna-vista02.jpg',
+    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Hommage%20au%20Moyen%20Age.jpg',
+    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Chartres%20Cathedral%20Exterior.jpg',
+    source:'https://commons.wikimedia.org/wiki/Special:FilePath/Les%20Tres%20Riches%20Heures%20du%20duc%20de%20Berry%20mars.jpg',
+    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Medieval_market.jpg',
+    checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/Bologna-vista02.jpg'
+  },
+  'Topic 1.7':{
+    map:'../assets/maps/unit1-7-comparison.svg',
+    first10:'https://commons.wikimedia.org/wiki/Special:FilePath/BlankMap-World.svg',
+    contentdelivery:'https://commons.wikimedia.org/wiki/Special:FilePath/Song%20Imperial%20Examination.JPG',
+    besurreal:'https://commons.wikimedia.org/wiki/Special:FilePath/Inca%20road%20system%20map-en.svg',
+    skill:'https://commons.wikimedia.org/wiki/Special:FilePath/BlankMap-World.svg',
+    checkpoint1:'https://commons.wikimedia.org/wiki/Special:FilePath/Catalan_Atlas_BNF_Sheet_6_Mansa_Musa.jpg',
+    evidence:'https://commons.wikimedia.org/wiki/Special:FilePath/Angkor%20Wat.jpg',
+    source:'https://commons.wikimedia.org/wiki/Special:FilePath/Chartres%20Cathedral%20Exterior.jpg',
+    beintheroom:'https://commons.wikimedia.org/wiki/Special:FilePath/Machu%20Picchu%2C%20Peru.jpg',
+    checkpoint2:'https://commons.wikimedia.org/wiki/Special:FilePath/BlankMap-World.svg'
+  }
+};
+
+function moduleCardImg(id,fallback){
+  const topicImages=UNIT1_MODULE_CARD_IMAGES[L&&L.meta?L.meta.topic:'']||{};
+  const stable=L.stableImages||{};
+  const stableKey={contentdelivery:'contentDelivery',checkpoint1:'checkpoint1',checkpoint2:'checkpoint2',beintheroom:'beInTheRoom'}[id]||id;
+  return topicImages[id]||stable[stableKey]||fallback||((L.map&&L.map.url)?L.map.url:'');
+}
+
 function applyKeyConceptLabels(){
   if(!L||!L.meta)return;
   const labels={
@@ -26,9 +120,7 @@ if(L){
   byId('footer-topic-label').textContent=`${L.meta.topic} — ${L.meta.title} · Think Like a Historian.`;
   byId('lecture-title').textContent=L.lecture.title||'Lecture Cards';
   byId('lecture-intro').textContent=L.lecture.intro||'Use these cards from the main page. Each card opens a projection-friendly pop-up with enlarged content and a related visual.';
-
   byId('inline-targets').innerHTML=`<div class="inline-targets"><article class="inline-target-card"><h3>Learning Targets</h3>${(L.learningTargets||[]).map((t,i)=>`<div class="inline-target-item"><span class="inline-target-number">${i+1}</span><div><p>${t.target}</p>${t.kc?`<span class="inline-target-kc">${t.kc}</span>`:''}</div></div>`).join('')}</article><article class="inline-target-card"><h3>Success Criteria</h3>${(L.successCriteria||[]).map((c,i)=>`<div class="inline-target-item"><span class="inline-target-number">${i+1}</span><div><p>${c.criteria}</p>${c.kc?`<span class="inline-target-kc">${c.kc}</span>`:''}</div></div>`).join('')}</article></div>`;
-
   renderCollegeBoardFramework();
   renderLectureCards();
   renderVideoClips();
@@ -52,18 +144,17 @@ function renderVideoClips(){
 }
 
 function defaultModules(){
-  const img=L.stableImages||{};
   return [
-    {id:'map',label:'Module 01',title:'Map & Geography Check',desc:'Connect geography to historical development.',img:L.map.url,render:renderMap},
-    {id:'first10',label:'Module 02',title:'First & 10 Reading',desc:'Narrative foundation for the topic.',img:img.first10||L.map.url,render:renderFirst10},
-    {id:'contentdelivery',label:'Module 03',title:'Content Delivery',desc:'Jump down to the main lecture-card section.',img:img.contentDelivery||L.map.url,jump:'#lecture'},
-    {id:'besurreal',label:'Module 04',title:'BeSurreal',desc:'A memorable everyday-life detail.',img:img.beSurreal||L.map.url,render:renderBeSurreal},
-    {id:'skill',label:'Module 05',title:'AP Skill Builder',desc:(L.skillBuilder&&L.skillBuilder.label)||'Historical thinking practice.',img:img.skill||L.map.url,render:renderSkill},
-    {id:'checkpoint1',label:'Module 06',title:'Checkpoint 1',desc:(L.checkpoints&&L.checkpoints[0]&&L.checkpoints[0].cardDesc)||'First checkpoint.',img:img.checkpoint1||L.map.url,render:()=>renderCheckpoint(L.checkpoints[0],'checkpoint-one-response')},
-    {id:'evidence',label:'Module 07',title:'Evidence Lab',desc:'Analyze images and source evidence.',img:img.evidence||L.map.url,render:renderEvidence},
-    {id:'source',label:'Module 08',title:'Primary Source',desc:'Read and interpret a source.',img:img.source||L.map.url,render:renderPrimarySource},
-    ...(L.beInTheRoom&&L.beInTheRoom.url?[{id:'beintheroom',label:'Module 09',title:'BeInTheRoom',desc:L.beInTheRoom.desc,img:img.beInTheRoom||L.map.url,link:L.beInTheRoom.url}]:[]),
-    {id:'checkpoint2',label:L.beInTheRoom?'Module 10':'Module 09',title:'Checkpoint 2',desc:(L.checkpoints&&L.checkpoints[1]&&L.checkpoints[1].cardDesc)||'Final checkpoint.',img:img.checkpoint2||L.map.url,render:()=>renderCheckpoint(L.checkpoints[1],'checkpoint-two-response')}
+    {id:'map',label:'Module 01',title:'Map & Geography Check',desc:'Connect geography to historical development.',img:moduleCardImg('map',L.map.url),render:renderMap},
+    {id:'first10',label:'Module 02',title:'First & 10 Reading',desc:'Narrative foundation for the topic.',img:moduleCardImg('first10',L.map.url),render:renderFirst10},
+    {id:'contentdelivery',label:'Module 03',title:'Content Delivery',desc:'Jump down to the main lecture-card section.',img:moduleCardImg('contentdelivery',L.map.url),jump:'#lecture'},
+    {id:'besurreal',label:'Module 04',title:'BeSurreal',desc:'A memorable everyday-life detail.',img:moduleCardImg('besurreal',L.map.url),render:renderBeSurreal},
+    {id:'skill',label:'Module 05',title:'AP Skill Builder',desc:(L.skillBuilder&&L.skillBuilder.label)||'Historical thinking practice.',img:moduleCardImg('skill',L.map.url),render:renderSkill},
+    {id:'checkpoint1',label:'Module 06',title:'Checkpoint 1',desc:(L.checkpoints&&L.checkpoints[0]&&L.checkpoints[0].cardDesc)||'First checkpoint.',img:moduleCardImg('checkpoint1',L.map.url),render:()=>renderCheckpoint(L.checkpoints[0],'checkpoint-one-response')},
+    {id:'evidence',label:'Module 07',title:'Evidence Lab',desc:'Analyze images and source evidence.',img:moduleCardImg('evidence',L.map.url),render:renderEvidence},
+    {id:'source',label:'Module 08',title:'Primary Source',desc:'Read and interpret a source.',img:moduleCardImg('source',L.map.url),render:renderPrimarySource},
+    ...(L.beInTheRoom&&L.beInTheRoom.url?[{id:'beintheroom',label:'Module 09',title:'BeInTheRoom',desc:L.beInTheRoom.desc,img:moduleCardImg('beintheroom',L.map.url),link:L.beInTheRoom.url}]:[]),
+    {id:'checkpoint2',label:L.beInTheRoom?'Module 10':'Module 09',title:'Checkpoint 2',desc:(L.checkpoints&&L.checkpoints[1]&&L.checkpoints[1].cardDesc)||'Final checkpoint.',img:moduleCardImg('checkpoint2',L.map.url),render:()=>renderCheckpoint(L.checkpoints[1],'checkpoint-two-response')}
   ];
 }
 
@@ -79,7 +170,12 @@ function closeModule(){byId('pop-modal').classList.remove('show')}
 function openLectureModal(i){const seg=L.lecture.segments[i];byId('lecture-modal-title').textContent=seg.title;byId('lecture-modal-bullets').innerHTML=seg.bullets.map(b=>`<li>${md(b)}</li>`).join('');byId('lecture-modal-img').src=seg.image.url;byId('lecture-modal-img').alt=seg.image.title;byId('lecture-modal-caption').innerHTML=`<strong>${seg.image.title}</strong><br>${seg.image.caption}<br><a href="${seg.image.sourceUrl||seg.image.url}" target="_blank" rel="noopener">Open image source</a>`;byId('lecture-modal').classList.add('show')}
 function closeLectureModal(){byId('lecture-modal').classList.remove('show')}
 
-function renderMap(){return `<article class="card map-card"><div class="map-grid"><figure class="map-figure"><img src="${L.map.url}" alt="${L.map.title}" onclick="openMapLightbox()"><figcaption><strong>${L.map.caption}</strong><br><a class="source-link" href="${L.map.sourceUrl}" target="_blank" rel="noopener">Open map source</a></figcaption></figure><div class="map-notes"><h3>${L.map.title}</h3><p>${L.map.intro}</p><ul>${(L.map.notes||[]).map(n=>`<li>${md(n)}</li>`).join('')}</ul>${renderMapKey()}<div class="question"><strong>Map Question</strong><br>${L.map.prompt}</div>${draftBlock('map-check-response',L.map.prompt,'Map Check')}</div></div></article>`;}
+function renderMap(){
+  if(L.map&&L.map.embedUrl){
+    return `<div class="first10-note"><strong>${L.map.title}</strong><br>${L.map.note||'Use the embedded map window below, then close this pop-out to return to the lesson path.'}</div><div class="first10-frame-wrap"><iframe class="first10-frame" src="${L.map.embedUrl}" title="${L.map.title}"></iframe></div>`;
+  }
+  return `<article class="card map-card"><div class="map-grid"><figure class="map-figure"><img src="${L.map.url}" alt="${L.map.title}" onclick="openMapLightbox()"><figcaption><strong>${L.map.caption}</strong><br><a class="source-link" href="${L.map.sourceUrl}" target="_blank" rel="noopener">Open map source</a></figcaption></figure><div class="map-notes"><h3>${L.map.title}</h3><p>${L.map.intro}</p><ul>${(L.map.notes||[]).map(n=>`<li>${md(n)}</li>`).join('')}</ul>${renderMapKey()}<div class="question"><strong>Map Question</strong><br>${L.map.prompt}</div>${draftBlock('map-check-response',L.map.prompt,'Map Check')}</div></div></article>`;
+}
 function renderMapKey(){return L.map.key&&L.map.key.length?`<div class="map-key"><h4>Map Key</h4>${L.map.key.map(k=>`<div class="map-key-item"><div class="map-key-label">${k.label}</div><div>${k.detail}</div></div>`).join('')}</div>`:''}
 function renderFirst10(){return L.first10.embedUrl?`<div class="first10-note"><strong>${L.first10.title}</strong><br>${L.first10.note||'Use the embedded reading window below, then close this pop-out to return to the lesson path.'}</div><div class="first10-frame-wrap"><iframe class="first10-frame" src="${L.first10.embedUrl}" title="${L.first10.title}"></iframe></div>`:`<div class="card reading"><h3>${L.first10.title}</h3>${L.first10.paragraphs.map(p=>`<p>${p}</p>`).join('')}</div><div class="card"><h3>First &amp; 10 Response Questions</h3>${L.first10.questions.map((q,i)=>`<div class="question"><strong>Question ${i+1}</strong><br>${q}</div>`).join('')}</div>${draftBlock('first10-response',L.first10.questions.join(' '),'First and 10')}`;}
 function renderBeSurreal(){const s=L.beSurreal||{};return `<article class="card"><h3>${s.title}</h3><p>${s.text}</p><div class="question"><strong>BeSurreal Question</strong><br>${s.prompt}</div></article>`;}
