@@ -67,7 +67,7 @@
             <p>${kc.text}</p>
             ${kc.illustrativeExamples && kc.illustrativeExamples.length ? `
               <div class="cb-examples"><strong>Illustrative examples</strong><ul>${kc.illustrativeExamples.map(ex => `<li>${ex}</li>`).join('')}</ul></div>
-            ` : `<div class="cb-examples"><strong>Illustrative examples</strong><p>No specific illustrative examples listed for this Key Concept in this lesson set.</p></div>`}
+            ` : ``}
           </article>
         `).join('')}
       </div>
