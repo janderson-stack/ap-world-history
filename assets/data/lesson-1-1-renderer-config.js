@@ -60,6 +60,11 @@
     checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jiao%20zi.jpg'
   };
 
+  lesson.beInTheRoom = {
+    url: '../beintheroom/unit-1/song-court.html',
+    desc: 'Enter the Song court, choose a historical role, advise the emperor, and defend a policy recommendation with evidence.'
+  };
+
   lesson.beSurreal = {
     title: 'BeSurreal: Printed Menus and Urban Food Culture',
     text: 'Song cities were so commercialized that some urban restaurants used printed menus and specialized food services. That small detail matters: it shows that printing, urbanization, consumer culture, and commerce were not abstract developments. They shaped everyday life in crowded cities such as Kaifeng and Hangzhou.',
