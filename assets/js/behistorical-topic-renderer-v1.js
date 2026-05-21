@@ -17,6 +17,11 @@ function moduleCardImg(id,fallback){
   return sanitizeImageUrl(stable[stableImageKey(id)]||fallback||((L.map&&L.map.url)?L.map.url:''));
 }
 
+function videoPreviewImg(video){
+  if(video&&video.youtubeId)return `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+  return sanitizeImageUrl((video&&video.previewImage)||((L.stableImages&&L.stableImages.contentDelivery)||((L.map&&L.map.url)||'')));
+}
+
 function applyKeyConceptLabels(){
   if(!L||!L.meta)return;
   const labels={
@@ -78,7 +83,7 @@ function renderLectureCards(){
 }
 
 function renderVideoClips(){
-  byId('content-video-clips').innerHTML=(L.lecture.videos||[]).map(v=>`<article class="card video-card"><h3>Video Clip</h3><div class="media-card"><div class="thumb video-thumb" style="${v.youtubeId?`background-image:linear-gradient(rgba(26,28,29,.25),rgba(26,28,29,.55)),url('https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg')`:''}"><span>Video Clip</span></div><p><strong>${v.title}</strong></p><p>${v.prompt}</p><a class="btn" href="${v.url}" target="_blank" rel="noopener">Open Video</a></div></article>`).join('');
+  byId('content-video-clips').innerHTML=(L.lecture.videos||[]).map(v=>{const preview=videoPreviewImg(v);return `<article class="card video-card"><h3>Video Clip</h3><div class="media-card"><div class="thumb video-thumb" style="${preview?`background-image:linear-gradient(rgba(26,28,29,.25),rgba(26,28,29,.55)),url('${preview}')`:''}"><span>Video Clip</span></div><p><strong>${v.title}</strong></p><p>${v.prompt}</p><a class="btn" href="${v.url}" target="_blank" rel="noopener">Open Video</a></div></article>`}).join('');
 }
 
 function defaultModules(){
