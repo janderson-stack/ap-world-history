@@ -60,27 +60,23 @@ if (L) {
   byId('lecture-intro').textContent = L.lecture.intro || 'Use these cards from the main page. Each card opens a projection-friendly pop-up with enlarged content and a related visual.';
 
   byId('inline-targets').innerHTML = `
-    <div class="inline-targets">
-      <article class="inline-target-card">
+    <div class="target-success-grid">
+      <article class="card target-card">
         <h3>Learning Targets</h3>
         ${(L.learningTargets || []).map((t, i) => `
-          <div class="inline-target-item">
-            <span class="inline-target-number">${i + 1}</span>
-            <div>
-              <p>${t.target}</p>
-              ${t.kc ? `<span class="inline-target-kc">${t.kc}</span>` : ''}
-            </div>
+          <div class="target-item">
+            <span class="target-number">${i + 1}</span>
+            <p>${t.target}</p>
+            ${t.kc ? `<span class="target-kc">${t.kc}</span>` : ''}
           </div>`).join('')}
       </article>
-      <article class="inline-target-card">
+      <article class="card success-card">
         <h3>Success Criteria</h3>
         ${(L.successCriteria || []).map((c, i) => `
-          <div class="inline-target-item">
-            <span class="inline-target-number">${i + 1}</span>
-            <div>
-              <p>${c.criteria}</p>
-              ${c.kc ? `<span class="inline-target-kc">${c.kc}</span>` : ''}
-            </div>
+          <div class="target-item">
+            <span class="target-number">${i + 1}</span>
+            <p>${c.criteria}</p>
+            ${c.kc ? `<span class="target-kc">${c.kc}</span>` : ''}
           </div>`).join('')}
       </article>
     </div>`;
@@ -260,111 +256,148 @@ function renderMapKey() {
     </div>` : '';
 }
 
-// ── First & 10 — with MagicSchool bridge ─────────────────────────────────────
+// ── First & 10 — questions feed the MagicSchool bridge ───────────────────────
+//
+// Student flow:
+//   1. Read the First & 10 narrative
+//   2. Answer the three historical thinking questions (each gets its own textarea)
+//   3. Click "Build My AI Coach Prompt" — answers package into one MagicSchool prompt
+//   4. Copy prompt → Open AI Coach → coaching conversation → move to lecture
+//
+// The old "one thing I noticed / one question I still have" fields are removed.
+// The three First & 10 questions ARE the bridge. Nothing sits separately.
 
 function renderFirst10() {
-  const bridge = L.first10 && L.first10.magicSchoolBridge ? renderFirst10Bridge(L.first10.magicSchoolBridge) : '';
+  const msUrl = (L.first10 && L.first10.magicSchoolBridge && L.first10.magicSchoolBridge.magicSchoolUrl)
+    || (L.meta && L.meta.feedbackToolUrl)
+    || 'https://app.magicschool.ai/';
+  const canvasNote = (L.meta && L.meta.canvasSubmissionNote)
+    || 'Use this space to organize your thinking. Your final response must be submitted in Canvas.';
+  const topic = (L.meta && L.meta.topic) ? L.meta.topic : 'this topic';
+  const topicTitle = (L.meta && L.meta.title) ? L.meta.title : '';
+  const questions = (L.first10 && L.first10.questions) ? L.first10.questions : [];
 
+  // Build question blocks — each question gets label + textarea
+  const questionBlocks = questions.map((q, i) => `
+    <div class="first10-q-block">
+      <div class="question">
+        <strong>Question ${i + 1}</strong><br>${q}
+      </div>
+      <textarea
+        class="response-area"
+        id="first10-q${i + 1}"
+        data-response-type="First and 10 Q${i + 1}"
+        placeholder="Write your answer here..."
+      ></textarea>
+      <div class="tool-row" style="margin-top:.4rem;">
+        <button class="btn secondary" type="button" onclick="saveDraft('first10-q${i + 1}')">Save Draft</button>
+      </div>
+      <div id="first10-q${i + 1}-result" class="check-result"></div>
+    </div>`).join('');
+
+  // Embedded reading path
   if (L.first10.embedUrl) {
     return `
-      <div class="first10-note"><strong>${L.first10.title}</strong><br>${L.first10.note || 'Use the embedded reading window below, then close this pop-out to return to the lesson path.'}</div>
-      <div class="first10-frame-wrap"><iframe class="first10-frame" src="${L.first10.embedUrl}" title="${L.first10.title}"></iframe></div>
-      ${bridge}`;
+      <div class="first10-note">
+        <strong>${L.first10.title}</strong><br>
+        ${L.first10.note || 'Use the embedded reading window below, then answer the questions and build your AI Coach prompt.'}
+      </div>
+      <div class="first10-frame-wrap">
+        <iframe class="first10-frame" src="${L.first10.embedUrl}" title="${L.first10.title}"></iframe>
+      </div>
+      <div class="card" style="margin-top:1.25rem;">
+        <h3>First &amp; 10 Response Questions</h3>
+        <p style="font-size:.85rem;opacity:.8;margin-bottom:1rem;">Answer all three questions. Your answers will build your AI Coach prompt.</p>
+        ${questionBlocks}
+      </div>
+      ${renderFirst10AIBridge(msUrl, canvasNote, topic, topicTitle, questions)}`;
   }
 
+  // Inline reading path
   return `
     <div class="card reading">
       <h3>${L.first10.title}</h3>
       ${L.first10.paragraphs.map(p => `<p>${p}</p>`).join('')}
     </div>
-    <div class="card">
+    <div class="card" style="margin-top:1.25rem;">
       <h3>First &amp; 10 Response Questions</h3>
-      <p>Answer these three questions first. Your responses will become the evidence for your AI Coach prompt.</p>
-      ${renderFirst10QuestionFields()}
-      <div class="tool-row">
-        <button class="btn" type="button" onclick="saveFirst10Responses()">Save Responses</button>
-        <button class="btn secondary" type="button" onclick="generateFirst10Prompt()">Build AI Coach Prompt</button>
-      </div>
-      <div id="first10-questions-result" class="check-result"></div>
+      <p style="font-size:.85rem;opacity:.8;margin-bottom:1rem;">Answer all three questions. Your answers will build your AI Coach prompt before you move to the lecture.</p>
+      ${questionBlocks}
     </div>
-    ${bridge}`;
+    ${renderFirst10AIBridge(msUrl, canvasNote, topic, topicTitle, questions)}`;
 }
 
-function renderFirst10QuestionFields() {
-  return (L.first10.questions || []).map((q, i) => `
-    <div class="question"><strong>Question ${i + 1}</strong><br>${q}</div>
-    <textarea class="response-area" id="first10-q-${i + 1}" data-response-type="First and 10 Question ${i + 1}" placeholder="Type your response to Question ${i + 1} here..."></textarea>`).join('');
-}
-
-function renderFirst10Bridge(bridge) {
-  if (!bridge) return '';
-  const msUrl = bridge.magicSchoolUrl || (L.meta && L.meta.feedbackToolUrl) || 'https://app.magicschool.ai/';
+// Renders the AI bridge block that sits below the question boxes
+function renderFirst10AIBridge(msUrl, canvasNote, topic, topicTitle, questions) {
   return `
-    <div class="magicschool-bridge first10-bridge">
-      <h3>${bridge.title || 'Take Your Thinking to the AI Coach'}</h3>
-      <p>Use your three First &amp; 10 responses above to build a coaching prompt. The AI Coach should help you improve your evidence and reasoning, not write the final answer for you.</p>
-      <p style="font-size:.82rem;opacity:.85;margin-bottom:.5rem;">${bridge.copyInstructions || 'Click Build AI Coach Prompt, then copy it into the BeHistorical AI Coach:'}</p>
+    <div class="magicschool-bridge first10-bridge" style="margin-top:1.25rem;">
+      <h3>Take Your Thinking to the AI Coach</h3>
+      <p>Before moving to the lecture, use your answers above to build your AI Coach prompt. The coach will ask you one question at a time to strengthen your historical reasoning.</p>
+      <p style="font-size:.82rem;opacity:.85;margin:.5rem 0 .75rem;">Click <strong>Build My AI Coach Prompt</strong> to package your answers. Then copy and paste into the BeHistorical AI Coach.</p>
       <div class="copy-template">
-        <p class="copy-template-text" id="first10-ms-preview">Your prompt will appear here after you click Build AI Coach Prompt.</p>
+        <p class="copy-template-text" id="first10-ms-preview">Your AI Coach prompt will appear here after you click Build My AI Coach Prompt.</p>
       </div>
-      <div class="tool-row">
-        <button class="btn" type="button" onclick="generateFirst10Prompt()">Build AI Coach Prompt</button>
+      <div class="tool-row" style="margin-top:.75rem;">
+        <button class="btn" type="button" onclick="generateFirst10Prompt()">Build My AI Coach Prompt</button>
         <button class="btn secondary" type="button" onclick="copyFirst10Prompt()">Copy Prompt</button>
         <a class="btn secondary" href="${msUrl}" target="_blank" rel="noopener">Open AI Coach</a>
       </div>
       <div id="first10-ms-result" class="check-result"></div>
-      <p class="canvas-note">${(L.meta && L.meta.canvasSubmissionNote) || 'Use this space to organize your thinking. Your final response must be submitted in Canvas.'}</p>
+      <p class="canvas-note">${canvasNote}</p>
     </div>`;
 }
 
-// ── First & 10 prompt functions ───────────────────────────────────────────────
-
-function getFirst10Responses() {
-  return (L.first10.questions || []).map((question, i) => {
-    const el = byId(`first10-q-${i + 1}`);
-    return {
-      question,
-      response: el && el.value.trim() ? el.value.trim() : ''
-    };
-  });
-}
-
-function saveFirst10Responses() {
-  getFirst10Responses().forEach((_, i) => saveDraft(`first10-q-${i + 1}`));
-  const resultEl = byId('first10-questions-result');
-  if (resultEl) resultEl.textContent = 'First & 10 responses saved on this device.';
-}
+// ── First & 10 prompt generator ───────────────────────────────────────────────
+//
+// Reads each question textarea by ID (first10-q1, first10-q2, first10-q3),
+// packages answers into a structured MagicSchool-ready prompt,
+// and displays it in the preview block.
 
 function generateFirst10Prompt() {
   const previewEl = byId('first10-ms-preview');
-  const resultEl = byId('first10-ms-result') || byId('first10-questions-result');
-  const topic = (L && L.meta && L.meta.topic) ? L.meta.topic : 'this topic';
-  const title = (L && L.meta && L.meta.title) ? L.meta.title : 'this lesson';
-  const responses = getFirst10Responses();
-  const hasResponse = responses.some(item => item.response);
+  const resultEl  = byId('first10-ms-result');
+  const topic     = (L && L.meta && L.meta.topic)  ? L.meta.topic  : 'this topic';
+  const topicTitle= (L && L.meta && L.meta.title)  ? L.meta.title  : '';
+  const questions = (L && L.first10 && L.first10.questions) ? L.first10.questions : [];
 
-  if (!hasResponse) {
-    if (resultEl) resultEl.textContent = 'Answer at least one First & 10 question above before building your AI Coach prompt.';
+  // Gather answers — fall back to placeholder if blank
+  const answers = questions.map((q, i) => {
+    const el  = byId(`first10-q${i + 1}`);
+    const val = (el && el.value && el.value.trim()) ? el.value.trim() : '[no answer yet]';
+    return `${i + 1}. ${val}`;
+  });
+
+  // Check that at least one answer is filled in
+  const hasAnswer = answers.some(a => !a.includes('[no answer yet]'));
+  if (!hasAnswer) {
+    if (resultEl) resultEl.textContent = 'Answer at least one question above before building your prompt.';
     return;
   }
 
-  const responseText = responses.map((item, i) => `Question ${i + 1}: ${item.question}\nMy response: ${item.response || '[not answered yet]'}`).join('\n\n');
-  const prompt = `I just completed the First & 10 reading for ${topic} — ${title}. Here are my responses:\n\n${responseText}\n\nPlease coach me by asking one question at a time. Help me strengthen my evidence, historical reasoning, and explanation. Do not write my final answer for me.`;
+  // Build the structured MagicSchool prompt
+  const prompt = [
+    `${topic}, First & 10 Reflection${topicTitle ? ` — ${topicTitle}` : ''}.`,
+    `I just read the First & 10 reading. Here are my responses:`,
+    ``,
+    ...answers,
+    ``,
+    `Please coach me by asking one question at a time. Help me strengthen my evidence, historical reasoning, and explanation. Do not write my final answer for me.`
+  ].join('\n');
 
   if (previewEl) previewEl.textContent = prompt;
-  if (resultEl) resultEl.textContent = 'AI Coach prompt ready — click Copy Prompt to copy it.';
+  if (resultEl)  resultEl.textContent  = 'Prompt ready — click Copy Prompt, then paste it into the BeHistorical AI Coach.';
 }
 
 function copyFirst10Prompt() {
   const previewEl = byId('first10-ms-preview');
-  const resultEl = byId('first10-ms-result');
+  const resultEl  = byId('first10-ms-result');
   if (!previewEl || previewEl.textContent.includes('will appear here')) {
     generateFirst10Prompt();
     return;
   }
   navigator.clipboard.writeText(previewEl.textContent)
-    .then(() => { if (resultEl) resultEl.textContent = 'Prompt copied — paste it into the BeHistorical AI Coach to start your reflection.'; })
-    .catch(() => { if (resultEl) resultEl.textContent = 'Copy failed. Select the prompt text above and copy it manually.'; });
+    .then(()  => { if (resultEl) resultEl.textContent = 'Prompt copied — paste it into the BeHistorical AI Coach.'; })
+    .catch(()  => { if (resultEl) resultEl.textContent = 'Copy failed. Select the prompt text above and copy it manually.'; });
 }
 
 // ── BeSurreal ─────────────────────────────────────────────────────────────────
@@ -530,8 +563,7 @@ function saveDraft(id) {
   const t = byId(id);
   if (!t) return;
   localStorage.setItem(`behistorical-draft-${id}`, t.value || '');
-  const result = byId(id + '-result');
-  if (result) result.textContent = 'Draft saved on this device.';
+  byId(id + '-result').textContent = 'Draft saved on this device.';
 }
 
 function loadDraft(id) {
