@@ -5,6 +5,7 @@
 const L = window.BEHISTORICAL_LESSON;
 const byId = id => document.getElementById(id);
 const md = s => String(s || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+const kcPills = kc => kc.split(';').map(s => s.trim()).filter(Boolean).map(s => `<span class="inline-target-kc">${s}</span>`).join('\n            ');
 
 function sanitizeImageUrl(url) {
   const value = String(url || '').trim();
@@ -67,7 +68,7 @@ if (L) {
           <div class="inline-target-item">
             <span class="inline-target-number">${i + 1}</span>
             <p>${t.target}</p>
-            ${t.kc ? `<span class="inline-target-kc">${t.kc}</span>` : ''}
+            ${t.kc ? kcPills(t.kc) : ''}
           </div>`).join('')}
       </article>
       <article class="inline-target-card">
@@ -76,7 +77,7 @@ if (L) {
           <div class="inline-target-item">
             <span class="inline-target-number">${i + 1}</span>
             <p>${c.criteria}</p>
-            ${c.kc ? `<span class="inline-target-kc">${c.kc}</span>` : ''}
+            ${c.kc ? kcPills(c.kc) : ''}
           </div>`).join('')}
       </article>
     </div>`;
