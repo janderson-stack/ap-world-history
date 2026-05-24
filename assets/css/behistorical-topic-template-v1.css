@@ -67,3 +67,13 @@
 .magicschool-bridge .check-result {
   color: var(--antique-gold);
 }
+.inline-target-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.inline-target-kc-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
