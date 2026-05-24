@@ -5,9 +5,7 @@
 const L = window.BEHISTORICAL_LESSON;
 const byId = id => document.getElementById(id);
 const md = s => String(s || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-const themePill = theme => theme
-  ? `<span class="inline-target-kc">${theme}</span>`
-  : '';
+const kcPills = kc => kc.split(';').map(s => s.trim()).filter(Boolean).map(s => `<span class="inline-target-kc">${s}</span>`).join(' ');
 
 function sanitizeImageUrl(url) {
   const value = String(url || '').trim();
@@ -71,7 +69,7 @@ if (L) {
             <span class="inline-target-number">${i + 1}</span>
             <div class="inline-target-text">
               <p>${t.target}</p>
-              ${t.theme ? `<div class="inline-target-kc-row">${themePill(t.theme)}</div>` : ''}
+              ${t.kc ? `<div class="inline-target-kc-row">${kcPills(t.kc)}</div>` : ''}
             </div>
           </div>`).join('')}
       </article>
@@ -82,7 +80,7 @@ if (L) {
             <span class="inline-target-number">${i + 1}</span>
             <div class="inline-target-text">
               <p>${c.criteria}</p>
-              ${c.theme ? `<div class="inline-target-kc-row">${themePill(c.theme)}</div>` : ''}
+              ${c.kc ? `<div class="inline-target-kc-row">${kcPills(c.kc)}</div>` : ''}
             </div>
           </div>`).join('')}
       </article>
@@ -128,7 +126,7 @@ function renderCollegeBoardFramework() {
       ${keyConcepts.map(kc => `
         <article class="cb-card">
           <span class="cb-code">${kc.code}</span>
-          <h3>${kc.code}</h3>
+          <h3>${kc.theme || kc.code}</h3>
           <p>${kc.text}</p>
           ${kc.illustrativeExamples && kc.illustrativeExamples.length ? `
             <div class="cb-examples">
