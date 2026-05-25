@@ -3,15 +3,15 @@
   if (!lesson) return;
 
   lesson.stableImages = {
-    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/Late_Medieval_Trade_Routes.jpg',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_map_1200.jpg',
-    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Late_Medieval_Trade_Routes.jpg',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_map_1200.jpg',
-    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/Late_Medieval_Trade_Routes.jpg',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_map_1200.jpg',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Late_Medieval_Trade_Routes.jpg',
-    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_map_1200.jpg',
-    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/Late_Medieval_Trade_Routes.jpg',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_map_1200.jpg'
+    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/Angkor_Wat_001.JPG',
+    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wall_of_the_great_enclosure%2C_Great_Zimbabwe.JPG',
+    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chichen_itza.JPG',
+    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maqamat_hariri.jpg',
+    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/Laon_cathedral_notre_dame_002.JPG',
+    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/Biet_Giorgis%2C_Lalibela%2C_Ethiopia_(24076354516).jpg',
+    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Angkor_Wat_006.JPG',
+    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/Al-Aqsa_mosque_(8682155875).jpg',
+    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chichen_Itza_52.JPG',
+    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Side-View_of_Notre_Dame_Cathedral.JPG'
   };
 })();
