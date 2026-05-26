@@ -7,6 +7,7 @@ const byId = id => document.getElementById(id);
 const md = s => String(s || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 const kcPills = kc => kc.split(';').map(s => s.trim()).filter(Boolean).map(s => `<span class="inline-target-kc">${s}</span>`).join(' ');
 
+
 function sanitizeImageUrl(url) {
   const value = String(url || '').trim();
   if (!value) return '';
@@ -300,7 +301,7 @@ function renderFirst10() {
       <div id="first10-q${i + 1}-result" class="check-result"></div>
     </div>`).join('');
 
-  // Embedded reading path
+  // Embedded reading path — questions and AI coaching live inside the iframe page
   if (L.first10.embedUrl) {
     return `
       <div class="first10-note">
@@ -309,7 +310,9 @@ function renderFirst10() {
       </div>
       <div class="first10-frame-wrap">
         <iframe class="first10-frame" src="${L.first10.embedUrl}" title="${L.first10.title}"></iframe>
-      </div>`;
+      </div>
+      ${L.captureUrls && L.captureUrls.first10 ? `<div class="tool-row" style="margin-top:1rem;">${L.captureUrls.first10}</div>` : ''}`;
+
   }
 
   // Inline reading path
@@ -340,6 +343,7 @@ function renderFirst10AIBridge(msUrl, canvasNote, topic, topicTitle, questions) 
         <button class="btn" type="button" onclick="generateFirst10Prompt()">Build My AI Coach Prompt</button>
         <button class="btn secondary" type="button" onclick="copyFirst10Prompt()">Copy Prompt</button>
         <a class="btn secondary" href="${msUrl}" target="_blank" rel="noopener">Open AI Coach</a>
+        ${(L.captureUrls && L.captureUrls.first10) || ''}
       </div>
       <div id="first10-ms-result" class="check-result"></div>
       <p class="canvas-note">${canvasNote}</p>
@@ -424,7 +428,7 @@ function renderSkill() {
       </div>
       <div class="question"><strong>Skill Practice</strong><br>${s.prompt}</div>
     </article>
-    ${draftBlock('skill-builder-response', s.prompt, 'AP Skill Builder')}`;
+    ${draftBlock('skill-builder-response', s.prompt, 'AP Skill Builder', 'skillBuilder')}`;
 }
 
 // ── Checkpoints — with MagicSchool bridge ────────────────────────────────────
@@ -458,7 +462,7 @@ function renderCheckpoint(cp, id) {
         <ul>${(cp.focus || []).map(f => `<li>${f}</li>`).join('')}</ul>
       </article>
     </div>
-    ${responseBlock(id, cp.prompt, cp.responseType, cp.terms || [])}
+    ${responseBlock(id, cp.prompt, cp.responseType, cp.terms || [], id === 'checkpoint-one-response' ? 'checkpoint1' : 'checkpoint2')}
     <div class="magicschool-bridge">
       <h3>Take Your Thinking to the AI Coach</h3>
       <p>After drafting your response above, open the BeHistorical AI Coach. Start your message with:</p>
@@ -504,7 +508,7 @@ function renderEvidence() {
           </div>
         </article>`).join('')}
     </div>
-    ${draftBlock('evidence-response', L.evidenceLab.prompt, 'Evidence Lab')}`;
+    ${draftBlock('evidence-response', L.evidenceLab.prompt, 'Evidence Lab', 'evidenceLab')}`;
 }
 
 // ── Primary Source ────────────────────────────────────────────────────────────
@@ -522,12 +526,12 @@ function renderPrimarySource() {
         ${L.primarySource.questions.map((q, i) => `<div class="question"><strong>${i + 1}</strong><br>${q}</div>`).join('')}
       </aside>
     </div>
-    ${draftBlock('primary-source-response', L.primarySource.questions.join(' '), 'Primary Source')}`;
+    ${draftBlock('primary-source-response', L.primarySource.questions.join(' '), 'Primary Source', 'primarySource')}`;
 }
 
 // ── Shared response/draft blocks ──────────────────────────────────────────────
 
-function draftBlock(id, prompt, responseType) {
+function draftBlock(id, prompt, responseType, captureKey = '') {
   return `
     <div class="prompt-box">
       <h3>Draft Your Thinking</h3>
@@ -538,10 +542,11 @@ function draftBlock(id, prompt, responseType) {
         <button class="btn secondary" type="button" onclick="copyResponse('${id}')">Copy Response</button>
       </div>
       <div id="${id}-result" class="check-result"></div>
+      ${captureKey && L.captureUrls && L.captureUrls[captureKey] ? L.captureUrls[captureKey] : ''}
     </div>`;
 }
 
-function responseBlock(id, prompt, responseType, terms = []) {
+function responseBlock(id, prompt, responseType, terms = [], captureKey = '') {
   return `
     <div class="prompt-box">
       <h3>Write Your Response</h3>
@@ -553,6 +558,7 @@ function responseBlock(id, prompt, responseType, terms = []) {
         <button class="btn secondary" type="button" onclick="selfCheck('${id}')">Run Self-Check</button>
       </div>
       <div id="${id}-result" class="check-result"></div>
+      ${captureKey && L.captureUrls && L.captureUrls[captureKey] ? L.captureUrls[captureKey] : ''}
     </div>`;
 }
 

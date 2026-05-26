@@ -1,0 +1,67 @@
+/*
+ * ─── BEHISTORICAL FORM CONFIG ────────────────────────────────────────────────
+ * File: assets/js/behistorical-form-config.js
+ *
+ * Load this script BEFORE the topic data script on every lesson page:
+ *   <script src="../assets/js/behistorical-form-config.js?v=1"></script>
+ *
+ * Entry IDs (from Google Form prefill link — do not modify):
+ *   entry.821183375  = Student Name       (student fills in)
+ *   entry.1794755975 = Class Period        (student fills in)
+ *   entry.187055090  = Topic              (pre-filled per lesson)
+ *   entry.2107637366 = Response Type      (pre-filled per capture point)
+ *   entry.1818136905 = Student Response   (student fills in)
+ *   entry.1452763218 = Revision Notes     (student fills in, optional)
+ *   entry.1652722657 = Confidence 1–5     (student fills in)
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+window.BH_FORM = {
+  baseURL: 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform',
+
+  fields: {
+    topic:        'entry.187055090',
+    responseType: 'entry.2107637366',
+  },
+
+  // Must match Google Form dropdown labels exactly.
+  // Verify each string against the live form before deploying a new lesson.
+  topics: {
+    '1.1': '1.1 - Song China',
+    '1.2': '1.2 - Dar al-Islam',
+    '1.3': '1.3 - South and Southeast Asia',
+    '1.4': '1.4 - The Americas',
+    '1.5': '1.5 - Africa',
+    '1.6': '1.6 - Eurasian Connections',
+    '1.7': '1.7 - Cross-Cultural Exchanges',
+  },
+
+  // Must match Google Form multiple-choice option text exactly.
+  // Always use these keys in lesson pages — never hardcode the string directly.
+  responseTypes: {
+    first10:       'First and 10',
+    skillBuilder:  'AP Skill Builder',
+    checkpoint1:   'Checkpoint 1',
+    evidenceLab:   'Evidence Lab',
+    primarySource: 'Primary Source',
+    checkpoint2:   'Checkpoint 2',
+  }
+};
+
+/**
+ * buildFormURL(topic, responseType)
+ * Returns a Google Form prefill URL with Topic + Response Type pre-populated.
+ * The student fills in: Name, Period, Response, Revision Notes, Confidence.
+ *
+ * Usage in lesson pages:
+ *   buildFormURL(BH_FORM.topics['1.1'], BH_FORM.responseTypes.first10)
+ *   buildFormURL(BH_FORM.topics['1.1'], BH_FORM.responseTypes.checkpoint2)
+ */
+function buildFormURL(topic, responseType) {
+  const params = new URLSearchParams({
+    usp: 'pp_url',
+    [BH_FORM.fields.topic]:        topic,
+    [BH_FORM.fields.responseType]: responseType,
+  });
+  return `${BH_FORM.baseURL}?${params.toString()}`;
+}
