@@ -342,8 +342,8 @@ function renderFirst10AIBridge(msUrl, canvasNote, topic, topicTitle, questions) 
       <div class="tool-row" style="margin-top:.75rem;">
         <button class="btn" type="button" onclick="generateFirst10Prompt()">Build My AI Coach Prompt</button>
         <button class="btn secondary" type="button" onclick="copyFirst10Prompt()">Copy Prompt</button>
-        <a class="btn secondary" href="${msUrl}" target="_blank" rel="noopener">Open AI Coach</a>
         ${(L.captureUrls && L.captureUrls.first10) || ''}
+        <a class="btn secondary" href="${msUrl}" target="_blank" rel="noopener">Open AI Coach</a>
       </div>
       <div id="first10-ms-result" class="check-result"></div>
       <p class="canvas-note">${canvasNote}</p>
@@ -540,9 +540,9 @@ function draftBlock(id, prompt, responseType, captureKey = '') {
       <div class="tool-row">
         <button class="btn" type="button" onclick="saveDraft('${id}')">Save Draft</button>
         <button class="btn secondary" type="button" onclick="copyResponse('${id}')">Copy Response</button>
+        ${captureKey && L.captureUrls && L.captureUrls[captureKey] ? L.captureUrls[captureKey] : ''}
       </div>
       <div id="${id}-result" class="check-result"></div>
-      ${captureKey && L.captureUrls && L.captureUrls[captureKey] ? L.captureUrls[captureKey] : ''}
     </div>`;
 }
 
@@ -556,9 +556,9 @@ function responseBlock(id, prompt, responseType, terms = [], captureKey = '') {
         <button class="btn" type="button" onclick="saveDraft('${id}')">Save Draft</button>
         <button class="btn secondary" type="button" onclick="copyResponse('${id}')">Copy Response</button>
         <button class="btn secondary" type="button" onclick="selfCheck('${id}')">Run Self-Check</button>
+        ${captureKey && L.captureUrls && L.captureUrls[captureKey] ? L.captureUrls[captureKey] : ''}
       </div>
       <div id="${id}-result" class="check-result"></div>
-      ${captureKey && L.captureUrls && L.captureUrls[captureKey] ? L.captureUrls[captureKey] : ''}
     </div>`;
 }
 
