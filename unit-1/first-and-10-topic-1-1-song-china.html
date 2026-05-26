@@ -56,12 +56,26 @@
   <div class="check-section">
     <div class="check-header"><span class="check-badge">Check Your Thinking</span><span class="check-title">Three Questions → AI Coach Prompt</span></div>
     <ul class="question-list">
-      <li class="question-item"><div class="question-prompt"><span class="q-num">01</span><span class="q-skill">Causation</span><p class="q-text" id="q1-text">Explain how the instability before 960 CE caused Song rulers to build their government around civilian officials, Confucian learning, and bureaucracy. Use at least two specific examples.</p></div><textarea class="q-textarea" id="first10-q1" placeholder="The instability before the Song caused rulers to..."></textarea></li>
-      <li class="question-item"><div class="question-prompt"><span class="q-num">02</span><span class="q-skill">CCOT</span><p class="q-text" id="q2-text">Confucianism existed long before the Song Dynasty. What continued from earlier Confucian tradition, and what changed during the Song period? Be specific about Neo-Confucianism and the civil service examination system.</p></div><textarea class="q-textarea" id="first10-q2" placeholder="While Confucianism had existed before the Song, the Song period changed it by..."></textarea></li>
-      <li class="question-item"><div class="question-prompt"><span class="q-num">03</span><span class="q-skill">Argumentation</span><p class="q-text" id="q3-text">Evaluate this claim: “The solution to one problem often becomes the source of the next.” Use evidence from Song China to support or challenge the claim.</p></div><textarea class="q-textarea" id="first10-q3" placeholder="This claim is supported or challenged by the Song example because..."></textarea></li>
+      <li class=”question-item”><div class=”question-prompt”><span class=”q-num”>01</span><span class=”q-skill”>Causation</span><p class=”q-text” id=”q1-text”>Explain how the instability before 960 CE caused Song rulers to build their government around civilian officials, Confucian learning, and bureaucracy. Use at least two specific examples.</p></div><textarea class=”q-textarea” id=”first10-q1” placeholder=”The instability before the Song caused rulers to...”></textarea><div style=”padding:.5rem 1.1rem .8rem;”><button class=”action-btn” type=”button” onclick=”saveDraft('q1')”>Save Draft</button></div></li>
+      <li class=”question-item”><div class=”question-prompt”><span class=”q-num”>02</span><span class=”q-skill”>CCOT</span><p class=”q-text” id=”q2-text”>Confucianism existed long before the Song Dynasty. What continued from earlier Confucian tradition, and what changed during the Song period? Be specific about Neo-Confucianism and the civil service examination system.</p></div><textarea class=”q-textarea” id=”first10-q2” placeholder=”While Confucianism had existed before the Song, the Song period changed it by...”></textarea><div style=”padding:.5rem 1.1rem .8rem;”><button class=”action-btn” type=”button” onclick=”saveDraft('q2')”>Save Draft</button></div></li>
+      <li class=”question-item”><div class=”question-prompt”><span class=”q-num”>03</span><span class=”q-skill”>Argumentation</span><p class=”q-text” id=”q3-text”>Evaluate this claim: “The solution to one problem often becomes the source of the next.” Use evidence from Song China to support or challenge the claim.</p></div><textarea class=”q-textarea” id=”first10-q3” placeholder=”This claim is supported or challenged by the Song example because...”></textarea><div style=”padding:.5rem 1.1rem .8rem;”><button class=”action-btn” type=”button” onclick=”saveDraft('q3')”>Save Draft</button></div></li>
     </ul>
 
-    <div class="ai-builder">
+    <div class=”ai-builder” id=”response-builder”>
+      <h3>Your Response Builder</h3>
+      <p>Save each response above, then copy the complete text to paste into the Google Form. The AI Prompt Builder below also reads from your saved responses.</p>
+      <div class=”prompt-preview” id=”response-builder-preview”>Question 1:
+
+Question 2:
+
+Question 3: </div>
+      <div class=”tool-row”>
+        <button class=”action-btn” type=”button” id=”copy-open-form”>Copy + Open Google Form</button>
+      </div>
+      <div class=”builder-result” id=”response-builder-result”></div>
+    </div>
+
+    <div class=”ai-builder”>
       <h3>Build Your AI Coach Prompt</h3>
       <p>After answering the three questions, build one prompt for the BeHistorical AI Coach. The prompt will include your responses and ask the coach to question, challenge, and improve your thinking without writing the final answer for you.</p>
       <div class="tool-row">
@@ -80,37 +94,58 @@
 
 <script>
   (function () {
+    const savedResponses = { q1: '', q2: '', q3: '' };
+
     const fields = [
-      { q: 'Explain how the instability before 960 CE caused Song rulers to build their government around civilian officials, Confucian learning, and bureaucracy. Use at least two specific examples.', id: 'first10-q1' },
-      { q: 'Confucianism existed long before the Song Dynasty. What continued from earlier Confucian tradition, and what changed during the Song period? Be specific about Neo-Confucianism and the civil service examination system.', id: 'first10-q2' },
-      { q: 'Evaluate this claim: “The solution to one problem often becomes the source of the next.” Use evidence from Song China to support or challenge the claim.', id: 'first10-q3' }
+      { q: 'Explain how the instability before 960 CE caused Song rulers to build their government around civilian officials, Confucian learning, and bureaucracy. Use at least two specific examples.', id: 'first10-q1', key: 'q1' },
+      { q: 'Confucianism existed long before the Song Dynasty. What continued from earlier Confucian tradition, and what changed during the Song period? Be specific about Neo-Confucianism and the civil service examination system.', id: 'first10-q2', key: 'q2' },
+      { q: 'Evaluate this claim: “The solution to one problem often becomes the source of the next.” Use evidence from Song China to support or challenge the claim.', id: 'first10-q3', key: 'q3' }
     ];
 
     const preview = document.getElementById('ai-prompt-preview');
     const result = document.getElementById('ai-builder-result');
     const buildBtn = document.getElementById('build-ai-prompt');
     const copyBtn = document.getElementById('copy-ai-prompt');
+    const builderPreview = document.getElementById('response-builder-preview');
+    const builderResult = document.getElementById('response-builder-result');
+    const copyOpenBtn = document.getElementById('copy-open-form');
+
+    function updateBuilder() {
+      builderPreview.textContent =
+        'Question 1: ' + (savedResponses.q1 || '') +
+        '\n\nQuestion 2: ' + (savedResponses.q2 || '') +
+        '\n\nQuestion 3: ' + (savedResponses.q3 || '');
+    }
+
+    window.saveDraft = function (key) {
+      const field = fields.find(function (f) { return f.key === key; });
+      if (!field) return;
+      const el = document.getElementById(field.id);
+      if (el) savedResponses[key] = el.value.trim();
+      updateBuilder();
+    };
 
     function getResponses() {
-      return fields.map((item, index) => {
-        const el = document.getElementById(item.id);
+      return fields.map(function (item, index) {
         return {
           number: index + 1,
           question: item.q,
-          response: el && el.value.trim() ? el.value.trim() : ''
+          response: savedResponses[item.key] || ''
         };
       });
     }
 
     function buildPrompt() {
       const responses = getResponses();
-      const hasAnyResponse = responses.some(item => item.response.length > 0);
+      const hasAnyResponse = responses.some(function (item) { return item.response.length > 0; });
       if (!hasAnyResponse) {
-        result.textContent = 'Answer at least one question first, then build your AI Coach prompt.';
+        result.textContent = 'Save at least one response above, then build your AI Coach prompt.';
         return;
       }
-      const responseBlock = responses.map(item => `Question ${item.number}: ${item.question}\nMy response: ${item.response || '[not answered yet]'}`).join('\n\n');
-      const prompt = `I completed the First & 10 reading for AP World History Topic 1.1: Song China. Here are my responses:\n\n${responseBlock}\n\nPlease act as my BeHistorical AI Coach. Ask me one question at a time to help me strengthen my evidence, historical reasoning, and explanation. Challenge weak or vague parts of my thinking. Do not write my final answer for me. End by helping me prepare a stronger Canvas-ready response in my own words.`;
+      const responseBlock = responses.map(function (item) {
+        return 'Question ' + item.number + ': ' + item.question + '\nMy response: ' + (item.response || '[not answered yet]');
+      }).join('\n\n');
+      const prompt = 'I completed the First & 10 reading for AP World History Topic 1.1: Song China. Here are my responses:\n\n' + responseBlock + '\n\nPlease act as my BeHistorical AI Coach. Ask me one question at a time to help me strengthen my evidence, historical reasoning, and explanation. Challenge weak or vague parts of my thinking. Do not write my final answer for me. End by helping me prepare a stronger Canvas-ready response in my own words.';
       preview.textContent = prompt;
       result.textContent = 'Prompt built. Copy it, then paste it into MagicSchool.';
     }
@@ -121,9 +156,17 @@
       }
       if (!preview || preview.textContent.includes('will appear here')) return;
       navigator.clipboard.writeText(preview.textContent)
-        .then(() => { result.textContent = 'Prompt copied. Paste it into MagicSchool to begin coaching.'; })
-        .catch(() => { result.textContent = 'Copy failed. Highlight the prompt text and copy it manually.'; });
+        .then(function () { result.textContent = 'Prompt copied. Paste it into MagicSchool to begin coaching.'; })
+        .catch(function () { result.textContent = 'Copy failed. Highlight the prompt text and copy it manually.'; });
     }
+
+    copyOpenBtn.addEventListener('click', function () {
+      const text = builderPreview.textContent;
+      navigator.clipboard.writeText(text)
+        .then(function () { builderResult.textContent = 'Copied! Opening Google Form in a new tab.'; })
+        .catch(function () { builderResult.textContent = 'Copy failed. Highlight the text above and copy manually.'; });
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=1.1+-+Song+China&entry.2107637366=First+and+10', '_blank', 'noopener');
+    });
 
     buildBtn.addEventListener('click', buildPrompt);
     copyBtn.addEventListener('click', copyPrompt);

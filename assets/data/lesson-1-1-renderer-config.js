@@ -38,7 +38,7 @@
   lesson.first10 = {
     ...lesson.first10,
     title: 'First & 10: The World That Song Built',
-    embedUrl: 'first-and-10-topic-1-1-song-china.html?v=first10-builder-v1',
+    embedUrl: 'first-and-10-topic-1-1-song-china.html?v=response-builder-v1',
     note: 'Use the embedded rich narrative reading window below. Answer the three questions, build your AI Coach prompt, then return to the 1.1 lesson path.'
   };
 
@@ -89,7 +89,7 @@
   };
 
   lesson.captureUrls = {
-    first10:       '<a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=1.1+-+Song+China&entry.2107637366=First+and+10" target="_blank" rel="noopener">SUBMIT TO GOOGLE FORM</a>',
+    first10:       '',
     skillBuilder:  '<a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=1.1+-+Song+China&entry.2107637366=AP+Skill+Builder" target="_blank" rel="noopener">SUBMIT TO GOOGLE FORM</a>',
     checkpoint1:   '<a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=1.1+-+Song+China&entry.2107637366=Checkpoint+1" target="_blank" rel="noopener">SUBMIT TO GOOGLE FORM</a>',
     evidenceLab:   '<a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=1.1+-+Song+China&entry.2107637366=Evidence+Lab" target="_blank" rel="noopener">SUBMIT TO GOOGLE FORM</a>',
