@@ -309,13 +309,7 @@ function renderFirst10() {
       </div>
       <div class="first10-frame-wrap">
         <iframe class="first10-frame" src="${L.first10.embedUrl}" title="${L.first10.title}"></iframe>
-      </div>
-      <div class="card" style="margin-top:1.25rem;">
-        <h3>First &amp; 10 Response Questions</h3>
-        <p style="font-size:.85rem;opacity:.8;margin-bottom:1rem;">Answer all three questions. Your answers will build your AI Coach prompt.</p>
-        ${questionBlocks}
-      </div>
-      ${renderFirst10AIBridge(msUrl, canvasNote, topic, topicTitle, questions)}`;
+      </div>`;
   }
 
   // Inline reading path
