@@ -38,7 +38,7 @@
   lesson.first10 = {
     ...lesson.first10,
     title: 'First & 10: The World That Song Built',
-    embedUrl: 'first-and-10-topic-1-1-song-china-capture.html?v=prefill-v1',
+    embedUrl: 'first-and-10-topic-1-1-song-china-capture.html?v=prefill-v2',
     note: 'Use the embedded rich narrative reading window below. Answer the three questions, build your AI Coach prompt, then return to the 1.1 lesson path.'
   };
 
@@ -92,7 +92,7 @@
   const responseButton = (promptId, responseType, label = 'SUBMIT TO GOOGLE FORM') => `<a class="btn secondary" href="${responseFormBase}&entry.1549761827=${promptId}&entry.2107637366=${responseType}" target="_blank" rel="noopener">${label}</a>`;
 
   lesson.captureUrls = {
-    first10:       responseButton('1.1-first10', 'First+and+10'),
+    first10:       '',
     skillBuilder:  responseButton('1.1-ap-skill-builder', 'AP+Skill+Builder'),
     checkpoint1:   responseButton('1.1-checkpoint-1', 'Checkpoint+1'),
     evidenceLab:   responseButton('1.1-evidence-lab', 'Evidence+Lab'),
