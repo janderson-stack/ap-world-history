@@ -14,6 +14,15 @@
   <script>
     const PREFILLED_FIRST10_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+1+-+The+Global+Tapestry&entry.187055090=1.1+-+Song+China&entry.1549761827=1.1-first10&entry.2107637366=First+and+10';
 
+    function openPrefilledFirst10Form(childWindow, childDocument) {
+      const output = childDocument.getElementById('google-output');
+      const content = output ? output.value : '';
+      if (content && childWindow.navigator && childWindow.navigator.clipboard) {
+        childWindow.navigator.clipboard.writeText(content).catch(() => {});
+      }
+      childWindow.open(PREFILLED_FIRST10_FORM, '_blank');
+    }
+
     function wireFirst10Capture() {
       const frame = document.getElementById('first10-frame');
       try {
@@ -22,13 +31,21 @@
         if (!childWindow || !childDocument) return;
 
         childWindow.submitToGoogleForm = function() {
-          const output = childDocument.getElementById('google-output');
-          const content = output ? output.value : '';
-          if (content && childWindow.navigator && childWindow.navigator.clipboard) {
-            childWindow.navigator.clipboard.writeText(content).catch(() => {});
-          }
-          childWindow.open(PREFILLED_FIRST10_FORM, '_blank');
+          openPrefilledFirst10Form(childWindow, childDocument);
         };
+
+        const buttons = Array.from(childDocument.querySelectorAll('button'));
+        buttons.forEach(button => {
+          const label = (button.textContent || '').trim().toLowerCase();
+          if (label === 'submit to google form') {
+            button.onclick = null;
+            button.addEventListener('click', event => {
+              event.preventDefault();
+              event.stopPropagation();
+              openPrefilledFirst10Form(childWindow, childDocument);
+            });
+          }
+        });
       } catch (error) {
         console.warn('Unable to wire First & 10 capture link:', error);
       }
