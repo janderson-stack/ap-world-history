@@ -75,17 +75,20 @@
       </div>
     </div>
 
-    <div class=”gform-builder”>
-      <h3>Build Your Google Form Response</h3>
-      <p>Click the button to pull your three responses into one field, then submit to the Google Form.</p>
+    <div class=”ai-builder” id=”google-builder”>
+      <h3 class=”builder-title”>Build Your Google Form Response</h3>
+      <p class=”builder-desc”>After answering the three questions,
+  click the button to collect your responses. Copy the result,
+  then submit to the Google Form.</p>
       <div class=”tool-row”>
-        <button type=”button” id=”build-gform-prompt”>Build Google Prompt</button>
+        <button onclick=”buildGooglePrompt()”>BUILD GOOGLE PROMPT</button>
       </div>
-      <textarea class=”prompt-preview” id=”gform-preview” readonly placeholder=”Your responses will appear here after you click Build Google Prompt.”></textarea>
-      <div class=”tool-row”>
-        <button type=”button” id=”submit-gform”>Submit to Google Form</button>
+      <textarea id=”google-preview” class=”prompt-preview” readonly
+    placeholder=”Your responses will appear here after you click
+    Build Google Prompt.”></textarea>
+      <div class=”tool-row” style=”margin-top:0.75rem;”>
+        <button onclick=”submitToGoogleForm()”>SUBMIT TO GOOGLE FORM</button>
       </div>
-      <div class=”builder-result” id=”gform-result”></div>
     </div>
 
     <div class=”ai-builder”>
@@ -106,37 +109,27 @@
 </div>
 
 <script>
+  function buildGooglePrompt() {
+    const q1 = document.querySelectorAll('.q-textarea')[0].value;
+    const q2 = document.querySelectorAll('.q-textarea')[1].value;
+    const q3 = document.querySelectorAll('.q-textarea')[2].value;
+    const out = 'Question 1: ' + q1 + '\n\nQuestion 2: ' + q2
+                + '\n\nQuestion 3: ' + q3;
+    document.getElementById('google-preview').value = out;
+  }
+
+  function submitToGoogleForm() {
+    const content = document.getElementById('google-preview').value;
+    navigator.clipboard.writeText(content).catch(() => {});
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=1.1+-+Song+China&entry.2107637366=First+and+10', '_blank');
+  }
+
   (function () {
     const fields = [
       { q: 'Explain how the instability before 960 CE caused Song rulers to build their government around civilian officials, Confucian learning, and bureaucracy. Use at least two specific examples.', id: 'first10-q1' },
       { q: 'Confucianism existed long before the Song Dynasty. What continued from earlier Confucian tradition, and what changed during the Song period? Be specific about Neo-Confucianism and the civil service examination system.', id: 'first10-q2' },
       { q: 'Evaluate this claim: “The solution to one problem often becomes the source of the next.” Use evidence from Song China to support or challenge the claim.', id: 'first10-q3' }
     ];
-
-    /* ── Google Form builder ── */
-    const gformPreview = document.getElementById('gform-preview');
-    const gformResult  = document.getElementById('gform-result');
-
-    function buildGooglePrompt() {
-      gformPreview.value = fields.map((item, i) => {
-        const el  = document.getElementById(item.id);
-        const val = el ? el.value.trim() : '';
-        return `Question ${i + 1}: ${val || '(not answered yet)'}`;
-      }).join('\n\n');
-      gformResult.textContent = 'Responses assembled. Review, then submit to the Google Form.';
-    }
-
-    function submitToGoogleForm() {
-      const text = gformPreview.value.trim();
-      if (!text) { gformResult.textContent = 'Click Build Google Prompt first.'; return; }
-      navigator.clipboard.writeText(text)
-        .then(() => { gformResult.textContent = 'Copied! Opening Google Form in a new tab.'; })
-        .catch(() => { gformResult.textContent = 'Opening form — paste your responses manually if clipboard was blocked.'; });
-      window.open('https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=1.1+-+Song+China&entry.2107637366=First+and+10', '_blank', 'noopener');
-    }
-
-    document.getElementById('build-gform-prompt').addEventListener('click', buildGooglePrompt);
-    document.getElementById('submit-gform').addEventListener('click', submitToGoogleForm);
 
     /* ── AI Coach Prompt builder (logic unchanged) ── */
     const preview  = document.getElementById('ai-prompt-preview');
