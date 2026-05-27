@@ -89,15 +89,44 @@
   };
 
   const responseFormBase = 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+1+-+The+Global+Tapestry&entry.187055090=1.1+-+Song+China';
-  const responseButton = (promptId, responseType, label = 'SUBMIT TO GOOGLE FORM') => `<a class="btn secondary" href="${responseFormBase}&entry.1549761827=${promptId}&entry.2107637366=${responseType}" target="_blank" rel="noopener">${label}</a>`;
+  const responseUrl = (promptId, responseType) => `${responseFormBase}&entry.1549761827=${promptId}&entry.2107637366=${responseType}`;
+  const responseButton = (responseId, promptId, responseType, label = 'SUBMIT TO GOOGLE FORM') => `<button class="btn secondary" type="button" onclick="submitResponseToGoogleForm('${responseId}', '${responseUrl(promptId, responseType)}')">${label}</button>`;
+
+  window.submitResponseToGoogleForm = function(responseId, formUrl) {
+    const responseEl = document.getElementById(responseId);
+    const resultEl = document.getElementById(responseId + '-result');
+    const responseText = responseEl ? (responseEl.value || '') : '';
+    const openForm = () => window.open(formUrl, '_blank', 'noopener');
+
+    if (!responseText.trim()) {
+      if (resultEl) resultEl.textContent = 'Form opened. Add your response before submitting.';
+      openForm();
+      return;
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(responseText)
+        .then(() => {
+          if (resultEl) resultEl.textContent = 'Response copied. Paste it into the Student Response field on the form.';
+          openForm();
+        })
+        .catch(() => {
+          if (resultEl) resultEl.textContent = 'Form opened. If copy failed, manually copy your response before submitting.';
+          openForm();
+        });
+    } else {
+      if (resultEl) resultEl.textContent = 'Form opened. Manually copy your response if it was not copied automatically.';
+      openForm();
+    }
+  };
 
   lesson.captureUrls = {
     first10:       '',
-    skillBuilder:  responseButton('1.1-ap-skill-builder', 'AP+Skill+Builder'),
-    checkpoint1:   responseButton('1.1-checkpoint-1', 'Checkpoint+1'),
-    evidenceLab:   responseButton('1.1-evidence-lab', 'Evidence+Lab'),
-    primarySource: responseButton('1.1-primary-source', 'Primary+Source'),
-    checkpoint2:   responseButton('1.1-checkpoint-2', 'Checkpoint+2')
+    skillBuilder:  responseButton('skill-builder-response', '1.1-ap-skill-builder', 'AP+Skill+Builder'),
+    checkpoint1:   responseButton('checkpoint-one-response', '1.1-checkpoint-1', 'Checkpoint+1'),
+    evidenceLab:   responseButton('evidence-response', '1.1-evidence-lab', 'Evidence+Lab'),
+    primarySource: responseButton('primary-source-response', '1.1-primary-source', 'Primary+Source'),
+    checkpoint2:   responseButton('checkpoint-two-response', '1.1-checkpoint-2', 'Checkpoint+2')
   };
 
   lesson.checkpoints = [
