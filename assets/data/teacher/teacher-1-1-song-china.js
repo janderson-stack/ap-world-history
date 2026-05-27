@@ -73,9 +73,9 @@ window.BEHISTORICAL_TEACHER_TOPICS['1.1'] = {
     { id: 'prompt-struggling-students', title: 'Struggling Student Finder', purpose: 'Identify students needing follow-up without overgrading.', text: 'You are helping a teacher identify students who may need follow-up support in AP World History Topic 1.1. Review the responses and flag students by need category only: missing claim, missing evidence, missing reasoning, misconception, or incomplete. Suggest a brief follow-up question for each category. STUDENT RESPONSES: [PASTE RESPONSES HERE]' }
   ],
   forms: [
-    { name: 'Evidence Lab Response', description: 'Topic 1.1 · Evidence Lab', url: 'https://docs.google.com/forms/d/e/1FAIpQLSfBMy2v9tjXnA9aWZLwBjMdl-snJc2RWljKUxgRwUNxYQPq_g/viewform' },
-    { name: 'AP Checkpoint Response', description: 'Topic 1.1 · SAQ Practice', url: 'https://docs.google.com/forms/d/e/1FAIpQLSfBMy2v9tjXnA9aWZLwBjMdl-snJc2RWljKUxgRwUNxYQPq_g/viewform' },
-    { name: 'Primary Source Analysis', description: 'Topic 1.1 · Primary Source Task', url: 'https://docs.google.com/forms/d/e/1FAIpQLSfBMy2v9tjXnA9aWZLwBjMdl-snJc2RWljKUxgRwUNxYQPq_g/viewform' }
+    { name: 'Evidence Lab Response', description: 'Topic 1.1 · Evidence Lab', url: 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=header' },
+    { name: 'AP Checkpoint Response', description: 'Topic 1.1 · SAQ Practice', url: 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=header' },
+    { name: 'Primary Source Analysis', description: 'Topic 1.1 · Primary Source Task', url: 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=header' }
   ],
   canvas: {
     title: 'Topic 1.1 — Song China: BeHistorical Practice + Reflection',
