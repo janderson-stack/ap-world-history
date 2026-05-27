@@ -7,13 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/behistorical-teacher-hub.css">
+  <link rel="stylesheet" href="../assets/css/behistorical-teacher-hub.css?v=analysis-v1">
 </head>
 <body>
   <div class="teacher-banner">Teacher View — Not for Student Distribution</div>
   <nav class="top-nav" aria-label="Teacher Hub navigation">
     <a class="brand-mini" href="../index.html"><img src="../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a>
-    <div class="nav-links"><a href="../index.html">Home</a><a href="../unit-1/index.html">Unit 1</a><a href="index.html">Lock</a></div>
+    <div class="nav-links"><a href="../index.html">Home</a><a href="../unit-1/index.html">Unit 1</a><a href="../tools/teacher-hub/google-apps-script/README.md" target="_blank" rel="noopener">Setup</a><a href="index.html">Lock</a></div>
   </nav>
   <header class="site-header">
     <div class="header-wrap">
@@ -66,23 +66,48 @@
         <label for="period-select">Class Period</label>
         <select id="period-select">
           <option>All Periods</option>
-          <option>Period 1</option>
-          <option>Period 2</option>
-          <option>Period 3</option>
+          <option>Silver 1</option>
+          <option>Silver 2</option>
+          <option>Silver 3</option>
+          <option>Silver 4</option>
+          <option>Green 4</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="response-type-select">Response Type</label>
+        <select id="response-type-select">
+          <option>All Response Types</option>
+          <option>First and 10</option>
+          <option>AP Skill Builder</option>
+          <option>Checkpoint 1</option>
+          <option>Evidence Lab</option>
+          <option>Primary Source</option>
+          <option>Checkpoint 2</option>
         </select>
       </div>
       <a class="btn secondary" href="index.html">Lock Teacher Hub</a>
     </section>
-    <div class="notice"><strong>Prototype mode:</strong> this dashboard currently uses mock class-pulse data for Topic 1.1. The intended production version will read Google Form responses through a protected data layer, then surface aggregate summaries, individual support flags, and reteach recommendations.</div>
+
+    <section class="control-panel" aria-label="Live analysis controls">
+      <div class="field" style="min-width:260px;flex:2">
+        <label for="analysis-endpoint">Apps Script Web App URL</label>
+        <input id="analysis-endpoint" type="url" placeholder="Paste deployed Apps Script web app URL here" autocomplete="off">
+      </div>
+      <button class="btn" type="button" onclick="TeacherHub.saveEndpoint()">Save Endpoint</button>
+      <button class="btn secondary" type="button" onclick="TeacherHub.runLiveAnalysis()">Refresh Analysis</button>
+      <button class="btn secondary" type="button" onclick="TeacherHub.clearEndpoint()">Clear</button>
+    </section>
+
+    <div class="notice" id="analysis-status"><strong>Functional prototype:</strong> connect the Google Sheet Apps Script endpoint above, then click Refresh Analysis. Until an endpoint is saved, the dashboard uses Topic 1.1 mock data.</div>
     <div id="dashboard"></div>
   </main>
-  <footer class="footer">BeHistorical Teacher Hub · Data-driven classroom pulse · Prototype for Topic 1.1</footer>
+  <footer class="footer">BeHistorical Teacher Hub · Data-driven classroom pulse · Topic 1.1 functional prototype</footer>
   <script>
     if(sessionStorage.getItem('behistoricalTeacherAccess') !== 'prototype-topic-1-1'){
       window.location.replace('index.html');
     }
   </script>
-  <script src="../assets/data/teacher/teacher-1-1-song-china.js"></script>
-  <script src="../assets/js/teacher-dashboard-renderer.js"></script>
+  <script src="../assets/data/teacher/teacher-1-1-song-china.js?v=analysis-v1"></script>
+  <script src="../assets/js/teacher-dashboard-renderer.js?v=analysis-v1"></script>
 </body>
 </html>
