@@ -89,8 +89,18 @@
   };
 
   const responseFormBase = 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+1+-+The+Global+Tapestry&entry.187055090=1.1+-+Song+China';
-  const responseUrl = (promptId, responseType) => `${responseFormBase}&entry.1549761827=${promptId}&entry.2107637366=${responseType}`;
-  const responseButton = (responseId, promptId, responseType, label = 'SUBMIT TO GOOGLE FORM') => `<button class="btn secondary" type="button" onclick="submitResponseToGoogleForm('${responseId}', '${responseUrl(promptId, responseType)}')">${label}</button>`;
+  const skillFocusEntry = 'entry.1963461515';
+  const skillTags = {
+    skillBuilder: ['Causation', 'Contextualization', 'Argumentation', 'Evidence Usage'],
+    checkpoint1: ['Argumentation', 'Evidence Usage'],
+    evidenceLab: ['Evidence Usage', 'Sourcing'],
+    primarySource: ['Contextualization', 'Sourcing'],
+    checkpoint2: ['Complexity', 'Claims & Thesis']
+  };
+  const encode = value => encodeURIComponent(value).replace(/%20/g, '+');
+  const skillFocusQuery = key => (skillTags[key] || []).map(skill => `&${skillFocusEntry}=${encode(skill)}`).join('');
+  const responseUrl = (promptId, responseType, skillKey) => `${responseFormBase}&entry.1549761827=${encode(promptId)}&entry.2107637366=${encode(responseType)}${skillFocusQuery(skillKey)}`;
+  const responseButton = (responseId, promptId, responseType, skillKey, label = 'SUBMIT TO GOOGLE FORM') => `<button class="btn secondary" type="button" onclick="submitResponseToGoogleForm('${responseId}', '${responseUrl(promptId, responseType, skillKey)}')">${label}</button>`;
 
   window.submitResponseToGoogleForm = function(responseId, formUrl) {
     const responseEl = document.getElementById(responseId);
@@ -122,11 +132,11 @@
 
   lesson.captureUrls = {
     first10:       '',
-    skillBuilder:  responseButton('skill-builder-response', '1.1-ap-skill-builder', 'AP+Skill+Builder'),
-    checkpoint1:   responseButton('checkpoint-one-response', '1.1-checkpoint-1', 'Checkpoint+1'),
-    evidenceLab:   responseButton('evidence-response', '1.1-evidence-lab', 'Evidence+Lab'),
-    primarySource: responseButton('primary-source-response', '1.1-primary-source', 'Primary+Source'),
-    checkpoint2:   responseButton('checkpoint-two-response', '1.1-checkpoint-2', 'Checkpoint+2')
+    skillBuilder:  responseButton('skill-builder-response', '1.1-ap-skill-builder', 'AP Skill Builder', 'skillBuilder'),
+    checkpoint1:   responseButton('checkpoint-one-response', '1.1-checkpoint-1', 'Checkpoint 1', 'checkpoint1'),
+    evidenceLab:   responseButton('evidence-response', '1.1-evidence-lab', 'Evidence Lab', 'evidenceLab'),
+    primarySource: responseButton('primary-source-response', '1.1-primary-source', 'Primary Source', 'primarySource'),
+    checkpoint2:   responseButton('checkpoint-two-response', '1.1-checkpoint-2', 'Checkpoint 2', 'checkpoint2')
   };
 
   lesson.checkpoints = [
