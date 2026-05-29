@@ -1,63 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BeHistorical — Module 02 | First & 10 | Topic 1.6 Europe</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet"/>
-<style>
-body{background:#1A1C1D;color:#FFFDF7;font-family:'Libre Baskerville',serif;padding:1.5rem}.module{max-width:980px;margin:auto;border:1px solid #3E4447;background:#F5F0E7;color:#151718}.header{background:#2B2F31;color:#FFFDF7;padding:2rem;border-bottom:2px solid #C9A46A}.eyebrow{font-family:Montserrat,sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#C9A46A}.title{font-family:Cinzel,serif;font-size:2rem;margin:.6rem 0}.deck{font-style:italic;color:#D2B48C;line-height:1.8;max-width:760px}.section{padding:2rem;border-bottom:1px solid #ddd}.section h2{font-family:Cinzel,serif;margin-bottom:1rem}.section p{line-height:1.9;margin-bottom:1rem}.callout{background:#2B2F31;color:#F5F0E7;padding:1rem;border-left:4px solid #C9A46A;margin:1.2rem 0}.quote{border-left:4px solid #C9A46A;padding:.8rem 1.2rem;margin:1.5rem 0;font-style:italic;color:#8C5A2B;background:#faf7f2}.cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.card{background:#FFFDF7;border:1px solid #ddd;padding:1rem}.check{background:#1A1C1D;color:#FFFDF7;padding:2rem}.question{background:#2B2F31;padding:1rem;margin-bottom:1rem}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BeHistorical — Module 02 | First &amp; 10 | Topic 1.6 Europe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--blackened-steel:#1A1C1D;--charcoal-steel:#2B2F31;--gunmetal-gray:#3E4447;--aged-iron:#5A5F5C;--muted-sandstone:#D2B48C;--burnished-bronze:#8C5A2B;--rust-copper:#A8652D;--oxidized-brown:#6B3E1F;--antique-gold:#C9A46A;--warm-paper:#F5F0E7;--clean-paper:#FFFDF7;--ink:#151718;--font-display:'Cinzel','Trajan Pro',Georgia,serif;--font-body:'Libre Baskerville',Georgia,serif;--font-ui:'Montserrat',Arial,sans-serif}body{background:var(--blackened-steel);font-family:var(--font-body);color:var(--clean-paper);padding:1.5rem 1rem}.module{max-width:960px;margin:0 auto;border:1px solid var(--gunmetal-gray);border-radius:4px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.55)}.module-header{background:var(--charcoal-steel);border-bottom:2px solid var(--antique-gold);padding:1.3rem 2rem}.header-top{display:flex;align-items:center;gap:.85rem;margin-bottom:.5rem}.module-badge{font-family:var(--font-ui);font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--antique-gold);background:rgba(201,164,106,.12);border:1px solid rgba(201,164,106,.35);padding:.28rem .65rem;border-radius:2px;white-space:nowrap}.module-name{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--clean-paper);letter-spacing:.04em}.module-subtitle{font-family:var(--font-ui);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-sandstone)}.reading-title-band{background:var(--blackened-steel);border-bottom:1px solid var(--gunmetal-gray);padding:2.4rem 2.4rem 2rem;position:relative;overflow:hidden}.reading-title-band::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--oxidized-brown),var(--antique-gold),var(--muted-sandstone),var(--antique-gold),var(--oxidized-brown))}.reading-eyebrow{font-family:var(--font-ui);font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--antique-gold);margin-bottom:.7rem}.reading-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--clean-paper);line-height:1.2;letter-spacing:.02em;margin-bottom:.6rem}.reading-title em{color:var(--antique-gold);font-style:normal}.reading-deck{font-family:var(--font-body);font-size:.95rem;font-style:italic;color:var(--muted-sandstone);line-height:1.7;max-width:760px;margin-bottom:1.2rem}.skill-tags{display:flex;flex-wrap:wrap;gap:.45rem}.skill-tag{font-family:var(--font-ui);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-sandstone);border:1px solid rgba(210,180,140,.3);padding:.2rem .55rem;border-radius:2px}.reading-body{background:var(--warm-paper);color:var(--ink)}.section{padding:2rem 2.4rem;border-bottom:1px solid #e2d9cc;position:relative}.section:last-of-type{border-bottom:none}.section-number{font-family:var(--font-display);font-size:3.5rem;font-weight:700;color:rgba(140,90,43,.12);position:absolute;top:1.2rem;right:2rem;line-height:1;pointer-events:none;user-select:none}.section-label{font-family:var(--font-ui);font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--burnished-bronze);margin-bottom:.4rem}.section-heading{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--blackened-steel);margin-bottom:1.1rem;line-height:1.3;border-bottom:1px solid rgba(140,90,43,.2);padding-bottom:.6rem}.reading-text{font-size:.93rem;line-height:1.9;color:#1e1e1e;margin-bottom:1rem}.kt{background:rgba(210,180,140,.35);color:var(--oxidized-brown);font-weight:700;padding:0 3px;border-radius:2px}.ap-callout{background:var(--charcoal-steel);border-left:3px solid var(--antique-gold);padding:1rem 1.2rem;margin:1.4rem 0;border-radius:0 3px 3px 0}.ap-callout-label{font-family:var(--font-ui);font-size:.57rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--antique-gold);margin-bottom:.35rem}.ap-callout p{font-family:var(--font-ui);font-size:.8rem;color:var(--warm-paper);line-height:1.65}.ap-callout p strong{color:var(--muted-sandstone)}.pull-quote{border-left:4px solid var(--antique-gold);margin:1.6rem 0;padding:.8rem 1.4rem;background:rgba(201,164,106,.06)}.pull-quote p{font-family:var(--font-display);font-size:1rem;font-style:italic;color:var(--burnished-bronze);line-height:1.6}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;margin-top:1rem}.mini-card{background:var(--clean-paper);border:1px solid #ddd6ca;border-radius:3px;padding:1rem 1.1rem}.mini-card-title{font-family:var(--font-display);font-size:.82rem;font-weight:600;color:var(--blackened-steel);margin-bottom:.5rem}.mini-card p{font-size:.8rem;line-height:1.7;color:#333}.be-ready{background:#efe5d6;padding:1.5rem 2.4rem;border-top:2px solid var(--burnished-bronze);border-bottom:1px solid #d8cbb9}.be-ready h3{font-family:var(--font-display);font-size:1rem;color:var(--blackened-steel);margin-bottom:.5rem}.be-ready p{font-size:.85rem;line-height:1.7;color:#222}.check-section{background:var(--blackened-steel);padding:2rem 2.4rem;border-top:2px solid var(--antique-gold)}.check-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem}.check-badge{font-family:var(--font-ui);font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--antique-gold);background:rgba(201,164,106,.12);border:1px solid rgba(201,164,106,.3);padding:.25rem .6rem;border-radius:2px}.check-title{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--clean-paper)}.question-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:1.2rem}.question-item{background:var(--charcoal-steel);border:1px solid var(--gunmetal-gray);border-radius:3px;overflow:hidden}.question-prompt{padding:.9rem 1.1rem;border-bottom:1px solid var(--gunmetal-gray);display:flex;gap:.8rem;align-items:flex-start}.q-num{font-family:var(--font-display);font-size:.75rem;font-weight:700;color:var(--antique-gold);min-width:1.4rem;padding-top:1px}.q-skill{font-family:var(--font-ui);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--burnished-bronze);border:1px solid rgba(140,90,43,.4);padding:.15rem .4rem;border-radius:2px;white-space:nowrap;margin-top:1px}.q-text{font-family:var(--font-body);font-size:.85rem;color:var(--clean-paper);line-height:1.65}.q-textarea{width:100%;min-height:90px;background:#23272a;border:none;padding:.8rem 1.1rem;font-family:var(--font-body);font-size:.82rem;color:var(--warm-paper);line-height:1.7;resize:vertical;outline:none}.canvas-note{font-family:var(--font-ui);font-size:.65rem;color:var(--aged-iron);margin-top:.75rem;font-style:italic}.module-footer{background:var(--charcoal-steel);border-top:1px solid var(--gunmetal-gray);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}.footer-note{font-family:var(--font-ui);font-size:.62rem;color:var(--aged-iron)}.nav-btn{font-family:var(--font-ui);font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--antique-gold);background:transparent;border:1px solid rgba(201,164,106,.4);padding:.4rem .9rem;border-radius:2px;text-decoration:none}.nav-btn.prev{color:var(--muted-sandstone);border-color:rgba(210,180,140,.25)}@media(max-width:700px){body{padding:.75rem}.module-header,.reading-title-band,.section,.check-section,.be-ready{padding:1.35rem}.two-col{grid-template-columns:1fr}.question-prompt{display:block}.q-skill{display:inline-block;margin:.35rem 0}.reading-title{font-size:1.55rem}}
+  </style>
 </head>
 <body>
 <div class="module">
-<div class="header">
-<div class="eyebrow">First &amp; 10 Reading</div>
-<h1 class="title">The Edge of the World</h1>
-<p class="deck">Europe between 1200 and 1450 was politically fragmented, economically growing, religiously unified by the Catholic Church, and increasingly connected to wider Afro-Eurasian networks through trade, crusading, plague, and war.</p>
-</div>
-<div class="section">
-<h2>Europe Before Dominance</h2>
-<p>In 1200, Europe was not the center of the world. Song China was wealthier, the Islamic world was more connected commercially, and Indian Ocean trade networks carried goods farther than most Europeans could imagine. Europe was a developing region on the western edge of Afro-Eurasia.</p>
-<p>Yet Europe possessed institutions that mattered deeply: feudal relationships, the Catholic Church, expanding towns, and a growing commercial economy. These structures would shape the transformations of the next several centuries.</p>
-<div class="callout"><strong>AP Contextualization:</strong> Medieval Europe should be understood comparatively, not as an inevitable future global power.</div>
-</div>
-<div class="section">
-<h2>The Church and Feudal Society</h2>
-<p>The <strong>Catholic Church</strong> linked Europe together through religion, education, and Latin literacy. At the same time, the <strong>feudal system</strong> organized political life around land, loyalty, and military obligation.</p>
-<p>Lords, vassals, knights, and serfs formed a decentralized hierarchy. The Church operated across these political divisions, often competing with kings for authority.</p>
-<div class="quote">“In medieval Europe, the Church and the castle competed for the same thing: loyalty.”</div>
-<div class="cards"><div class="card"><strong>Feudalism</strong><br>Land for service<br>Local authority<br>Military obligation</div><div class="card"><strong>Catholic Church</strong><br>Shared religion<br>Education and literacy<br>Transnational authority</div></div>
-</div>
-<div class="section">
-<h2>The Crusades and Commercial Growth</h2>
-<p>The Crusades intensified European contact with the eastern Mediterranean and the Islamic world. Crusaders encountered trade goods, scholarship, mathematics, medicine, and philosophy preserved and expanded by Muslim scholars.</p>
-<p>Italian city-states such as Venice and Genoa benefited commercially from Crusader transport and trade. Europe became more connected to wider Afro-Eurasian exchange networks.</p>
-<div class="callout"><strong>AP Causation:</strong> The Crusades failed militarily but helped increase commercial exchange and cultural transmission.</div>
-</div>
-<div class="section">
-<h2>The Black Death</h2>
-<p>In the mid-fourteenth century, the <strong>Black Death</strong> spread into Europe through Afro-Eurasian trade routes. Millions died. Labor shortages weakened serfdom and increased pressure on feudal institutions.</p>
-<p>The plague also damaged confidence in traditional authorities, including the Church. Social and economic relationships shifted in ways that reshaped Europe for generations.</p>
-<div class="quote">“The same trade routes that carried silk and spice also carried disease.”</div>
-</div>
-<div class="section">
-<h2>War and Centralization</h2>
-<p>The <strong>Hundred Years’ War</strong> between England and France encouraged rulers to develop stronger systems of taxation, administration, and military organization. Over time, centralized monarchies became more powerful.</p>
-<p>Europe after 1450 would build upon these institutions. Commercial growth, stronger monarchies, and expanding intellectual life all emerged from the disruptions of the medieval period.</p>
-<div class="callout"><strong>AP Continuity &amp; Change:</strong> Medieval Europe remained deeply religious and hierarchical, but political and economic structures gradually changed between 1200 and 1450.</div>
-</div>
-<div class="section">
-<h2>Why This Matters</h2>
-<p>Europe between 1200 and 1450 matters because it laid institutional foundations for later transformation. Universities, commercial finance, stronger monarchies, and wider exchange networks would shape Europe’s role after 1450.</p>
-<div class="quote">“Europe in 1200 stood at the edge of Afro-Eurasia. By 1450, it was preparing to push beyond it.”</div>
-</div>
-<div class="check">
-<h2>Check Your Thinking</h2>
-<div class="question"><strong>1.</strong> How did the Catholic Church help unify Europe politically and culturally?</div>
-<div class="question"><strong>2.</strong> Explain one way the Black Death changed European society.</div>
-<div class="question"><strong>3.</strong> Why were the Crusades historically important beyond warfare?</div>
-</div>
+  <div class="module-header">
+    <div class="header-top"><span class="module-badge">Module 02</span><span class="module-name">First &amp; 10 Reading</span></div>
+    <div class="module-subtitle">Topic 1.6 — Developments in Europe | AP World History: Modern</div>
+  </div>
+
+  <div class="reading-title-band">
+    <p class="reading-eyebrow">First &amp; 10 Reading</p>
+    <h1 class="reading-title">The Lord's Land, <em>God's Law</em></h1>
+    <p class="reading-deck">A serf on a medieval French manor lives inside a world built from the outside in — the Church above him, the lord beside him, and the soil beneath him. Europe between 1200 and 1450 was not a unified empire. It was a web of obligations, and most people were caught in the middle of it.</p>
+    <div class="skill-tags">
+      <span class="skill-tag">Causation</span>
+      <span class="skill-tag">Continuity &amp; Change</span>
+      <span class="skill-tag">Contextualization</span>
+      <span class="skill-tag">Evidence</span>
+      <span class="skill-tag">Significance</span>
+    </div>
+  </div>
+
+  <div class="reading-body">
+
+    <div class="section">
+      <span class="section-number">1</span>
+      <p class="section-label">Narrative Entry Point</p>
+      <h2 class="section-heading">Walter's World, France, Spring 1253</h2>
+      <p class="reading-text">Walter is a serf on a manor outside Paris. Every week, he owes three days of labor to his lord's fields — <span class="kt">corvée</span> labor that belongs to the lord simply because Walter was born here, to parents who were born here, all of them bound to this soil by the same unwritten law that has governed European rural life for generations. Today is Friday. The fields are wet from three days of rain. His own strip of land — the narrow plot behind his cottage — needs plowing before the weeds take hold. But that must wait. The lord's <span class="kt">demesne</span> comes first.</p>
+      <p class="reading-text">Walter is not angry, exactly. Anger requires a belief that things could be otherwise. He has lived his entire life inside these structures, and so has everyone he knows. The lord holds the land. Walter works it. In exchange, the lord's men watch the roads. There is a castle on the hill that keeps bandits and rival lords at a distance. This is the logic of the <span class="kt">manorial system</span>, and Walter has absorbed it the way he has absorbed the prayers he repeats every Sunday — not as a choice, but as the shape of the world.</p>
+      <div class="ap-callout">
+        <p class="ap-callout-label">AP Thinking — Key Concept</p>
+        <p><strong>KC-3.3.III.C</strong> states that Europe was "largely an agricultural society dependent on free and coerced labor, including serfdom." Walter is the human face of that key concept. His three days of corvée labor is not a metaphor — it is the specific mechanism by which the manorial economy functioned.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-number">2</span>
+      <p class="section-label">Religion and Daily Life</p>
+      <h2 class="section-heading">Father Michel's Church and the Shape of the Year</h2>
+      <p class="reading-text">Those prayers come from Father Michel, the parish priest. Every week, Walter sits in the small stone church at the edge of the village and listens to the <span class="kt">mass</span> in Latin — a language he does not speak. What he understands is the tone: reverent, serious, formal. Father Michel has explained that God ordered the world in three estates: those who pray (the clergy), those who fight (the nobles), and those who work (people like Walter). Each estate serves the others. The worker feeds the priest who channels God's grace back to the community. It is circular in a way that Walter finds either comforting or suffocating, depending on the season.</p>
+      <p class="reading-text">The <span class="kt">Catholic Church</span> is everywhere in this world — not just in Sunday services, but in the rhythm of the year itself. The agricultural calendar and the Church calendar are the same calendar. Walter plants after Saint Martin's feast, rests at Christmas, plants again at Easter, and harvests by Michaelmas. The Church collects a <span class="kt">tithe</span> — one-tenth of everything the land produces — and Father Michel gathers it in the same matter-of-fact way the lord collects the annual <span class="kt">tallage</span>. These two demands, Church and lord, do not compete. They reinforce each other. The priest tells Walter that endurance in this life will be rewarded in the next. The lord does not need a theological argument. He has the soldiers.</p>
+      <div class="pull-quote"><p>"In medieval Europe, the Church and the castle competed for the same thing: loyalty. Most people gave both."</p></div>
+      <div class="ap-callout">
+        <p class="ap-callout-label">AP Thinking — LO K (CDI)</p>
+        <p><strong>Learning Objective K</strong> asks you to explain how the beliefs and practices of Christianity shaped European society. Father Michel's parish, the tithe, the liturgical calendar, and the three-estates ideology are all mechanisms through which Christianity organized social life — not just private belief.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-number">3</span>
+      <p class="section-label">Feudal Authority</p>
+      <h2 class="section-heading">Agnes and the Question of Permission</h2>
+      <p class="reading-text">Today Walter has another problem. His daughter Agnes wants to marry a young man from the next village — a <span class="kt">freeman</span>, a carpenter's apprentice, a man who can walk the road without anyone's permission. But Agnes cannot simply leave. She is a serf. Her children will be serfs. The lord would have to consent to the marriage and would likely require a payment called <span class="kt">merché</span> — a fee serfs owed when their children married outside the manor. Walter has been saving small coins for months. He is not certain he has enough.</p>
+      <p class="reading-text">This detail is not incidental. It is the manorial system made personal. The power of the local lord over Walter's family — over who Agnes can marry, whether she can move, what she can sell, where she can go — is the power that AP historians call <span class="kt">political decentralization</span> made real in individual lives. The king of France, seated in Paris, has no role in Agnes's marriage. The lord on the hill does. That is what <strong>KC-3.2.I.B.ii</strong> means when it says Europe was "characterized by decentralized monarchies, feudalism, and the manorial system": power in this world is local, personal, and present.</p>
+      <div class="two-col">
+        <div class="mini-card">
+          <h4 class="mini-card-title">Feudalism</h4>
+          <p>Land grants and personal loyalty organized political power. Kings granted land to nobles; nobles granted land to smaller lords; lords held power over serfs. Power flowed downward and outward — away from the center.</p>
+        </div>
+        <div class="mini-card">
+          <h4 class="mini-card-title">Manorialism</h4>
+          <p>The manor was the basic economic unit: self-sufficient, agricultural, hierarchical. Serfs owed labor, goods, and obedience. Lords owed protection. The Church owed spiritual guidance. No one owed anyone freedom.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-number">4</span>
+      <p class="section-label">Contextualization — The Wider World</p>
+      <h2 class="section-heading">Why Europe Was Not Like Everywhere Else</h2>
+      <p class="reading-text">What Walter knows, without having words for it, is that medieval Europe is not unified in the way that <span class="kt">Song China</span> was. There is no single emperor, no <span class="kt">civil service examination</span>, no centralized bureaucracy selecting and paying scholar-officials to govern on behalf of the state. There are dozens of kings, hundreds of lords, and one pope, and they are all negotiating with each other over the same question: who has authority here, and over whom? Walter lives inside the smallest unit of that negotiation.</p>
+      <p class="reading-text">He owes the lord. The lord owes the <span class="kt">count</span>. The count owes the king. The king argues with the pope about who appoints which bishop. The pope claims the right to excommunicate kings. English barons forced King John to sign the <span class="kt">Magna Carta</span> in 1215 — a document limiting royal power. None of this is Walter's business. But all of it shapes his life, because every institution with claims on him — feudal, ecclesiastical, agricultural — exists precisely because there is no single authority strong enough to replace all of them.</p>
+      <div class="ap-callout">
+        <p class="ap-callout-label">AP Thinking — Comparison</p>
+        <p>The strongest AP contextualization for Topic 1.6 places Europe <strong>in contrast</strong> to other regions in Unit 1. Song China had a centralized imperial bureaucracy. The Abbasid Caliphate had religious-political unified authority. Europe had neither. This difference is the explanatory key to understanding why European society looked the way it did.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-number">5</span>
+      <p class="section-label">Change Over Time</p>
+      <h2 class="section-heading">City Air Makes You Free — Signs of Change</h2>
+      <p class="reading-text">Walter has heard about the towns. Not Paris — that is distant and incomprehensible. But the smaller market towns growing along rivers and trade roads. He has heard a rumor that a serf who escapes to a town and lives freely for a year and a day can become legally free. <em>Stadtluft macht frei</em> — city air makes you free. It is a saying that exists because the towns need workers and the manorial system is not designed to let them go.</p>
+      <p class="reading-text">Growing towns, guilds, and early universities are not Walter's world yet. But they are part of the same story. Between c. 1200 and c. 1450, European society is not static. The <span class="kt">three-field system</span> increased agricultural productivity. Modest population growth supported the growth of towns and trade. Universities emerged in Bologna, Paris, and Oxford. And the <span class="kt">Black Death</span> (1347–1351) would devastate the population, disrupt the manorial labor supply, and accelerate the slow unraveling of serfdom as a system — not by design, but by the brutal arithmetic of scarcity.</p>
+      <p class="reading-text">Walter does not know any of this. He is plowing the lord's field on a wet Friday morning in 1253, thinking about Agnes and the merché. But his story — the serf, the priest, the lord, the land — is the story that AP World History Topic 1.6 is built around. Not kings and popes, but the system those kings and popes built on the backs of people like him.</p>
+      <div class="ap-callout">
+        <p class="ap-callout-label">AP Thinking — Continuity &amp; Change</p>
+        <p>The AP skill of Continuity and Change Over Time (CCOT) asks what stayed the same and what shifted between c. 1200 and c. 1450. The feudal and manorial system was largely continuous. The growth of towns, trade, and eventually the shock of the Black Death were forces of change. <strong>LO M</strong> asks you to explain the effects of agriculture on social organization — which means explaining both the continuity of the manorial system and the pressures that began to shift it.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-number">6</span>
+      <p class="section-label">Significance</p>
+      <h2 class="section-heading">Three Learning Objectives, One System</h2>
+      <p class="reading-text">Topic 1.6 carries three learning objectives — LO K (religion), LO L (political decentralization), and LO M (agriculture and social organization). That is unusual for Unit 1. But it reflects something real: medieval Europe was not one story. It was three interlocking systems that you cannot fully understand separately.</p>
+      <p class="reading-text">You cannot explain the manorial system without explaining feudal decentralization (why the lord had the power he had). You cannot explain feudal decentralization without explaining the Church (which claimed authority the lords could not replace). You cannot explain the Church's authority without explaining the beliefs and practices of Christianity that made it the center of European intellectual and spiritual life. The three LOs are a single architecture, not three separate topics.</p>
+      <div class="pull-quote"><p>"In medieval Europe, the Church, the castle, and the field were not three separate worlds. They were the same world, seen from three different altitudes."</p></div>
+    </div>
+
+    <div class="be-ready">
+      <h3>BeReady: 10-Second Takeaway</h3>
+      <p>Europe from c. 1200 to c. 1450 was politically fragmented (feudalism, decentralized monarchies), religiously unified (the Catholic Church — plus Jewish communities and Muslim Spain), and socially organized around agriculture (the manorial system and serfdom). The three AP learning objectives for this topic map directly to these three systems, which worked together rather than separately.</p>
+    </div>
+
+  </div>
+
+  <div class="check-section">
+    <div class="check-header">
+      <span class="check-badge">Check Your Thinking</span>
+      <span class="check-title">Three Questions — No Right Answers, Only Supported Ones</span>
+    </div>
+    <ul class="question-list">
+      <li class="question-item">
+        <div class="question-prompt">
+          <span class="q-num">01</span>
+          <span class="q-skill">Causation</span>
+          <p class="q-text">Walter owes corvée labor, merché for his daughter's marriage, tithe to the Church, and tallage to the lord — all because of his land and his birth. Explain at least two causes of this system: why did medieval European society end up organized this way? Use evidence from the reading.</p>
+        </div>
+        <textarea class="q-textarea" placeholder="One cause of the manorial and feudal system was... A second cause was... This happened because..."></textarea>
+        <p class="canvas-note">Organize your thinking here — submit final work in Canvas.</p>
+      </li>
+      <li class="question-item">
+        <div class="question-prompt">
+          <span class="q-num">02</span>
+          <span class="q-skill">CCOT</span>
+          <p class="q-text">The reading describes both continuity and change in medieval Europe between c. 1200 and c. 1450. What stayed the same across this period? What was beginning to change? Use specific evidence from the reading to support both sides of your answer.</p>
+        </div>
+        <textarea class="q-textarea" placeholder="What continued from c. 1200 to c. 1450 was... What began to change was... Evidence for continuity includes... Evidence for change includes..."></textarea>
+        <p class="canvas-note">Organize your thinking here — submit final work in Canvas.</p>
+      </li>
+      <li class="question-item">
+        <div class="question-prompt">
+          <span class="q-num">03</span>
+          <span class="q-skill">Argumentation</span>
+          <p class="q-text">A historian argues: "In medieval Europe, the Church and the manor controlled people's lives more effectively than any king could." Evaluate this claim using at least three specific pieces of evidence from the reading. Do you agree, disagree, or qualify the claim?</p>
+        </div>
+        <textarea class="q-textarea" placeholder="This claim is supported by... However, I would qualify it by... The most important evidence is..."></textarea>
+        <p class="canvas-note">Organize your thinking here — submit final work in Canvas.</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="module-footer">
+    <span class="footer-note">Topic 1.6 — Developments in Europe · AP World History: Modern</span>
+    <div style="display:flex;gap:.6rem">
+      <a class="nav-btn prev" href="lesson-1-6-europe.html#modules">← Map &amp; Geography</a>
+      <a class="nav-btn" href="lesson-1-6-europe.html#lecture">Content Delivery →</a>
+    </div>
+  </div>
 </div>
 </body>
 </html>
