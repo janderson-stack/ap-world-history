@@ -47,7 +47,7 @@ AI Coaching Reflection
 
 The script also recognizes some alternate header names, but the exact names above are strongly recommended.
 
-## Current Topic 1.1 expected values
+## Prompt Registry — Expected Values by Topic
 
 Unit:
 
@@ -55,21 +55,12 @@ Unit:
 Unit 1 - The Global Tapestry
 ```
 
+### Topic 1.1 — Song China
+
 Topic:
 
 ```text
 1.1 - Song China
-```
-
-Response Types:
-
-```text
-First and 10
-AP Skill Builder
-Checkpoint 1
-Evidence Lab
-Primary Source
-Checkpoint 2
 ```
 
 Prompt IDs:
@@ -81,6 +72,38 @@ Prompt IDs:
 1.1-evidence-lab
 1.1-primary-source
 1.1-checkpoint-2
+```
+
+### Topic 1.4 — State Building in the Americas
+
+Topic:
+
+```text
+1.4 - The Americas
+```
+
+Prompt IDs:
+
+```text
+1.4-first10
+1.4-ap-skill-builder
+1.4-checkpoint-1
+1.4-evidence-lab
+1.4-primary-source
+1.4-beintheroom
+1.4-checkpoint-2
+```
+
+Response Types (shared across all topics):
+
+```text
+First and 10
+AP Skill Builder
+Checkpoint 1
+Evidence Lab
+Primary Source
+BeInTheRoom
+Checkpoint 2
 ```
 
 ## Setup steps
