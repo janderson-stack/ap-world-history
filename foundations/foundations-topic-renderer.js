@@ -15,7 +15,6 @@ const T=window.FOUNDATION_TOPIC;
 byId('topic-code').textContent=T.code;
 byId('topic-title').textContent=T.title;
 byId('topic-subtitle').textContent=T.subtitle;
-byId('command-copy').textContent=T.commandCopy;
 byId('lesson-title').textContent=T.title;
 byId('lesson-subtitle').textContent=T.subtitle;
 document.title=`BeHistorical | ${T.code} ${T.title}`;
@@ -33,8 +32,6 @@ const blockPlan=T.blockPlan||[
   ['80-90','Checkpoint','Complete the exit ticket and confidence reflection.']
 ];
 byId('targets').innerHTML=`<div class="target-strip"><article class="foundation-card"><h3>Learning Targets</h3><ul>${T.learningTargets.map(x=>`<li>${x}</li>`).join('')}</ul></article><article class="foundation-card"><h3>Success Criteria</h3><ul>${T.successCriteria.map(x=>`<li>${x}</li>`).join('')}</ul></article></div>`;
-const command=document.querySelector('#command .foundations-grid');
-if(command){command.insertAdjacentHTML('afterend',`<article class="foundation-card block-plan-card"><h3>90-Minute Block Plan</h3><table class="mini-table"><tr><th>Time</th><th>Move</th><th>Purpose</th></tr>${blockPlan.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table></article>`);}
 const modules=[
   {id:'map',label:'Module 01',title:'Map & Geography Check',desc:T.map.desc,img:T.map.url,render:renderMap},
   {id:'first10',label:'Module 02',title:'First & 10 Reading',desc:'Narrative foundation for today\'s Foundations topic.',img:T.heroImage,render:renderFirst10},
