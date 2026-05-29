@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | The Angkor Council</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .role-shell{max-width:1180px;margin:0 auto;padding:24px}
+    .role-hero{background:linear-gradient(180deg,rgba(26,28,29,.9),rgba(43,47,49,.94)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Angkor_Wat_001.JPG') center/cover;border-radius:28px;padding:42px 28px;color:var(--warm-paper);box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.35)}
+    .role-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.2rem,6vw,5rem);line-height:1.02;margin:10px 0}
+    .role-hero p{max-width:900px;font-size:1.04rem;line-height:1.65}
+    .role-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:24px 0}
+    .role-card{grid-column:span 6;background:var(--clean-paper);border:1px solid var(--paper-line);border-radius:20px;padding:22px;box-shadow:var(--soft-shadow)}
+    .role-card.full{grid-column:1/-1}.role-card.third{grid-column:span 4}.role-card.quarter{grid-column:span 3}
+    .role-card h2,.role-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0}
+    .decision-card,.selectable-chip{cursor:pointer;transition:.18s ease;border-top:6px solid var(--aged-iron)}
+    .decision-card:hover,.decision-card.selected,.selectable-chip:hover,.selectable-chip.selected{transform:translateY(-3px);border-top-color:var(--antique-gold);box-shadow:0 20px 54px rgba(0,0,0,.18)}
+    .tag{display:inline-flex;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);padding:5px 9px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin:4px 5px 4px 0}
+    .micro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .micro-card{background:#f7efe3;border:1px solid rgba(107,62,31,.16);border-radius:14px;padding:12px;font-size:.92rem;line-height:1.45}
+    .micro-card strong{display:block;color:var(--oxidized-brown);font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+    .coach-box{background:#f6efe3;border-left:6px solid var(--burnished-bronze);border-radius:16px;padding:18px;margin:12px 0;line-height:1.6}
+    .choice-summary{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border:1px solid rgba(201,164,106,.38);border-left:7px solid var(--antique-gold);border-radius:18px;padding:18px;margin:14px 0 18px}
+    .choice-summary h3{color:var(--antique-gold);margin:0 0 10px}
+    .choice-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .choice-summary-item{background:rgba(255,253,247,.08);border:1px solid rgba(210,180,140,.2);border-radius:14px;padding:12px}
+    .choice-summary-label{display:block;font-family:"Montserrat",Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;font-weight:900;color:var(--muted-sandstone);margin-bottom:6px}
+    .choice-summary-value{font-family:"Montserrat",Arial,sans-serif;font-weight:900;color:var(--warm-paper)}
+    .choice-summary-detail{font-size:.92rem;line-height:1.45;margin:8px 0 0;color:#f5f0e7}
+    .response-area{min-height:170px;width:100%;border:1px solid rgba(26,28,29,.18);border-radius:14px;padding:14px;font-family:"Libre Baskerville",Georgia,serif;line-height:1.6;background:#fffdf7}
+    .response-area:focus{outline:none;box-shadow:var(--focus-ring);border-color:var(--antique-gold)}
+    .selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.78rem;margin-top:12px}
+    .canvas-box{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border-radius:20px;padding:22px;border:1px solid rgba(201,164,106,.35)}
+    .canvas-box h3{color:var(--antique-gold)}
+    .evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .selectable-chip{background:#fffdf7;border:1px solid rgba(107,62,31,.18);border-top:5px solid var(--aged-iron);border-radius:16px;padding:14px;min-height:120px}
+    .selectable-chip h4{margin:0 0 6px;font-family:"Montserrat",Arial,sans-serif;color:var(--blackened-steel)}
+    .selectable-chip p{font-size:.9rem;line-height:1.45;margin:0}
+    .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
+    .field-grid label{font-family:"Montserrat",Arial,sans-serif;font-size:.74rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown)}
+    .small-input{width:100%;border:1px solid rgba(26,28,29,.18);border-radius:12px;padding:10px;background:#fffdf7;margin-top:6px}
+    .copy-box{white-space:pre-wrap;background:#151718;color:#f5f0e7;border-radius:16px;border:1px solid rgba(201,164,106,.35);padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86rem;line-height:1.5;max-height:360px;overflow:auto}
+    .tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+    .stage-label{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--burnished-bronze);font-size:.72rem;margin-bottom:8px}
+    @media(max-width:900px){.role-card,.role-card.third,.role-card.quarter{grid-column:1/-1}.role-shell{padding:12px}.choice-summary-grid,.field-grid,.micro-grid,.evidence-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="role-shell">
+    <nav class="topbar"><div class="nav"><a class="brand-mini" href="../../index.html"><img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a><div class="nav-links"><a href="../index.html">BeInTheRoom Hub</a><a href="../../unit-1/lesson-1-3-south-southeast-asia.html">Back to Topic 1.3</a></div></div></nav>
+    <header class="role-hero">
+      <div class="eyebrow">BeInTheRoom · Unit 1 · Topic 1.3</div>
+      <h1>The Angkor Council</h1>
+      <p>The year is c. 1200 CE. A new Khmer king has come to power at Angkor after defeating the Cham invaders who had sacked the capital. He faces a historic choice: should the kingdom continue its tradition of Hindu royal patronage — the devaraja cult that has legitimized Khmer kings for centuries — or should he shift state patronage to Buddhism, transforming the empire's religious identity and the institutions that depend on it? You have been summoned to advise the council.</p>
+      <div><a class="btn" href="#roles">Choose a Role</a><a class="btn secondary" href="#ai-coach">AI Coach</a><a class="btn secondary" href="#reflection">AP Reflection</a></div>
+    </header>
+
+    <main>
+      <section class="role-grid">
+        <article class="role-card full"><div class="stage-label">Enter the Room</div><h2>Historical Situation</h2><p>The Khmer king stands at a crossroads. For generations, the empire's legitimacy rested on the devaraja — the god-king tradition linking the ruler to Hindu cosmic order. Massive temples like Angkor Wat embodied this system. But Buddhist monasticism is growing in influence, and other rulers in Southeast Asia are turning toward the sangha. A shift in royal patronage would not simply change temple rituals — it would reshape who holds spiritual authority, how trade networks operate, and what the king owes to his subjects.</p><p>Your task: choose a historical role, recommend a path, defend it with evidence, consider a tradeoff, receive AI coaching, and then step out of character to write an AP-aligned reflection.</p><div class="micro-grid"><div class="micro-card"><strong>Religious tension</strong>The devaraja tradition connects royal power to Hindu cosmic order. Buddhism offers a different model of kingship — compassionate, reform-minded, popular.</div><div class="micro-card"><strong>Political tension</strong>A shift in patronage creates winners and losers. Who gains spiritual authority? Who loses it? How does the king hold together a diverse empire?</div><div class="micro-card"><strong>Economic tension</strong>Temple networks, merchant connections, and trade routes are all linked to religious identity. A change at the top reshapes trade relationships and tax flows.</div></div></article>
+      </section>
+
+      <section class="role-grid" id="roles">
+        <article class="role-card full"><div class="stage-label">Step 1</div><h2>Choose Your Historical Perspective</h2><p>Select one role. You are reasoning from inside a historical position shaped by power, belief, labor, and social expectations — not as yourself in the present.</p><div id="role-options"></div><div class="selection-status" id="role-status">No role selected yet.</div></article>
+      </section>
+
+      <section class="role-grid" id="dilemma">
+        <article class="role-card full"><div class="stage-label">Step 2</div><h2>Central Dilemma</h2><p>The king asks the council: <strong>What religious path should the Khmer kingdom follow to maintain legitimacy, stability, and power?</strong></p><p>Each option has real benefits, real costs, and real opponents. There is no obvious correct answer. Your recommendation must fit your role and be supported by historical evidence.</p></article>
+        <article class="role-card quarter decision-card" onclick="selectDecision('hinduism',event)"><h3>Maintain Hindu Patronage</h3><p>Continue the devaraja tradition. Build and maintain Hindu temples, support Brahmin priests, and preserve the ritual system that has legitimized Khmer kings for centuries.</p></article>
+        <article class="role-card quarter decision-card" onclick="selectDecision('mahayana',event)"><h3>Shift to Mahayana Buddhism</h3><p>Embrace the Bodhisattva-king model. Build Buddhist temples and support the Mahayana sangha to demonstrate royal compassion and connect to growing Buddhist trade networks.</p></article>
+        <article class="role-card quarter decision-card" onclick="selectDecision('theravada',event)"><h3>Adopt Theravada Buddhism</h3><p>Follow the popular reform movement spreading from Sri Lanka. Theravada offers direct engagement with ordinary people, growing influence across mainland Southeast Asia, and a different model of royal virtue.</p></article>
+        <article class="role-card quarter decision-card" onclick="selectDecision('syncretic',event)"><h3>Pursue Syncretic Balance</h3><p>Support both Hindu and Buddhist institutions. Maintain the devaraja cult for elite legitimacy while extending patronage to Buddhist monasteries to broaden popular support.</p></article>
+        <article class="role-card full"><div class="selection-status" id="decision-status">No path selected yet.</div></article>
+      </section>
+
+      <section class="role-grid" id="evidence">
+        <article class="role-card full"><div class="stage-label">Step 3</div><h2>Choose Evidence</h2><p>Select at least two evidence chips. Strong historical arguments do not just name facts — they explain why the evidence supports the role's position and connects to the AP content.</p><div class="evidence-grid" id="evidence-options"></div><div class="selection-status" id="evidence-status">No evidence selected yet.</div></article>
+      </section>
+
+      <section class="role-grid">
+        <article class="role-card full"><div class="stage-label">Step 4</div><h2>Build Your Position</h2><p>Write from your selected role. Explain what you advise the king to do and why your role would see that choice as reasonable, necessary, or wise.</p><div class="choice-summary" id="choice-summary"><h3>Your Current Position</h3><div class="choice-summary-grid"><div class="choice-summary-item"><span class="choice-summary-label">Historical Role</span><div class="choice-summary-value" id="summary-role">No role selected yet.</div><p class="choice-summary-detail" id="summary-role-detail">Choose a role above to see your perspective here.</p></div><div class="choice-summary-item"><span class="choice-summary-label">Religious Path</span><div class="choice-summary-value" id="summary-decision">No path selected yet.</div><p class="choice-summary-detail" id="summary-decision-detail">Choose a path above to see your recommendation here.</p></div></div></div>
+        <div class="field-grid"><div><label for="tradeoff-input">Tradeoff or risk</label><input class="small-input" id="tradeoff-input" placeholder="What could go wrong or who might be harmed by this choice?"></div><div><label for="opposition-input">Opposing role or viewpoint</label><input class="small-input" id="opposition-input" placeholder="Which role would most strongly disagree and why?"></div></div>
+        <textarea class="response-area" id="decision-response" placeholder="From the perspective of my role, I advise the Khmer king to..."></textarea><div class="tool-row"><button class="btn" onclick="saveDraft('decision-response')">Save Draft</button><button class="btn secondary" onclick="generateCoachPrompts()">Generate Coach Questions</button></div><div class="check-result" id="decision-response-result"></div></article>
+      </section>
+
+      <section class="role-grid" id="ai-coach">
+        <article class="role-card full"><div class="stage-label">Step 5</div><h2>MagicSchool AI Coach Bridge</h2><p>Use this copy block with your MagicSchool chatbot. The chatbot should question your reasoning and help you revise — it should NOT write your final answer. Paste the block below into MagicSchool and respond to its coaching questions before moving to the AP reflection.</p><p style="font-size:.86rem;opacity:.85;margin:.2rem 0 .8rem;">Organize your thinking here — submit final work in Canvas.</p><div class="tool-row"><button class="btn" onclick="buildMagicSchoolPayload()">Build MagicSchool Copy Block</button><button class="btn secondary" onclick="copyMagicSchoolPayload()">Copy for MagicSchool</button><a class="btn secondary" href="https://app.magicschool.ai/" target="_blank" rel="noopener">Open MagicSchool</a></div><div id="coach-output" class="coach-box">Select a role, path, evidence, and draft your argument. Then build the MagicSchool copy block.</div><div class="copy-box" id="magic-copy">MagicSchool copy block will appear here after you click Build.</div><div class="check-result" id="magic-copy-result"></div></article>
+      </section>
+
+      <section class="role-grid" id="reflection">
+        <article class="role-card full"><div class="stage-label">Step 6</div><h2>Step Out of the Room: AP Reflection</h2><p>Now leave the role and write as a historian. Explain what this debate reveals about South and Southeast Asian states, belief systems, and power between c. 1200 and c. 1450.</p><div class="coach-box"><strong>AP Reflection Prompt</strong><br>Explain how the role you chose reflects broader patterns of religion, state power, and cultural interaction in South or Southeast Asia. Use at least two specific historical details from the lesson. Explain why the choice of religious patronage mattered — not just to the king, but to the whole system of power around him.</div><textarea class="response-area" id="reflection-response" placeholder="This roleplay reveals that in South and Southeast Asia, c. 1200–1450..."></textarea><div class="tool-row"><button class="btn" onclick="saveDraft('reflection-response')">Save Draft</button><button class="btn secondary" onclick="copyResponse('reflection-response')">Copy Reflection</button><button class="btn secondary" onclick="selfCheckReflection()">Run Self-Check</button></div><div class="check-result" id="reflection-response-result"></div></article>
+        <article class="role-card full canvas-box"><h3>Next Step: Submit in Canvas</h3><p>Organize your thinking here — submit your final response in Canvas. The roleplay is the learning process; the reflection is the assessment artifact.</p><p><strong>Suggested Canvas title:</strong> Topic 1.3 BeInTheRoom Reflection — The Angkor Council</p></article>
+      </section>
+    </main>
+  </div>
+<script>
+const roles = {
+  brahmin: {
+    name: 'Hindu Brahmin Priest',
+    status: 'Religious specialist at the heart of royal ritual',
+    power: 'Controls the ceremonies that legitimize royal authority; mediates between the king and the Hindu gods.',
+    goals: 'Protect temple culture, Brahmin learning, Sanskrit scholarship, and the devaraja tradition that elevates royal priests.',
+    fears: 'A Buddhist king would redirect resources to monasteries, strip Brahmin priests of their ceremonial roles, and weaken the sacred order that protects social hierarchy.',
+    lens: 'You value divine kingship, ritual purity, Sanskrit learning, and the cosmic significance of Hindu temple construction.',
+    challenge: 'You may undervalue the popular appeal of Buddhism or the practical advantages of connecting to Buddhist trade networks.'
+  },
+  mahayana: {
+    name: 'Mahayana Buddhist Monk',
+    status: 'Advocate for the Bodhisattva-king model of Buddhist governance',
+    power: 'Spiritual authority and the support of Buddhist monasteries connected to regional trade networks.',
+    goals: 'Win royal patronage for Mahayana institutions, build a Buddhist state identity, and connect the king to the compassionate Bodhisattva ideal.',
+    fears: 'Continued Hindu dominance leaves Buddhist monasteries underfunded; a Theravada shift would favor a rival Buddhist tradition.',
+    lens: 'You value the Bodhisattva ideal of compassionate leadership, Buddhist art and architecture, and the wealth of Buddhist trade connections.',
+    challenge: 'You must make the case for Mahayana over both Hinduism and the growing Theravada tradition spreading from Sri Lanka.'
+  },
+  minister: {
+    name: 'Royal Court Minister',
+    status: 'Senior administrator responsible for governing the empire day to day',
+    power: 'Controls tax collection, labor allocation, and the practical machinery of state governance.',
+    goals: 'Maintain political stability, keep elite factions loyal, and protect the empire from internal rebellion and external threats.',
+    fears: 'A sudden religious shift could trigger conflict between Hindu priests and Buddhist monks, destabilize elite networks, and weaken the king\'s authority during a vulnerable moment after the Cham war.',
+    lens: 'You value practical stability, controlled transitions, and the ability to maintain loyalty from both Hindu and Buddhist institutions.',
+    challenge: 'You may be seen as opportunistic or indecisive when the king demands a clear ideological commitment.'
+  },
+  farmer: {
+    name: 'Rice Farmer',
+    status: 'Agricultural producer in the Mekong basin who forms the labor base of the empire',
+    power: 'Low formal power, but essential to food production, corvee labor, and the wealth that funds temples.',
+    goals: 'Protect harvests, reliable water from the baray irrigation system, fair corvee demands, and local stability.',
+    fears: 'A major religious transition means new temple construction — and new corvee demands to build them. Whether it is Angkor Wat or a Buddhist temple, workers like you bear the physical cost.',
+    lens: 'You value predictable labor obligations, access to irrigation water, protection from raids, and stable harvests.',
+    challenge: 'You work in the shadow of priests, monks, and officials, but the choice about which god to honor directly determines how much labor you owe.'
+  },
+  merchant: {
+    name: 'Maritime Merchant',
+    status: 'Trader connecting Angkor to Buddhist maritime networks in Southeast Asia',
+    power: 'Economic influence through commerce with Srivijaya, Indian Ocean ports, and Chinese markets.',
+    goals: 'Protect trade routes, maintain relationships with Buddhist maritime states like Srivijaya, and keep the Strait of Malacca open for Khmer goods.',
+    fears: 'A king who stays with Hindu patronage may lose the trust of Buddhist merchants who dominate maritime trade; a disruptive internal religious conflict is bad for commerce.',
+    lens: 'You value connectivity, exchange, practical prosperity, and peaceful relations with Buddhist trading partners.',
+    challenge: 'You may be seen as motivated by profit rather than piety — but trade is how belief systems and ideas actually spread.'
+  },
+  theravada: {
+    name: 'Theravada Buddhist Teacher',
+    status: 'Advocate for the reform Buddhist movement spreading from Sri Lanka across mainland Southeast Asia',
+    power: 'Growing popular appeal among commoners and the support of a network of Theravada monasteries across the region.',
+    goals: 'Convince the king to adopt the Theravada model of Buddhist governance — simple, accessible, reform-minded — rather than the more elite Mahayana tradition.',
+    fears: 'The king might choose Mahayana Buddhism (a different Buddhist tradition) or syncretic compromise, leaving Theravada underfunded and marginalized.',
+    lens: 'You value accessible dharma, community monasteries, the Pali canon, and the growing consensus across mainland Southeast Asia that Theravada represents a purer Buddhist practice.',
+    challenge: 'You must distinguish your tradition from Mahayana Buddhism and explain why the Theravada model is better suited for the Khmer state.'
+  }
+};
+
+const decisions = {
+  hinduism: 'Maintain Hindu Patronage',
+  mahayana: 'Shift to Mahayana Buddhism',
+  theravada: 'Adopt Theravada Buddhism',
+  syncretic: 'Pursue Syncretic Balance'
+};
+
+const decisionDetails = {
+  hinduism: 'Continue the devaraja tradition; build and maintain Hindu temples and support Brahmin priests.',
+  mahayana: 'Embrace the Bodhisattva-king model; build Buddhist temples and connect to Mahayana trade networks.',
+  theravada: 'Follow the reform movement from Sri Lanka; adopt the growing Theravada model spreading across mainland Southeast Asia.',
+  syncretic: 'Support both Hindu and Buddhist institutions to maintain broad legitimacy across elite and popular groups.'
+};
+
+const evidenceBank = {
+  devaraja: {
+    title: 'Devaraja Cult',
+    desc: 'The god-king tradition made the Khmer ruler a divine figure whose authority flowed from sacred Hindu ritual. Brahmin priests performed the ceremonies that connected the king to Shiva or Vishnu.'
+  },
+  angkorwat: {
+    title: 'Angkor Wat',
+    desc: 'Built by Suryavarman II as a Hindu temple dedicated to Vishnu, Angkor Wat is the largest religious structure in the world. Its scale demonstrated the labor mobilization and cosmic ambition of Khmer kingship.'
+  },
+  bayon: {
+    title: 'Jayavarman VII\'s Bayon',
+    desc: 'The Bayon was built as a Buddhist temple under Jayavarman VII after 1181 CE. Its towers feature the smiling face of the Bodhisattva Avalokiteshvara — a dramatic shift from Hindu iconography to Buddhist royal identity.'
+  },
+  theravada_spread: {
+    title: 'Theravada Buddhism from Sri Lanka',
+    desc: 'Theravada Buddhism was spreading across mainland Southeast Asia from Sri Lanka, gaining influence in the Pagan kingdom and Sukhothai. It would eventually become the dominant religion of the region.'
+  },
+  srivijaya: {
+    title: 'Srivijaya and Buddhist Trade',
+    desc: 'The maritime empire of Srivijaya had built its wealth on controlling Buddhist trade networks across the Strait of Malacca. Buddhist identity was deeply tied to commercial connections in the Indian Ocean world.'
+  },
+  bhakti: {
+    title: 'Bhakti Devotionalism',
+    desc: 'Bhakti movements in South Asia demonstrated that popular religious devotion could bypass priestly hierarchies. A king who ignored popular religious feeling risked losing the loyalty of his subjects.'
+  },
+  corvee: {
+    title: 'Corvee Labor System',
+    desc: 'The construction of temples — Hindu or Buddhist — required massive corvee labor from farmers and villagers. Every religious decision carried a cost that was paid in human labor.'
+  },
+  inscriptions: {
+    title: 'Sanskrit Inscriptions',
+    desc: 'Royal inscriptions at Angkor and other sites recorded achievements, religious gifts, and the ideology of divine kingship. They could promote either Hindu or Buddhist legitimacy depending on the ruler\'s choice.'
+  },
+  sangha: {
+    title: 'Buddhist Sangha',
+    desc: 'Buddhist monastic communities provided education, charity, and spiritual guidance. Patronizing the sangha could extend royal influence into everyday life beyond what Hindu temples typically reached.'
+  },
+  mandala: {
+    title: 'Mandala Political Structure',
+    desc: 'Khmer power radiated outward from Angkor through a mandala system of loyalty, tribute, and ritual. The king\'s religious identity shaped how subordinate rulers and allies understood their relationship to the center.'
+  },
+  champa: {
+    title: 'Champa Conflict',
+    desc: 'The Cham had sacked Angkor in 1177 CE. Religious identity was not just an internal matter — it shaped diplomatic relationships with neighboring kingdoms, some of which had their own Hindu or Buddhist traditions.'
+  },
+  monsoon: {
+    title: 'Indian Ocean Merchant Networks',
+    desc: 'Merchants from India, the Islamic world, and China passed through Southeast Asian ports. Religious identity shaped who a ruler could do business with and how trade relationships were maintained.'
+  }
+};
+
+let selectedRole = '';
+let selectedDecision = '';
+let selectedEvidence = [];
+let latestPayload = '';
+
+function renderRoles() {
+  document.getElementById('role-options').innerHTML = Object.entries(roles).map(([id, r]) =>
+    `<article class="role-card third decision-card" onclick="selectRole('${id}',event)">
+      <h3>${r.name}</h3>
+      <span class="tag">${r.status}</span>
+      <p>${r.lens}</p>
+      <div class="micro-grid">
+        <div class="micro-card"><strong>Goal</strong>${r.goals}</div>
+        <div class="micro-card"><strong>Fear</strong>${r.fears}</div>
+        <div class="micro-card"><strong>Power</strong>${r.power}</div>
+      </div>
+    </article>`
+  ).join('');
+}
+
+function renderEvidence() {
+  document.getElementById('evidence-options').innerHTML = Object.entries(evidenceBank).map(([id, e]) =>
+    `<article class="selectable-chip" onclick="toggleEvidence('${id}',event)">
+      <h4>${e.title}</h4>
+      <p>${e.desc}</p>
+    </article>`
+  ).join('');
+}
+
+function updateChoiceSummary() {
+  const roleEl = document.getElementById('summary-role');
+  const roleDetailEl = document.getElementById('summary-role-detail');
+  const decisionEl = document.getElementById('summary-decision');
+  const decisionDetailEl = document.getElementById('summary-decision-detail');
+  if (selectedRole) {
+    roleEl.textContent = roles[selectedRole].name;
+    roleDetailEl.textContent = roles[selectedRole].lens;
+  } else {
+    roleEl.textContent = 'No role selected yet.';
+    roleDetailEl.textContent = 'Choose a role above to see your perspective here.';
+  }
+  if (selectedDecision) {
+    decisionEl.textContent = decisions[selectedDecision];
+    decisionDetailEl.textContent = decisionDetails[selectedDecision];
+  } else {
+    decisionEl.textContent = 'No path selected yet.';
+    decisionDetailEl.textContent = 'Choose a path above to see your recommendation here.';
+  }
+}
+
+function selectRole(id, event) {
+  selectedRole = id;
+  document.getElementById('role-status').textContent = `Selected role: ${roles[id].name}`;
+  document.querySelectorAll('#role-options .decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  updateChoiceSummary();
+  saveState();
+}
+
+function selectDecision(id, event) {
+  selectedDecision = id;
+  document.getElementById('decision-status').textContent = `Selected path: ${decisions[id]}`;
+  document.querySelectorAll('#dilemma .decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  updateChoiceSummary();
+  saveState();
+}
+
+function toggleEvidence(id, event) {
+  if (selectedEvidence.includes(id)) {
+    selectedEvidence = selectedEvidence.filter(x => x !== id);
+    event.currentTarget.classList.remove('selected');
+  } else {
+    selectedEvidence.push(id);
+    event.currentTarget.classList.add('selected');
+  }
+  document.getElementById('evidence-status').textContent = selectedEvidence.length
+    ? `Selected evidence: ${selectedEvidence.map(x => evidenceBank[x].title).join(', ')}`
+    : 'No evidence selected yet.';
+  saveState();
+}
+
+function generateCoachPrompts() {
+  const box = document.getElementById('coach-output');
+  if (!selectedRole || !selectedDecision) {
+    box.textContent = 'Choose both a role and a path before generating coaching questions.';
+    return;
+  }
+  const r = roles[selectedRole];
+  box.innerHTML = `<strong>Coaching questions for ${r.name}</strong><ul>
+    <li>What does your role want, fear, and have power to influence in this decision?</li>
+    <li>Which piece of evidence best supports ${decisions[selectedDecision].toLowerCase()}, and why does it specifically connect to your role?</li>
+    <li>What is the strongest objection another role would raise against your recommendation?</li>
+    <li>What tradeoff or unintended consequence must you admit if the king follows your advice?</li>
+    <li>How does your argument connect to AP key concept KC-3.1.III.D.iv (belief systems shaping society) or KC-3.2.I.B.i (state formation and religion)?</li>
+  </ul>`;
+}
+
+function buildMagicSchoolPayload() {
+  const role = selectedRole ? roles[selectedRole] : null;
+  const selectedEvidenceText = selectedEvidence.map(id => `- ${evidenceBank[id].title}: ${evidenceBank[id].desc}`).join('\n') || 'No evidence selected yet.';
+  const draft = document.getElementById('decision-response').value.trim() || 'No first draft written yet.';
+  const tradeoff = document.getElementById('tradeoff-input').value.trim() || 'Not identified yet.';
+  const opposition = document.getElementById('opposition-input').value.trim() || 'Not identified yet.';
+  latestPayload = `You are the BeInTheRoom Historical Thinking Coach for AP World History. Do not write my final answer. Ask me one question at a time to help me better understand my role, evidence, tradeoff, and historical reasoning. Push me to explain because, not just name facts.
+
+Scenario: The Angkor Council — Topic 1.3 South and Southeast Asia
+Central dilemma: What religious path should the Khmer kingdom follow to maintain legitimacy, stability, and power (c. 1200 CE)?
+AP Key Concepts: KC-3.1.III.D.iv (belief systems shaping societies) and KC-3.2.I.B.i (Hindu and Buddhist state formation)
+
+My role: ${role ? role.name : 'No role selected'}
+Role status: ${role ? role.status : 'No role selected'}
+Role goals: ${role ? role.goals : 'No role selected'}
+Role fears: ${role ? role.fears : 'No role selected'}
+Role power/limits: ${role ? role.power : 'No role selected'}
+
+My path choice: ${selectedDecision ? decisions[selectedDecision] : 'No path selected'}
+Path detail: ${selectedDecision ? decisionDetails[selectedDecision] : 'No path selected'}
+
+Evidence I selected:
+${selectedEvidenceText}
+
+My tradeoff or risk: ${tradeoff}
+Opposing role or viewpoint: ${opposition}
+
+My first draft argument:
+${draft}
+
+Please coach me through these stages:
+1. Help me clarify what my role wants, fears, and has power to influence.
+2. Ask me which evidence is strongest and why it supports my position.
+3. Challenge me to explain one tradeoff or weakness in my recommendation.
+4. Ask me how an opposing role would respond to my argument.
+5. Help me revise into a stronger 4–6 sentence historically grounded argument.
+6. End by asking me to step out of character and explain what this decision reveals about how religion and power worked in South and Southeast Asia between c. 1200 and c. 1450.`;
+  document.getElementById('magic-copy').textContent = latestPayload;
+  generateCoachPrompts();
+  return latestPayload;
+}
+
+function copyMagicSchoolPayload() {
+  const payload = latestPayload || buildMagicSchoolPayload();
+  navigator.clipboard.writeText(payload)
+    .then(() => document.getElementById('magic-copy-result').textContent = 'MagicSchool coach block copied. Paste it into your MagicSchool chatbot.')
+    .catch(() => document.getElementById('magic-copy-result').textContent = 'Copy failed. Select the copy block above and copy manually.');
+}
+
+function saveDraft(id) {
+  const t = document.getElementById(id);
+  localStorage.setItem('beintheroom-angkor-council-' + id, t.value || '');
+  document.getElementById(id + '-result').textContent = 'Draft saved on this device.';
+  saveState();
+}
+
+function copyResponse(id) {
+  const t = document.getElementById(id);
+  navigator.clipboard.writeText(t.value || '')
+    .then(() => document.getElementById(id + '-result').textContent = 'Reflection copied.')
+    .catch(() => document.getElementById(id + '-result').textContent = 'Copy failed. Select and copy manually.');
+}
+
+function selfCheckReflection() {
+  const t = document.getElementById('reflection-response');
+  const text = (t.value || '').toLowerCase();
+  const terms = ['khmer', 'angkor', 'hinduism', 'buddhism', 'devaraja', 'jayavarman', 'bayon', 'srivijaya', 'majapahit', 'theravada', 'mahayana', 'brahmin', 'sangha', 'bhakti', 'sufism', 'delhi sultanate', 'vijayanagara', 'monsoon', 'trade', 'temple'];
+  const found = terms.filter(term => text.includes(term));
+  document.getElementById('reflection-response-result').textContent = `Self-check: ${text.split(/\s+/).filter(Boolean).length} words; historical terms found: ${found.length ? found.join(', ') : 'none yet'}. Aim for at least two specific historical details and one explanation of broader significance.`;
+}
+
+function saveState() {
+  localStorage.setItem('beintheroom-angkor-council-state', JSON.stringify({
+    selectedRole,
+    selectedDecision,
+    selectedEvidence,
+    tradeoff: document.getElementById('tradeoff-input')?.value || '',
+    opposition: document.getElementById('opposition-input')?.value || ''
+  }));
+}
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('beintheroom-angkor-council-state') || '{}');
+    selectedRole = saved.selectedRole || '';
+    selectedDecision = saved.selectedDecision || '';
+    selectedEvidence = Array.isArray(saved.selectedEvidence) ? saved.selectedEvidence : [];
+    if (saved.tradeoff) document.getElementById('tradeoff-input').value = saved.tradeoff;
+    if (saved.opposition) document.getElementById('opposition-input').value = saved.opposition;
+  } catch(e) {}
+}
+
+function applySavedSelections() {
+  if (selectedRole) {
+    document.getElementById('role-status').textContent = `Selected role: ${roles[selectedRole].name}`;
+    const roleCards = [...document.querySelectorAll('#role-options .decision-card')];
+    const roleIndex = Object.keys(roles).indexOf(selectedRole);
+    if (roleCards[roleIndex]) roleCards[roleIndex].classList.add('selected');
+  }
+  if (selectedDecision) {
+    document.getElementById('decision-status').textContent = `Selected path: ${decisions[selectedDecision]}`;
+    const decisionCards = [...document.querySelectorAll('#dilemma .decision-card')];
+    const decisionIndex = Object.keys(decisions).indexOf(selectedDecision);
+    if (decisionCards[decisionIndex]) decisionCards[decisionIndex].classList.add('selected');
+  }
+  if (selectedEvidence.length) {
+    const evidenceCards = [...document.querySelectorAll('#evidence-options .selectable-chip')];
+    Object.keys(evidenceBank).forEach((id, i) => {
+      if (selectedEvidence.includes(id) && evidenceCards[i]) evidenceCards[i].classList.add('selected');
+    });
+    document.getElementById('evidence-status').textContent = `Selected evidence: ${selectedEvidence.map(x => evidenceBank[x].title).join(', ')}`;
+  }
+  updateChoiceSummary();
+}
+
+function loadDrafts() {
+  ['decision-response', 'reflection-response'].forEach(id => {
+    const saved = localStorage.getItem('beintheroom-angkor-council-' + id);
+    if (saved) document.getElementById(id).value = saved;
+  });
+}
+
+document.addEventListener('input', e => {
+  if (e.target && ['tradeoff-input', 'opposition-input'].includes(e.target.id)) saveState();
+});
+
+renderRoles();
+renderEvidence();
+loadState();
+loadDrafts();
+applySavedSelections();
+</script>
+</body>
+</html>
