@@ -12,10 +12,10 @@ function sanitizeImageUrl(url){
 }
 function bg(url){return `url('${sanitizeImageUrl(url)}')`;}
 const T=window.FOUNDATION_TOPIC;
-byId('topic-code').textContent=T.code;
-byId('topic-title').textContent=T.title;
-byId('topic-subtitle').textContent=T.subtitle;
-byId('command-copy').textContent=T.commandCopy;
+const _tc=byId('topic-code');if(_tc)_tc.textContent=T.code;
+const _tt=byId('topic-title');if(_tt)_tt.textContent=T.title;
+const _ts=byId('topic-subtitle');if(_ts)_ts.textContent=T.subtitle;
+const _cc=byId('command-copy');if(_cc)_cc.textContent=T.commandCopy;
 byId('lesson-title').textContent=T.title;
 byId('lesson-subtitle').textContent=T.subtitle;
 document.title=`BeHistorical | ${T.code} ${T.title}`;
