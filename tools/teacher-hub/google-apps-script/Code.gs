@@ -1,439 +1,720 @@
 /**
- * BeHistorical Teacher Hub Analysis Layer
+ * BeHistorical Teacher Hub — Apps Script
  *
- * Paste this file into Extensions > Apps Script inside the Google Sheet that receives
- * BeHistorical Student Response Form submissions. Deploy as a Web App only after
- * reviewing school privacy expectations.
+ * Paste into Extensions → Apps Script inside the Google Sheet linked to
+ * the BeHistorical Student Response Form.
  *
- * Prototype goal:
- * - Read Google Form responses from the active response Sheet.
- * - Filter by Unit, Topic, Response Type, Prompt ID, and Class Period.
- * - Generate a structured Teacher Hub JSON payload.
- * - Optionally write the result to TeacherHub_Analysis and TeacherHub_StudentFlags.
- * - Serve the latest analysis to the GitHub Pages Teacher Hub through doGet().
+ * Run order: setupBeHistoricalHub() → installTrigger() → processPendingRows()
+ *
+ * Before running: paste your Gemini API key into CONFIG.GEMINI_API_KEY below.
  */
 
-const BEHISTORICAL_CONFIG = {
-  responseSheetName: 'Form Responses 1',
-  analysisSheetName: 'TeacherHub_Analysis',
-  studentFlagsSheetName: 'TeacherHub_StudentFlags',
-  settingsSheetName: 'TeacherHub_Settings',
-  defaultUnit: 'Unit 1 - The Global Tapestry',
-  defaultTopic: '1.1 - Song China',
-  shortResponseThreshold: 80,
-  lowConfidenceThreshold: 3,
-  responseTypes: [
-    'First and 10',
-    'AP Skill Builder',
-    'Checkpoint 1',
-    'Evidence Lab',
-    'Primary Source',
-    'Checkpoint 2'
-  ]
+// ─── Configuration ─────────────────────────────────────────────────────────────
+
+const CONFIG = {
+  GEMINI_API_KEY: 'PASTE_YOUR_GEMINI_API_KEY_HERE',
+  GEMINI_MODEL: 'gemini-2.5-flash',
+  FORM_RESPONSES_ORIGINAL: 'Form Responses 1',
+  TABS: {
+    RAW: 'Raw Responses',
+    ANALYSIS: 'AI Analysis Outputs',
+    SKILLS: 'Historical Thinking Skills Matrix',
+    MASTERY: 'Topic Mastery',
+    MISCONCEPTIONS: 'Misconception Tracker',
+    INSIGHTS: 'Teacher Insights',
+    PROMPTS: 'Prompt Registry',
+  },
 };
 
-const HEADER_ALIASES = {
-  timestamp: ['Timestamp'],
-  studentName: ['Student Name', 'Name', 'Student'],
-  classPeriod: ['Class Period', 'Period'],
-  unit: ['Unit'],
-  topic: ['Topic'],
-  responseType: ['Response Type', 'Question Type', 'Activity'],
-  promptId: ['Prompt ID', 'Prompt Id', 'PromptID'],
-  studentResponse: ['Student Response', 'Response', 'Written Response'],
-  confidenceLevel: ['Confidence Level', 'Confidence', 'Confidence Check'],
-  aiCoachingReflection: ['AI Coaching Reflection', 'AI Reflection', 'Revision Notes']
+// Column indices (0-based) for the Raw Responses tab.
+// IMPORTANT: After setup, open Raw Responses, check columns B–L against the
+// Google Form field order, and update these indices if the form placed any
+// columns differently than the list below.
+//
+// Expected order from form:
+//   A(0) Timestamp | B(1) Student Name | C(2) Class Period | D(3) Topic
+//   E(4) Prompt ID | F(5) Response Type | G(6) Skill Focus
+//   H(7) Student Response | I(8) Confidence Level | J(9) AI Coach Used?
+//   K(10) Revision Attempt | L(11) Email | M(12) Processed (added by script)
+const COL = {
+  TIMESTAMP: 0,
+  STUDENT_NAME: 1,
+  CLASS_PERIOD: 2,
+  TOPIC: 3,
+  PROMPT_ID: 4,
+  RESPONSE_TYPE: 5,
+  SKILL_FOCUS: 6,
+  STUDENT_RESPONSE: 7,
+  CONFIDENCE_LEVEL: 8,
+  AI_COACH_USED: 9,
+  REVISION_ATTEMPT: 10,
+  EMAIL: 11,
+  PROCESSED: 12,
 };
+
+// ─── Menu ──────────────────────────────────────────────────────────────────────
 
 function onOpen() {
   SpreadsheetApp.getUi()
-    .createMenu('BeHistorical')
-    .addItem('Analyze Topic 1.1', 'analyzeTopic11')
-    .addItem('Analyze Selected Filters...', 'showAnalyzeSidebar')
+    .createMenu('BeHistorical Hub')
+    .addItem('1. Setup Hub Tabs', 'setupBeHistoricalHub')
+    .addItem('2. Install Form Trigger', 'installTrigger')
+    .addItem('3. Process Pending Rows', 'processPendingRows')
     .addSeparator()
-    .addItem('Create/Repair Teacher Hub Tabs', 'ensureTeacherHubTabs')
+    .addItem('Generate Class Insight…', 'promptGenerateClassInsight')
     .addToUi();
 }
 
-function analyzeTopic11() {
-  const payload = buildTeacherHubAnalysis_({
-    unit: BEHISTORICAL_CONFIG.defaultUnit,
-    topic: BEHISTORICAL_CONFIG.defaultTopic,
-    responseType: 'All Response Types',
-    classPeriod: 'All Periods'
-  });
-  writeTeacherHubAnalysis_(payload);
-  SpreadsheetApp.getUi().alert('Teacher Hub analysis updated for Topic 1.1.');
-}
+// ─── Setup ─────────────────────────────────────────────────────────────────────
 
-function showAnalyzeSidebar() {
-  const html = HtmlService.createHtmlOutput(`
-    <div style="font-family:Arial,sans-serif;padding:14px;line-height:1.4">
-      <h2 style="margin-top:0">BeHistorical Analysis</h2>
-      <label>Topic<br><input id="topic" style="width:100%" value="${BEHISTORICAL_CONFIG.defaultTopic}"></label><br><br>
-      <label>Response Type<br>
-        <select id="responseType" style="width:100%">
-          <option>All Response Types</option>
-          ${BEHISTORICAL_CONFIG.responseTypes.map(type => `<option>${type}</option>`).join('')}
-        </select>
-      </label><br><br>
-      <label>Class Period<br><input id="classPeriod" style="width:100%" value="All Periods"></label><br><br>
-      <button onclick="run()">Analyze</button>
-      <p id="status"></p>
-      <script>
-        function run(){
-          document.getElementById('status').textContent = 'Analyzing...';
-          google.script.run
-            .withSuccessHandler(function(){ document.getElementById('status').textContent = 'Analysis complete.'; })
-            .withFailureHandler(function(err){ document.getElementById('status').textContent = err.message || err; })
-            .analyzeWithFilters({
-              topic: document.getElementById('topic').value,
-              responseType: document.getElementById('responseType').value,
-              classPeriod: document.getElementById('classPeriod').value
-            });
-        }
-      </script>
-    </div>
-  `).setTitle('BeHistorical Analysis');
-  SpreadsheetApp.getUi().showSidebar(html);
-}
+function setupBeHistoricalHub() {
+  const ss = SpreadsheetApp.getActive();
 
-function analyzeWithFilters(filters) {
-  const payload = buildTeacherHubAnalysis_({
-    unit: filters.unit || BEHISTORICAL_CONFIG.defaultUnit,
-    topic: filters.topic || BEHISTORICAL_CONFIG.defaultTopic,
-    responseType: filters.responseType || 'All Response Types',
-    classPeriod: filters.classPeriod || 'All Periods'
-  });
-  writeTeacherHubAnalysis_(payload);
-  return payload;
-}
-
-function doGet(e) {
-  const params = e && e.parameter ? e.parameter : {};
-  const payload = buildTeacherHubAnalysis_({
-    unit: params.unit || BEHISTORICAL_CONFIG.defaultUnit,
-    topic: params.topic || BEHISTORICAL_CONFIG.defaultTopic,
-    responseType: params.responseType || 'All Response Types',
-    classPeriod: params.classPeriod || 'All Periods'
-  });
-
-  if (String(params.write || '').toLowerCase() === 'true') {
-    writeTeacherHubAnalysis_(payload);
+  // Rename the form responses tab to Raw Responses (or create it)
+  let rawSheet = ss.getSheetByName(CONFIG.TABS.RAW);
+  if (!rawSheet) {
+    const formSheet = ss.getSheetByName(CONFIG.FORM_RESPONSES_ORIGINAL);
+    if (formSheet) {
+      formSheet.setName(CONFIG.TABS.RAW);
+      rawSheet = formSheet;
+    } else {
+      rawSheet = ss.insertSheet(CONFIG.TABS.RAW);
+    }
   }
 
-  return ContentService
-    .createTextOutput(JSON.stringify(payload, null, 2))
-    .setMimeType(ContentService.MimeType.JSON);
+  // Add Processed column header at M1 if not already present
+  const processedCell = rawSheet.getRange(1, COL.PROCESSED + 1);
+  if (!processedCell.getValue()) processedCell.setValue('Processed');
+
+  setupAnalysisOutputsTab_(ss);
+  setupSkillsMatrixTab_(ss);
+  setupTopicMasteryTab_(ss);
+  setupMisconceptionTrackerTab_(ss);
+  setupTeacherInsightsTab_(ss);
+  setupPromptRegistryTab_(ss);
+
+  SpreadsheetApp.getUi().alert(
+    'BeHistorical Hub setup complete!\n\n' +
+    'Next steps:\n' +
+    '1. Verify column mapping (see Raw Responses tab, columns B–L)\n' +
+    '2. Run "2. Install Form Trigger"\n' +
+    '3. Run "3. Process Pending Rows" for any existing submissions'
+  );
 }
 
-function buildTeacherHubAnalysis_(filters) {
-  const rows = getNormalizedResponseRows_();
-  const filtered = filterRows_(rows, filters);
-  const totalResponses = filtered.length;
-  const confidenceValues = filtered
-    .map(row => parseConfidence_(row.confidenceLevel))
-    .filter(value => !isNaN(value));
-  const averageConfidence = confidenceValues.length
-    ? roundTo_(confidenceValues.reduce((sum, value) => sum + value, 0) / confidenceValues.length, 1)
-    : null;
-
-  const lowConfidenceRows = filtered.filter(row => parseConfidence_(row.confidenceLevel) < BEHISTORICAL_CONFIG.lowConfidenceThreshold);
-  const shortRows = filtered.filter(row => String(row.studentResponse || '').trim().length > 0 && String(row.studentResponse || '').trim().length < BEHISTORICAL_CONFIG.shortResponseThreshold);
-  const blankRows = filtered.filter(row => !String(row.studentResponse || '').trim());
-  const responseTypeCounts = countBy_(filtered, 'responseType');
-  const periodCounts = countBy_(filtered, 'classPeriod');
-  const promptCounts = countBy_(filtered, 'promptId');
-  const evidence = detectCommonEvidence_(filtered);
-  const misconceptions = detectCommonMisconceptions_(filtered);
-  const skillGaps = detectSkillGaps_(filtered);
-  const studentFlags = buildStudentFlags_(filtered, lowConfidenceRows, shortRows, blankRows, misconceptions, skillGaps);
-  const reteachSuggestions = buildReteachSuggestions_(misconceptions, skillGaps, averageConfidence, totalResponses);
-
-  return {
-    generatedAt: new Date().toISOString(),
-    source: 'Google Sheets + BeHistorical Apps Script prototype',
-    filters: {
-      unit: filters.unit || BEHISTORICAL_CONFIG.defaultUnit,
-      topic: filters.topic || BEHISTORICAL_CONFIG.defaultTopic,
-      responseType: filters.responseType || 'All Response Types',
-      classPeriod: filters.classPeriod || 'All Periods'
-    },
-    summary: {
-      totalResponses,
-      completionRate: totalResponses ? 'Collected' : 'No responses yet',
-      averageConfidence,
-      lowConfidenceCount: lowConfidenceRows.length,
-      shortResponseCount: shortRows.length,
-      blankResponseCount: blankRows.length,
-      responseTypeCounts,
-      periodCounts,
-      promptCounts
-    },
-    classSummary: buildClassSummary_(totalResponses, averageConfidence, evidence, misconceptions, skillGaps),
-    commonEvidence: evidence,
-    topMisconceptions: misconceptions,
-    skillGaps,
-    reteachSuggestions,
-    studentFlags,
-    aiPrompt: buildAiPrompt_(filtered, filters),
-    rows: filtered.map(row => ({
-      timestamp: row.timestamp,
-      studentName: row.studentName,
-      classPeriod: row.classPeriod,
-      responseType: row.responseType,
-      promptId: row.promptId,
-      confidenceLevel: row.confidenceLevel,
-      studentResponse: row.studentResponse
-    }))
-  };
+function getOrCreateSheet_(ss, name) {
+  return ss.getSheetByName(name) || ss.insertSheet(name);
 }
 
-function getNormalizedResponseRows_() {
-  const sheet = SpreadsheetApp.getActive().getSheetByName(BEHISTORICAL_CONFIG.responseSheetName);
-  if (!sheet) throw new Error(`Missing response sheet: ${BEHISTORICAL_CONFIG.responseSheetName}`);
-  const values = sheet.getDataRange().getValues();
-  if (values.length < 2) return [];
-  const headers = values[0].map(String);
-  const index = buildHeaderIndex_(headers);
-  return values.slice(1).map(row => normalizeRow_(row, index));
-}
-
-function buildHeaderIndex_(headers) {
-  const index = {};
-  Object.keys(HEADER_ALIASES).forEach(key => {
-    const aliases = HEADER_ALIASES[key];
-    const found = aliases.map(alias => headers.indexOf(alias)).find(position => position >= 0);
-    index[key] = typeof found === 'number' ? found : -1;
-  });
-  return index;
-}
-
-function normalizeRow_(row, index) {
-  const get = key => index[key] >= 0 ? row[index[key]] : '';
-  return {
-    timestamp: formatCell_(get('timestamp')),
-    studentName: formatCell_(get('studentName')),
-    classPeriod: formatCell_(get('classPeriod')),
-    unit: formatCell_(get('unit')),
-    topic: formatCell_(get('topic')),
-    responseType: formatCell_(get('responseType')),
-    promptId: formatCell_(get('promptId')),
-    studentResponse: formatCell_(get('studentResponse')),
-    confidenceLevel: formatCell_(get('confidenceLevel')),
-    aiCoachingReflection: formatCell_(get('aiCoachingReflection'))
-  };
-}
-
-function filterRows_(rows, filters) {
-  const topicNeedle = normalizeFilter_(filters.topic || '');
-  const responseType = normalizeFilter_(filters.responseType || 'All Response Types');
-  const classPeriod = normalizeFilter_(filters.classPeriod || 'All Periods');
-  return rows.filter(row => {
-    const topicMatches = !topicNeedle || normalizeFilter_(row.topic).includes(topicNeedle.split(' - ')[0]) || normalizeFilter_(row.topic) === topicNeedle;
-    const responseMatches = responseType === 'all response types' || !responseType || normalizeFilter_(row.responseType) === responseType;
-    const periodMatches = classPeriod === 'all periods' || !classPeriod || normalizeFilter_(row.classPeriod) === classPeriod;
-    return topicMatches && responseMatches && periodMatches;
-  });
-}
-
-function detectCommonEvidence_(rows) {
-  const evidenceBank = [
-    ['civil service exam', ['civil service', 'exam', 'keju']],
-    ['Confucian bureaucracy', ['confucian', 'bureaucracy', 'bureaucratic']],
-    ['scholar-officials', ['scholar official', 'scholar-official', 'officials']],
-    ['Champa rice', ['champa', 'rice']],
-    ['Grand Canal', ['grand canal', 'canal']],
-    ['paper money / jiaozi', ['paper money', 'jiaozi', 'flying cash']],
-    ['Neo-Confucianism', ['neo-confucian', 'zhu xi']],
-    ['Buddhism', ['buddhism', 'buddhist', 'mahayana', 'theravada', 'tibetan']],
-    ['urbanization / Hangzhou', ['urban', 'city', 'cities', 'hangzhou', 'kaifeng']],
-    ['commercialization', ['commercial', 'trade', 'market', 'merchant']]
+function setupAnalysisOutputsTab_(ss) {
+  const sheet = getOrCreateSheet_(ss, CONFIG.TABS.ANALYSIS);
+  sheet.clearContents();
+  const headers = [
+    'Source Row', 'Processed At', 'Student Name', 'Class Period', 'Topic',
+    'Prompt ID', 'Response Type', 'Skill Focus', 'Revision Attempt', 'Confidence',
+    'Argumentation', 'Causation', 'Comparison', 'CCOT', 'Contextualization',
+    'Evidence', 'Sourcing', 'Feedback Summary', 'Misconceptions', 'Strengths',
   ];
-  return scoreKeywordBank_(rows, evidenceBank, 6);
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
+  sheet.setFrozenRows(1);
 }
 
-function detectCommonMisconceptions_(rows) {
-  const misconceptionBank = [
-    ['Civil service exam treated as pure meritocracy', ['everyone could take', 'anyone could take', 'pure meritocracy', 'open to everyone']],
-    ['Economic strength confused with military strength', ['song was militarily strong', 'strong army', 'powerful military']],
-    ['Champa rice described as a Chinese invention', ['invented champa', 'created champa', 'china invented rice']],
-    ['Neo-Confucianism and original Confucianism treated as identical', ['same as confucianism', 'no difference', 'identical']],
-    ['Paper money described as fully replacing coins', ['replaced coins', 'only paper money', 'no coins']]
+function setupSkillsMatrixTab_(ss) {
+  const sheet = getOrCreateSheet_(ss, CONFIG.TABS.SKILLS);
+  sheet.clearContents();
+  const headers = [
+    'Student Name', 'Class Period',
+    'Argumentation', 'Causation', 'Comparison', 'CCOT',
+    'Contextualization', 'Evidence', 'Sourcing',
+    'Response Count', 'Last Updated',
   ];
-  return scoreKeywordBank_(rows, misconceptionBank, 5);
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
+  sheet.setFrozenRows(1);
 }
 
-function detectSkillGaps_(rows) {
-  const gaps = [];
-  const withText = rows.filter(row => String(row.studentResponse || '').trim());
-  if (!withText.length) return gaps;
-  const becauseCount = withText.filter(row => /because|therefore|this shows|this helped|as a result|led to|so that/i.test(row.studentResponse)).length;
-  const evidenceCount = withText.filter(row => /civil service|confucian|champa|canal|paper money|jiaozi|buddh|neo-confucian|bureaucr/i.test(row.studentResponse)).length;
-  const claimCount = withText.filter(row => String(row.studentResponse || '').trim().split(/\s+/).length >= 25).length;
-  if (claimCount / withText.length < 0.7) gaps.push('Responses are often too short to make a complete historical claim.');
-  if (evidenceCount / withText.length < 0.7) gaps.push('Many responses need more specific historical evidence.');
-  if (becauseCount / withText.length < 0.7) gaps.push('Many responses need stronger reasoning that connects evidence to the claim.');
-  return gaps;
+function setupTopicMasteryTab_(ss) {
+  const sheet = getOrCreateSheet_(ss, CONFIG.TABS.MASTERY);
+  sheet.clearContents();
+  const headers = [
+    'Student Name', 'Class Period', 'Topic',
+    'Average Score', 'Response Count', 'Last Submission',
+  ];
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
+  sheet.setFrozenRows(1);
 }
 
-function buildStudentFlags_(rows, lowConfidenceRows, shortRows, blankRows, misconceptions, skillGaps) {
-  const flags = [];
-  blankRows.forEach(row => flags.push(makeFlag_(row, 'High', 'Blank or missing response', 'Have the student complete the response before analysis.')));
-  shortRows.forEach(row => flags.push(makeFlag_(row, 'Medium', 'Short response', 'Ask for a complete claim, specific evidence, and one because statement.')));
-  lowConfidenceRows.forEach(row => flags.push(makeFlag_(row, 'Medium', 'Low confidence', 'Conference briefly or assign a targeted revision question.')));
-  rows.forEach(row => {
-    const text = String(row.studentResponse || '').toLowerCase();
-    if (text && !/because|therefore|this shows|as a result|led to|so that/i.test(text)) {
-      flags.push(makeFlag_(row, 'Medium', 'Missing reasoning language', 'Ask: Why does this evidence prove your claim?'));
+function setupMisconceptionTrackerTab_(ss) {
+  const sheet = getOrCreateSheet_(ss, CONFIG.TABS.MISCONCEPTIONS);
+  sheet.clearContents();
+  const headers = ['Misconception', 'Count', 'Related Topics', 'Notes'];
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
+  sheet.setFrozenRows(1);
+
+  const misconceptions = [
+    ['The Silk Road was a single road traveled end-to-end by one merchant', 0, '1.1, 1.2, 1.5', ''],
+    ['Mongol rule was purely destructive with no benefits to trade or culture', 0, '1.3, 1.5', ''],
+    ['Islam spread primarily through violent conquest', 0, '1.2, 1.5', ''],
+    ['The Black Death only significantly affected Europe', 0, '1.5, 1.6', ''],
+    ['Song China was a major military power', 0, '1.1', ''],
+    ['The civil service exam was fully meritocratic and open to all Chinese', 0, '1.1', ''],
+    ['Champa rice was a Chinese invention rather than an import from Vietnam', 0, '1.1', ''],
+    ['Neo-Confucianism and original Confucianism were identical belief systems', 0, '1.1', ''],
+    ['Western Europe dominated global trade networks in 1200 CE', 0, '1.1, 1.2, 1.5', ''],
+    ['Columbus discovered a previously unknown or uninhabited land', 0, '1.3, 1.4', ''],
+  ];
+  sheet.getRange(2, 1, misconceptions.length, 4).setValues(misconceptions);
+}
+
+function setupTeacherInsightsTab_(ss) {
+  const sheet = getOrCreateSheet_(ss, CONFIG.TABS.INSIGHTS);
+  sheet.clearContents();
+  const headers = [
+    'Timestamp', 'Class Period', 'Topic',
+    'Insight Summary', 'Common Misconceptions', 'Skill Gaps', 'Recommendations',
+  ];
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
+  sheet.setFrozenRows(1);
+}
+
+function setupPromptRegistryTab_(ss) {
+  const sheet = getOrCreateSheet_(ss, CONFIG.TABS.PROMPTS);
+  sheet.clearContents();
+  const headers = ['Prompt ID', 'Topic', 'Response Type', 'Skill Focus', 'Prompt Text', 'Notes'];
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
+  sheet.setFrozenRows(1);
+
+  const prompts = [
+    // ── Topic 1.1 — Song China (fully populated) ──────────────────────────────
+    [
+      '1.1-F10-01', '1.1 Song China', 'First and 10', 'Evidence, Argumentation',
+      'In 10 minutes, list 10 specific facts about Song China\'s economy, government, or society. For each fact, include the historical term or piece of evidence that supports it.',
+      'Opening activity; builds vocabulary bank',
+    ],
+    [
+      '1.1-APB-01', '1.1 Song China', 'AP Skill Builder', 'Causation',
+      'Explain the causes of economic growth in Song China. Identify at least two specific factors (e.g., civil service exam, Champa rice, Grand Canal) and explain how each contributed to the commercialization of Chinese society.',
+      'Focus: causation; requires claim + 2 evidence + reasoning',
+    ],
+    [
+      '1.1-APB-02', '1.1 Song China', 'AP Skill Builder', 'Continuity and Change Over Time',
+      'How did the role of Confucian ideas in Chinese governance change between the Han and Song dynasties? Identify one continuity and one change, and explain the significance of each.',
+      'Focus: CCOT across dynasties',
+    ],
+    [
+      '1.1-CHK1-01', '1.1 Song China', 'Checkpoint 1', 'Argumentation, Evidence',
+      'How did the expansion of the civil service exam system affect Song Chinese society? Identify the change, explain its significance, and connect it to one broader historical pattern.',
+      'Formative checkpoint; 3–5 sentences expected',
+    ],
+    [
+      '1.1-EVL-01', '1.1 Song China', 'Evidence Lab', 'Evidence',
+      'Using at least two specific pieces of historical evidence, support this claim: "Song China experienced a period of significant technological and economic innovation that shaped East Asian society."',
+      'Focus: evidence selection and integration',
+    ],
+    [
+      '1.1-PRS-01', '1.1 Song China', 'Primary Source', 'Sourcing, Contextualization',
+      'Analyze the primary source from the lesson. Identify: (1) who created it and why, (2) the historical context in which it was produced, and (3) what it reveals about Song Chinese society.',
+      'Sourcing + contextualization; SAQ format',
+    ],
+    [
+      '1.1-BITR-01', '1.1 Song China', 'BeInTheRoom', 'Argumentation, Contextualization',
+      'You are a scholar-official in Song China writing a letter to a friend about the pressures of the civil service examination system. Write 2–3 sentences using specific historical details to describe your experience.',
+      'Historical empathy + evidence; BeInTheRoom immersive',
+    ],
+    [
+      '1.1-CHK2-01', '1.1 Song China', 'Checkpoint 2', 'Argumentation, Evidence, Causation',
+      'AP SAQ: Briefly explain ONE specific development from Song China and explain its historical significance for either East Asia or the broader world in the period 900–1279 CE.',
+      'Summative; mirrors AP exam SAQ format',
+    ],
+
+    // ── Topic 1.2 — Dar al-Islam (stubs) ─────────────────────────────────────
+    ['1.2-F10-01', '1.2 Dar al-Islam', 'First and 10', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.2-APB-01', '1.2 Dar al-Islam', 'AP Skill Builder', 'Causation', '[Stub — add prompt text]', ''],
+    ['1.2-CHK1-01', '1.2 Dar al-Islam', 'Checkpoint 1', 'Argumentation', '[Stub — add prompt text]', ''],
+    ['1.2-EVL-01', '1.2 Dar al-Islam', 'Evidence Lab', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.2-PRS-01', '1.2 Dar al-Islam', 'Primary Source', 'Sourcing, Contextualization', '[Stub — add prompt text]', ''],
+    ['1.2-BITR-01', '1.2 Dar al-Islam', 'BeInTheRoom', 'Contextualization', '[Stub — add prompt text]', ''],
+    ['1.2-CHK2-01', '1.2 Dar al-Islam', 'Checkpoint 2', 'Argumentation, Evidence', '[Stub — add prompt text]', ''],
+
+    // ── Topic 1.3 — Africa and the Americas (stubs) ───────────────────────────
+    ['1.3-F10-01', '1.3 Empires of Africa and the Americas', 'First and 10', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.3-APB-01', '1.3 Empires of Africa and the Americas', 'AP Skill Builder', 'Comparison', '[Stub — add prompt text]', ''],
+    ['1.3-CHK1-01', '1.3 Empires of Africa and the Americas', 'Checkpoint 1', 'Argumentation', '[Stub — add prompt text]', ''],
+    ['1.3-EVL-01', '1.3 Empires of Africa and the Americas', 'Evidence Lab', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.3-PRS-01', '1.3 Empires of Africa and the Americas', 'Primary Source', 'Sourcing', '[Stub — add prompt text]', ''],
+    ['1.3-BITR-01', '1.3 Empires of Africa and the Americas', 'BeInTheRoom', 'Contextualization', '[Stub — add prompt text]', ''],
+    ['1.3-CHK2-01', '1.3 Empires of Africa and the Americas', 'Checkpoint 2', 'Argumentation, Comparison', '[Stub — add prompt text]', ''],
+
+    // ── Topic 1.4 — The Mongols (stubs) ──────────────────────────────────────
+    ['1.4-F10-01', '1.4 The Mongols', 'First and 10', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.4-APB-01', '1.4 The Mongols', 'AP Skill Builder', 'Causation, Comparison', '[Stub — add prompt text]', ''],
+    ['1.4-CHK1-01', '1.4 The Mongols', 'Checkpoint 1', 'Argumentation', '[Stub — add prompt text]', ''],
+    ['1.4-EVL-01', '1.4 The Mongols', 'Evidence Lab', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.4-PRS-01', '1.4 The Mongols', 'Primary Source', 'Sourcing, Contextualization', '[Stub — add prompt text]', ''],
+    ['1.4-BITR-01', '1.4 The Mongols', 'BeInTheRoom', 'Contextualization', '[Stub — add prompt text]', ''],
+    ['1.4-CHK2-01', '1.4 The Mongols', 'Checkpoint 2', 'Argumentation, Causation', '[Stub — add prompt text]', ''],
+
+    // ── Topic 1.5 — Trade Networks (stubs) ───────────────────────────────────
+    ['1.5-F10-01', '1.5 Trade Networks', 'First and 10', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.5-APB-01', '1.5 Trade Networks', 'AP Skill Builder', 'Causation', '[Stub — add prompt text]', ''],
+    ['1.5-CHK1-01', '1.5 Trade Networks', 'Checkpoint 1', 'Argumentation', '[Stub — add prompt text]', ''],
+    ['1.5-EVL-01', '1.5 Trade Networks', 'Evidence Lab', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.5-PRS-01', '1.5 Trade Networks', 'Primary Source', 'Sourcing, Contextualization', '[Stub — add prompt text]', ''],
+    ['1.5-BITR-01', '1.5 Trade Networks', 'BeInTheRoom', 'Contextualization', '[Stub — add prompt text]', ''],
+    ['1.5-CHK2-01', '1.5 Trade Networks', 'Checkpoint 2', 'Argumentation, Evidence', '[Stub — add prompt text]', ''],
+
+    // ── Topic 1.6 — Consequences of Connectivity (stubs) ─────────────────────
+    ['1.6-F10-01', '1.6 Consequences of Connectivity', 'First and 10', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.6-APB-01', '1.6 Consequences of Connectivity', 'AP Skill Builder', 'Causation, CCOT', '[Stub — add prompt text]', ''],
+    ['1.6-CHK1-01', '1.6 Consequences of Connectivity', 'Checkpoint 1', 'Argumentation', '[Stub — add prompt text]', ''],
+    ['1.6-EVL-01', '1.6 Consequences of Connectivity', 'Evidence Lab', 'Evidence', '[Stub — add prompt text]', ''],
+    ['1.6-PRS-01', '1.6 Consequences of Connectivity', 'Primary Source', 'Sourcing', '[Stub — add prompt text]', ''],
+    ['1.6-BITR-01', '1.6 Consequences of Connectivity', 'BeInTheRoom', 'Contextualization', '[Stub — add prompt text]', ''],
+    ['1.6-CHK2-01', '1.6 Consequences of Connectivity', 'Checkpoint 2', 'Argumentation, Causation', '[Stub — add prompt text]', ''],
+
+    // ── Topic 1.7 — Comparison Across Regions (stubs) ────────────────────────
+    ['1.7-F10-01', '1.7 Comparison Across Regions', 'First and 10', 'Evidence, Comparison', '[Stub — add prompt text]', ''],
+    ['1.7-APB-01', '1.7 Comparison Across Regions', 'AP Skill Builder', 'Comparison', '[Stub — add prompt text]', ''],
+    ['1.7-CHK1-01', '1.7 Comparison Across Regions', 'Checkpoint 1', 'Argumentation, Comparison', '[Stub — add prompt text]', ''],
+    ['1.7-EVL-01', '1.7 Comparison Across Regions', 'Evidence Lab', 'Evidence, Comparison', '[Stub — add prompt text]', ''],
+    ['1.7-PRS-01', '1.7 Comparison Across Regions', 'Primary Source', 'Sourcing, Comparison', '[Stub — add prompt text]', ''],
+    ['1.7-BITR-01', '1.7 Comparison Across Regions', 'BeInTheRoom', 'Contextualization, Comparison', '[Stub — add prompt text]', ''],
+    ['1.7-CHK2-01', '1.7 Comparison Across Regions', 'Checkpoint 2', 'Argumentation, Comparison', '[Stub — add prompt text]', ''],
+  ];
+
+  sheet.getRange(2, 1, prompts.length, 6).setValues(prompts);
+  sheet.autoResizeColumns(1, 6);
+}
+
+// ─── Trigger ───────────────────────────────────────────────────────────────────
+
+function installTrigger() {
+  // Remove any existing onFormSubmit triggers for this script to avoid duplicates
+  ScriptApp.getProjectTriggers()
+    .filter(t => t.getHandlerFunction() === 'onFormSubmitHandler')
+    .forEach(t => ScriptApp.deleteTrigger(t));
+
+  ScriptApp.newTrigger('onFormSubmitHandler')
+    .forSpreadsheet(SpreadsheetApp.getActive())
+    .onFormSubmit()
+    .create();
+
+  SpreadsheetApp.getUi().alert(
+    'Form submit trigger installed.\nNew submissions will be analyzed automatically.'
+  );
+}
+
+// ─── Form Submit Handler ────────────────────────────────────────────────────────
+
+function onFormSubmitHandler(e) {
+  try {
+    const ss = SpreadsheetApp.getActive();
+    const rawSheet = ss.getSheetByName(CONFIG.TABS.RAW);
+    if (!rawSheet) return;
+
+    const lastRow = rawSheet.getLastRow();
+    const rowData = rawSheet.getRange(lastRow, 1, 1, COL.PROCESSED + 1).getValues()[0];
+
+    if (rowData[COL.PROCESSED]) return;
+
+    const analysis = analyzeResponseWithGemini_(rowData);
+    if (!analysis) return;
+
+    writeAnalysisOutput_(ss, analysis, rowData, lastRow);
+    updateSkillsMatrix_(ss, analysis, rowData);
+    updateTopicMastery_(ss, analysis, rowData);
+    markRowProcessed_(rawSheet, lastRow);
+  } catch (err) {
+    Logger.log('onFormSubmitHandler error: ' + err.toString());
+  }
+}
+
+// ─── Gemini API ─────────────────────────────────────────────────────────────────
+
+function analyzeResponseWithGemini_(rowData) {
+  if (!CONFIG.GEMINI_API_KEY || CONFIG.GEMINI_API_KEY === 'PASTE_YOUR_GEMINI_API_KEY_HERE') {
+    Logger.log('Gemini API key not configured.');
+    return null;
+  }
+
+  const studentResponse = String(rowData[COL.STUDENT_RESPONSE] || '').trim();
+  if (!studentResponse) return null;
+
+  const url =
+    'https://generativelanguage.googleapis.com/v1beta/models/' +
+    CONFIG.GEMINI_MODEL +
+    ':generateContent?key=' +
+    CONFIG.GEMINI_API_KEY;
+
+  const options = {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({
+      contents: [{ parts: [{ text: buildGeminiPrompt_(rowData) }] }],
+      generationConfig: { responseMimeType: 'application/json', temperature: 0.3 },
+    }),
+    muteHttpExceptions: true,
+  };
+
+  const response = UrlFetchApp.fetch(url, options);
+  if (response.getResponseCode() !== 200) {
+    Logger.log('Gemini error ' + response.getResponseCode() + ': ' + response.getContentText());
+    return null;
+  }
+
+  try {
+    const json = JSON.parse(response.getContentText());
+    return JSON.parse(json.candidates[0].content.parts[0].text);
+  } catch (err) {
+    Logger.log('Failed to parse Gemini response: ' + err.toString());
+    return null;
+  }
+}
+
+function buildGeminiPrompt_(rowData) {
+  return (
+    'You are an AP World History: Modern instructional coach. ' +
+    'Analyze this student response and return structured JSON only — no other text.\n\n' +
+    'Topic: ' + (rowData[COL.TOPIC] || '') + '\n' +
+    'Prompt ID: ' + (rowData[COL.PROMPT_ID] || '') + '\n' +
+    'Response Type: ' + (rowData[COL.RESPONSE_TYPE] || '') + '\n' +
+    'Skill Focus: ' + (rowData[COL.SKILL_FOCUS] || '') + '\n' +
+    'Student Response: ' + (rowData[COL.STUDENT_RESPONSE] || '') + '\n' +
+    'Confidence Level: ' + (rowData[COL.CONFIDENCE_LEVEL] || '') + '/5\n' +
+    'Revision Attempt: ' + (rowData[COL.REVISION_ATTEMPT] || '') + '\n\n' +
+    'Score on AP historical thinking skills using 0–2 scale:\n' +
+    '  0 = not demonstrated\n' +
+    '  1 = emerging / partially demonstrated\n' +
+    '  2 = clear and effective\n' +
+    'Use null for skills not relevant to this prompt type.\n\n' +
+    'Return ONLY this JSON structure:\n' +
+    '{\n' +
+    '  "argumentation": <0|1|2|null>,\n' +
+    '  "causation": <0|1|2|null>,\n' +
+    '  "comparison": <0|1|2|null>,\n' +
+    '  "ccot": <0|1|2|null>,\n' +
+    '  "contextualization": <0|1|2|null>,\n' +
+    '  "evidence": <0|1|2|null>,\n' +
+    '  "sourcing": <0|1|2|null>,\n' +
+    '  "feedbackSummary": "<2–3 sentence teacher-facing analysis>",\n' +
+    '  "misconceptions": ["<specific historical misconceptions detected, or empty array>"],\n' +
+    '  "strengths": ["<specific historical thinking strengths, or empty array>"]\n' +
+    '}'
+  );
+}
+
+// ─── Write Outputs ──────────────────────────────────────────────────────────────
+
+function writeAnalysisOutput_(ss, analysis, rowData, sourceRowIndex) {
+  const sheet = ss.getSheetByName(CONFIG.TABS.ANALYSIS);
+  if (!sheet) return;
+
+  sheet.appendRow([
+    sourceRowIndex,
+    new Date(),
+    rowData[COL.STUDENT_NAME],
+    rowData[COL.CLASS_PERIOD],
+    rowData[COL.TOPIC],
+    rowData[COL.PROMPT_ID],
+    rowData[COL.RESPONSE_TYPE],
+    rowData[COL.SKILL_FOCUS],
+    rowData[COL.REVISION_ATTEMPT],
+    rowData[COL.CONFIDENCE_LEVEL],
+    analysis.argumentation,
+    analysis.causation,
+    analysis.comparison,
+    analysis.ccot,
+    analysis.contextualization,
+    analysis.evidence,
+    analysis.sourcing,
+    analysis.feedbackSummary || '',
+    (analysis.misconceptions || []).join('; '),
+    (analysis.strengths || []).join('; '),
+  ]);
+}
+
+function updateSkillsMatrix_(ss, analysis, rowData) {
+  const sheet = ss.getSheetByName(CONFIG.TABS.SKILLS);
+  if (!sheet) return;
+
+  const studentName = String(rowData[COL.STUDENT_NAME] || '').trim();
+  const classPeriod = String(rowData[COL.CLASS_PERIOD] || '').trim();
+  if (!studentName) return;
+
+  const data = sheet.getDataRange().getValues();
+  const skillKeys = ['argumentation', 'causation', 'comparison', 'ccot', 'contextualization', 'evidence', 'sourcing'];
+  // Columns: 0=Name, 1=Period, 2–8=skills, 9=count, 10=lastUpdated
+
+  let rowIndex = -1;
+  for (let i = 1; i < data.length; i++) {
+    if (String(data[i][0]).trim() === studentName && String(data[i][1]).trim() === classPeriod) {
+      rowIndex = i;
+      break;
+    }
+  }
+
+  if (rowIndex === -1) {
+    const newRow = [studentName, classPeriod];
+    skillKeys.forEach(skill => {
+      const val = analysis[skill];
+      newRow.push(val !== null && val !== undefined ? val : '');
+    });
+    newRow.push(1, new Date());
+    sheet.appendRow(newRow);
+    return;
+  }
+
+  // Update running averages for non-null scores
+  const existingCount = Number(data[rowIndex][9]) || 0;
+  const newCount = existingCount + 1;
+  const updatedRow = [studentName, classPeriod];
+
+  skillKeys.forEach((skill, i) => {
+    const newScore = analysis[skill];
+    const existingVal = data[rowIndex][2 + i];
+    if (newScore === null || newScore === undefined) {
+      updatedRow.push(existingVal !== '' ? existingVal : '');
+    } else {
+      const prevAvg = existingVal !== '' ? Number(existingVal) : null;
+      if (prevAvg === null) {
+        updatedRow.push(newScore);
+      } else {
+        updatedRow.push(Math.round(((prevAvg * existingCount + newScore) / newCount) * 100) / 100);
+      }
     }
   });
-  return dedupeFlags_(flags).slice(0, 30);
+
+  updatedRow.push(newCount, new Date());
+  sheet.getRange(rowIndex + 1, 1, 1, updatedRow.length).setValues([updatedRow]);
 }
 
-function makeFlag_(row, status, issue, next) {
-  return {
-    student: row.studentName || 'Unnamed student',
-    classPeriod: row.classPeriod || '',
-    task: row.responseType || row.promptId || 'Unknown task',
-    status,
-    issue,
-    next
-  };
-}
+function updateTopicMastery_(ss, analysis, rowData) {
+  const sheet = ss.getSheetByName(CONFIG.TABS.MASTERY);
+  if (!sheet) return;
 
-function buildReteachSuggestions_(misconceptions, skillGaps, averageConfidence, totalResponses) {
-  const suggestions = [];
-  if (!totalResponses) {
-    suggestions.push({ priority: 'High', focus: 'No response data yet', action: 'Have students submit one checkpoint response before using the dashboard pulse.' });
-    return suggestions;
+  const studentName = String(rowData[COL.STUDENT_NAME] || '').trim();
+  const classPeriod = String(rowData[COL.CLASS_PERIOD] || '').trim();
+  const topic = String(rowData[COL.TOPIC] || '').trim();
+  if (!studentName || !topic) return;
+
+  const skillKeys = ['argumentation', 'causation', 'comparison', 'ccot', 'contextualization', 'evidence', 'sourcing'];
+  const scores = skillKeys.map(s => analysis[s]).filter(v => v !== null && v !== undefined);
+  const avgScore = scores.length
+    ? Math.round((scores.reduce((a, b) => a + b, 0) / scores.length) * 100) / 100
+    : null;
+
+  const data = sheet.getDataRange().getValues();
+  let rowIndex = -1;
+  for (let i = 1; i < data.length; i++) {
+    if (
+      String(data[i][0]).trim() === studentName &&
+      String(data[i][1]).trim() === classPeriod &&
+      String(data[i][2]).trim() === topic
+    ) {
+      rowIndex = i;
+      break;
+    }
   }
-  skillGaps.forEach(gap => suggestions.push({ priority: 'High', focus: gap, action: 'Model a one-paragraph AP response using claim + evidence + because reasoning.' }));
-  misconceptions.forEach(mis => suggestions.push({ priority: 'Medium', focus: mis, action: 'Use a two-minute misconception correction before the next activity.' }));
-  if (averageConfidence !== null && averageConfidence < 3) {
-    suggestions.push({ priority: 'High', focus: 'Low class confidence', action: 'Use a low-stakes pair revision before collecting the next checkpoint.' });
+
+  if (rowIndex === -1) {
+    sheet.appendRow([studentName, classPeriod, topic, avgScore, 1, new Date()]);
+    return;
   }
-  if (!suggestions.length) {
-    suggestions.push({ priority: 'Low', focus: 'Responses look stable', action: 'Move forward, but use one model response to reinforce reasoning.' });
-  }
-  return suggestions.slice(0, 8);
+
+  const existingCount = Number(data[rowIndex][4]) || 0;
+  const existingAvg = Number(data[rowIndex][3]) || 0;
+  const newCount = existingCount + 1;
+  const newAvg =
+    avgScore !== null
+      ? Math.round(((existingAvg * existingCount + avgScore) / newCount) * 100) / 100
+      : existingAvg;
+
+  sheet.getRange(rowIndex + 1, 1, 1, 6).setValues([[studentName, classPeriod, topic, newAvg, newCount, new Date()]]);
 }
 
-function buildClassSummary_(totalResponses, averageConfidence, evidence, misconceptions, skillGaps) {
-  if (!totalResponses) return 'No matching responses have been collected yet.';
-  const confidenceText = averageConfidence === null ? 'Confidence data is not available' : `Average confidence is ${averageConfidence}/5`;
-  const evidenceText = evidence.length ? `Common evidence includes ${evidence.slice(0, 3).join(', ')}.` : 'Students are not yet using much detectable specific evidence.';
-  const misconceptionText = misconceptions.length ? `Watch for: ${misconceptions.slice(0, 2).join('; ')}.` : 'No high-frequency misconception pattern was detected by the rule-based scan.';
-  const skillText = skillGaps.length ? `Main skill gap: ${skillGaps[0]}` : 'Most responses include basic claim/evidence/reasoning markers.';
-  return `${totalResponses} matching responses were analyzed. ${confidenceText}. ${evidenceText} ${misconceptionText} ${skillText}`;
+function markRowProcessed_(rawSheet, rowIndex) {
+  rawSheet.getRange(rowIndex, COL.PROCESSED + 1).setValue('Processed ' + new Date().toISOString());
 }
 
-function buildAiPrompt_(rows, filters) {
-  const responseLines = rows.map((row, index) => {
-    return `${index + 1}. ${row.studentName || 'Student'} | ${row.classPeriod || 'No period'} | ${row.responseType || 'No type'} | Confidence: ${row.confidenceLevel || 'N/A'}\n${row.studentResponse || '[blank]'}`;
-  }).join('\n\n');
-  return `You are an AP World History instructional coach helping analyze BeHistorical student responses.\n\nTopic: ${filters.topic || BEHISTORICAL_CONFIG.defaultTopic}\nResponse Type: ${filters.responseType || 'All Response Types'}\nClass Period: ${filters.classPeriod || 'All Periods'}\n\nAnalyze the class set and return:\n1. A concise class summary\n2. Common accurate evidence\n3. Common misconceptions\n4. Missing AP skill components, especially claim/evidence/reasoning\n5. Students who may need follow-up, identified by name only if provided\n6. One 3-minute reteach activity\n\nStudent responses:\n\n${responseLines}`;
-}
+// ─── Batch Processing ───────────────────────────────────────────────────────────
 
-function writeTeacherHubAnalysis_(payload) {
-  ensureTeacherHubTabs();
+function processPendingRows() {
   const ss = SpreadsheetApp.getActive();
-  const analysisSheet = ss.getSheetByName(BEHISTORICAL_CONFIG.analysisSheetName);
-  const flagsSheet = ss.getSheetByName(BEHISTORICAL_CONFIG.studentFlagsSheetName);
-  analysisSheet.clear();
-  analysisSheet.getRange(1, 1, 1, 2).setValues([['Field', 'Value']]);
-  const rows = [
-    ['generatedAt', payload.generatedAt],
-    ['unit', payload.filters.unit],
-    ['topic', payload.filters.topic],
-    ['responseType', payload.filters.responseType],
-    ['classPeriod', payload.filters.classPeriod],
-    ['totalResponses', payload.summary.totalResponses],
-    ['averageConfidence', payload.summary.averageConfidence],
-    ['lowConfidenceCount', payload.summary.lowConfidenceCount],
-    ['shortResponseCount', payload.summary.shortResponseCount],
-    ['blankResponseCount', payload.summary.blankResponseCount],
-    ['classSummary', payload.classSummary],
-    ['commonEvidence', payload.commonEvidence.join(' | ')],
-    ['topMisconceptions', payload.topMisconceptions.join(' | ')],
-    ['skillGaps', payload.skillGaps.join(' | ')],
-    ['reteachSuggestionsJson', JSON.stringify(payload.reteachSuggestions)],
-    ['teacherHubJson', JSON.stringify(payload)]
-  ];
-  analysisSheet.getRange(2, 1, rows.length, 2).setValues(rows);
-  analysisSheet.autoResizeColumns(1, 2);
-
-  flagsSheet.clear();
-  flagsSheet.getRange(1, 1, 1, 6).setValues([['Student', 'Class Period', 'Task', 'Status', 'Issue', 'Next Step']]);
-  if (payload.studentFlags.length) {
-    flagsSheet.getRange(2, 1, payload.studentFlags.length, 6).setValues(payload.studentFlags.map(flag => [
-      flag.student,
-      flag.classPeriod,
-      flag.task,
-      flag.status,
-      flag.issue,
-      flag.next
-    ]));
+  const rawSheet = ss.getSheetByName(CONFIG.TABS.RAW);
+  if (!rawSheet) {
+    SpreadsheetApp.getUi().alert('Raw Responses tab not found. Run Setup first.');
+    return;
   }
-  flagsSheet.autoResizeColumns(1, 6);
+
+  const data = rawSheet.getDataRange().getValues();
+  let processed = 0;
+  let skipped = 0;
+
+  for (let i = 1; i < data.length; i++) {
+    const row = data[i];
+    if (row[COL.PROCESSED] || !String(row[COL.STUDENT_RESPONSE] || '').trim()) {
+      skipped++;
+      continue;
+    }
+
+    try {
+      const analysis = analyzeResponseWithGemini_(row);
+      if (analysis) {
+        writeAnalysisOutput_(ss, analysis, row, i + 1);
+        updateSkillsMatrix_(ss, analysis, row);
+        updateTopicMastery_(ss, analysis, row);
+        markRowProcessed_(rawSheet, i + 1);
+        processed++;
+      }
+    } catch (err) {
+      Logger.log('Error on row ' + (i + 1) + ': ' + err.toString());
+    }
+
+    // Stay within Gemini free-tier rate limits (~15 requests/min)
+    Utilities.sleep(4000);
+  }
+
+  SpreadsheetApp.getUi().alert(
+    'Batch processing complete.\n' +
+    'Processed: ' + processed + '\n' +
+    'Skipped (already done or blank): ' + skipped
+  );
 }
 
-function ensureTeacherHubTabs() {
+// ─── Class Insights ─────────────────────────────────────────────────────────────
+
+function promptGenerateClassInsight() {
+  const ui = SpreadsheetApp.getUi();
+  const periodResult = ui.prompt(
+    'Generate Class Insight',
+    'Enter class period (e.g., Silver 1):',
+    ui.ButtonSet.OK_CANCEL
+  );
+  if (periodResult.getSelectedButton() !== ui.Button.OK) return;
+
+  const topicResult = ui.prompt(
+    'Generate Class Insight',
+    'Enter topic (e.g., 1.1):',
+    ui.ButtonSet.OK_CANCEL
+  );
+  if (topicResult.getSelectedButton() !== ui.Button.OK) return;
+
+  generateClassInsight(periodResult.getResponseText().trim(), topicResult.getResponseText().trim());
+}
+
+function generateClassInsight(classPeriod, topic) {
+  if (!CONFIG.GEMINI_API_KEY || CONFIG.GEMINI_API_KEY === 'PASTE_YOUR_GEMINI_API_KEY_HERE') {
+    SpreadsheetApp.getUi().alert('Set CONFIG.GEMINI_API_KEY before generating insights.');
+    return;
+  }
+
   const ss = SpreadsheetApp.getActive();
-  [
-    BEHISTORICAL_CONFIG.analysisSheetName,
-    BEHISTORICAL_CONFIG.studentFlagsSheetName,
-    BEHISTORICAL_CONFIG.settingsSheetName
-  ].forEach(name => {
-    if (!ss.getSheetByName(name)) ss.insertSheet(name);
+  const analysisSheet = ss.getSheetByName(CONFIG.TABS.ANALYSIS);
+  if (!analysisSheet) {
+    SpreadsheetApp.getUi().alert('AI Analysis Outputs tab not found. Run setup and process rows first.');
+    return;
+  }
+
+  const data = analysisSheet.getDataRange().getValues();
+  // Analysis tab columns: 0=sourceRow,1=processedAt,2=name,3=period,4=topic,
+  //   5=promptId,6=responseType,7=skillFocus,8=revision,9=confidence,
+  //   10=arg,11=cau,12=com,13=ccot,14=ctx,15=evd,16=src,17=feedback,18=misc,19=strengths
+
+  const filtered = data.slice(1).filter(row => {
+    return (
+      String(row[3] || '').trim().toLowerCase().includes(classPeriod.toLowerCase()) &&
+      String(row[4] || '').trim().toLowerCase().includes(topic.toLowerCase())
+    );
   });
-}
 
-function countBy_(rows, key) {
-  return rows.reduce((counts, row) => {
-    const value = row[key] || 'Blank';
-    counts[value] = (counts[value] || 0) + 1;
-    return counts;
+  if (!filtered.length) {
+    SpreadsheetApp.getUi().alert('No analyzed responses found for ' + classPeriod + ' / Topic ' + topic + '.');
+    return;
+  }
+
+  const skillCols = { Argumentation: 10, Causation: 11, Comparison: 12, CCOT: 13, Contextualization: 14, Evidence: 15, Sourcing: 16 };
+  const skillAverages = {};
+  Object.entries(skillCols).forEach(([skill, col]) => {
+    const vals = filtered.map(r => r[col]).filter(v => v !== null && v !== undefined && v !== '');
+    skillAverages[skill] = vals.length
+      ? Math.round((vals.reduce((a, b) => a + Number(b), 0) / vals.length) * 100) / 100
+      : null;
+  });
+
+  const allMisconceptions = filtered.flatMap(r =>
+    String(r[18] || '').split(';').map(m => m.trim()).filter(Boolean)
+  );
+  const misconceptionCounts = allMisconceptions.reduce((acc, m) => {
+    acc[m] = (acc[m] || 0) + 1;
+    return acc;
   }, {});
-}
+  const topMisconceptions = Object.entries(misconceptionCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([m]) => m);
 
-function scoreKeywordBank_(rows, bank, limit) {
-  const scores = bank.map(([label, keywords]) => {
-    const count = rows.filter(row => {
-      const text = String(row.studentResponse || '').toLowerCase();
-      return keywords.some(keyword => text.includes(keyword.toLowerCase()));
-    }).length;
-    return { label, count };
-  }).filter(item => item.count > 0);
-  scores.sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
-  return scores.slice(0, limit).map(item => item.label);
-}
+  const avgConfidence = filtered.reduce((sum, r) => sum + (Number(r[9]) || 0), 0) / filtered.length;
 
-function parseConfidence_(value) {
-  const match = String(value || '').match(/[1-5]/);
-  return match ? Number(match[0]) : NaN;
-}
+  const insightPrompt =
+    'You are an AP World History instructional coach. ' +
+    'Generate a brief, actionable teacher insight. Return ONLY this JSON — no other text.\n\n' +
+    'Class Period: ' + classPeriod + '\n' +
+    'Topic: ' + topic + '\n' +
+    'Response Count: ' + filtered.length + '\n' +
+    'Average Confidence: ' + avgConfidence.toFixed(1) + '/5\n\n' +
+    'Skill Averages (0–2 scale):\n' +
+    Object.entries(skillAverages)
+      .filter(([, v]) => v !== null)
+      .map(([k, v]) => '  ' + k + ': ' + v)
+      .join('\n') + '\n\n' +
+    'Top Misconceptions Detected:\n' +
+    (topMisconceptions.length ? topMisconceptions.map(m => '  - ' + m).join('\n') : '  None detected') + '\n\n' +
+    'Return ONLY:\n' +
+    '{\n' +
+    '  "insightSummary": "<2–3 sentence class-level summary>",\n' +
+    '  "skillGaps": ["<skill names below 1.0 that need attention>"],\n' +
+    '  "recommendations": ["<2–3 specific actionable teaching moves>"]\n' +
+    '}';
 
-function formatCell_(value) {
-  if (value instanceof Date) return value.toISOString();
-  return String(value == null ? '' : value).trim();
-}
+  const url =
+    'https://generativelanguage.googleapis.com/v1beta/models/' +
+    CONFIG.GEMINI_MODEL +
+    ':generateContent?key=' +
+    CONFIG.GEMINI_API_KEY;
 
-function normalizeFilter_(value) {
-  return String(value || '').trim().toLowerCase();
-}
+  let insight;
+  try {
+    const resp = UrlFetchApp.fetch(url, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({
+        contents: [{ parts: [{ text: insightPrompt }] }],
+        generationConfig: { responseMimeType: 'application/json', temperature: 0.4 },
+      }),
+      muteHttpExceptions: true,
+    });
+    const json = JSON.parse(resp.getContentText());
+    insight = JSON.parse(json.candidates[0].content.parts[0].text);
+  } catch (err) {
+    Logger.log('Insight generation error: ' + err.toString());
+    SpreadsheetApp.getUi().alert('Error generating insight. Check Apps Script execution logs.');
+    return;
+  }
 
-function roundTo_(value, places) {
-  const factor = Math.pow(10, places || 0);
-  return Math.round(value * factor) / factor;
-}
+  const insightsSheet = ss.getSheetByName(CONFIG.TABS.INSIGHTS);
+  if (insightsSheet) {
+    insightsSheet.appendRow([
+      new Date(),
+      classPeriod,
+      topic,
+      insight.insightSummary || '',
+      topMisconceptions.join('; '),
+      (insight.skillGaps || []).join('; '),
+      (insight.recommendations || []).join(' | '),
+    ]);
+  }
 
-function dedupeFlags_(flags) {
-  const seen = new Set();
-  return flags.filter(flag => {
-    const key = [flag.student, flag.classPeriod, flag.task, flag.issue].join('|');
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  SpreadsheetApp.getUi().alert(
+    'Class insight generated for ' + classPeriod + ' / Topic ' + topic + '.\n' +
+    'See the "Teacher Insights" tab.'
+  );
 }
