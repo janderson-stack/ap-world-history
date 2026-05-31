@@ -88,57 +88,6 @@
     prompt: 'Write two contextualization sentences that explain the broader setting for Song China before making a claim about its power or prosperity.'
   };
 
-  const responseFormBase = 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+1+-+The+Global+Tapestry&entry.187055090=1.1+-+Song+China';
-  const skillFocusEntry = 'entry.1963461515';
-  const skillTags = {
-    skillBuilder: ['Causation', 'Contextualization', 'Argumentation', 'Evidence Usage'],
-    checkpoint1: ['Argumentation', 'Evidence Usage'],
-    evidenceLab: ['Evidence Usage', 'Sourcing'],
-    primarySource: ['Contextualization', 'Sourcing'],
-    checkpoint2: ['Complexity', 'Claims & Thesis']
-  };
-  const encode = value => encodeURIComponent(value).replace(/%20/g, '+');
-  const skillFocusQuery = key => (skillTags[key] || []).map(skill => `&${skillFocusEntry}=${encode(skill)}`).join('');
-  const responseUrl = (promptId, responseType, skillKey) => `${responseFormBase}&entry.1549761827=${encode(promptId)}&entry.2107637366=${encode(responseType)}${skillFocusQuery(skillKey)}`;
-  const responseButton = (responseId, promptId, responseType, skillKey, label = 'SUBMIT TO GOOGLE FORM') => `<button class="btn secondary" type="button" onclick="submitResponseToGoogleForm('${responseId}', '${responseUrl(promptId, responseType, skillKey)}')">${label}</button>`;
-
-  window.submitResponseToGoogleForm = function(responseId, formUrl) {
-    const responseEl = document.getElementById(responseId);
-    const resultEl = document.getElementById(responseId + '-result');
-    const responseText = responseEl ? (responseEl.value || '') : '';
-    const openForm = () => window.open(formUrl, '_blank', 'noopener');
-
-    if (!responseText.trim()) {
-      if (resultEl) resultEl.textContent = 'Form opened. Add your response before submitting.';
-      openForm();
-      return;
-    }
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(responseText)
-        .then(() => {
-          if (resultEl) resultEl.textContent = 'Response copied. Paste it into the Student Response field on the form.';
-          openForm();
-        })
-        .catch(() => {
-          if (resultEl) resultEl.textContent = 'Form opened. If copy failed, manually copy your response before submitting.';
-          openForm();
-        });
-    } else {
-      if (resultEl) resultEl.textContent = 'Form opened. Manually copy your response if it was not copied automatically.';
-      openForm();
-    }
-  };
-
-  lesson.captureUrls = {
-    first10:       '',
-    skillBuilder:  responseButton('skill-builder-response', '1.1-ap-skill-builder', 'AP Skill Builder', 'skillBuilder'),
-    checkpoint1:   responseButton('checkpoint-one-response', '1.1-checkpoint-1', 'Checkpoint 1', 'checkpoint1'),
-    evidenceLab:   responseButton('evidence-response', '1.1-evidence-lab', 'Evidence Lab', 'evidenceLab'),
-    primarySource: responseButton('primary-source-response', '1.1-primary-source', 'Primary Source', 'primarySource'),
-    checkpoint2:   responseButton('checkpoint-two-response', '1.1-checkpoint-2', 'Checkpoint 2', 'checkpoint2')
-  };
-
   lesson.checkpoints = [
     {
       title: 'Checkpoint 1: Government and Belief Systems',

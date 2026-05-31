@@ -50,9 +50,82 @@ function applyKeyConceptLabels() {
   (L.successCriteria || []).forEach((item, i) => { if (match.sc[i]) item.kc = match.sc[i]; });
 }
 
+// ── Form submission (unified, all topics) ────────────────────────────────────
+
+window.submitResponseToGoogleForm = function(responseId, formUrl) {
+  const responseEl = byId(responseId);
+  const resultEl   = byId(responseId + '-result');
+  const text       = responseEl ? (responseEl.value || '').trim() : '';
+  const openForm   = () => window.open(formUrl, '_blank', 'noopener');
+
+  if (!text) {
+    if (resultEl) resultEl.textContent = 'Form opened. Add your response before submitting.';
+    openForm();
+    return;
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        if (resultEl) resultEl.textContent = 'Response copied — paste it into the Student Response field on the form.';
+        openForm();
+      })
+      .catch(() => {
+        if (resultEl) resultEl.textContent = 'Form opened. Copy your response manually before submitting.';
+        openForm();
+      });
+  } else {
+    if (resultEl) resultEl.textContent = 'Form opened. Manually copy your response before submitting.';
+    openForm();
+  }
+};
+
+// Auto-generate captureUrls for any topic that has BH_FORM loaded
+// and hasn't already defined captureUrls in its renderer-config.
+function autoBuildCaptureUrls() {
+  if (!window.BH_FORM || L.captureUrls) return;
+
+  const topicKey   = (L.meta.topic || '').replace('Topic ', '').trim(); // 'Topic 1.4' → '1.4'
+  const topicLabel = BH_FORM.topics[topicKey];
+  if (!topicLabel) return;
+
+  const formBase  = BH_FORM.baseURL;
+  const unitLabel = 'Unit 1 - The Global Tapestry';
+  const skillFocusEntry = 'entry.1963461515';
+  const enc = v => encodeURIComponent(v).replace(/%20/g, '+');
+
+  const skillTags = {
+    skillBuilder:  ['Argumentation', 'Evidence Usage'],
+    checkpoint1:   ['Argumentation', 'Evidence Usage'],
+    evidenceLab:   ['Evidence Usage', 'Sourcing'],
+    primarySource: ['Sourcing', 'Contextualization'],
+    checkpoint2:   ['Complexity', 'Claims & Thesis']
+  };
+
+  function buildUrl(promptId, responseType, skillKey) {
+    const skillParams = (skillTags[skillKey] || []).map(t => `&${skillFocusEntry}=${enc(t)}`).join('');
+    return `${formBase}?usp=pp_url&entry.125385659=${enc(unitLabel)}&entry.187055090=${enc(topicLabel)}&entry.1549761827=${enc(promptId)}&entry.2107637366=${enc(responseType)}${skillParams}`;
+  }
+
+  function submitBtn(elemId, promptId, responseType, skillKey) {
+    return `<button class="btn secondary" type="button" onclick="submitResponseToGoogleForm('${elemId}','${buildUrl(promptId, responseType, skillKey)}')">Submit to Form</button>`;
+  }
+
+  const t = topicKey;
+  L.captureUrls = {
+    first10:       '',
+    skillBuilder:  submitBtn('skill-builder-response',  `${t}-skill-builder`,  'AP Skill Builder', 'skillBuilder'),
+    checkpoint1:   submitBtn('checkpoint-one-response', `${t}-checkpoint-1`,   'Checkpoint 1',     'checkpoint1'),
+    evidenceLab:   submitBtn('evidence-response',       `${t}-evidence-lab`,   'Evidence Lab',     'evidenceLab'),
+    primarySource: submitBtn('primary-source-response', `${t}-primary-source`, 'Primary Source',   'primarySource'),
+    checkpoint2:   submitBtn('checkpoint-two-response', `${t}-checkpoint-2`,   'Checkpoint 2',     'checkpoint2')
+  };
+}
+
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
 if (L) {
+  autoBuildCaptureUrls();
   applyKeyConceptLabels();
   document.title = `BeHistorical | AP World ${L.meta.topic} ${L.meta.title}`;
   byId('lesson-title').textContent = `${L.meta.topic} — ${L.meta.title}`;
