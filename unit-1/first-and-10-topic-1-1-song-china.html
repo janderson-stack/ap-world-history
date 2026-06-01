@@ -122,6 +122,8 @@
 </div>
 
 <script>
+var TOPIC_KEY='1.1';var TOPIC_LABEL='1.1 - Song China';
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('textarea.qta').forEach(function(ta,i){if(!ta.id)ta.id='q'+(i+1);});});
 function buildGooglePrompt() {
   const q1 = document.getElementById('q1').value || '(no response)';
   const q2 = document.getElementById('q2').value || '(no response)';
@@ -133,7 +135,9 @@ function buildGooglePrompt() {
 function submitToGoogleForm() {
   const content = document.getElementById('google-output').value;
   navigator.clipboard.writeText(content).catch(() => {});
-  window.open('https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=1.1+-+Song+China&entry.2107637366=First+and+10', '_blank');
+  const tl = (window.BH_FORM && BH_FORM.topics[TOPIC_KEY]) || TOPIC_LABEL;
+  const u = window.BH_FORM ? BH_FORM.baseURL + '?usp=pp_url&entry.187055090=' + encodeURIComponent(tl).replace(/%20/g, '+') + '&entry.2107637366=First+and+10' : '';
+  if (u) window.open(u, '_blank', 'noopener');
 }
 
 function buildAiPrompt() {
