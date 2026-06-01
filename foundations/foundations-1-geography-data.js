@@ -104,7 +104,7 @@ window.FOUNDATION_TOPIC = {
       },
       {
         title: 'The Eurasian Steppe',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mongolian_steppe.jpg',
+        url: '../assets/images/module-cards/steppe-eurasian-1200ce.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mongolian_steppe.jpg',
         caption: 'The Mongolian steppe — part of the 8,000-kilometer grassland corridor connecting Eastern Europe to Manchuria. This terrain supported horse-based pastoral nomads who could travel 80–100 km per day, making them a persistent military threat to all settled civilizations on the steppe\'s borders.',
         prompt: 'How does this landscape help explain why sedentary empires like Han China and the Abbasid Caliphate struggled to contain steppe peoples?'
@@ -189,7 +189,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Mongolian Steppe',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mongolian_steppe.jpg',
+        url: '../assets/images/module-cards/steppe-eurasian-1200ce.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mongolian_steppe.jpg',
         caption: 'The steppe\'s flat, open terrain gave pastoral nomads military mobility that settled empires could not easily match.'
       }

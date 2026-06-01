@@ -4,7 +4,7 @@ window.FOUNDATION_TOPIC = {
   code: 'FOUNDATIONS 2',
   title: 'Belief Systems & Cultural Exchange',
   subtitle: 'Why do belief systems spread, adapt, and shape societies?',
-  heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Buddha_statue_at_Borobudur_Temple.jpg',
+  heroImage: '../assets/images/module-cards/borobudur-temple-9thc.jpg',
 
   commandCopy: 'The central move of Day 2 is getting students to understand belief systems not as private spiritual matters but as public institutional systems — systems that organize labor, legitimate authority, structure family life, fund education, regulate markets, and connect communities across enormous distances. When students see Islam, Confucianism, Buddhism, and Hinduism as institutions rather than just theologies, they can analyze them on AP exams with real historical depth.',
 
@@ -100,7 +100,7 @@ window.FOUNDATION_TOPIC = {
     items: [
       {
         title: 'Angkor Wat, Khmer Empire (completed c.1150 CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Angkor_Wat_temple.jpg',
+        url: '../assets/images/module-cards/angkor-wat-1150ce.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Angkor_Wat_temple.jpg',
         caption: 'Angkor Wat was built by Suryavarman II as a Hindu temple complex identifying the Khmer king with the god Vishnu. At 402 acres, it is the largest religious structure ever built. Its construction required 300,000 workers and stone hauled 40 km from quarries — a massive mobilization of labor organized around religious ideology.',
         prompt: 'What does Angkor Wat reveal about how Hindu kingship ideology functioned as a political institution in the Khmer Empire? Why would a Southeast Asian ruler adopt Hindu cosmology?'
@@ -179,7 +179,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Great Mosque of Kairouan (Tunisia, founded 670 CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Great_Mosque_of_Kairouan_panoramic_view.jpg',
+        url: '../assets/images/module-cards/mosque-kairouan-800ce.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Great_Mosque_of_Kairouan_panoramic_view.jpg',
         caption: 'The Great Mosque of Kairouan is one of the oldest mosques in the Islamic world. Mosques served as prayer hall, community center, legal court, school, and political meeting space — a single institution performing multiple civic functions.'
       }
@@ -194,7 +194,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Buddha Statue at Borobudur, Java (c.9th century CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Buddha_statue_at_Borobudur_Temple.jpg',
+        url: '../assets/images/module-cards/borobudur-temple-9thc.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Buddha_statue_at_Borobudur_Temple.jpg',
         caption: 'Borobudur in Java is a 9th-century Mahayana Buddhist monument — the largest Buddhist temple in the world — built by the Sailendra dynasty. Its construction in Southeast Asia shows how Buddhism spread via the Indian Ocean and was adopted by rulers seeking cosmic legitimacy in a region far from India.'
       }
@@ -209,7 +209,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Angkor Wat, Khmer Empire (completed c.1150 CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Angkor_Wat_temple.jpg',
+        url: '../assets/images/module-cards/angkor-wat-1150ce.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Angkor_Wat_temple.jpg',
         caption: 'Angkor Wat — at 402 acres the largest religious structure ever built — was simultaneously a temple to Vishnu, a royal tomb, a cosmological map of the Hindu universe, and a political statement about the Khmer king\'s divine status. Religion and political power were inseparable.'
       }
@@ -224,7 +224,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Rock-Hewn Church of Bete Giyorgis, Lalibela, Ethiopia (c.1200 CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bete_Giyorgis_01.jpg',
+        url: '../assets/images/module-cards/lalibela-bete-giyorgis.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Bete_Giyorgis_01.jpg',
         caption: 'Bete Giyorgis (Church of Saint George) in Lalibela is a perfect cube carved downward into volcanic rock, approached through an excavated trench. Built c.1181–1221 CE, it represents a distinctively Ethiopian Christian theology — the church subtracted from God\'s earth rather than assembled from human materials. This is syncretism made visible in stone.'
       }

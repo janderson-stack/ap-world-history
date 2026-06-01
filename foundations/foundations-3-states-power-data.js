@@ -4,7 +4,7 @@ window.FOUNDATION_TOPIC = {
   code: 'FOUNDATIONS 3',
   title: 'States, Power & Social Organization',
   subtitle: 'Why do societies organize power and hierarchy differently?',
-  heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Persepolis_Gate_of_All_Nations.jpg',
+  heroImage: '../assets/images/module-cards/persepolis-gate-nations.jpg',
 
   commandCopy: 'The intellectual core of Day 3 is this claim: states are not natural — they are constructed solutions to specific problems. Every state faces the same fundamental challenges: how to extract resources from a population, how to defend territory, how to administer a diverse and often unwilling populace, and how to make that extraction feel legitimate rather than simply coercive. The tools states use to solve these problems vary enormously, but the underlying logic is constant. Students who understand this can analyze any state they encounter in AP World Units 1 through 9.',
 
@@ -163,7 +163,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Persepolis: Gate of All Nations (Achaemenid Persia, c.486 BCE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Persepolis_Gate_of_All_Nations.jpg',
+        url: '../assets/images/module-cards/persepolis-gate-nations.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Persepolis_Gate_of_All_Nations.jpg',
         caption: 'The Gate of All Nations at Persepolis required all visitors — ambassadors, tributary rulers, merchants — to pass through it before entering the Persian imperial presence. The scale communicated that the Persian king commanded resources and labor beyond the capacity of any rival. Monumental architecture is political communication built in stone.'
       }
@@ -178,7 +178,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Baghdad (Abbasid Round City, founded 762 CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Baghdad_city_plan.svg',
+        url: '../assets/images/module-cards/abbasid-baghdad-9thc.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Baghdad_city_plan.svg',
         caption: 'The Abbasid Round City of Baghdad was designed concentrically — palace and mosque at the center, administrative rings outward, triple defensive walls on the outside. The circular design was cosmological (the caliph at the world\'s center) and defensive. By c.900 CE, the wider metropolitan area housed 500,000–1,000,000 people — the largest city west of China.'
       }

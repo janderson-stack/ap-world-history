@@ -100,14 +100,14 @@ window.FOUNDATION_TOPIC = {
     items: [
       {
         title: 'Along the River During the Qingming Festival (Song China, c.1085–1145 CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg',
+        url: '../assets/images/module-cards/song-dynasty-kaifeng.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg',
         caption: 'This section of Zhang Zeduan\'s famous scroll painting depicts commercial life in the Northern Song capital Kaifeng around c.1085–1145 CE — boats, markets, bridges, crowds, and specialized craftspeople filling the riverbanks. It is one of the most reproduced paintings in Chinese history and one of the most powerful pieces of visual evidence for Song China\'s Commercial Revolution.',
         prompt: 'Using this image as visual evidence and at least one specific fact from Foundations Days 1–4, write a claim about what made Song China commercially distinctive at c.1200. Explain the reasoning that connects your evidence to your claim.'
       },
       {
         title: 'Great Mosque of Kairouan, North Africa (founded 670 CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Great_Mosque_of_Kairouan_panoramic_view.jpg',
+        url: '../assets/images/module-cards/mosque-kairouan-800ce.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Great_Mosque_of_Kairouan_panoramic_view.jpg',
         caption: 'The Great Mosque of Kairouan in modern Tunisia — one of the oldest mosques in the Islamic world — served simultaneously as prayer hall, legal court, school, and community center. Its architectural scale and permanence communicated Islamic political and religious authority across North Africa. By c.1200, mosques like this one anchored *madrasa* networks, *waqf*-funded institutions, and *qadi* courts across the entire Dar al-Islam.',
         prompt: 'Using this image as visual evidence and at least one specific fact from Foundations Day 2 (Belief Systems), write a claim about how Islam functioned as a social institution in Dar al-Islam at c.1200. Explain the reasoning that connects your evidence to your claim.'
@@ -183,7 +183,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Along the River During the Qingming Festival (detail)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg',
+        url: '../assets/images/module-cards/song-dynasty-kaifeng.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg',
         caption: 'This image can be used to practice all five skills simultaneously: contextualize the commercial scene geographically and institutionally, identify causes of Song commercialization, note what changed from earlier Chinese dynasties, compare Song commerce to Islamic trade infrastructure, and argue a specific claim about what this image proves.'
       }
@@ -198,7 +198,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Kilwa Kisiwani Great Mosque ruins, Tanzania',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kilwa_Kisiwani_great_mosque.jpg',
+        url: '../assets/images/module-cards/kilwa-kisiwani-mosque.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Kilwa_Kisiwani_great_mosque.jpg',
         caption: 'Kilwa at c.1200 provides a different contextualization opportunity: explain the Indian Ocean monsoon system, the role of East African gold in the network, and the Swahili city-states\' position as junction nodes — before arguing anything specific about Kilwa\'s wealth or political organization.'
       }
@@ -213,7 +213,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Angkor Wat, Khmer Empire (completed c.1150 CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Angkor_Wat_temple.jpg',
+        url: '../assets/images/module-cards/angkor-wat-1150ce.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Angkor_Wat_temple.jpg',
         caption: 'Angkor Wat at c.1150–1200 CE provides both a causation and CCOT opportunity: explain what caused the Khmer rulers to adopt Hindu divine kingship ideology (political legitimacy, Indian Ocean commercial connections), and explain what changed in the Khmer Empire when Theravada Buddhism replaced Hinduism as the state religion in the 13th century.'
       }
@@ -228,7 +228,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Song Dynasty Along the River painting detail',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg',
+        url: '../assets/images/module-cards/song-dynasty-kaifeng.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg',
         caption: 'Zhang Zeduan\'s scroll of commercial Song China life is the first primary source students will likely encounter in Topic 1.1. After Foundations, they can read it with geographic, institutional, and commercial context already in place — using it as evidence for specific historical claims rather than just describing what they see.'
       }

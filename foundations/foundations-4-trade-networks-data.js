@@ -106,7 +106,7 @@ window.FOUNDATION_TOPIC = {
       },
       {
         title: 'Dunhuang Mogao Cave Buddhist Art (Silk Road, c.4th–14th centuries CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mogao_Caves_Buddha_Statue.jpg',
+        url: '../assets/images/module-cards/mogao-caves-dunhuang.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mogao_Caves_Buddha_Statue.jpg',
         caption: 'The Mogao Caves at Dunhuang — an oasis city on the Silk Road in northwestern China — contain 492 temple caves decorated with Buddhist murals and sculptures commissioned by Silk Road merchants between the 4th and 14th centuries CE. Merchants funded the caves as acts of religious patronage, seeking divine protection for their dangerous journeys. The caves document 1,000 years of Silk Road cultural exchange: artistic styles from India, Central Asia, Persia, and China blend in a single location. The caves were sealed around 1000 CE and rediscovered in 1900, preserving the world\'s largest repository of early printed books and manuscripts.',
         prompt: 'The Dunhuang caves were funded by merchants, not monks or emperors. What does this reveal about the relationship between trade and the spread of Buddhism? How does this evidence challenge the assumption that religious diffusion and commercial exchange were separate processes?'
@@ -193,7 +193,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Camel Caravan near the Pyramids',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Caravan_near_Sphinx.jpg',
+        url: '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Caravan_near_Sphinx.jpg',
         caption: 'The camel caravan is the human-scale image of trans-Saharan trade: a typical large caravan numbered 1,000–12,000 camels, traveled in organized columns with armed escorts, and carried not just gold and salt but enslaved people, kola nuts, copper, and textiles. The camel\'s physiology made this possible — no other animal could sustain the load and the water deficit of a Saharan crossing.'
       }
@@ -208,7 +208,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Dunhuang Mogao Caves Buddhist Art',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mogao_Caves_Buddha_Statue.jpg',
+        url: '../assets/images/module-cards/mogao-caves-dunhuang.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mogao_Caves_Buddha_Statue.jpg',
         caption: 'The Mogao Caves at Dunhuang — funded by Silk Road merchants seeking divine protection — are the most powerful visual proof that trade networks moved religion. A merchant who funded a cave painting was simultaneously investing in spiritual insurance, participating in Buddhist community networks, and leaving evidence that will survive 1,600 years for historians to read.'
       }
@@ -223,7 +223,7 @@ window.FOUNDATION_TOPIC = {
       ],
       image: {
         title: 'Kilwa Kisiwani ruins, Tanzania (Swahili coast, c.9th–16th centuries CE)',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kilwa_Kisiwani_great_mosque.jpg',
+        url: '../assets/images/module-cards/kilwa-kisiwani-mosque.jpg',
         sourceUrl: 'https://commons.wikimedia.org/wiki/File:Kilwa_Kisiwani_great_mosque.jpg',
         caption: 'The ruins of the Great Mosque at Kilwa Kisiwani — the largest mosque in sub-Saharan Africa before the 16th century — were built with the wealth of Indian Ocean trade. Chinese celadon, Persian glass, and Indian textiles found in Kilwa\'s archaeological sites prove that this East African city was a genuine node of a world-scale commercial system, not a peripheral backwater.'
       }
