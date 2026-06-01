@@ -34,6 +34,11 @@ window.BH_FORM = {
     '1.5': '1.5 - Africa',
     '1.6': '1.6 - Eurasian Connections',
     '1.7': '1.7 - Cross-Cultural Exchanges',
+    'foundations-1': 'Foundations 1 - Geography',
+    'foundations-2': 'Foundations 2 - Belief Systems',
+    'foundations-3': 'Foundations 3 - States & Power',
+    'foundations-4': 'Foundations 4 - Trade Networks',
+    'foundations-5': 'Foundations 5 - World at 1200',
   },
 
   // Must match Google Form multiple-choice option text exactly.

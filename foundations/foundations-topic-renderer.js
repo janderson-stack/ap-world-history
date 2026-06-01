@@ -42,14 +42,17 @@ const blockPlan=T.blockPlan||[
 function segImg(i){return T.lecture&&T.lecture[i]&&T.lecture[i].image?sanitizeImageUrl(T.lecture[i].image.url):sanitizeImageUrl(T.map.url);}
 
 // Hardcoded images for module types that don't have a natural content image
-const FIRST10_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg';
+const FIRST10_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_River_During_the_Qingming_Festival.jpg';
 const SOCRATES_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Socrates_Louvre.jpg';
 const SKILL_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Song%20Imperial%20Examination.JPG';
 
 // ── Block Plan (Lesson Command Center) ────────────────────────────────────────
 const roadmapEl=byId('block-plan-roadmap');
 if(roadmapEl){
-  roadmapEl.innerHTML=blockPlan.map(r=>`<div class="roadmap-step"><strong>${r[0]}</strong>${r[1]}</div>`).join('');
+  roadmapEl.innerHTML=`
+    <div class="roadmap-step"><strong>1. Build Context</strong>Launch question, map check, and thematic orientation.</div>
+    <div class="roadmap-step"><strong>2. Learn &amp; Practice</strong>First &amp; 10 reading, lecture cards, and module work.</div>
+    <div class="roadmap-step"><strong>3. Check Understanding</strong>AP Skill Builder, checkpoint, and confidence reflection.</div>`;
 }
 
 // ── Learning Targets (inline Unit-1 style) ────────────────────────────────────
@@ -77,7 +80,7 @@ byId('inline-targets').innerHTML=`
 const modules=[
   {id:'map',       label:'Module 01',title:'Map & Geography Check',        desc:T.map.desc||'Connect geography to historical development.',                   img:sanitizeImageUrl(T.map.url), render:renderMap},
   {id:'first10',   label:'Module 02',title:'First & 10 Reading',           desc:'Narrative foundation for today\'s Foundations topic.',                       img:FIRST10_IMG,                 render:renderFirst10},
-  {id:'contentdelivery',label:'Module 03',title:'Content Delivery',        desc:'Jump down to the main lecture-card section.',                                img:segImg(0),                   jump:'#lecture'},
+  {id:'contentdelivery',label:'Module 03',title:'Content Delivery',        desc:'Jump down to the main lecture-card section.',                                img:segImg(1),                   jump:'#lecture'},
   {id:'timeline',  label:'Module 04',title:'Road to 1200 Timeline',        desc:'A visual progression that keeps the five-day bridge anchored in time.',       img:segImg(2),                   render:renderTimeline},
   {id:'terms',     label:'Module 05',title:'Foundation Terms',             desc:'Key vocabulary students need before AP World begins.',                        img:segImg(3),                   render:renderTerms},
   {id:'evidence',  label:'Module 06',title:'Evidence Lab',                 desc:evidence.task,                                                                img:sanitizeImageUrl(evidence.items&&evidence.items[0]?evidence.items[0].url:segImg(1)), render:renderEvidence},
@@ -244,6 +247,10 @@ function renderCoach(){
             <strong>Prompt ${i+1}</strong><span>${p}</span>
           </div>`).join('')}
       </div>
+      <div class="magicschool-bridge" style="margin-top:1rem;">
+        <span class="bridge-label">AI Coach</span>
+        <a class="btn secondary" href="https://app.magicschool.ai/" target="_blank" rel="noopener">Open in MagicSchool</a>
+      </div>
     </article>
     ${draft(`${T.id}-coach`,aiCoach.responsePrompt||'Use one AI coach prompt to improve your historical explanation.')}`;
 }
@@ -274,11 +281,61 @@ function renderCheckpoint(){
       <h3>Strong Response Checklist</h3>
       <ul>${T.checkpoint.checklist.map(x=>`<li>${x}</li>`).join('')}</ul>
     </article>
+    <div class="magicschool-bridge" style="margin-top:1rem;">
+      <span class="bridge-label">Feedback Tool</span>
+      <a class="btn secondary" href="https://app.magicschool.ai/" target="_blank" rel="noopener">Get AI Feedback</a>
+    </div>
     ${draft(`${T.id}-checkpoint`,T.checkpoint.prompt)}`;
 }
 
+// ── Form integration ──────────────────────────────────────────────────────────
+window.submitResponseToGoogleForm = window.submitResponseToGoogleForm || function(responseId, formUrl) {
+  const responseEl = byId(responseId);
+  const resultEl   = byId(responseId + '-result');
+  const text       = responseEl ? (responseEl.value || '').trim() : '';
+  const openForm   = () => window.open(formUrl, '_blank', 'noopener');
+  if (!text) {
+    if (resultEl) resultEl.textContent = 'Form opened. Add your response before submitting.';
+    openForm(); return;
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text)
+      .then(() => { if (resultEl) resultEl.textContent = 'Response copied — paste it into the Student Response field on the form.'; openForm(); })
+      .catch(() => { if (resultEl) resultEl.textContent = 'Form opened. Copy your response manually before submitting.'; openForm(); });
+  } else {
+    if (resultEl) resultEl.textContent = 'Form opened. Manually copy your response before submitting.';
+    openForm();
+  }
+};
+
+const FORM_URLS = (function() {
+  if (!window.BH_FORM) return {};
+  const topicLabel = BH_FORM.topics[T.id];
+  if (!topicLabel) return {};
+  const base = BH_FORM.baseURL;
+  const unit = 'Foundations Boot Camp';
+  const enc  = v => encodeURIComponent(v).replace(/%20/g, '+');
+  const sfEntry = 'entry.1963461515';
+  function buildUrl(promptId, responseType, skills) {
+    const skillParams = (skills||[]).map(s=>`&${sfEntry}=${enc(s)}`).join('');
+    return `${base}?usp=pp_url&entry.125385659=${enc(unit)}&entry.187055090=${enc(topicLabel)}&entry.1549761827=${enc(promptId)}&entry.2107637366=${enc(responseType)}${skillParams}`;
+  }
+  const k = T.id;
+  return {
+    [`${k}-map`]:        buildUrl(`${k}-map`,        'Map Response',     ['Contextualization','Evidence Usage']),
+    [`${k}-timeline`]:   buildUrl(`${k}-timeline`,   'Timeline',         ['Causation','CCOT']),
+    [`${k}-evidence`]:   buildUrl(`${k}-evidence`,   'Evidence Lab',     ['Evidence Usage','Sourcing']),
+    [`${k}-coach`]:      buildUrl(`${k}-coach`,      'Socrates Coach',   ['Argumentation','Causation']),
+    [`${k}-skill`]:      buildUrl(`${k}-skill`,      'AP Skill Builder', ['Contextualization','Argumentation']),
+    [`${k}-checkpoint`]: buildUrl(`${k}-checkpoint`, 'Checkpoint',       ['Argumentation','Claims & Thesis']),
+    [`${k}-first10`]:    buildUrl(`${k}-first10`,    'First and 10',     ['Contextualization'])
+  };
+})();
+
 // ── Draft / save / copy ────────────────────────────────────────────────────────
 function draft(id,prompt){
+  const formUrl = FORM_URLS[id];
+  const submitBtn = formUrl ? `<button class="btn secondary" type="button" onclick="submitResponseToGoogleForm('${id}','${formUrl}')">Submit to Form</button>` : '';
   return `
     <div class="prompt-box">
       <h3>Draft Your Thinking</h3>
@@ -287,6 +344,7 @@ function draft(id,prompt){
       <div class="tool-row">
         <button class="btn" type="button" onclick="saveDraft('${id}')">Save Draft</button>
         <button class="btn secondary" type="button" onclick="copyResponse('${id}')">Copy Response</button>
+        ${submitBtn}
       </div>
       <div id="${id}-result" class="check-result"></div>
     </div>`;

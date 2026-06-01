@@ -203,10 +203,10 @@ window.FOUNDATION_TOPIC = {
         'By c.1200 the Indian Ocean connected East Africa, Arabia, Persia, India, Southeast Asia, and China — and it ran entirely on geographic knowledge, not state power.'
       ],
       image: {
-        title: 'Dhow on the Indian Ocean',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dhow_at_Sur.jpg',
-        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Dhow_at_Sur.jpg',
-        caption: 'A traditional dhow — the vessel that carried goods, people, and ideas across the Indian Ocean for centuries. The monsoon winds made these voyages predictable and repeatable every year.'
+        title: 'Monsoon Winds over Asia',
+        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Monsoon_Asia.jpg',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Monsoon_Asia.jpg',
+        caption: 'The Indian Ocean monsoon system — seasonal wind reversals that drove predictable round-trip voyages between Arabia, East Africa, India, and Southeast Asia every year.'
       }
     },
     {
