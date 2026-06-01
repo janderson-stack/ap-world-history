@@ -171,10 +171,16 @@ function renderMap(){
 }
 
 function renderFirst10(){
+  if(first10.embedUrl){
+    return `
+      <div class="card" style="padding:0;overflow:hidden;border-radius:4px;">
+        <iframe src="${first10.embedUrl}" style="width:100%;height:720px;border:none;display:block;" title="${first10.title}" loading="lazy"></iframe>
+      </div>`;
+  }
   return `
     <div class="card reading">
       <h3>${first10.title}</h3>
-      ${first10.paragraphs.map(p=>`<p>${p}</p>`).join('')}
+      ${(first10.paragraphs||[]).map(p=>`<p>${p}</p>`).join('')}
     </div>
     <div class="card" style="margin-top:1.25rem;">
       <h3>First &amp; 10 Response</h3>
