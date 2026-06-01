@@ -39,6 +39,13 @@ window.BH_FORM = {
     'foundations-3': 'Foundations 3 - States & Power',
     'foundations-4': 'Foundations 4 - Trade Networks',
     'foundations-5': 'Foundations 5 - World at 1200',
+    '2.1': '2.1 - The Silk Roads',
+    '2.2': '2.2 - The Mongol Empire',
+    '2.3': '2.3 - Exchange in the Indian Ocean',
+    '2.4': '2.4 - Trans-Saharan Trade Routes',
+    '2.5': '2.5 - Cultural Consequences of Connectivity',
+    '2.6': '2.6 - Environmental Consequences of Connectivity',
+    '2.7': '2.7 - Comparison of Economic Exchange',
   },
 
   // Must match Google Form multiple-choice option text exactly.
