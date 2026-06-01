@@ -25,5 +25,44 @@
   <div class="cs"><div class="ch"><span class="cb">Check Your Thinking</span><span class="ct">Three Questions — No Right Answers, Only Supported Ones</span></div><ul class="ql"><li class="qi"><div class="qp"><span class="qn">01</span><span class="qsk">Comparison</span><p class="qt">Choose any two of the six regional snapshots above. For each region, identify which Foundations theme (geography, belief systems, states and power, or trade networks) best explains its condition at c.1200. Support each choice with specific evidence from the reading.</p></div><textarea class="qta" placeholder="For my first region, the best theme is... because... For my second region..."></textarea></li><li class="qi"><div class="qp"><span class="qn">02</span><span class="qsk">Argumentation</span><p class="qt">Using evidence from at least three regional snapshots, evaluate this argument: "The world at c.1200 was defined not by isolated civilizations but by an interconnected Afro-Eurasian system with the Americas as the significant exception."</p></div><textarea class="qta" placeholder="Drawing on three regions, this argument is..."></textarea></li><li class="qi"><div class="qp"><span class="qn">03</span><span class="qsk">Synthesis</span><p class="qt">Which of the five AP analytical skills did you use most in Foundations Days 1-4 without realizing it? Explain using one specific example from your own work or from the readings across all five days.</p></div><textarea class="qta" placeholder="The skill I used most was... for example..."></textarea></li></ul></div>
   <div class="mf"><span class="fn">Foundations 5 — The World at c.1200 · AP World History: Modern</span><div style="display:flex;gap:.6rem"><a class="nb prev" href="foundations-4-trade-networks.html">← Foundations 4: Trade Networks</a><a class="nb" href="../unit-1/lesson-1-1-song-china.html">Begin Unit 1 →</a></div></div>
 </div>
+<script src="../assets/js/behistorical-form-config.js?v=unified-v1"></script>
+<script>
+(function(){
+  var TOPIC_KEY='foundations-5';
+  function buildFormUrl(){
+    if(!window.BH_FORM)return '';
+    var enc=function(v){return encodeURIComponent(v).replace(/%20/g,'+');};
+    return BH_FORM.baseURL+'?usp=pp_url&entry.187055090='+enc(BH_FORM.topics[TOPIC_KEY]||TOPIC_KEY)+'&entry.2107637366=First+and+10';
+  }
+  function submitQ(id){
+    var el=document.getElementById(id),res=document.getElementById(id+'-result');
+    var text=el?el.value.trim():'',url=buildFormUrl();
+    if(!url){if(res)res.textContent='Form not configured.';return;}
+    var open=function(){window.open(url,'_blank','noopener');};
+    if(!text){if(res)res.textContent='Form opened — add your response before submitting.';open();return;}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text)
+        .then(function(){if(res)res.textContent='Copied — paste into Student Response on the form.';open();})
+        .catch(function(){if(res)res.textContent='Form opened — copy your response manually.';open();});
+    }else{if(res)res.textContent='Form opened — copy your response manually.';open();}
+  }
+  window.submitQ=submitQ;
+  document.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('textarea.qta').forEach(function(ta,i){
+      var id=TOPIC_KEY+'-q'+(i+1);ta.id=id;
+      var row=document.createElement('div');
+      row.style.cssText='padding:.4rem 1.1rem .7rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center';
+      var btn=document.createElement('button');
+      (function(qid){btn.onclick=function(){submitQ(qid);};})(id);
+      btn.style.cssText='font-family:var(--fu);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ag);background:transparent;border:1px solid rgba(201,164,106,.4);padding:.35rem .85rem;border-radius:2px;cursor:pointer';
+      btn.textContent='Submit to Form';
+      var span=document.createElement('span');span.id=id+'-result';
+      span.style.cssText='font-size:.7rem;color:var(--ms);font-family:var(--fu)';
+      row.appendChild(btn);row.appendChild(span);
+      ta.parentNode.insertBefore(row,ta.nextSibling);
+    });
+  });
+})();
+</script>
 </body>
 </html>

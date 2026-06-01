@@ -42,7 +42,7 @@ const blockPlan=T.blockPlan||[
 function segImg(i){return T.lecture&&T.lecture[i]&&T.lecture[i].image?sanitizeImageUrl(T.lecture[i].image.url):sanitizeImageUrl(T.map.url);}
 
 // Hardcoded images for module types that don't have a natural content image
-const FIRST10_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_River_During_the_Qingming_Festival.jpg';
+const FIRST10_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg';
 const SOCRATES_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Socrates_Louvre.jpg';
 const SKILL_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Song%20Imperial%20Examination.JPG';
 

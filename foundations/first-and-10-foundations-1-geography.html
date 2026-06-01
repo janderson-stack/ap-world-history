@@ -24,5 +24,44 @@
   <div class="cs"><div class="ch"><span class="cb">Check Your Thinking</span><span class="ct">Three Questions — No Right Answers, Only Supported Ones</span></div><ul class="ql"><li class="qi"><div class="qp"><span class="qn">01</span><span class="qsk">Causation</span><p class="qt">The Song retreat of 1127 CE is usually described as a military defeat. Using evidence from the reading, explain how this defeat caused the Song dynasty's commercial prosperity in the 12th century.</p></div><textarea class="qta" placeholder="The Song defeat caused commercial prosperity because..."></textarea></li><li class="qi"><div class="qp"><span class="qn">02</span><span class="qsk">Comparison</span><p class="qt">The reading describes the Indian Ocean monsoon and the Eurasian steppe as two different kinds of geographic systems. Compare how each shaped the human societies that developed within or around it.</p></div><textarea class="qta" placeholder="The monsoon shaped societies by... while the steppe..."></textarea></li><li class="qi"><div class="qp"><span class="qn">03</span><span class="qsk">Contextualization</span><p class="qt">Write one AP-quality contextualization sentence that uses a specific geographic condition to explain why a society before c.1200 developed in the way it did. Your sentence should identify a geographic condition, name a specific region, and explain the causal connection.</p></div><textarea class="qta" placeholder="Because [geographic condition] in [region]..."></textarea></li></ul></div>
   <div class="mf"><span class="fn">Foundations 1 — Geography Shapes Civilization · AP World History: Modern</span><div style="display:flex;gap:.6rem"><a class="nb prev" href="index.html">← Foundations Home</a><a class="nb" href="foundations-1-geography.html#lecture">Content Delivery →</a></div></div>
 </div>
+<script src="../assets/js/behistorical-form-config.js?v=unified-v1"></script>
+<script>
+(function(){
+  var TOPIC_KEY='foundations-1';
+  function buildFormUrl(){
+    if(!window.BH_FORM)return '';
+    var enc=function(v){return encodeURIComponent(v).replace(/%20/g,'+');};
+    return BH_FORM.baseURL+'?usp=pp_url&entry.187055090='+enc(BH_FORM.topics[TOPIC_KEY]||TOPIC_KEY)+'&entry.2107637366=First+and+10';
+  }
+  function submitQ(id){
+    var el=document.getElementById(id),res=document.getElementById(id+'-result');
+    var text=el?el.value.trim():'',url=buildFormUrl();
+    if(!url){if(res)res.textContent='Form not configured.';return;}
+    var open=function(){window.open(url,'_blank','noopener');};
+    if(!text){if(res)res.textContent='Form opened — add your response before submitting.';open();return;}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text)
+        .then(function(){if(res)res.textContent='Copied — paste into Student Response on the form.';open();})
+        .catch(function(){if(res)res.textContent='Form opened — copy your response manually.';open();});
+    }else{if(res)res.textContent='Form opened — copy your response manually.';open();}
+  }
+  window.submitQ=submitQ;
+  document.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('textarea.qta').forEach(function(ta,i){
+      var id=TOPIC_KEY+'-q'+(i+1);ta.id=id;
+      var row=document.createElement('div');
+      row.style.cssText='padding:.4rem 1.1rem .7rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center';
+      var btn=document.createElement('button');
+      (function(qid){btn.onclick=function(){submitQ(qid);};})(id);
+      btn.style.cssText='font-family:var(--fu);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ag);background:transparent;border:1px solid rgba(201,164,106,.4);padding:.35rem .85rem;border-radius:2px;cursor:pointer';
+      btn.textContent='Submit to Form';
+      var span=document.createElement('span');span.id=id+'-result';
+      span.style.cssText='font-size:.7rem;color:var(--ms);font-family:var(--fu)';
+      row.appendChild(btn);row.appendChild(span);
+      ta.parentNode.insertBefore(row,ta.nextSibling);
+    });
+  });
+})();
+</script>
 </body>
 </html>

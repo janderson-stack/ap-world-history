@@ -203,10 +203,10 @@ window.FOUNDATION_TOPIC = {
         'By c.1200 the Indian Ocean connected East Africa, Arabia, Persia, India, Southeast Asia, and China — and it ran entirely on geographic knowledge, not state power.'
       ],
       image: {
-        title: 'Monsoon Winds over Asia',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Monsoon_Asia.jpg',
-        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Monsoon_Asia.jpg',
-        caption: 'The Indian Ocean monsoon system — seasonal wind reversals that drove predictable round-trip voyages between Arabia, East Africa, India, and Southeast Asia every year.'
+        title: 'Indian Ocean — CIA World Map',
+        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Indian_Ocean-CIA_WFB_Map.png',
+        caption: 'The Indian Ocean\'s shape determined the monsoon trade system: seasonal wind reversals created reliable sailing lanes connecting Arabia, East Africa, India, and Southeast Asia every year.'
       }
     },
     {
