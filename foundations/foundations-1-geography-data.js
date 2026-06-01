@@ -203,10 +203,10 @@ window.FOUNDATION_TOPIC = {
         'By c.1200 the Indian Ocean connected East Africa, Arabia, Persia, India, Southeast Asia, and China — and it ran entirely on geographic knowledge, not state power.'
       ],
       image: {
-        title: 'Indian Ocean',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
-        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Indian_Ocean-CIA_WFB_Map.png',
-        caption: 'The Indian Ocean\'s monsoon system made maritime trade predictable, turning it into a reliable annual circuit connecting four continents.'
+        title: 'Dhow on the Indian Ocean',
+        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dhow_at_Sur.jpg',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Dhow_at_Sur.jpg',
+        caption: 'A traditional dhow — the vessel that carried goods, people, and ideas across the Indian Ocean for centuries. The monsoon winds made these voyages predictable and repeatable every year.'
       }
     },
     {
@@ -218,10 +218,10 @@ window.FOUNDATION_TOPIC = {
         'The geographic isolation from Afro-Eurasia meant that American populations had no immune history with Eurasian diseases. When contact came after 1492, the consequences were catastrophic — and rooted in geography, not character.'
       ],
       image: {
-        title: 'Andes Mountains',
-        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Andes_mountains_Argentina_Chile.jpg',
-        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Andes_mountains_Argentina_Chile.jpg',
-        caption: 'The Andes provided the Inca with dramatic altitudinal variation — each elevation band supported different crops — but no large draft animals to support wheeled transport across the terrain.'
+        title: 'Machu Picchu, Peru',
+        url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Machu_Picchu%2C_Peru.jpg',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Machu_Picchu,_Peru.jpg',
+        caption: 'Machu Picchu shows what the Inca built without horses, iron, or wheeled transport — extraordinary mountain engineering achieved through mit\'a labor, geographic knowledge, and a 40,000 km road system.'
       }
     }
   ],

@@ -41,10 +41,15 @@ const blockPlan=T.blockPlan||[
 // Distinct images per module — draw from lecture segments to avoid all-same-image
 function segImg(i){return T.lecture&&T.lecture[i]&&T.lecture[i].image?sanitizeImageUrl(T.lecture[i].image.url):sanitizeImageUrl(T.map.url);}
 
+// Hardcoded images for module types that don't have a natural content image
+const FIRST10_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg';
+const SOCRATES_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Socrates_Louvre.jpg';
+const SKILL_IMG='https://commons.wikimedia.org/wiki/Special:FilePath/Song%20Imperial%20Examination.JPG';
+
 // ── Block Plan (Lesson Command Center) ────────────────────────────────────────
 const roadmapEl=byId('block-plan-roadmap');
 if(roadmapEl){
-  roadmapEl.innerHTML=blockPlan.map(r=>`<div class="roadmap-step"><strong>${r[0]} — ${r[1]}</strong>${r[2]}</div>`).join('');
+  roadmapEl.innerHTML=blockPlan.map(r=>`<div class="roadmap-step"><strong>${r[0]}</strong>${r[1]}</div>`).join('');
 }
 
 // ── Learning Targets (inline Unit-1 style) ────────────────────────────────────
@@ -70,15 +75,15 @@ byId('inline-targets').innerHTML=`
 
 // ── Module grid ────────────────────────────────────────────────────────────────
 const modules=[
-  {id:'map',       label:'Module 01',title:'Map & Geography Check',     desc:T.map.desc||'Connect geography to historical development.',              img:sanitizeImageUrl(T.map.url),    render:renderMap},
-  {id:'first10',   label:'Module 02',title:'First & 10 Reading',        desc:'Narrative foundation for today\'s Foundations topic.',                  img:segImg(1),                      render:renderFirst10},
-  {id:'contentdelivery',label:'Module 03',title:'Content Delivery',     desc:'Jump down to the main lecture-card section.',                           img:segImg(0),                      jump:'#lecture'},
-  {id:'timeline',  label:'Module 04',title:'Road to 1200 Timeline',     desc:'A visual progression that keeps the five-day bridge anchored in time.',  img:segImg(2),                      render:renderTimeline},
-  {id:'terms',     label:'Module 05',title:'Foundation Terms',          desc:'Key vocabulary students need before AP World begins.',                   img:segImg(3),                      render:renderTerms},
-  {id:'evidence',  label:'Module 06',title:'Evidence Lab',              desc:evidence.task,                                                            img:sanitizeImageUrl(evidence.items&&evidence.items[0]?evidence.items[0].url:segImg(1)), render:renderEvidence},
-  {id:'coach',     label:'Module 07',title:'Socrates AI Coach',         desc:'Socratic prompts that help students notice patterns and improve reasoning.', img:segImg(4),                  render:renderCoach},
-  {id:'skill',     label:'Module 08',title:T.skill.title,               desc:T.skill.desc,                                                            img:segImg(2),                      render:renderSkill},
-  {id:'checkpoint',label:'Module 09',title:T.checkpoint.title,          desc:'Exit ticket and checkpoint for this Foundations topic.',                  img:segImg(3),                      render:renderCheckpoint}
+  {id:'map',       label:'Module 01',title:'Map & Geography Check',        desc:T.map.desc||'Connect geography to historical development.',                   img:sanitizeImageUrl(T.map.url), render:renderMap},
+  {id:'first10',   label:'Module 02',title:'First & 10 Reading',           desc:'Narrative foundation for today\'s Foundations topic.',                       img:FIRST10_IMG,                 render:renderFirst10},
+  {id:'contentdelivery',label:'Module 03',title:'Content Delivery',        desc:'Jump down to the main lecture-card section.',                                img:segImg(0),                   jump:'#lecture'},
+  {id:'timeline',  label:'Module 04',title:'Road to 1200 Timeline',        desc:'A visual progression that keeps the five-day bridge anchored in time.',       img:segImg(2),                   render:renderTimeline},
+  {id:'terms',     label:'Module 05',title:'Foundation Terms',             desc:'Key vocabulary students need before AP World begins.',                        img:segImg(3),                   render:renderTerms},
+  {id:'evidence',  label:'Module 06',title:'Evidence Lab',                 desc:evidence.task,                                                                img:sanitizeImageUrl(evidence.items&&evidence.items[0]?evidence.items[0].url:segImg(1)), render:renderEvidence},
+  {id:'coach',     label:'Module 07',title:'Socrates AI Coach',            desc:'Socratic prompts that help students notice patterns and improve reasoning.',   img:SOCRATES_IMG,                render:renderCoach},
+  {id:'skill',     label:'Module 08',title:T.skill.title,                  desc:T.skill.desc,                                                                 img:SKILL_IMG,                   render:renderSkill},
+  {id:'checkpoint',label:'Module 09',title:T.checkpoint.title,             desc:'Exit ticket and checkpoint for this Foundations topic.',                       img:segImg(4),                   render:renderCheckpoint}
 ];
 
 byId('module-grid').innerHTML=modules.map(m=>`
