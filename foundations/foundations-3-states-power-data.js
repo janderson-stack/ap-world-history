@@ -64,7 +64,7 @@ window.FOUNDATION_TOPIC = {
 
   first10: {
     title: 'First & 10: The State That Lost Heaven\'s Mandate',
-    embedUrl: 'first-and-10-foundations-3-states-power.html',
+    embedUrl: 'first-and-10-foundations-3-states-power-capture.html',
     paragraphs: [
       'In the spring of 184 CE, 400,000 people put on yellow turbans and went to war against the Han Dynasty. They called themselves the Yellow Turbans, and their leader was a faith healer named Zhang Jue who told them that the era of the Blue Heaven — the Han Dynasty — was ending, and the Yellow Heaven was coming. The movement had been organized in secret across multiple Chinese provinces, coordinated through a network the state\'s intelligence apparatus had completely failed to detect.',
       'The Han Dynasty had ruled China for nearly four centuries. Its bureaucracy had administered a territory of 60 million people. Its armies had pushed back the Xiongnu nomads on the northern frontier. Its civil service had produced the most sophisticated administrative system in the world. And yet, in 184 CE, hundreds of thousands of its own subjects rose in simultaneous rebellion across a dozen provinces.',

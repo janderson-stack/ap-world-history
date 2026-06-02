@@ -65,7 +65,7 @@ window.FOUNDATION_TOPIC = {
 
   first10: {
     title: 'First & 10: The Map Is Already an Argument',
-    embedUrl: 'first-and-10-foundations-1-geography.html',
+    embedUrl: 'first-and-10-foundations-1-geography-capture.html',
     paragraphs: [
       'In the winter of 1127, an army crossed the Huai River and kept moving south. The soldiers were Jurchen Jin warriors from Manchuria, and they had just driven the Song emperor out of his capital. The Song court fled hundreds of miles south to a new capital at Lin\'an — a city we know today as Hangzhou — abandoning the Yellow River plain and the north.',
       'That retreat looks like a disaster. And in military terms, it was. But geographically, the Song had just been pushed into the most productive agricultural zone on earth. The Yangtze River Delta, with its warm climate and monsoon-fed rivers, supported wet-rice cultivation that yielded three to four times more calories per acre than the dryland grain farming of the north. The Song didn\'t just survive. They built what historians estimate was the most commercially sophisticated economy on the planet — paper money, a merchant fleet, port cities handling goods from East Africa to Southeast Asia.',

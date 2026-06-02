@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /home/user/ap-world-history/scripts/validate.js 2>&1"
+          }
+        ]
+      }
+    ]
+  }
+}

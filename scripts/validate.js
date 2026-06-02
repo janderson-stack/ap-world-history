@@ -285,6 +285,26 @@ function checkFoundationsData(filePath) {
   for (const k of ['id:', 'title:', 'subtitle:', 'learningTargets:', 'successCriteria:', 'lecture:', 'first10:']) {
     if (!src.includes(k)) err(filePath, `missing required key: ${k}`);
   }
+
+  // beSurreal — required per 10-module standard
+  if (!src.includes('beSurreal:')) {
+    err(filePath, "missing 'beSurreal' field — required by 10-module standard (needs title/desc/intro/detail/prompt)");
+  }
+
+  // first10.embedUrl must point to a capture wrapper, not a standalone file
+  const embedMatch = src.match(/embedUrl\s*:\s*['"]([^'"]+)['"]/);
+  if (embedMatch) {
+    if (!embedMatch[1].endsWith('-capture.html')) {
+      err(filePath, `embedUrl '${embedMatch[1]}' must end with -capture.html (not a standalone HTML file)`);
+    }
+    const captureTarget = path.join(path.dirname(filePath), embedMatch[1]);
+    if (!exists(captureTarget)) {
+      err(filePath, `embedUrl target not found on disk: ${embedMatch[1]}`);
+    }
+  } else if (src.includes("paragraphs:")) {
+    err(filePath, "first10 uses inline paragraphs array — must use embedUrl pointing to a capture wrapper");
+  }
+
   if (/youtubeId\s*:\s*['"]YT_/.test(src)) warn(filePath, 'placeholder YouTube ID(s) present');
   for (const hit of findParenUrls(src)) {
     err(filePath, `image URL has parentheses in filename: ${hit}`);
@@ -376,6 +396,32 @@ section('Foundations data files (foundations/*-data.js)');
 const fDataFiles = glob(foundationsDir, /^foundations.*-data\.js$/);
 for (const f of fDataFiles) checkFoundationsData(f);
 sectionDone(`${fDataFiles.length} foundations data files`);
+
+// 5b. Foundations 10-module structure
+section('Foundations renderer — 10-module standard');
+{
+  totalChecks++;
+  const CANONICAL_IDS = ['map','first10','contentdelivery','besurreal','skill','checkpoint1','evidence','coach','beintheroom','checkpoint2'];
+  const rendSrc = read(path.join(foundationsDir, 'foundations-topic-renderer.js'));
+  if (!rendSrc) {
+    err(path.join(foundationsDir, 'foundations-topic-renderer.js'), 'renderer not readable');
+  } else {
+    const found = [...rendSrc.matchAll(/\{id:'([^']+)'/g)].map(m => m[1]).filter(id => CANONICAL_IDS.includes(id));
+    if (found.length !== 10) {
+      err(path.join(foundationsDir, 'foundations-topic-renderer.js'), `module count: expected 10, found ${found.length} canonical IDs — ${JSON.stringify(found)}`);
+    }
+    for (const id of CANONICAL_IDS) {
+      if (!found.includes(id)) {
+        err(path.join(foundationsDir, 'foundations-topic-renderer.js'), `missing module id: '${id}'`);
+      }
+    }
+    if (!rendSrc.includes('renderBeSurreal')) err(path.join(foundationsDir, 'foundations-topic-renderer.js'), 'missing renderBeSurreal function');
+    if (!rendSrc.includes('renderCheckpoint1')) err(path.join(foundationsDir, 'foundations-topic-renderer.js'), 'missing renderCheckpoint1 function');
+    if (!rendSrc.includes('renderCheckpoint2')) err(path.join(foundationsDir, 'foundations-topic-renderer.js'), 'missing renderCheckpoint2 function');
+    if (!rendSrc.includes('m.link')) err(path.join(foundationsDir, 'foundations-topic-renderer.js'), 'module grid does not handle link: property (needed for BeInTheRoom)');
+    sectionDone('Foundations renderer');
+  }
+}
 
 // 6. Foundations HTML
 section('Foundations HTML pages (foundations/foundations-*.html)');

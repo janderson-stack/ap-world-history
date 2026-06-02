@@ -65,7 +65,7 @@ window.FOUNDATION_TOPIC = {
 
   first10: {
     title: 'First & 10: A Defeat That Changed What People Read',
-    embedUrl: 'first-and-10-foundations-4-trade-networks.html',
+    embedUrl: 'first-and-10-foundations-4-trade-networks-capture.html',
     paragraphs: [
       'In 751 CE, two empires collided in a river valley in Central Asia near the Talas River — in modern Kyrgyzstan, far from either of their capitals. On one side: Tang Dynasty forces, allied with local Central Asian rulers, pushing to maintain Chinese influence over the Silk Road oasis cities. On the other: Abbasid Caliphate forces under Ziyad ibn Salih, expanding Islamic political control eastward. It was not the largest battle in either empire\'s history. But among the prisoners the Abbasid forces captured were Chinese papermakers.',
       'Paper had been invented in China, credited to Cai Lun around 105 CE. For six centuries it had remained a Chinese technology. Within years of Talas, paper mills appeared in Samarkand. Within decades, they spread across the Islamic world — Baghdad had mills by 794 CE, Egypt by 900 CE, Morocco by 1100 CE, and Spain by 1150 CE. Paper was cheaper than parchment and more durable than papyrus. It enabled the mass production of books. The Islamic world\'s extraordinary intellectual flowering between 800 and 1200 CE — the translations at the House of Wisdom, al-Khwarizmi\'s algebra, Ibn Sina\'s medical encyclopedias, the works of Averroes — all of it was written on paper that reached the Islamic world because of a military defeat in a Central Asian river valley.',

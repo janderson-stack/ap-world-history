@@ -161,7 +161,9 @@
 
 </div>
 
+<script src="../assets/js/behistorical-form-config.js?v=unified-v1"></script>
 <script>
+var TOPIC_KEY='foundations-1';var TOPIC_LABEL='Foundations 1 - Geography';
 function collectAnswers(){
   return Array.from(document.querySelectorAll('.q-textarea,.qta')).map((ta,i)=>{return{num:i+1,value:ta.value||'(no response)'}});
 }
@@ -173,8 +175,10 @@ function buildGooglePrompt(){
 }
 function submitToGoogleForm(){
   const content=document.getElementById('google-output').value;
-  navigator.clipboard.writeText(content).catch(()=>{});
-  window.open('https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.187055090=Foundations+1+-+Geography&entry.2107637366=First+and+10','_blank');
+  const tl=(window.BH_FORM&&BH_FORM.topics[TOPIC_KEY])||TOPIC_LABEL;
+  const u=window.BH_FORM?BH_FORM.baseURL+'?usp=pp_url&entry.187055090='+encodeURIComponent(tl).replace(/%20/g,'+')+'&entry.2107637366=First+and+10':'';
+  if(content)navigator.clipboard.writeText(content).catch(()=>{});
+  if(u)window.open(u,'_blank','noopener');
 }
 function buildAiPrompt(){
   const ans=collectAnswers(),qs=collectQuestions();

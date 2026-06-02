@@ -66,7 +66,7 @@ window.FOUNDATION_TOPIC = {
 
   first10: {
     title: 'First & 10: The Man Who Broke the Economy of Cairo',
-    embedUrl: 'first-and-10-foundations-2-belief-systems.html',
+    embedUrl: 'first-and-10-foundations-2-belief-systems-capture.html',
     paragraphs: [
       'In 1324, a man walked into Cairo with so much gold that he crashed the city\'s economy. His name was Mansa Musa, and he was the emperor of Mali — a West African empire built on control of trans-Saharan trade routes connecting the goldfields of the western Sudan to the Mediterranean world. He was traveling to Mecca. The hajj, the Islamic pilgrimage, required every Muslim who was physically and financially able to make the journey at least once in a lifetime.',
       'Mansa Musa traveled with a reported retinue of 60,000 people and distributed gold so freely in Cairo and along the route that he caused a decade-long inflation across Egypt and the Mediterranean. Gold\'s value dropped. Prices rose. Egyptian merchants complained for years afterward.',
