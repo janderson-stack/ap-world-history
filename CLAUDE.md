@@ -5,6 +5,21 @@
 - Always commit and push directly to `main`.
 - Do not create feature branches or pull requests.
 
+## Classroom Flow Standard
+
+Every lesson page (Unit and Foundations) **must** display the same three-card Classroom Flow inside a `.lesson-roadmap` container. The three steps are fixed — never customized per lesson:
+
+```html
+<div class="lesson-roadmap">
+  <div class="roadmap-step"><strong>1. Build Context</strong>Review the targets, examine the map, and read the First &amp; 10 narrative.</div>
+  <div class="roadmap-step"><strong>2. Learn &amp; Practice</strong>Use the module cards, then move into the main lecture-card section.</div>
+  <div class="roadmap-step"><strong>3. Check Understanding</strong>Complete checkpoints with self-check and response tools.</div>
+</div>
+```
+
+- Unit lesson pages: the `.lesson-roadmap` div is hardcoded in the HTML.
+- Foundations pages: the renderer populates `id="block-plan-roadmap"` (which has `class="lesson-roadmap"`) with the same three `.roadmap-step` divs. The Foundations `blockPlan` data array is ignored for display — it exists only as instructor reference material.
+
 ## First & 10 Reading Standard
 
 Every First & 10 reading **must** follow the Topic 1.1 structure exactly. This rule applies to all units and foundations.

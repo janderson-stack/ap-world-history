@@ -33,7 +33,7 @@ const blockPlan=T.blockPlan||[
   ['80-90','Checkpoint','Complete the exit ticket and confidence reflection.']
 ];
 const _targets=byId('inline-targets')||byId('targets');if(_targets)_targets.innerHTML=`<div class="target-strip"><article class="foundation-card"><h3>Learning Targets</h3><ul>${T.learningTargets.map(x=>`<li>${x}</li>`).join('')}</ul></article><article class="foundation-card"><h3>Success Criteria</h3><ul>${T.successCriteria.map(x=>`<li>${x}</li>`).join('')}</ul></article></div>`;
-const _roadmap=byId('block-plan-roadmap');if(_roadmap)_roadmap.innerHTML=`<table class="mini-table"><tr><th>Time</th><th>Move</th><th>Purpose</th></tr>${blockPlan.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table>`;
+const _roadmap=byId('block-plan-roadmap');if(_roadmap)_roadmap.innerHTML=`<div class="roadmap-step"><strong>1. Build Context</strong>Review the targets, examine the map, and read the First &amp; 10 narrative.</div><div class="roadmap-step"><strong>2. Learn &amp; Practice</strong>Use the module cards, then move into the main lecture-card section.</div><div class="roadmap-step"><strong>3. Check Understanding</strong>Complete checkpoints with self-check and response tools.</div>`;
 const command=document.querySelector('#command .foundations-grid');
 if(command){command.insertAdjacentHTML('afterend',`<article class="foundation-card block-plan-card"><h3>90-Minute Block Plan</h3><table class="mini-table"><tr><th>Time</th><th>Move</th><th>Purpose</th></tr>${blockPlan.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table></article>`);}
 const modules=[
