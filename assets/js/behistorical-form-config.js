@@ -54,6 +54,7 @@ window.BH_FORM = {
     '4.2': '4.2 - Exploration: Causes and Events',
     '4.3': '4.3 - Columbian Exchange',
     '4.4': '4.4 - Maritime Empires Established',
+    '4.5': '4.5 - Maritime Empires Maintained',
   },
 
   // Must match Google Form multiple-choice option text exactly.
