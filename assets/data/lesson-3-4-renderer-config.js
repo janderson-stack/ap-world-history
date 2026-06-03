@@ -21,16 +21,16 @@
   };
 
   lesson.stableImages = {
-    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png'
+    map:             'https://commons.wikimedia.org/wiki/Special:FilePath/World_1700_CE.png',
+    first10:         'https://commons.wikimedia.org/wiki/Special:FilePath/Suleiman_the_Magnificent_of_the_Ottoman_Empire.jpg',
+    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Shah_Abbas_I.jpg',
+    beSurreal:       'https://commons.wikimedia.org/wiki/Special:FilePath/Akbar_receiving_nobles.jpg',
+    skill:           'https://commons.wikimedia.org/wiki/Special:FilePath/Qianlong_Emperor.jpg',
+    checkpoint1:     'https://commons.wikimedia.org/wiki/Special:FilePath/Ottoman_empire_1359_to_1839.gif',
+    evidence:        'https://commons.wikimedia.org/wiki/Special:FilePath/Mughal_Empire_1700_map.png',
+    source:          'https://commons.wikimedia.org/wiki/Special:FilePath/Topkapi_Palace_Istanbul.jpg',
+    beInTheRoom:     'https://commons.wikimedia.org/wiki/Special:FilePath/Topkapi_Palace_Bosphorus.JPG',
+    checkpoint2:     'https://commons.wikimedia.org/wiki/Special:FilePath/Safavid_Empire_Map.png'
   };
 
   lesson.beInTheRoom = {
