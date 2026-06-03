@@ -46,6 +46,10 @@ window.BH_FORM = {
     '2.5': '2.5 - Cultural Consequences of Connectivity',
     '2.6': '2.6 - Environmental Consequences of Connectivity',
     '2.7': '2.7 - Comparison of Economic Exchange',
+    '3.1': '3.1 - Empires Expand',
+    '3.2': '3.2 - Empires Administration',
+    '3.3': '3.3 - Empires and Belief Systems',
+    '3.4': '3.4 - Comparison in Land-Based Empires',
   },
 
   // Must match Google Form multiple-choice option text exactly.
