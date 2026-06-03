@@ -55,6 +55,8 @@ window.BH_FORM = {
     '4.3': '4.3 - Columbian Exchange',
     '4.4': '4.4 - Maritime Empires Established',
     '4.5': '4.5 - Maritime Empires Maintained',
+    '4.6': '4.6 - Internal and External Challenges',
+    '4.7': '4.7 - Changing Social Hierarchies',
   },
 
   // Must match Google Form multiple-choice option text exactly.
