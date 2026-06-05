@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | At the Harbor of Kilwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .role-shell{max-width:1180px;margin:0 auto;padding:24px}
+    .role-hero{background:linear-gradient(160deg,#1A1C1D 0%,#1E2B35 55%,#162028 100%);border-radius:28px;padding:42px 28px;color:var(--warm-paper);box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.35)}
+    .role-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.2rem,6vw,5rem);line-height:1.02;margin:10px 0}
+    .hero-sub{font-family:"Cinzel",Georgia,serif;color:rgba(201,164,106,.7);font-size:clamp(1rem,2.5vw,1.3rem);margin:0 0 16px;font-weight:700;letter-spacing:.05em}
+    .role-hero .scene-text{max-width:860px;font-size:1.04rem;line-height:1.72;color:rgba(245,240,231,.9);margin:18px 0 24px;font-style:italic;border-left:3px solid rgba(201,164,106,.4);padding-left:18px}
+    .role-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:24px 0}
+    .role-card{grid-column:span 6;background:var(--clean-paper);border:1px solid var(--paper-line);border-radius:20px;padding:22px;box-shadow:var(--soft-shadow)}
+    .role-card.full{grid-column:1/-1}
+    .role-card.third{grid-column:span 4}
+    .role-card.quarter{grid-column:span 3}
+    .role-card.eight{grid-column:span 8}
+    .role-card h2,.role-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0}
+    .tag{display:inline-flex;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);padding:5px 9px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin:4px 5px 4px 0}
+    .tag.gold{background:rgba(201,164,106,.2);color:var(--antique-gold);border:1px solid rgba(201,164,106,.4)}
+    .micro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .micro-card{background:#f7efe3;border:1px solid rgba(107,62,31,.16);border-radius:14px;padding:12px;font-size:.92rem;line-height:1.45}
+    .micro-card strong{display:block;color:var(--oxidized-brown);font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+    .decision-card{cursor:pointer;transition:.18s ease;border-top:6px solid var(--aged-iron)}
+    .decision-card:hover,.decision-card.selected{transform:translateY(-3px);border-top-color:var(--antique-gold);box-shadow:0 20px 54px rgba(0,0,0,.18)}
+    .decision-card.selected{outline:2px solid var(--antique-gold)}
+    .position-label{display:inline-block;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:var(--blackened-steel);color:var(--antique-gold);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+    .position-label.b{background:#2a2f32}
+    .coach-box{background:#f6efe3;border-left:6px solid var(--burnished-bronze);border-radius:16px;padding:18px;margin:12px 0;line-height:1.6}
+    .choice-summary{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border:1px solid rgba(201,164,106,.38);border-left:7px solid var(--antique-gold);border-radius:18px;padding:18px;margin:14px 0 18px}
+    .choice-summary h3{color:var(--antique-gold);margin:0 0 10px}
+    .choice-summary-value{font-family:"Montserrat",Arial,sans-serif;font-weight:900;color:var(--warm-paper);font-size:1.04rem}
+    .choice-summary-detail{font-size:.93rem;line-height:1.5;margin:6px 0 0;color:#e8e0d0}
+    .response-area{min-height:200px;width:100%;border:1px solid rgba(26,28,29,.18);border-radius:14px;padding:14px;font-family:"Libre Baskerville",Georgia,serif;font-size:1rem;line-height:1.7;background:#fffdf7;box-sizing:border-box;resize:vertical}
+    .response-area:focus{outline:none;box-shadow:var(--focus-ring);border-color:var(--antique-gold)}
+    .word-count{font-family:"Montserrat",Arial,sans-serif;font-size:.74rem;color:var(--oxidized-brown);margin-top:8px;font-weight:600}
+    .word-count.ok{color:#3a7d44}
+    .word-count.over{color:#b94a4a}
+    .selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.78rem;margin-top:4px;padding:10px 0}
+    .canvas-box{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border-radius:20px;padding:22px;border:1px solid rgba(201,164,106,.35)}
+    .canvas-box h3{color:var(--antique-gold)}
+    .doc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+    .doc-card{background:#fffdf7;border:1px solid rgba(107,62,31,.18);border-top:5px solid var(--aged-iron);border-radius:16px;padding:16px;cursor:pointer;transition:.18s ease;display:flex;flex-direction:column}
+    .doc-card:hover,.doc-card.selected{border-top-color:var(--antique-gold);box-shadow:0 12px 32px rgba(0,0,0,.14);transform:translateY(-2px)}
+    .doc-card.selected{outline:2px solid var(--antique-gold)}
+    .doc-num{font-family:"Montserrat",Arial,sans-serif;font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--burnished-bronze);margin-bottom:4px}
+    .doc-title{font-family:"Montserrat",Arial,sans-serif;font-weight:900;color:var(--blackened-steel);font-size:.9rem;margin:0 0 6px}
+    .doc-provenance{font-style:italic;font-size:.82rem;color:var(--oxidized-brown);margin:0 0 10px;line-height:1.4}
+    .doc-text{font-size:.88rem;line-height:1.55;color:#3a3530;flex:1;border-left:3px solid rgba(201,164,106,.3);padding-left:10px;margin:8px 0}
+    .doc-ap{margin-top:10px}
+    .doc-ap-label{font-family:"Montserrat",Arial,sans-serif;font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--muted-sandstone);margin-bottom:3px}
+    .doc-ap-text{font-size:.8rem;color:var(--oxidized-brown);line-height:1.4}
+    .copy-box{white-space:pre-wrap;background:#151718;color:#f5f0e7;border-radius:16px;border:1px solid rgba(201,164,106,.35);padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84rem;line-height:1.55;max-height:320px;overflow:auto;margin-top:12px}
+    .tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+    .stage-label{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--burnished-bronze);font-size:.72rem;margin-bottom:8px}
+    .check-result{font-family:"Montserrat",Arial,sans-serif;font-size:.78rem;margin-top:10px;color:var(--oxidized-brown);font-weight:600;line-height:1.5}
+    .constraint-list{list-style:none;padding:0;margin:12px 0 0}
+    .constraint-list li{padding:7px 0 7px 22px;position:relative;font-size:.93rem;line-height:1.5;border-bottom:1px solid rgba(107,62,31,.1)}
+    .constraint-list li:last-child{border-bottom:none}
+    .constraint-list li::before{content:"▸";position:absolute;left:0;color:var(--antique-gold);font-size:.8rem;top:9px}
+    .kc-list{list-style:none;padding:0;margin:10px 0 0}
+    .kc-list li{font-family:"Montserrat",Arial,sans-serif;font-size:.76rem;font-weight:700;background:#f1e6d3;color:var(--oxidized-brown);border-radius:6px;padding:4px 8px;margin-bottom:5px;display:inline-block;margin-right:4px}
+    .lo-block{background:#f7efe3;border-left:4px solid var(--antique-gold);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:.88rem;line-height:1.5}
+    .lo-block strong{color:var(--oxidized-brown);font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px}
+    .doc-selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.76rem;margin-top:14px;padding:8px 0;border-top:1px solid rgba(107,62,31,.15)}
+    .task-num-list{padding-left:20px;margin:12px 0}
+    .task-num-list li{margin-bottom:8px;line-height:1.55;font-size:.95rem}
+    .task-num-list li strong{color:var(--oxidized-brown)}
+    .target-note{font-family:"Montserrat",Arial,sans-serif;font-size:.82rem;font-weight:700;background:#f7efe3;border-radius:8px;padding:8px 12px;display:inline-block;margin:10px 0 14px;color:var(--oxidized-brown)}
+    @media(max-width:900px){.role-card,.role-card.third,.role-card.quarter,.role-card.eight{grid-column:1/-1}.role-shell{padding:12px}.micro-grid,.doc-grid{grid-template-columns:1fr}}
+    @media(max-width:600px){.doc-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="role-shell">
+
+    <nav class="topbar"><div class="nav"><a class="brand-mini" href="../../index.html"><img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a><div class="nav-links"><a href="../index.html">BeInTheRoom Hub</a><a href="../../unit-2/index.html">Unit 2</a></div></div></nav>
+
+    <header class="role-hero">
+      <div class="eyebrow">BeInTheRoom · Unit 2 · Topic 2.3</div>
+      <h1>At the Harbor of Kilwa</h1>
+      <p class="hero-sub">Where Every Wind Is a Decision</p>
+      <div>
+        <span class="tag gold">Kilwa Kisiwani · c. 1310 CE</span>
+        <span class="tag gold">AP Skill: Causation</span>
+        <span class="tag gold">LO&nbsp;E · F · G</span>
+        <span class="tag gold">Scenario 3 of 3 · Unit 2</span>
+      </div>
+      <p class="scene-text">The monsoon has brought gifts this week. Three dhows from Hormuz arrived at dawn — Persian merchants bearing glass, copper ingots, and a new shipment of cotton cloth from Gujarat. By midday, a vessel from Calicut had docked with pepper and cinnamon. And now, as the afternoon wind shifts and the harbor haze softens the skyline, an extraordinary ship sits anchored at the outer harbor.<br><br>She is Chinese. The largest vessel you have seen in twenty years of harbor work — a three-masted junk with red-lacquered railings and a hull deep enough to carry a fortune in porcelain. Her captain, a man named Chen Wulin, arrived at the customs house this morning bearing silk samples, a letter of introduction from a trading house in Quanzhou, and a proposal that has left you sitting quietly for the better part of an hour. Chen Wulin mentioned in passing that his trading house has expanded its Indian Ocean operations since the overland routes through Central Asia became — his word — &ldquo;uncertain.&rdquo;<br><br>Chen Wulin wants a long-term partnership. Not a single season&rsquo;s trade — a formal arrangement. Kilwa would become the Chinese vessel&rsquo;s designated port of call on the East African coast. In exchange: guaranteed access to Chinese porcelain, silk, and copper at fixed prices for five years. Exclusive berth rights. And a promise that Chen&rsquo;s trading house would bring three additional vessels next season.<br><br>It is extraordinary. And it is a problem.<br><br>The Arab and Persian merchants who built this harbor — who have traded here for generations, whose diasporic communities have shaped Kilwa&rsquo;s culture, its mosques, its language — are watching. Their representative, a Shirazi merchant named Hassan al-Farsi, has already sent word to your offices: <em>if the sultan signs an exclusive arrangement with the Chinese, the Hormuz network will take its trade to Mombasa.</em><br><br>Sultan Ibrahim ibn Sulayman has summoned you. He trusts your knowledge of the winds, the routes, the merchants, and the math. The decision is his. The counsel is yours.</p>
+      <div><a class="btn" href="#role">Your Role</a><a class="btn secondary" href="#evidence">Evidence</a><a class="btn secondary" href="#write">Write Your Advisory</a></div>
+    </header>
+
+    <main>
+
+      <!-- Historical Situation -->
+      <section class="role-grid" id="enter">
+        <article class="role-card full">
+          <div class="stage-label">Enter the Room</div>
+          <h2>Historical Situation</h2>
+          <p>You are entering one of the most consequential trade decisions in fourteenth-century East Africa. Kilwa Kisiwani sits at the center of the Indian Ocean world — connected by monsoon winds to Arabia, Persia, India, and now China. The city's wealth flows from controlling the gold trade out of the African interior. Its political legitimacy rests on being a reliable, open port for every merchant who arrives with the seasonal winds.</p>
+          <p>In this scenario, you are not choosing a role. You <em>are</em> Amara ibn Sulayman — harbor master, trade counselor, the person the sultan trusts most. Your task: read the situation, study the evidence, select a position, and write an advisory response to Sultan Ibrahim ibn Sulayman. Your argument must be historically grounded, acknowledge real tradeoffs, and demonstrate causal reasoning about the forces that made this moment possible.</p>
+          <div class="micro-grid">
+            <div class="micro-card"><strong>Technology &amp; Routes</strong>Chinese ship technology — larger hulls, superior compasses, greater cargo capacity — is reshaping what is possible in the Indian Ocean. The monsoon winds now carry vessels from Quanzhou to Kilwa.</div>
+            <div class="micro-card"><strong>Diaspora &amp; Identity</strong>Arab and Persian merchants have not just traded at Kilwa — they have lived here for generations, built mosques, married into Swahili families, and become part of the city's identity. Their departure would cost more than revenue.</div>
+            <div class="micro-card"><strong>Geography &amp; Competition</strong>Kilwa's power comes from its geographic position, its fresh water, and its reputation as a reliable port. But Mombasa is growing. Every decision the sultan makes is also a signal to every merchant on every route about whether Kilwa can be trusted.</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Role + AP Alignment -->
+      <section class="role-grid" id="role">
+        <article class="role-card eight">
+          <div class="stage-label">Your Role</div>
+          <h2>Amara ibn Sulayman</h2>
+          <p><strong>Chief Harbor Master &amp; Trade Counselor to Sultan Ibrahim ibn Sulayman of Kilwa</strong></p>
+          <p>You are the sultan's most trusted trade advisor — the person who knows which ships carry what cargo, which merchants can be trusted, and which winds bring opportunity. Your family has served the harbor for three generations.</p>
+          <p>You understand something that many advisors miss: Kilwa's wealth is not just about goods. It is about <em>position</em>. Kilwa sits at the junction of the monsoon routes that connect East Africa to Arabia, Persia, India, and now China. Every season, the north monsoon brings ships from the north and east; the south monsoon reverses the flow and carries them home. Your harbor operates because every merchant in the Indian Ocean knows that Kilwa is reliable, neutral, and prosperous.</p>
+          <p>That reputation took generations to build. What happens to it if the sultan makes the wrong choice today?</p>
+          <ul class="constraint-list">
+            <li>You serve the sultan — your recommendation must account for Kilwa's long-term political stability, not just this season's profit.</li>
+            <li>The Arab-Persian merchants are not just trading partners. Many have lived in Kilwa for decades. Their mosques, their language, their marriages into Swahili families — they are part of this city.</li>
+            <li>Chinese technology is genuinely impressive. You have seen the junk's navigation instruments. You know Chen Wulin's ship could carry five times what a dhow carries.</li>
+            <li>Hassan al-Farsi's threat to move the Hormuz network to Mombasa is credible. Mombasa is growing.</li>
+          </ul>
+        </article>
+        <article class="role-card third">
+          <div class="stage-label">AP Alignment</div>
+          <h2>Causation</h2>
+          <p style="font-size:.9rem;line-height:1.55">Students identify and explain causes of the growth of the Indian Ocean trade network, using historical evidence to construct and defend a causal argument.</p>
+          <div class="lo-block"><strong>Learning Objectives</strong>LO-E · Causes of trade network growth after 1200<br>LO-F · Effects of trade network growth<br>LO-G · Environmental factors in exchange networks</div>
+          <div style="margin-top:14px"><div style="font-family:'Montserrat',Arial,sans-serif;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);margin-bottom:6px">Key Concepts</div><ul class="kc-list"><li>KC-3.1.I.A.ii</li><li>KC-3.1.I.A.iii</li><li>KC-3.1.I.C.ii</li><li>KC-3.1.II.A.i</li><li>KC-3.1.III.B</li></ul></div>
+        </article>
+      </section>
+
+      <!-- The Decision -->
+      <section class="role-grid" id="decision">
+        <article class="role-card full">
+          <div class="stage-label">Step 1 — Choose Your Position</div>
+          <h2>The Central Question</h2>
+          <p style="font-size:1.05rem;line-height:1.65"><strong>Should Sultan Ibrahim grant Chen Wulin&rsquo;s Chinese trading house a long-term exclusive partnership — or should Kilwa protect its relationship with the established Arab-Persian trade network?</strong></p>
+          <p>Read both positions below. You may advocate for Position A, Position B, or propose a justified middle path — but you must defend your choice with specific historical evidence. Select the position closest to what you will argue.</p>
+        </article>
+        <article class="role-card decision-card" onclick="selectPosition('A',event)">
+          <div class="position-label">Position A</div>
+          <h3>Accept the Chinese Partnership</h3>
+          <p>Kilwa&rsquo;s growth depends on expanding its reach and diversifying its trading relationships. Chinese technology — larger ships, superior compass navigation, new cargo capacity — represents the next stage of Indian Ocean development. The monsoon winds already bring Chinese vessels this far; formalizing that relationship gives Kilwa first-mover advantage on the East African coast. The Arab-Persian merchants may threaten to leave, but Kilwa&rsquo;s harbor, its geographic position, and its fresh water make it indispensable. They will return.</p>
+          <div style="margin-top:10px"><span class="tag">KC-3.1.I.C.ii</span><span class="tag">KC-3.1.I.A.ii</span><span class="tag">KC-3.1.II.A.i</span></div>
+        </article>
+        <article class="role-card decision-card" onclick="selectPosition('B',event)">
+          <div class="position-label b">Position B</div>
+          <h3>Protect the Arab-Persian Network</h3>
+          <p>Kilwa&rsquo;s wealth, its political legitimacy, and its cultural identity were built through decades of integration with Arab and Persian merchants. The diasporic communities these merchants established are not just economic assets — they are the social fabric of the city. An exclusive Chinese arrangement could rupture those relationships permanently. Kilwa&rsquo;s power comes from being a reliable node in an existing network, not from gambling on a single new partner. Take the Chinese goods as seasonal trade, but do not sign an exclusive agreement.</p>
+          <div style="margin-top:10px"><span class="tag">KC-3.1.III.B</span><span class="tag">KC-3.1.I.A.iii</span><span class="tag">KC-3.1.I.A.ii</span></div>
+        </article>
+        <div class="role-card full" style="background:transparent;border:none;box-shadow:none;padding:0"><div class="selection-status" id="position-status">No position selected yet. Click a position above to proceed.</div></div>
+      </section>
+
+      <!-- Evidence -->
+      <section class="role-grid" id="evidence">
+        <article class="role-card full">
+          <div class="stage-label">Step 2 — Study the Evidence</div>
+          <h2>Documents Available to the Harbor Master</h2>
+          <p>Read all four documents. Select at least two you will use in your advisory response. Strong historical arguments name evidence <em>and</em> explain why it supports the position.</p>
+          <div class="doc-grid" id="doc-grid">
+
+            <div class="doc-card" onclick="toggleDoc('doc1',event)">
+              <div class="doc-num">Document 1</div>
+              <div class="doc-title">Harbor Records Excerpt</div>
+              <div class="doc-provenance">From Kilwa&rsquo;s customs house records, c. 1305–1310</div>
+              <div class="doc-text">In the past five seasons, the port of Kilwa has received vessels from: Hormuz (Persia), Aden (Yemen), Calicut (India), Quilon (India), and on two occasions, Quanzhou (China). The trade in gold from the interior — secured through the overland routes from Great Zimbabwe — continues to attract Persian and Indian buyers. The annual volume of copper, cloth, and porcelain imported has increased by an estimated one-third since 1295. The harbor berth fee schedule currently charges a 5% levy on declared cargo value.</div>
+              <div class="doc-ap"><div class="doc-ap-label">AP Connection</div><div class="doc-ap-text">KC-3.1.I.A.ii — Demonstrates volume growth and expanded geographic range of Indian Ocean trade</div></div>
+            </div>
+
+            <div class="doc-card" onclick="toggleDoc('doc2',event)">
+              <div class="doc-num">Document 2</div>
+              <div class="doc-title">Letter from Hassan al-Farsi</div>
+              <div class="doc-provenance">Delivered to the harbor master&rsquo;s office the morning of Chen Wulin&rsquo;s arrival</div>
+              <div class="doc-text">&ldquo;To Amara ibn Sulayman, greetings. I write as representative of the Shirazi and Hormuz merchants who have traded at Kilwa for forty years. We have built mosques here. Our children were born here. We are not visitors — we are residents. I must inform you plainly: if the sultan grants exclusivity to the Chinese, the merchants of Hormuz, Aden, and Siraf will redirect their routes to Mombasa. We do not make this threat lightly. We make it because Kilwa&rsquo;s value to us is as an open port, not a Chinese satellite.&rdquo;</div>
+              <div class="doc-ap"><div class="doc-ap-label">AP Connection</div><div class="doc-ap-text">KC-3.1.III.B — Diasporic merchant communities as cultural and political forces in trading cities</div></div>
+            </div>
+
+            <div class="doc-card" onclick="toggleDoc('doc3',event)">
+              <div class="doc-num">Document 3</div>
+              <div class="doc-title">Chen Wulin&rsquo;s Proposal (translated excerpt)</div>
+              <div class="doc-provenance">Presented at the Kilwa customs house, written in Arabic with a Chinese seal</div>
+              <div class="doc-text">&ldquo;The trading house of Chen and Associates, operating from Quanzhou, proposes the following arrangement: five years of priority trade at Kilwa, with guaranteed annual delivery of: 2,000 bolts of silk, 500 units of fine porcelain, and 800 catties of copper. In exchange, we request: (1) guaranteed berth priority for our vessels, (2) a fixed customs rate of 4% for the duration of the agreement, and (3) first right of refusal on Kilwa&rsquo;s gold and ivory exports. We carry the finest compass instruments and the largest hulls on these routes. We will make Kilwa the greatest port in East Africa.&rdquo;</div>
+              <div class="doc-ap"><div class="doc-ap-label">AP Connection</div><div class="doc-ap-text">KC-3.1.I.C.ii — Chinese technology (compass, large ships) as a driver of Indian Ocean trade expansion</div></div>
+            </div>
+
+            <div class="doc-card" onclick="toggleDoc('doc4',event)">
+              <div class="doc-num">Document 4</div>
+              <div class="doc-title">Seasonal Wind Chart (Descriptive)</div>
+              <div class="doc-provenance">From the harbor master&rsquo;s reference notes, maintained across generations</div>
+              <div class="doc-text">&ldquo;The northeast monsoon arrives in November and carries ships from Arabia, Persia, and India southward along the coast. It reverses in April, becoming the southwest monsoon, which carries vessels northward and homeward. A ship from Quanzhou, China, can reach Kilwa by sailing with the northeast monsoon from the Straits of Malacca to Ceylon to the Malabar Coast to the East African coast — a journey of several months. The return journey reverses the route entirely. Any merchant who does not understand the monsoon calendar cannot operate profitably on these routes.&rdquo;</div>
+              <div class="doc-ap"><div class="doc-ap-label">AP Connection</div><div class="doc-ap-text">KC-3.1.II.A.i — Environmental knowledge (monsoon winds) as the foundation of Indian Ocean trade logistics</div></div>
+            </div>
+
+          </div>
+          <div class="doc-selection-status" id="doc-status">No documents selected yet. Select at least two.</div>
+        </article>
+      </section>
+
+      <!-- Writing Task -->
+      <section class="role-grid" id="write">
+        <article class="role-card full">
+          <div class="stage-label">Step 3 — Write Your Advisory</div>
+          <h2>Advise the Sultan</h2>
+          <p>You have read the documents. You know the trade winds. You know what is at stake. Write your advisory response to Sultan Ibrahim. Your voice should be deliberate and grounded — you are advising a sultan, not writing a modern essay.</p>
+          <ol class="task-num-list">
+            <li><strong>State your position clearly</strong> — Accept the Chinese partnership, or protect the Arab-Persian network? If you propose a middle path, you must justify it with evidence.</li>
+            <li><strong>Identify at least two causes</strong> of Indian Ocean trade growth that make Kilwa&rsquo;s decision significant. What forces created this moment?</li>
+            <li><strong>Use specific evidence</strong> from at least two of the documents above.</li>
+            <li><strong>Acknowledge the tradeoff</strong> — what does Kilwa risk with your recommendation? Who might oppose it, and why?</li>
+          </ol>
+          <div class="target-note">Target length: 150–250 words &nbsp;·&nbsp; Aim for deliberate, evidence-grounded counsel</div>
+
+          <div class="choice-summary" id="choice-summary">
+            <h3>Your Current Position</h3>
+            <div class="choice-summary-value" id="summary-position">No position selected yet.</div>
+            <p class="choice-summary-detail" id="summary-detail">Choose a position above before writing your advisory.</p>
+          </div>
+
+          <textarea class="response-area" id="advisory-response" placeholder="My counsel to Sultan Ibrahim ibn Sulayman: …" oninput="updateWordCount()"></textarea>
+          <div class="word-count" id="word-count">0 words &nbsp;·&nbsp; target: 150–250</div>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft()">Save Draft</button>
+            <button class="btn secondary" onclick="runSelfCheck()">Run Self-Check</button>
+          </div>
+          <div class="check-result" id="draft-result"></div>
+        </article>
+      </section>
+
+      <!-- Submit & Coach -->
+      <section class="role-grid" id="submit">
+        <article class="role-card">
+          <div class="stage-label">Step 4 — Submit</div>
+          <h3>Submit to Google Form</h3>
+          <p>When your advisory response is complete, open the Google Form. The form will load with your unit, topic, and activity pre-filled. Copy your response from the textarea above and paste it into the form.</p>
+          <div class="tool-row">
+            <button class="btn" onclick="openGoogleForm()">Open Google Form</button>
+          </div>
+          <div class="check-result" id="form-result"></div>
+        </article>
+        <article class="role-card">
+          <div class="stage-label">Step 5 — AI Coach</div>
+          <h3>MagicSchool Historical Thinking Coach</h3>
+          <p>After submitting, use this pre-written prompt with the BeInTheRoom Historical Thinking Coach in MagicSchool. The coach will question your reasoning and help you think more deeply — it will not write your response for you.</p>
+          <div class="tool-row">
+            <button class="btn" onclick="buildAndCopyPrompt()">Build &amp; Copy Coach Prompt</button>
+            <a class="btn secondary" href="#" target="_blank" rel="noopener" id="magicschool-link">Open MagicSchool</a>
+          </div>
+          <div class="copy-box" id="coach-copy">Click &ldquo;Build &amp; Copy Coach Prompt&rdquo; to generate a personalized prompt that includes your position and draft advisory.</div>
+          <div class="check-result" id="coach-result"></div>
+        </article>
+      </section>
+
+      <!-- Self-Check Results Panel -->
+      <section class="role-grid">
+        <article class="role-card full canvas-box">
+          <h3>AP Skill Prompt — Causation</h3>
+          <p>Using evidence from Kilwa&rsquo;s position in the Indian Ocean trading network, explain <strong>at least two causes</strong> of the growth of Indian Ocean trade after 1200. Then take a position on the decision facing the sultan: should Kilwa commit to the Chinese partnership or protect the established Arab-Persian network? Defend your position using specific historical evidence.</p>
+          <p style="margin-top:12px;font-size:.9rem;color:rgba(245,240,231,.75)">Your advisory response is your answer to this AP skill prompt. When you revise with the MagicSchool coach, return to this question and test whether your response clearly addresses it.</p>
+        </article>
+      </section>
+
+    </main>
+  </div>
+
+<script>
+const FORM_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url' +
+  '&entry.125385659=Unit+2' +
+  '&entry.187055090=Topic+2.3' +
+  '&entry.1549761827=2.3-beintheroom' +
+  '&entry.2107637366=BeInTheRoom' +
+  '&entry.1963461515=Causation';
+
+const MAGICSCHOOL_URL = 'https://student.magicschool.ai/s/login?joinCode=czwb9Q';
+
+const COACH_PROMPT_BASE = `I am working on a BeInTheRoom scenario set in Kilwa, East Africa, around 1310 CE. I am playing Amara ibn Sulayman, the harbor master and trade advisor to the Sultan of Kilwa. A Chinese merchant captain has arrived with a proposal for an exclusive long-term trade partnership. If the sultan accepts, the established Arab-Persian merchant network may leave for a rival port. I need to advise the sultan.
+
+Here is my response so far:
+
+[PASTE YOUR RESPONSE HERE]
+
+Please help me strengthen my historical thinking. Ask me one question at a time. Do not write my response for me.`;
+
+const positions = {
+  A: {
+    label: 'Position A — Accept the Chinese Partnership',
+    detail: 'Kilwa\'s growth depends on expanding its reach and diversifying its trading relationships. Chinese technology represents the next stage of Indian Ocean development. Formalize the partnership to secure first-mover advantage on the East African coast.'
+  },
+  B: {
+    label: 'Position B — Protect the Arab-Persian Network',
+    detail: 'Kilwa\'s wealth, legitimacy, and cultural identity were built through decades of integration with Arab and Persian merchants. An exclusive Chinese arrangement risks rupturing those relationships permanently. Maintain Kilwa as a reliable open port.'
+  }
+};
+
+let selectedPosition = '';
+let selectedDocs = [];
+
+function selectPosition(id, event) {
+  selectedPosition = id;
+  document.querySelectorAll('.decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  const pos = positions[id];
+  document.getElementById('position-status').textContent = 'Selected: ' + pos.label;
+  document.getElementById('summary-position').textContent = pos.label;
+  document.getElementById('summary-detail').textContent = pos.detail;
+  saveState();
+}
+
+function toggleDoc(id, event) {
+  const card = event.currentTarget;
+  if (selectedDocs.includes(id)) {
+    selectedDocs = selectedDocs.filter(x => x !== id);
+    card.classList.remove('selected');
+  } else {
+    selectedDocs.push(id);
+    card.classList.add('selected');
+  }
+  const count = selectedDocs.length;
+  const statusEl = document.getElementById('doc-status');
+  if (count === 0) {
+    statusEl.textContent = 'No documents selected yet. Select at least two.';
+  } else if (count === 1) {
+    statusEl.textContent = '1 document selected. Select at least one more.';
+  } else {
+    statusEl.textContent = count + ' documents selected: ' + selectedDocs.map(d => 'Document ' + d.replace('doc', '')).join(', ') + '.';
+  }
+  saveState();
+}
+
+function updateWordCount() {
+  const text = document.getElementById('advisory-response').value.trim();
+  const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
+  const el = document.getElementById('word-count');
+  el.textContent = words + ' words · target: 150–250';
+  el.className = 'word-count' + (words >= 150 && words <= 250 ? ' ok' : words > 250 ? ' over' : '');
+  saveState();
+}
+
+function saveDraft() {
+  const text = document.getElementById('advisory-response').value;
+  localStorage.setItem('kilwa-harbor-draft', text);
+  document.getElementById('draft-result').textContent = 'Draft saved on this device.';
+}
+
+function loadDraft() {
+  const saved = localStorage.getItem('kilwa-harbor-draft');
+  if (saved) {
+    document.getElementById('advisory-response').value = saved;
+    updateWordCount();
+  }
+}
+
+function saveState() {
+  const text = document.getElementById('advisory-response').value;
+  localStorage.setItem('kilwa-harbor-state', JSON.stringify({ selectedPosition, selectedDocs, draft: text }));
+}
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('kilwa-harbor-state') || '{}');
+    selectedPosition = saved.selectedPosition || '';
+    selectedDocs = Array.isArray(saved.selectedDocs) ? saved.selectedDocs : [];
+    if (saved.draft) {
+      document.getElementById('advisory-response').value = saved.draft;
+      updateWordCount();
+    }
+  } catch (e) {}
+}
+
+function applySavedSelections() {
+  if (selectedPosition) {
+    const pos = positions[selectedPosition];
+    document.getElementById('position-status').textContent = 'Selected: ' + pos.label;
+    document.getElementById('summary-position').textContent = pos.label;
+    document.getElementById('summary-detail').textContent = pos.detail;
+    document.querySelectorAll('.decision-card').forEach((card, i) => {
+      if ((selectedPosition === 'A' && i === 0) || (selectedPosition === 'B' && i === 1)) {
+        card.classList.add('selected');
+      }
+    });
+  }
+  if (selectedDocs.length) {
+    const cards = document.querySelectorAll('.doc-card');
+    ['doc1','doc2','doc3','doc4'].forEach((id, i) => {
+      if (selectedDocs.includes(id) && cards[i]) cards[i].classList.add('selected');
+    });
+    const count = selectedDocs.length;
+    document.getElementById('doc-status').textContent = count + ' document' + (count !== 1 ? 's' : '') + ' selected: ' + selectedDocs.map(d => 'Document ' + d.replace('doc', '')).join(', ') + '.';
+  }
+}
+
+function runSelfCheck() {
+  const text = (document.getElementById('advisory-response').value || '').toLowerCase();
+  const words = text.split(/\s+/).filter(Boolean).length;
+
+  const tradeTerms = ['compass','astrolabe','dhow','junk','hull','cargo','navigation','ship','vessel'];
+  const networkTerms = ['monsoon','indian ocean','silk','overland','maritime','routes','network','trade'];
+  const keyTerms = ['diasporic','diaspora','community','communities','merchants','persian','arab','chinese','swahili','kilwa','mombasa','hormuz','quanzhou'];
+  const causation = ['caused by','led to','resulted from','because','enabled','drove','expanded','growth of'];
+  const tradeoff = ['risk','lose','threaten','cost','sacrifice','alternative','oppose','however','but','tradeoff'];
+
+  const found = (arr) => arr.filter(t => text.includes(t));
+  const techFound = found(tradeTerms);
+  const networkFound = found(networkTerms);
+  const keyFound = found(keyTerms);
+  const causFound = found(causation);
+  const tradeFound = found(tradeoff);
+
+  const hasPosition = !!selectedPosition;
+  const hasDocs = selectedDocs.length >= 2;
+  const hasWords = words >= 150;
+
+  let feedback = [];
+  if (!hasPosition) feedback.push('Select a position above before writing.');
+  if (!hasDocs) feedback.push('Select at least two documents from the evidence section.');
+  if (!hasWords) feedback.push('Your response is ' + words + ' words — aim for at least 150.');
+  if (causFound.length === 0) feedback.push('Add causal language (e.g., "because," "led to," "enabled") to explain why Indian Ocean trade grew.');
+  if (tradeFound.length === 0) feedback.push('Acknowledge a tradeoff or risk with your recommendation.');
+  if (keyFound.length < 3) feedback.push('Name specific places, people, or groups: Kilwa, Hassan al-Farsi, the Shirazi merchants, Mombasa, Chen Wulin.');
+
+  let result = '✔ Self-check: ' + words + ' words.';
+  if (techFound.length) result += ' Technology terms: ' + techFound.join(', ') + '.';
+  if (networkFound.length) result += ' Network terms: ' + networkFound.join(', ') + '.';
+  if (causFound.length) result += ' Causation markers found.';
+  if (tradeFound.length) result += ' Tradeoff language found.';
+
+  if (feedback.length) {
+    result += '\n\nTo strengthen your advisory:\n• ' + feedback.join('\n• ');
+  } else {
+    result += '\n\nYour response addresses the key requirements. Review it once more for clarity before submitting.';
+  }
+
+  document.getElementById('draft-result').textContent = result;
+}
+
+function openGoogleForm() {
+  window.open(FORM_BASE, '_blank');
+  document.getElementById('form-result').textContent = 'Google Form opened. Copy your advisory from the textarea above and paste it into the response field.';
+}
+
+function buildAndCopyPrompt() {
+  const draft = document.getElementById('advisory-response').value.trim();
+  const posLabel = selectedPosition ? positions[selectedPosition].label : 'Position not yet selected';
+  const docLabels = selectedDocs.length ? selectedDocs.map(d => 'Document ' + d.replace('doc', '')).join(', ') : 'No documents selected';
+
+  const personalizedPrompt = `I am working on a BeInTheRoom scenario set in Kilwa, East Africa, around 1310 CE. I am playing Amara ibn Sulayman, the harbor master and trade advisor to the Sultan of Kilwa. A Chinese merchant captain has arrived with a proposal for an exclusive long-term trade partnership. If the sultan accepts, the established Arab-Persian merchant network may leave for a rival port. I need to advise the sultan.
+
+My position: ${posLabel}
+Documents I used: ${docLabels}
+
+Here is my advisory response so far:
+
+${draft || '[No draft written yet — paste your response here before using this prompt.]'}
+
+Please help me strengthen my historical thinking. Ask me one question at a time. Do not write my response for me.`;
+
+  document.getElementById('coach-copy').textContent = personalizedPrompt;
+
+  navigator.clipboard.writeText(personalizedPrompt)
+    .then(() => document.getElementById('coach-result').textContent = 'Prompt copied. Paste it into MagicSchool to begin coaching.')
+    .catch(() => document.getElementById('coach-result').textContent = 'Copy failed — select the prompt text above and copy manually.');
+
+  document.getElementById('magicschool-link').href = MAGICSCHOOL_URL;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  applySavedSelections();
+});
+</script>
+</body>
+</html>
