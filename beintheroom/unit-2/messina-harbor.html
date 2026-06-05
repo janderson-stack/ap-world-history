@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | The Ships in the Harbor at Messina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .role-shell{max-width:1180px;margin:0 auto;padding:24px}
+    .role-hero{background:linear-gradient(160deg,rgba(26,28,29,.96) 0%,rgba(43,47,49,.98) 100%);border-radius:28px;padding:48px 36px 42px;color:var(--warm-paper);box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.35)}
+    .role-hero .eyebrow{font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.18em;color:var(--antique-gold);margin-bottom:10px}
+    .role-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.2rem,5.5vw,5rem);line-height:1.02;margin:6px 0 4px}
+    .role-hero .subtitle{font-family:"Cinzel",Georgia,serif;color:rgba(245,240,231,.7);font-size:clamp(1rem,2.4vw,1.45rem);font-style:italic;margin:0 0 18px}
+    .role-hero p{max-width:880px;font-size:1.04rem;line-height:1.65;margin:0 0 24px;color:rgba(245,240,231,.88)}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(201,164,106,.14);border:1px solid rgba(201,164,106,.3);border-radius:999px;padding:5px 12px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--antique-gold)}
+    .role-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:24px 0}
+    .role-card{grid-column:span 6;background:var(--clean-paper);border:1px solid var(--paper-line);border-radius:20px;padding:26px;box-shadow:var(--soft-shadow)}
+    .role-card.full{grid-column:1/-1}
+    .role-card.third{grid-column:span 4}
+    .role-card.two-thirds{grid-column:span 8}
+    .role-card h2,.role-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0}
+    .role-card h3{font-size:1.08rem}
+    .stage-label{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.14em;color:var(--burnished-bronze);font-size:.7rem;margin-bottom:8px}
+    .tag{display:inline-flex;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);padding:5px 10px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin:3px 4px 3px 0}
+
+    /* Scene narrative */
+    .narrative-text{font-size:1.04rem;line-height:1.75;color:var(--ink)}
+    .narrative-text p{margin:0 0 1.1em}
+    .narrative-text p:last-child{margin:0}
+
+    /* Role context */
+    .role-context-box{background:#faf5ec;border-left:6px solid var(--antique-gold);border-radius:0 16px 16px 0;padding:18px 20px;margin:14px 0 0;line-height:1.65;font-size:1rem}
+    .constraint-list{margin:10px 0 0;padding-left:0;list-style:none}
+    .constraint-list li{position:relative;padding:8px 0 8px 22px;border-bottom:1px solid rgba(26,28,29,.08);font-size:.97rem;line-height:1.55}
+    .constraint-list li:last-child{border-bottom:none}
+    .constraint-list li::before{content:"▸";position:absolute;left:0;color:var(--antique-gold);font-size:.9rem;top:9px}
+    .unknown-list{margin:14px 0 0;padding-left:0;list-style:none}
+    .unknown-list li{position:relative;padding:8px 0 8px 22px;border-bottom:1px solid rgba(26,28,29,.08);font-size:.97rem;line-height:1.55;color:#555}
+    .unknown-list li:last-child{border-bottom:none}
+    .unknown-list li::before{content:"?";position:absolute;left:2px;color:var(--aged-iron);font-size:.9rem;font-weight:900;top:9px}
+
+    /* Decision cards */
+    .decision-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+    .decision-card{background:var(--clean-paper);border:2px solid var(--paper-line);border-top:6px solid var(--aged-iron);border-radius:18px;padding:22px;cursor:pointer;transition:.2s ease}
+    .decision-card:hover{border-top-color:var(--antique-gold);box-shadow:0 12px 40px rgba(0,0,0,.12);transform:translateY(-2px)}
+    .decision-card.selected{border-color:var(--antique-gold);border-top-color:var(--antique-gold);background:#fffdf5;box-shadow:0 12px 40px rgba(0,0,0,.15);transform:translateY(-2px)}
+    .decision-card h3{font-family:"Cinzel",Georgia,serif;font-size:1rem;margin:0 0 8px;color:var(--blackened-steel)}
+    .decision-card p{font-size:.94rem;line-height:1.55;margin:0 0 10px;color:#444}
+    .decision-card .evidence-anchor{font-family:"Montserrat",Arial,sans-serif;font-size:.7rem;font-weight:700;color:var(--burnished-bronze);text-transform:uppercase;letter-spacing:.08em}
+    .selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.78rem;margin-top:14px;padding:10px 14px;background:#f7efe3;border-radius:10px}
+    .selection-status.has-selection{background:#f0f7ec;color:#1a7340}
+
+    /* Evidence documents */
+    .doc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+    .doc-card{background:#faf5ec;border:1px solid rgba(107,62,31,.16);border-radius:16px;padding:20px}
+    .doc-num{font-family:"Montserrat",Arial,sans-serif;font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--burnished-bronze);margin-bottom:5px}
+    .doc-card h4{font-family:"Cinzel",Georgia,serif;font-size:.97rem;margin:0 0 10px;color:var(--blackened-steel)}
+    .doc-card blockquote{font-style:italic;font-size:.93rem;line-height:1.65;margin:0 0 10px;padding:0 0 0 14px;border-left:3px solid var(--antique-gold);color:#333}
+    .doc-ap{font-family:"Montserrat",Arial,sans-serif;font-size:.7rem;font-weight:700;color:var(--burnished-bronze);margin-top:8px;line-height:1.45}
+
+    /* Writing task */
+    .task-requirements{background:#f7efe3;border-radius:14px;padding:16px 18px;margin:14px 0;font-size:.96rem;line-height:1.65}
+    .task-requirements ol{margin:8px 0 0;padding-left:20px}
+    .task-requirements li{margin-bottom:6px}
+    .task-requirements li:last-child{margin:0}
+    .task-note{font-family:"Montserrat",Arial,sans-serif;font-size:.78rem;font-weight:700;color:var(--oxidized-brown);text-transform:uppercase;letter-spacing:.08em;margin-top:10px}
+    .response-area{min-height:200px;width:100%;border:1px solid rgba(26,28,29,.18);border-radius:14px;padding:16px;font-family:"Libre Baskerville",Georgia,serif;font-size:.98rem;line-height:1.7;background:#fffdf7;resize:vertical}
+    .response-area:focus{outline:none;box-shadow:var(--focus-ring);border-color:var(--antique-gold)}
+    .word-count{font-family:"Montserrat",Arial,sans-serif;font-size:.75rem;font-weight:700;color:var(--aged-iron);margin-top:6px}
+    .word-count.in-range{color:#1a7340}
+    .word-count.over-range{color:#c0392b}
+    .tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+    .check-result{font-family:"Montserrat",Arial,sans-serif;font-size:.76rem;font-weight:700;color:var(--burnished-bronze);margin-top:8px;min-height:1.2em}
+
+    /* Coach section */
+    .coach-prompt-box{white-space:pre-wrap;background:#151718;color:#f5f0e7;border-radius:16px;border:1px solid rgba(201,164,106,.35);padding:18px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84rem;line-height:1.55;max-height:400px;overflow:auto;margin-top:12px}
+    .coach-instructions{background:#f6efe3;border-left:6px solid var(--burnished-bronze);border-radius:0 14px 14px 0;padding:14px 18px;font-size:.96rem;line-height:1.6;margin-bottom:14px}
+
+    /* Submission / AP section */
+    .canvas-box{background:linear-gradient(160deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border-radius:20px;padding:24px;border:1px solid rgba(201,164,106,.35)}
+    .canvas-box h3{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);margin-top:0}
+    .ap-skill-box{background:#f7efe3;border-radius:14px;padding:16px 18px;margin-top:12px;font-size:.95rem;line-height:1.6}
+    .ap-skill-box strong{color:var(--oxidized-brown)}
+    .kc-list{margin:8px 0 0;padding-left:18px;font-size:.9rem}
+    .kc-list li{margin-bottom:4px}
+
+    /* Scoring guide */
+    .scoring-guide{background:linear-gradient(180deg,#1A1C1D,#2B2F31);border:1px solid rgba(201,164,106,.25);border-radius:20px;padding:24px;color:var(--warm-paper)}
+    .scoring-guide h2{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);margin-top:0;font-size:1.2rem}
+    .scoring-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:14px}
+    .scoring-table th{text-align:left;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--antique-gold);padding:8px 10px;border-bottom:1px solid rgba(201,164,106,.3)}
+    .scoring-table td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top;line-height:1.45;color:rgba(245,240,231,.9)}
+    .scoring-table tr:last-child td{border-bottom:none}
+    .scoring-table td:first-child{font-family:"Montserrat",Arial,sans-serif;font-weight:700;font-size:.78rem;color:var(--antique-gold)}
+    .terms-box{background:rgba(255,253,247,.06);border:1px solid rgba(201,164,106,.2);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:.88rem;line-height:1.6}
+    .terms-box h4{font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--antique-gold);margin:0 0 8px}
+    .terms-box p{margin:4px 0;color:rgba(245,240,231,.8)}
+    .terms-box strong{color:rgba(245,240,231,.95)}
+
+    @media(max-width:900px){
+      .role-card,.role-card.third,.role-card.two-thirds{grid-column:1/-1}
+      .role-shell{padding:12px}
+      .decision-pair,.doc-grid{grid-template-columns:1fr}
+      .role-hero{padding:32px 20px 28px}
+    }
+    @media print{.scoring-guide{display:none}}
+  </style>
+</head>
+<body>
+  <div class="role-shell">
+
+    <nav class="topbar">
+      <div class="nav">
+        <a class="brand-mini" href="../../index.html">
+          <img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo">
+          <span>BeHistorical</span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html">BeInTheRoom Hub</a>
+          <a href="../../unit-2/lesson-2-6-environmental-consequences.html">Back to 2.6</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="role-hero">
+      <div class="eyebrow">BeInTheRoom &middot; Unit 2 &middot; Topic 2.6</div>
+      <h1>The Ships in the Harbor at Messina</h1>
+      <p class="subtitle">The Routes That Carry Everything Also Carry This</p>
+      <div class="hero-meta">
+        <span class="hero-tag">Messina, Sicily, October 1347 CE</span>
+        <span class="hero-tag">AP Skill: Causation</span>
+        <span class="hero-tag">LO-K</span>
+        <span class="hero-tag">KC-3.1.IV</span>
+      </div>
+      <p>You are Marco di Catania, Port Captain and public health officer of Messina. Twelve Genoese ships have arrived from Caffa on the Black Sea. Most of the sailors are dead. The rats are already in the grain warehouses. The merchants want their cargo. The council is watching. You have to issue an order.</p>
+      <div><a class="btn" href="#scene">Enter the Room</a><a class="btn secondary" href="#decision">The Decision</a><a class="btn secondary" href="#evidence">Evidence</a><a class="btn secondary" href="#writing-task">Issue the Order</a></div>
+    </header>
+
+    <main>
+
+      <!-- STEP 1: SCENE -->
+      <section class="role-grid" id="scene">
+        <article class="role-card full">
+          <div class="stage-label">Step 1 &mdash; Enter the Room</div>
+          <h2>Historical Situation</h2>
+          <div class="narrative-text">
+            <p>Twelve Genoese trading ships arrived in the harbor of Messina three days ago. They came from Caffa, on the Black Sea — a Genoese trading colony on the far eastern edge of the Mediterranean world, the terminus of the overland routes that run all the way to China.</p>
+            <p>The harbormaster who processed their arrival sent you a message before dawn. He would not go near the ships again.</p>
+            <p>You have now seen what he saw. Most of the sailors are dead. The ones still alive are covered in black swellings — at the armpits, the groin, the neck — that weep blood and pus. The ships reek. The rats that came off the mooring lines before anyone could stop them are already in the grain warehouses near the docks.</p>
+            <p>You are Marco di Catania, Port Captain and public health officer of Messina. You have been managing this harbor for eleven years. You have seen plague ships before — the standard protocol is a forty-day quarantine period outside the harbor, <em>quarantina</em>, during which the crew either recovers or dies without infecting the city. But the <em>quarantina</em> protocol has never been tested against something like this.</p>
+            <p>The Genoese merchants who own the cargo aboard these ships are already at your office. They are not sick. They arrived in a separate vessel two days ahead of the fleet and have been lodging in the city since. Their cargo — spices, silk, and a quantity of porcelain — is worth a fortune, and they want it unloaded. They are threatening to go to the municipal council and argue that you are exceeding your authority.</p>
+            <p>The municipal council is already nervous. Messina is a trading city. Its wealth comes from the harbor. Every week a ship is quarantined outside the walls is a week of lost revenue, and the merchants of Messina have powerful friends. One council member has already sent you a note suggesting that if the sailors look healthy enough to be questioned, they look healthy enough to dock.</p>
+            <p>You have one more piece of information the council does not yet have. A letter arrived this morning from the port of Catania, forty miles south. Three ships from the same fleet — which stopped there first — have been impounded. The city of Catania reports that several dock workers who handled the mooring lines have fallen ill with swellings. The letter was written four days ago.</p>
+            <p>The rats are already in the grain warehouses.</p>
+            <p><strong>What do you do?</strong></p>
+          </div>
+        </article>
+      </section>
+
+      <!-- STEP 2: YOUR ROLE -->
+      <section class="role-grid" id="your-role">
+        <article class="role-card full">
+          <div class="stage-label">Step 2 &mdash; Your Role</div>
+          <h2>Marco di Catania, Port Captain and Public Health Officer of Messina</h2>
+          <div class="hero-meta" style="margin-bottom:14px">
+            <span class="tag">Eleven years managing this harbor</span>
+            <span class="tag">Authority subject to municipal council</span>
+            <span class="tag">Incomplete information</span>
+          </div>
+          <div class="role-context-box">
+            <p style="margin:0 0 10px">You are not a doctor. You are a logistics manager and an administrator, and your authority in this matter is real but limited. The municipal council can override you. The merchants have lawyers. And you have no way to know — no one does — exactly what you are looking at.</p>
+          </div>
+          <p style="margin:16px 0 6px"><strong>What you know:</strong></p>
+          <ul class="constraint-list">
+            <li>The trade routes that made Messina wealthy are the same routes that brought these ships here. Caffa sits at the end of the overland Silk Roads from China. What travels those routes does not stop at the goods in the hold.</li>
+            <li>The forty-day quarantine protocol, the <em>quarantina</em>, was developed after previous plague ships. It has never been tested against a disease of this apparent speed or severity.</li>
+            <li>The Genoese merchants are prominent figures in Mediterranean trade. Offending them has consequences far beyond this harbor.</li>
+            <li>The city of Catania is forty miles away and already reporting illness. The letter took four days to arrive.</li>
+            <li>The rats are in the grain warehouses.</li>
+          </ul>
+          <p style="margin:16px 0 6px"><strong>What you cannot know:</strong></p>
+          <ul class="unknown-list">
+            <li>How many people in Messina were already exposed before you took action.</li>
+            <li>Whether the <em>quarantina</em> protocol would have stopped this even if applied immediately on arrival.</li>
+            <li>What is happening in the rest of Sicily — or in Genoa, or in North Africa, or in the ports of France, toward which other ships from Caffa are already sailing.</li>
+          </ul>
+          <p style="margin:16px 0 0;font-size:.97rem;color:#555">You will make a decision with incomplete information. That is what this job requires.</p>
+        </article>
+      </section>
+
+      <!-- STEP 3: THE DECISION -->
+      <section class="role-grid" id="decision">
+        <article class="role-card full">
+          <div class="stage-label">Step 3 &mdash; The Decision</div>
+          <h2>What Does Port Captain di Catania Order?</h2>
+          <p><strong>Should the Genoese ships be removed from the harbor and all contact with the city suspended — or should the merchants' cargo be allowed to move under conditional restrictions?</strong></p>
+          <p>Choose the position you can best defend with evidence from the documents. A conditional middle course is acceptable but must be clearly justified.</p>
+          <div class="decision-pair">
+            <div class="decision-card" id="card-a" onclick="selectDecision('a')">
+              <h3>Position A — Full Quarantine and Removal</h3>
+              <p>The evidence is not ambiguous. The sailors are visibly dying. The city of Catania has already reported illness in dock workers who had contact with the same fleet. The rats — the probable vector — are already ashore.</p>
+              <p>Whatever this disease is, it travels with the ships, and the routes that brought these ships from Caffa to Messina brought it from somewhere much further east. The forty-day <em>quarantina</em> protocol exists for exactly this situation. Messina's long-term value as a trade city depends on it being a safe city. No merchant will dock here if the harbor is known to kill.</p>
+              <div class="evidence-anchor">Evidence: KC-3.1.IV — trade routes as vectors for pathogen diffusion</div>
+            </div>
+            <div class="decision-card" id="card-b" onclick="selectDecision('b')">
+              <h3>Position B — Conditional Access with Restrictions</h3>
+              <p>The cargo is already in Messina, in a sense — the Genoese merchants themselves are walking the streets. A full quarantine that extends to the cargo and the docks will destroy this season's trade and set a precedent that makes Messina's harbor unpredictable to every future merchant.</p>
+              <p>The sick sailors should be isolated. The cargo, sealed in crates in the holds, poses less risk than the merchants already ashore. Controlled unloading, with dock workers kept away from the crew, is a reasonable middle course. The <em>quarantina</em> protocol may be excessive for what is, so far, a localized outbreak.</p>
+              <div class="evidence-anchor">Evidence: KC-3.1.IV &middot; KC-3.3.II — trade disruption and city decline</div>
+            </div>
+          </div>
+          <div class="selection-status" id="decision-status">No position selected yet. Click a card above to choose.</div>
+        </article>
+      </section>
+
+      <!-- STEP 4: EVIDENCE DOCUMENTS -->
+      <section class="role-grid" id="evidence">
+        <article class="role-card full">
+          <div class="stage-label">Step 4 &mdash; Read the Evidence</div>
+          <h2>Primary Source Documents</h2>
+          <p>Read all four documents. Your written order must cite evidence from <strong>at least two</strong>. Strong arguments name the source and explain why it supports your decision — not just what it says.</p>
+          <div class="doc-grid">
+
+            <div class="doc-card">
+              <div class="doc-num">Document 1</div>
+              <h4>Report from the Harbormaster, Messina, October 1347</h4>
+              <blockquote>
+                "Captain. I have inspected the Genoese ships at anchor and I will not return to them. The crew of the lead vessel numbers perhaps forty men; I counted perhaps twelve still standing when I called across the water. Those who answered me showed black swellings at the neck and beneath the arms, weeping fluid. Several told me they had sailed from Caffa after a siege by Mongol forces who were themselves dying of this same sickness — and that the Mongols had thrown their dead over the walls into the city before withdrawing. I do not know what this is. I know I would not touch a mooring line from these ships for any cargo in the Mediterranean."
+                <footer style="margin-top:8px;font-style:normal;font-size:.84rem;color:#666">— Written and delivered to the Port Captain's office before dawn, three days after the fleet's arrival</footer>
+              </blockquote>
+              <div class="doc-ap"><strong>AP Connection:</strong> KC-3.1.IV — the plague's point of origin on the Central Asian trade routes; the Mongol siege of Caffa as the mechanism of transmission into the Mediterranean trading network.</div>
+            </div>
+
+            <div class="doc-card">
+              <div class="doc-num">Document 2</div>
+              <h4>Petition from the Genoese Merchants' Guild, Messina, October 1347</h4>
+              <blockquote>
+                "Port Captain di Catania. The cargo aboard our fleet represents eighteen months of trade across the Black Sea and overland routes to the east. The spices, silks, and porcelain in our holds are contracted to buyers in Messina, Palermo, and Naples. We arrived in good health and have had no contact with the sick sailors since leaving Caffa. The city's quarantine protocols apply to crew, not cargo, and our lawyers are prepared to argue this distinction before the council. We ask only that our cargo be unloaded. The sailors may remain aboard under whatever restrictions you deem necessary."
+                <footer style="margin-top:8px;font-style:normal;font-size:.84rem;color:#666">— Delivered to the Port Captain and copied to the municipal council</footer>
+              </blockquote>
+              <div class="doc-ap"><strong>AP Connection:</strong> The luxury goods trade (silk, spice, porcelain) driving the commercial practices that sustained Afro-Eurasian exchange networks; the entanglement of commercial interest and disease spread.</div>
+            </div>
+
+            <div class="doc-card">
+              <div class="doc-num">Document 3</div>
+              <h4>Letter from the Port Authority of Catania, Sicily, October 1347</h4>
+              <blockquote>
+                "To the authorities of Messina. We write to inform you that three vessels of the Genoese fleet from Caffa stopped in this harbor before proceeding north. We were unaware of the condition of their crew until two days after docking. Six of our dock workers who handled the mooring lines and assisted with unloading have now fallen ill with swellings of the neck and groin, high fever, and the blackening of extremities. Two have died. We have impounded the ships and suspended dock operations. We urge all ports receiving vessels from this fleet to take immediate precautionary measures. God protect us all."
+                <footer style="margin-top:8px;font-style:normal;font-size:.84rem;color:#666">— Written six days after the first ships docked at Catania; received in Messina four days after writing</footer>
+              </blockquote>
+              <div class="doc-ap"><strong>AP Connection:</strong> KC-3.1.IV — the plague spreading along established Mediterranean trade routes from port to port; the speed of transmission relative to the speed of information.</div>
+            </div>
+
+            <div class="doc-card">
+              <div class="doc-num">Document 4</div>
+              <h4>Sicilian Agricultural Census Record, c. 1340 (excerpted)</h4>
+              <blockquote>
+                "The grain stores of Messina support an estimated population of 35,000 persons within the city walls. The city imports additional foodstuffs — citrus fruits from North African trade partners, dried fish from Adriatic suppliers, spices from eastern routes via Genoa and Venice. The city's food security depends on the continued operation of its harbor and the trade networks it connects. Disruption of harbor operations for more than thirty days has historically produced food price instability and shortages in the winter months."
+                <footer style="margin-top:8px;font-style:normal;font-size:.84rem;color:#666">— From regional administrative records of the Kingdom of Sicily, summarized for the Port Captain's reference files</footer>
+              </blockquote>
+              <div class="doc-ap"><strong>AP Connection:</strong> KC-3.1.IV — the same trade networks that diffused crops (citrus, new foodstuffs) into the Mediterranean diet now serve as the vector for pathogen spread; the environmental consequences of connectivity cut in both directions.</div>
+            </div>
+
+          </div>
+        </article>
+      </section>
+
+      <!-- STEP 5: WRITING TASK -->
+      <section class="role-grid" id="writing-task">
+        <article class="role-card full">
+          <div class="stage-label">Step 5 &mdash; Issue the Order</div>
+          <h2>Your Task: Issue the Order</h2>
+          <p>The council is waiting. The merchants are waiting. The ships are in the harbor. Write your decision and your justification — the order you are issuing as Port Captain and the reasoning you will use to defend it.</p>
+          <div class="task-requirements">
+            <p style="margin:0 0 6px"><strong>Your response should:</strong></p>
+            <ol>
+              <li><strong>State your decision clearly</strong> — quarantine and remove the ships, allow conditional unloading, or another defensible course of action. You must commit to something.</li>
+              <li><strong>Explain the causes of the plague's spread</strong> along trade routes. How did this disease get from Central Asia to Messina? What features of the trade networks made that possible?</li>
+              <li><strong>Identify at least two effects</strong> of the plague's spread on human societies — economic, demographic, social, or political. Use evidence from the documents.</li>
+              <li><strong>Address the tradeoff</strong> — what does Messina lose if you quarantine? What does it risk if you don't?</li>
+            </ol>
+            <div class="task-note">Target length: 150–250 words &bull; You are writing an official order, not a reflective essay. Be direct. Name the stakes. You are not just managing a harbor — you are making a decision that will affect 35,000 people.</div>
+          </div>
+          <textarea class="response-area" id="report-response" placeholder="By the authority of my office as Port Captain of Messina, I hereby order..." oninput="updateWordCount()"></textarea>
+          <div class="word-count" id="word-count">0 words &mdash; target: 150–250</div>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft()">Save Draft</button>
+            <button class="btn secondary" onclick="buildCoachBlock()">Build MagicSchool Block</button>
+            <button class="btn secondary" onclick="openGoogleForm()">Submit to Google Form</button>
+          </div>
+          <div class="check-result" id="report-result"></div>
+        </article>
+      </section>
+
+      <!-- STEP 6: MAGICSCHOOL COACH -->
+      <section class="role-grid" id="ai-coach">
+        <article class="role-card full">
+          <div class="stage-label">Step 6 &mdash; AI Coach</div>
+          <h2>MagicSchool Coaching Prompt</h2>
+          <div class="coach-instructions">
+            <strong>How to use this tool:</strong> Click <em>Build MagicSchool Block</em> above to insert your response into the prompt below. Then click <em>Copy Prompt</em> and paste it into the MagicSchool BeInTheRoom Historical Thinking Coach. The coach will ask you one question at a time — it will not write your response for you.
+          </div>
+          <div class="tool-row" style="margin-top:0;margin-bottom:12px">
+            <button class="btn" onclick="buildCoachBlock()">Build MagicSchool Block</button>
+            <button class="btn secondary" onclick="copyCoachBlock()">Copy Prompt</button>
+            <a class="btn secondary" href="#" target="_blank" rel="noopener" id="magicschool-link">Open MagicSchool</a>
+          </div>
+          <div class="coach-prompt-box" id="coach-output">Click "Build MagicSchool Block" after writing your response — your text will be inserted into the coaching prompt automatically.</div>
+          <div class="check-result" id="coach-result"></div>
+        </article>
+      </section>
+
+      <!-- STEP 7: SUBMIT & AP SKILL -->
+      <section class="role-grid" id="submit">
+        <article class="role-card two-thirds canvas-box">
+          <h3>Submit Your Order</h3>
+          <p>After revising with the AI coach, submit your final response in the Google Form and in Canvas.</p>
+          <div class="tool-row">
+            <button class="btn" onclick="openGoogleForm()">Open Google Form</button>
+          </div>
+          <p style="margin-top:14px;font-size:.9rem;color:rgba(245,240,231,.75)"><strong>Canvas title:</strong> Topic 2.6 BeInTheRoom — The Ships in the Harbor at Messina</p>
+        </article>
+        <article class="role-card third">
+          <div class="stage-label">AP Alignment</div>
+          <h3>Causation</h3>
+          <div class="ap-skill-box">
+            <p style="margin:0 0 8px"><strong>AP Skill Prompt:</strong></p>
+            <p style="margin:0 0 10px;font-size:.93rem">Using evidence from the scenario and documents, explain the <strong>causes</strong> of the plague's spread along Afro-Eurasian trade routes and <strong>at least two effects</strong> of that spread. Then take a position on the decision before you.</p>
+            <p style="margin:0 0 6px"><strong>Key Concept:</strong></p>
+            <ul class="kc-list">
+              <li>KC-3.1.IV</li>
+            </ul>
+            <p style="margin:10px 0 4px"><strong>Learning Objective:</strong> K</p>
+            <p style="margin:8px 0 0;font-size:.88rem"><strong>Illustrative examples:</strong> Bubonic plague; crop diffusion (citrus, rice varieties); trade route connectivity as a dual-edged environmental force.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- SCORING GUIDE (teacher-facing, hidden in print) -->
+      <section class="role-grid">
+        <article class="role-card full scoring-guide">
+          <h2>Scoring Guide — Instructor Reference Only</h2>
+          <p style="color:rgba(245,240,231,.7);font-size:.9rem;margin:0 0 4px">Not visible to students in print. Hidden from print via CSS.</p>
+          <table class="scoring-table">
+            <thead>
+              <tr>
+                <th>Criterion</th>
+                <th>Strong</th>
+                <th>Developing</th>
+                <th>Missing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Decision</td>
+                <td>Clear order issued with rationale</td>
+                <td>Decision stated but underdeveloped</td>
+                <td>No decision taken</td>
+              </tr>
+              <tr>
+                <td>Causation — Causes</td>
+                <td>Explains how trade routes enabled plague spread from Central Asia to Mediterranean, with specificity</td>
+                <td>Plague spread mentioned but mechanism vague</td>
+                <td>No causal reasoning</td>
+              </tr>
+              <tr>
+                <td>Causation — Effects</td>
+                <td>Two or more effects identified (demographic, economic, social, political) with evidence</td>
+                <td>One effect mentioned</td>
+                <td>No effects discussed</td>
+              </tr>
+              <tr>
+                <td>Evidence</td>
+                <td>Specific evidence from two or more documents, named and applied</td>
+                <td>One document referenced; vague</td>
+                <td>No document evidence</td>
+              </tr>
+              <tr>
+                <td>Tradeoff</td>
+                <td>Both the cost of quarantine and the risk of non-quarantine addressed with specificity</td>
+                <td>Tradeoff mentioned but one-sided</td>
+                <td>No tradeoff acknowledged</td>
+              </tr>
+              <tr>
+                <td>Role Perspective</td>
+                <td>Response framed from the port captain's authority and constraints</td>
+                <td>Some role awareness</td>
+                <td>No role engagement</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="terms-box">
+            <h4>Evidence Terms for Response Analyzer</h4>
+            <p><strong>Plague:</strong> plague, Black Death, bubonic, swellings, pathogen, disease, contagion, infection, rats, Caffa</p>
+            <p><strong>Trade routes:</strong> Silk Roads, Genoese, Mediterranean, Black Sea, overland, network, routes, cargo, ships</p>
+            <p><strong>Causation markers:</strong> caused by, spread through, transmitted, carried, enabled, because, therefore, resulted in</p>
+            <p><strong>Effects:</strong> died, population, labor, wages, disruption, social, economic, food, grain, city</p>
+            <p><strong>Decision:</strong> quarantine, quarantina, restrict, close, permit, allow, order, authority</p>
+          </div>
+        </article>
+      </section>
+
+    </main>
+  </div>
+
+<script>
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+2&entry.187055090=Topic+2.6&entry.1549761827=2.6-beintheroom&entry.2107637366=BeInTheRoom&entry.1963461515=Causation';
+const STORAGE_KEY = 'beintheroom-messina-harbor';
+
+const BASE_COACH_PROMPT = `I am working on a BeInTheRoom scenario set in Messina, Sicily, in October 1347 CE. I am playing Marco di Catania, the Port Captain and public health officer of Messina. Twelve Genoese trading ships have arrived from Caffa on the Black Sea — the terminus of the overland Silk Roads — with most of their crew dead or dying from what appears to be the bubonic plague. Rats from the ships have already reached the city's grain warehouses. Genoese merchants are pressuring me to allow their cargo to be unloaded. A letter has arrived from the nearby city of Catania reporting dock workers are already dying after contact with the same fleet.
+
+Here is my response so far:
+
+[STUDENT RESPONSE]
+
+Please help me strengthen my historical thinking. Ask me one question at a time. Do not write my response for me.`;
+
+let selectedPosition = '';
+
+function selectDecision(pos) {
+  selectedPosition = pos;
+  document.getElementById('card-a').classList.toggle('selected', pos === 'a');
+  document.getElementById('card-b').classList.toggle('selected', pos === 'b');
+  const label = pos === 'a'
+    ? 'Position A selected: Full Quarantine and Removal'
+    : 'Position B selected: Conditional Access with Restrictions';
+  const statusEl = document.getElementById('decision-status');
+  statusEl.textContent = label;
+  statusEl.classList.add('has-selection');
+  saveState();
+}
+
+function updateWordCount() {
+  const text = (document.getElementById('report-response').value || '').trim();
+  const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
+  const el = document.getElementById('word-count');
+  el.textContent = `${words} word${words !== 1 ? 's' : ''} — target: 150–250`;
+  el.className = 'word-count' + (words >= 150 && words <= 250 ? ' in-range' : words > 250 ? ' over-range' : '');
+  saveState();
+}
+
+function buildCoachBlock() {
+  const response = (document.getElementById('report-response').value || '').trim();
+  const inserted = response || '[No response written yet — write your order first, then build this block.]';
+  const prompt = BASE_COACH_PROMPT.replace('[STUDENT RESPONSE]', inserted);
+  document.getElementById('coach-output').textContent = prompt;
+  document.getElementById('coach-result').textContent = response
+    ? 'Coach block built. Click "Copy Prompt" and paste into MagicSchool.'
+    : 'Write your order first for the best coaching experience.';
+}
+
+function copyCoachBlock() {
+  const text = document.getElementById('coach-output').textContent;
+  if (!text || text.startsWith('Click')) { document.getElementById('coach-result').textContent = 'Build the block first.'; return; }
+  navigator.clipboard.writeText(text)
+    .then(() => document.getElementById('coach-result').textContent = 'Prompt copied! Paste it into MagicSchool.')
+    .catch(() => document.getElementById('coach-result').textContent = 'Copy failed. Select the text above and copy manually.');
+}
+
+function saveDraft() {
+  const val = document.getElementById('report-response').value || '';
+  localStorage.setItem(STORAGE_KEY + '-draft', val);
+  document.getElementById('report-result').textContent = 'Draft saved on this device.';
+  saveState();
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY + '-state', JSON.stringify({
+      selectedPosition,
+      response: document.getElementById('report-response').value || ''
+    }));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY + '-state') || '{}');
+    if (saved.selectedPosition) selectDecision(saved.selectedPosition);
+    const draft = localStorage.getItem(STORAGE_KEY + '-draft') || saved.response || '';
+    if (draft) {
+      document.getElementById('report-response').value = draft;
+      updateWordCount();
+    }
+  } catch(e) {}
+}
+
+function openGoogleForm() {
+  window.open(GOOGLE_FORM_URL, '_blank', 'noopener');
+}
+
+document.addEventListener('input', e => {
+  if (e.target && e.target.id === 'report-response') updateWordCount();
+});
+
+loadState();
+</script>
+</body>
+</html>
