@@ -54,8 +54,8 @@
   };
 
   lesson.beInTheRoom = {
-    url: '../beintheroom/unit-2/silk-road-merchant.html',
-    desc: 'Become a Silk Road merchant in the 13th century, negotiate with caravanserai owners, and decide which goods to carry across Central Asia.'
+    url: '../beintheroom/unit-2/samarkand-caravanserai.html',
+    desc: 'Enter the caravanserai at Samarkand, 1220 CE. As chief advisor to a wealthy merchant lord, recommend whether to invest deeper in the Silk Roads or begin shifting operations to the Indian Ocean — and defend your counsel with historical evidence.'
   };
 
   lesson.beSurreal = {
