@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | Before the Walls of Constantinople</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .role-shell{max-width:1180px;margin:0 auto;padding:24px}
+    .role-hero{background:linear-gradient(160deg,#1a1c1d 0%,#231c15 45%,#1a1812 100%);border-radius:28px;padding:42px 28px;color:var(--warm-paper);box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.35)}
+    .role-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.2rem,6vw,4.8rem);line-height:1.02;margin:10px 0}
+    .hero-sub{font-family:"Cinzel",Georgia,serif;color:rgba(255,253,247,.72);font-size:1.22rem;font-weight:700;margin:0 0 6px;letter-spacing:.02em}
+    .hero-setting{font-family:"Montserrat",Arial,sans-serif;font-size:.82rem;color:rgba(255,253,247,.5);text-transform:uppercase;letter-spacing:.1em;margin:0 0 20px}
+    .scenario-meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 24px}
+    .meta-chip{display:inline-flex;border-radius:999px;padding:5px 12px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;border:1px solid rgba(201,164,106,.45);color:var(--antique-gold);background:rgba(201,164,106,.1)}
+    .meta-chip.skill{background:rgba(201,164,106,.22);border-color:rgba(201,164,106,.65)}
+    .role-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:24px 0}
+    .role-card{grid-column:span 6;background:var(--clean-paper);border:1px solid var(--paper-line);border-radius:20px;padding:22px;box-shadow:var(--soft-shadow)}
+    .role-card.full{grid-column:1/-1}
+    .role-card h2,.role-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0}
+    .stage-label{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--burnished-bronze);font-size:.72rem;margin-bottom:8px}
+    .narrative-text{font-family:"Libre Baskerville",Georgia,serif;line-height:1.78;color:var(--blackened-steel);font-size:1.01rem}
+    .narrative-text p{margin:0 0 1.2em}
+    .narrative-text p:last-child{margin-bottom:0}
+    .role-context-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    .role-context-panel{background:#f7efe3;border:1px solid rgba(107,62,31,.16);border-radius:14px;padding:16px}
+    .role-context-panel h4{font-family:"Montserrat",Arial,sans-serif;font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-weight:900;margin:0 0 10px}
+    .role-context-panel ul{margin:0;padding:0 0 0 18px;font-size:.92rem;line-height:1.68;font-family:"Libre Baskerville",Georgia,serif}
+    .role-context-panel ul li{margin-bottom:.5em}
+    .cannot-know-note{font-size:.88rem;font-family:"Libre Baskerville",Georgia,serif;margin-top:14px;line-height:1.6;color:var(--blackened-steel);font-style:italic}
+    .position-card{cursor:pointer;transition:.18s ease;border-top:6px solid var(--aged-iron)}
+    .position-card:hover,.position-card.selected{transform:translateY(-3px);border-top-color:var(--antique-gold);box-shadow:0 20px 54px rgba(0,0,0,.18)}
+    .position-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0;font-size:1.08rem}
+    .position-body{font-family:"Libre Baskerville",Georgia,serif;line-height:1.72;font-size:.97rem;color:var(--blackened-steel);margin:0 0 14px}
+    .evidence-anchor{font-style:italic;font-size:.88rem;color:var(--oxidized-brown);margin:14px 0 0;padding-top:14px;border-top:1px solid var(--paper-line)}
+    .selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.78rem;margin-top:4px}
+    .question-band{background:linear-gradient(160deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border:1px solid rgba(201,164,106,.3);border-left:7px solid var(--antique-gold);border-radius:16px;padding:18px 22px;margin-bottom:6px}
+    .question-band p{font-family:"Libre Baskerville",Georgia,serif;font-size:1.05rem;line-height:1.72;font-weight:700;margin:0;color:var(--warm-paper)}
+    .question-band .prompt-note{font-family:"Montserrat",Arial,sans-serif;font-size:.78rem;color:rgba(255,253,247,.55);margin-top:8px;font-weight:600;letter-spacing:.04em}
+    .doc-attribution{font-family:"Montserrat",Arial,sans-serif;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--oxidized-brown);margin-bottom:10px}
+    .doc-attribution em{font-weight:400;text-transform:none;letter-spacing:0;display:block;margin-top:3px;font-style:italic;color:var(--aged-iron)}
+    blockquote.doc-quote{border-left:5px solid var(--antique-gold);margin:0 0 14px;padding:14px 18px;background:#f7efe3;border-radius:0 12px 12px 0;font-family:"Libre Baskerville",Georgia,serif;font-style:italic;line-height:1.72;color:var(--blackened-steel);font-size:.98rem}
+    .doc-ap-note{font-size:.88rem;color:#5a4a3a;background:rgba(201,164,106,.1);border-radius:10px;padding:10px 14px;line-height:1.56}
+    .writing-instructions{margin:0 0 16px;padding:0 0 0 22px;font-family:"Libre Baskerville",Georgia,serif;line-height:1.72;font-size:.97rem;color:var(--blackened-steel)}
+    .writing-instructions li{margin-bottom:.75em}
+    .word-target{font-family:"Montserrat",Arial,sans-serif;font-size:.8rem;font-weight:700;color:var(--oxidized-brown);margin:0 0 12px}
+    .response-area{min-height:210px;width:100%;border:1px solid rgba(26,28,29,.18);border-radius:14px;padding:14px;font-family:"Libre Baskerville",Georgia,serif;line-height:1.6;background:#fffdf7;box-sizing:border-box;font-size:.97rem}
+    .response-area:focus{outline:none;box-shadow:var(--focus-ring);border-color:var(--antique-gold)}
+    .word-count{font-family:"Montserrat",Arial,sans-serif;font-size:.78rem;font-weight:700;color:var(--aged-iron);margin-top:8px}
+    .word-count.in-range{color:#2a7a3a}
+    .word-count.over-range{color:#9a2020}
+    .tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+    .copy-box{white-space:pre-wrap;background:#151718;color:#f5f0e7;border-radius:16px;border:1px solid rgba(201,164,106,.35);padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84rem;line-height:1.55;max-height:420px;overflow:auto;margin-top:14px}
+    .check-result{font-family:"Montserrat",Arial,sans-serif;font-size:.78rem;font-weight:700;color:var(--oxidized-brown);margin-top:8px;min-height:1.2em}
+    .coach-intro{font-family:"Libre Baskerville",Georgia,serif;line-height:1.72;margin-bottom:12px;color:var(--blackened-steel)}
+    @media(max-width:900px){.role-card{grid-column:1/-1}.role-shell{padding:12px}.role-context-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="role-shell">
+
+    <nav class="topbar">
+      <div class="nav">
+        <a class="brand-mini" href="../../index.html">
+          <img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo">
+          <span>BeHistorical</span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html">BeInTheRoom Hub</a>
+          <a href="#">Back to Unit 3</a>
+          <a href="../../index.html">Home</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="role-hero">
+      <div class="eyebrow">BeInTheRoom · Unit 3 · Topic 3.1</div>
+      <h1>Before the Walls of<br>Constantinople</h1>
+      <p class="hero-sub">A sultan's war council, April 1453</p>
+      <p class="hero-setting">Ottoman siege camp outside Constantinople &middot; April 1453</p>
+      <div class="scenario-meta">
+        <span class="meta-chip skill">Causation</span>
+        <span class="meta-chip">Unit 3: LO A</span>
+        <span class="meta-chip">KC-4.3.II</span>
+        <span class="meta-chip">KC-4.3.II.B</span>
+        <span class="meta-chip">KC-4.3.III.i</span>
+      </div>
+      <div>
+        <a class="btn" href="#situation">Enter the Room</a>
+        <a class="btn secondary" href="#decision">The Decision</a>
+        <a class="btn secondary" href="#evidence">Evidence</a>
+        <a class="btn secondary" href="#writing-task">Writing Task</a>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ── SECTION 1: HISTORICAL NARRATIVE ── -->
+      <section class="role-grid" id="situation">
+        <article class="role-card full">
+          <div class="stage-label">Enter the Room</div>
+          <h2>Ottoman Siege Camp &middot; April 1453</h2>
+          <div class="narrative-text">
+            <p>The smell reaches you before anything else — burnt wood, unwashed horses, ten thousand cooking fires, the iron tang of cannon residue hanging in the spring air. You have been in siege camps before, but nothing like this.</p>
+            <p>It is April 1453. The Ottoman army has been encamped outside the walls of Constantinople for three weeks. From your position near the command tents, you can see the great Theodosian Walls rising on the western edge of the city — triple-layered stone fortifications that have turned back every army for a thousand years. In the distance, you can hear the cannon crews calling to one another as they prepare for another day's bombardment.</p>
+            <p>The cannon is the reason you are here. Sultan Mehmed II commissioned a Hungarian engineer named Orban to cast the largest bombard ever built — a bronze monster so enormous it took sixty oxen and two hundred men to drag it across Thrace. When it fires, the ground trembles. Sections of the outer wall have already crumbled. The defenders on the ramparts look smaller each day.</p>
+            <p>Inside those walls, the city is dying. Constantinople was once the greatest city in the Christian world — seat of the Byzantine Empire, guardian of the Bosphorus Strait connecting the Black Sea to the Mediterranean, heir to Rome. Now it holds perhaps fifty thousand people and fewer than seven thousand soldiers. The Byzantine emperor, Constantine XI, has sent desperate letters to the Pope and to Venice begging for a Christian relief fleet. So far, nothing has come.</p>
+            <p>Mehmed is twenty-one years old. He has been Sultan twice — the first time as a teenager, when his father Murad II reclaimed the throne from him after a crisis at the border. Mehmed has spent every year since then preparing for this moment. He has memorized the fortifications. He has read the ancient accounts of failed sieges. He commissioned the cannon specifically because he believed it was the weapon that could finally break these walls.</p>
+            <p>This morning, the Sultan's war council has been called. The outer wall has been breached in two places. The question before the council is whether to order the full assault now or to consolidate the breach, continue the bombardment, and wait for Ottoman naval forces to cut off any possible Byzantine resupply from the sea.</p>
+            <p>You are his senior beylerbeyi — the highest military commander beneath the Sultan himself. Mehmed trusts your judgment. He will not make this decision without hearing from you first.</p>
+            <p>The tent flap opens. An aide gestures you forward.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── SECTION 2: YOUR ROLE ── -->
+      <section class="role-grid" id="your-role">
+        <article class="role-card full">
+          <div class="stage-label">Your Role</div>
+          <h2>Senior Ottoman Military Advisor (Beylerbeyi)</h2>
+          <div class="narrative-text">
+            <p>You have served the Ottoman army for twenty years. You rose through the ranks as a cavalry commander, fought in the campaigns along the Danube frontier, and were appointed beylerbeyi — governor-general of a province with military command responsibilities — three years ago. Mehmed selected you for this council because you are not a flatterer. He wants honest assessment.</p>
+          </div>
+          <div class="role-context-grid">
+            <div class="role-context-panel">
+              <h4>What You Know</h4>
+              <ul>
+                <li>The Ottoman army numbers approximately 80,000 men; the Byzantine garrison is fewer than 7,000</li>
+                <li>Two sections of the outer Theodosian Wall have been breached by Orban's cannon</li>
+                <li>The Ottoman naval fleet has been attempting to enter the Golden Horn harbor but has not yet succeeded in cutting off all supply access</li>
+                <li>The Janissaries — elite infantry recruited through the devshirme system and trained since childhood — are the assault force. They are disciplined and loyal</li>
+                <li>No Christian relief fleet has arrived, but the Pope has called for one</li>
+                <li>Mehmed's political authority depends in part on military success. His father took the throne back from him once before. A failed siege would be devastating</li>
+              </ul>
+            </div>
+            <div class="role-context-panel">
+              <h4>What You Cannot Know</h4>
+              <ul>
+                <li>Whether a relief fleet will actually sail, and if so, when</li>
+                <li>How much longer Byzantine defenders can hold a breach with improvised materials</li>
+                <li>Whether Mehmed would survive politically if a full assault failed</li>
+              </ul>
+              <p class="cannot-know-note">Your advice will shape history. Speak from inside your role. Do not step outside it.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── SECTION 3: THE DECISION ── -->
+      <section class="role-grid" id="decision">
+        <article class="role-card full">
+          <div class="stage-label">The Decision</div>
+          <h2>Central Question</h2>
+          <div class="question-band">
+            <p>You are advising Sultan Mehmed II in April 1453. Two of your walls have been breached. Do you order the full assault on Constantinople now, or do you consolidate the breach and wait until the naval blockade is complete before committing infantry?</p>
+            <p class="prompt-note">Select your position below, then proceed to the evidence and writing task.</p>
+          </div>
+        </article>
+
+        <article class="role-card position-card" id="position-a-card" onclick="selectPosition('A', event)">
+          <h3>Position A — Order the Full Assault Immediately</h3>
+          <p class="position-body">The momentum is yours. The outer wall has been breached in two places, the defenders are exhausted and outnumbered, and any Christian relief fleet would take weeks to assemble even if the Pope ordered it today. Every day you wait gives the Byzantines time to reinforce the breach with rubble and timber. The Janissaries are ready. The cannon has already done its work. An immediate assault through the breach concentrates your advantage — gunpowder technology, superior numbers, trained professional soldiers — before the defenders can adapt. If Constantinople falls quickly, it demonstrates Ottoman military supremacy across the Islamic world and into Europe. Delay risks the appearance of weakness.</p>
+          <p class="evidence-anchor"><em>Evidence anchor: KC-4.3.II (gunpowder and cannon as tools of imperial expansion); KC-4.3.II.B (Ottoman territorial ambitions in Southern Europe and the Middle East)</em></p>
+        </article>
+
+        <article class="role-card position-card" id="position-b-card" onclick="selectPosition('B', event)">
+          <h3>Position B — Consolidate and Wait for the Naval Blockade</h3>
+          <p class="position-body">Two breaches are not the same as an open gate. Byzantine defenders have shown they can plug gaps overnight using rubble, timber, and chains. Your naval forces have not yet fully cut off the Golden Horn — the harbor inlet that provides Constantinople's last supply route. An assault into a defended breach, even with Janissaries, will cost thousands of men. If the assault fails, the political damage to Mehmed's authority could be catastrophic — he was already removed from power once as a teenager. Better to complete the blockade, starve the city of any remaining hope, and assault when the walls are further degraded and the defenders' morale has collapsed. A slower victory is still a victory, and a failed assault is not.</p>
+          <p class="evidence-anchor"><em>Evidence anchor: KC-4.3.III.i (political disputes and rivalries threatening state authority); KC-4.3.II (gunpowder technology must be deployed strategically, not just aggressively)</em></p>
+        </article>
+
+        <article class="role-card full">
+          <div class="selection-status" id="position-status">No position selected yet.</div>
+        </article>
+      </section>
+
+      <!-- ── SECTION 4: EVIDENCE DOCUMENTS ── -->
+      <section class="role-grid" id="evidence">
+        <article class="role-card full">
+          <div class="stage-label">Evidence Documents</div>
+          <h2>Primary Sources</h2>
+          <p style="font-family:'Libre Baskerville',Georgia,serif;line-height:1.72;color:var(--blackened-steel);">Read all four documents before writing your advisory memo. Your memo should draw on at least two of them. Strong arguments explain <em>why</em> the evidence matters — they do not simply name it.</p>
+        </article>
+
+        <article class="role-card full">
+          <div class="doc-attribution">Document 1 &mdash; Report from the Ottoman Artillery Commander, April 18, 1453<em>Attributed to the siege records of Mehmed II's campaign; reconstructed from Ottoman chronicle accounts</em></div>
+          <blockquote class="doc-quote">"The great cannon has fired its fifty-third shot at the section of wall the defenders call the Gate of St. Romanos. A portion of the outer curtain wall has fallen inward. The second cannon crew reports a similar collapse along the Blachernae section to the north. The bronze barrel shows wear and will require two days of cooling before we can safely fire again. The defenders were observed during the night carrying stones and timber beams to the breach sites. By morning they had constructed a partial barrier of earth and rubble approximately four feet high within the gap."</blockquote>
+          <div class="doc-ap-note"><strong>AP connection:</strong> Documents the effectiveness of gunpowder artillery (KC-4.3.II) and the tactical reality that breaches are not automatically exploitable. Weigh cannon technology as a cause of Ottoman military advantage against its limitations.</div>
+        </article>
+
+        <article class="role-card full">
+          <div class="doc-attribution">Document 2 &mdash; Letter from Byzantine Emperor Constantine XI to the Doge of Venice, March 1453<em>Historical record; paraphrased from Byzantine diplomatic correspondence</em></div>
+          <blockquote class="doc-quote">"We write to you in full knowledge of what approaches. The enemy has assembled before our walls an army the size of which has not been seen in living memory, equipped with bronze cannon of monstrous proportion. Our garrison numbers fewer soldiers than the enemy fields in a single regiment. We ask not for tribute but for ships — ships and men enough to remind the Ottoman fleet that the sea is not theirs alone. If Constantinople falls, the road into Europe lies open. If it stands, it stands as it has always stood: between Christendom and those who would consume it."</blockquote>
+          <div class="doc-ap-note"><strong>AP connection:</strong> Illustrates the geopolitical stakes driving Ottoman expansion (KC-4.3.II.B &mdash; Ottoman territorial ambitions in Southern Europe and the Middle East) and the religious-political rivalry between Ottoman Islam and Byzantine Christianity (KC-4.3.III.i).</div>
+        </article>
+
+        <article class="role-card full">
+          <div class="doc-attribution">Document 3 &mdash; Account of the Janissary Corps, recorded by a Venetian observer in the Ottoman camp, c. 1453<em>Reconstructed from Western European diplomatic accounts of the siege</em></div>
+          <blockquote class="doc-quote">"The sultan's infantry soldiers, called Janissaries, are unlike anything in Christian armies. They are taken as boys from Christian families in the Balkans through a levy called the devshirme, converted to Islam, and raised from childhood as soldiers. They know no family except the corps. They are paid in silver, trained continuously, and forbidden to marry until late in life. They do not fear death in the way that conscript armies do. An officer told me privately that the Janissaries do not ask why they are ordered forward. They simply go."</blockquote>
+          <div class="doc-ap-note"><strong>AP connection:</strong> Documents the devshirme system and Janissary corps as instruments of Ottoman military expansion (KC-4.3.II; KC-4.3.II.B). Understand why the Ottomans hold an infantry advantage — and why the question of <em>when</em> to commit that infantry still matters.</div>
+        </article>
+
+        <article class="role-card full">
+          <div class="doc-attribution">Document 4 &mdash; Chronicle account of Mehmed II's first sultanate, c. 1444&ndash;1446<em>Ottoman court chronicle; reconstructed from historical accounts</em></div>
+          <blockquote class="doc-quote">"When Sultan Murad II returned from retirement to resume the throne, those who had served the young sultan Mehmed were careful in what they said aloud. Mehmed had been sultan for two years and had governed poorly in the eyes of the janissary commanders, who found him too young and too rash in his decisions. His father took back the throne without a battle. Mehmed spent the years that followed studying warfare, architecture, and the maps of Constantinople's walls. Those who know him say he has not forgotten what it meant to be removed. He intends that no one will ever find reason to remove him again."</blockquote>
+          <div class="doc-ap-note"><strong>AP connection:</strong> Grounds the scenario in the political stakes for Mehmed personally (KC-4.3.III.i &mdash; political disputes and rivalries). A failed assault could end Mehmed's reign. This document prevents treating the decision as purely military — power and survival are always in the room.</div>
+        </article>
+      </section>
+
+      <!-- ── SECTION 5: WRITING TASK ── -->
+      <section class="role-grid" id="writing-task">
+        <article class="role-card full">
+          <div class="stage-label">Writing Task</div>
+          <h2>Your Advisory Memo to Sultan Mehmed II</h2>
+          <ol class="writing-instructions">
+            <li>Open by clearly stating your recommendation — assault immediately (Position A) or consolidate and wait (Position B). Do not bury your position.</li>
+            <li>Identify at least <strong>one cause</strong> of Ottoman military advantage that makes your recommendation possible. Explain <em>why</em> this cause matters — don't just name it.</li>
+            <li>Explain at least <strong>one likely effect</strong> of the decision you are recommending. What happens next if Mehmed follows your advice?</li>
+            <li>Acknowledge the strongest argument on the other side. A good advisor tells the Sultan what could go wrong, not only what could go right.</li>
+            <li>Write entirely in your role as the beylerbeyi. Do not use phrases like "in this scenario" or "as a student." You are the advisor. Speak as one.</li>
+          </ol>
+          <p class="word-target">Word count: 150&ndash;250 words</p>
+          <textarea class="response-area" id="advisory-memo" placeholder="My counsel to the Sultan is this: ..." oninput="updateWordCount()"></textarea>
+          <div class="word-count" id="word-count">0 words</div>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft()">Save Draft</button>
+            <button class="btn secondary" onclick="submitToGoogleForm()">Submit to Google Form</button>
+          </div>
+          <div class="check-result" id="save-result"></div>
+        </article>
+      </section>
+
+      <!-- ── SECTION 6: AI COACH ── -->
+      <section class="role-grid" id="ai-coach">
+        <article class="role-card full">
+          <div class="stage-label">AI Coach</div>
+          <h2>BeInTheRoom Historical Thinking Coach</h2>
+          <p class="coach-intro">Submit your Google Form draft first, then build your coaching prompt below. Copy it into the BeInTheRoom Historical Thinking Coach in MagicSchool. The coach will ask you one question at a time — it will not write your response for you.</p>
+          <div class="tool-row">
+            <button class="btn" onclick="buildCoachPrompt()">Build My Coaching Prompt</button>
+            <button class="btn secondary" onclick="copyCoachPrompt()">Copy Prompt</button>
+            <a class="btn secondary" href="#" target="_blank" rel="noopener">Open MagicSchool</a>
+          </div>
+          <div class="copy-box" id="coach-prompt-output">Click "Build My Coaching Prompt" to generate your personalized prompt. Your advisory memo draft will be inserted automatically.</div>
+          <div class="check-result" id="copy-result"></div>
+        </article>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+3&entry.187055090=3.1&entry.1549761827=3.1-beintheroom&entry.2107637366=BeInTheRoom&entry.1963461515=Causation';
+
+    const COACH_PROMPT_TEMPLATE =
+`I am working on a BeInTheRoom scenario for AP World History. Here is the context:
+
+Setting: April 1453. The Ottoman army is besieging Constantinople. Two sections of the Theodosian Walls have been breached by the Ottoman cannon. The Byzantine garrison has fewer than 7,000 defenders.
+
+My role: I am a senior Ottoman military advisor (beylerbeyi) to Sultan Mehmed II. I must advise him whether to order a full infantry assault through the breached walls immediately, or to consolidate the breach and wait until the naval blockade cuts off the city entirely.
+
+The two positions:
+
+- Position A: Order the full assault now — momentum is ours, the cannon has done its work, Janissaries are ready
+- Position B: Consolidate and wait — the breach is not fully open, the blockade is incomplete, a failed assault would be politically disastrous for Mehmed
+
+The AP skill I am practicing: Causation — I need to identify causes of Ottoman expansion and explain the effects of my recommended decision.
+
+Here is my draft response:
+
+[PASTE YOUR RESPONSE HERE]
+
+Ask me one question at a time. Do not write my response for me. Push me to be specific about causes and effects, to stay inside my role as the beylerbeyi, and to acknowledge the tradeoff in my recommendation.`;
+
+    let selectedPosition = '';
+
+    function selectPosition(pos, event) {
+      selectedPosition = pos;
+      document.querySelectorAll('.position-card').forEach(c => c.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
+      document.getElementById('position-status').textContent =
+        pos === 'A'
+          ? 'Selected: Position A — Order the Full Assault Immediately'
+          : 'Selected: Position B — Consolidate and Wait for the Naval Blockade';
+      saveState();
+    }
+
+    function updateWordCount() {
+      const text = (document.getElementById('advisory-memo').value || '').trim();
+      const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
+      const el = document.getElementById('word-count');
+      el.textContent = words + ' words';
+      el.className = 'word-count' +
+        (words >= 150 && words <= 250 ? ' in-range' : words > 250 ? ' over-range' : '');
+    }
+
+    function buildCoachPrompt() {
+      const memo = (document.getElementById('advisory-memo').value || '').trim() || '[PASTE YOUR RESPONSE HERE]';
+      const prompt = COACH_PROMPT_TEMPLATE.replace('[PASTE YOUR RESPONSE HERE]', memo);
+      document.getElementById('coach-prompt-output').textContent = prompt;
+    }
+
+    function copyCoachPrompt() {
+      const outputEl = document.getElementById('coach-prompt-output');
+      const text = outputEl.textContent;
+      if (!text || text.startsWith('Click')) buildCoachPrompt();
+      navigator.clipboard.writeText(document.getElementById('coach-prompt-output').textContent)
+        .then(() => document.getElementById('copy-result').textContent = 'Coaching prompt copied. Paste it into MagicSchool AI.')
+        .catch(() => document.getElementById('copy-result').textContent = 'Copy failed. Select the text above and copy manually.');
+    }
+
+    function saveDraft() {
+      localStorage.setItem('bitr-constantinople-memo', document.getElementById('advisory-memo').value || '');
+      document.getElementById('save-result').textContent = 'Draft saved on this device.';
+    }
+
+    function submitToGoogleForm() {
+      window.open(GOOGLE_FORM_URL, '_blank', 'noopener');
+    }
+
+    function saveState() {
+      localStorage.setItem('bitr-constantinople-state', JSON.stringify({ selectedPosition }));
+    }
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('bitr-constantinople-state') || '{}');
+        selectedPosition = saved.selectedPosition || '';
+      } catch (e) {}
+    }
+
+    function applySavedState() {
+      if (selectedPosition) {
+        const card = document.getElementById('position-' + selectedPosition.toLowerCase() + '-card');
+        if (card) card.classList.add('selected');
+        document.getElementById('position-status').textContent =
+          selectedPosition === 'A'
+            ? 'Selected: Position A — Order the Full Assault Immediately'
+            : 'Selected: Position B — Consolidate and Wait for the Naval Blockade';
+      }
+      const savedMemo = localStorage.getItem('bitr-constantinople-memo');
+      if (savedMemo) {
+        document.getElementById('advisory-memo').value = savedMemo;
+        updateWordCount();
+      }
+    }
+
+    loadState();
+    applySavedState();
+  </script>
+</body>
+</html>
