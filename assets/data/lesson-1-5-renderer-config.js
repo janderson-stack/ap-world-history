@@ -3,15 +3,15 @@
   if (!lesson) return;
 
   lesson.stableImages = {
-    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wall_of_the_great_enclosure%2C_Great_Zimbabwe.JPG',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/Interior_of_great_enclosure%2CG.Zimbabwe.JPG',
-    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wall_of_the_great_enclosure%2C_Great_Zimbabwe.JPG',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Biet_Giorgis%2C_Lalibela%2C_Ethiopia_(24076354516).jpg',
-    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ethiopia_Lalibela_PriestPraying.JPG',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wall_of_the_great_enclosure%2C_Great_Zimbabwe.JPG',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Interior_of_great_enclosure%2CG.Zimbabwe.JPG',
-    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ethiopia_Lalibela_PriestPraying.JPG',
-    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/Biet_Giorgis%2C_Lalibela%2C_Ethiopia_(24076354516).jpg',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wall_of_the_great_enclosure%2C_Great_Zimbabwe.JPG'
+    map:             '../assets/images/unit-1/topic-1-5/module-01-mansa-musa.svg',
+    first10:         '../assets/images/unit-1/topic-1-5/module-02-djenne.svg',
+    contentDelivery: '../assets/images/unit-1/topic-1-5/module-03-great-zimbabwe.svg',
+    beSurreal:       '../assets/images/unit-1/topic-1-5/module-04-timbuktu.svg',
+    skill:           '../assets/images/unit-1/topic-1-5/module-05-indian-ocean.svg',
+    checkpoint1:     '../assets/images/unit-1/topic-1-5/module-06-mali-trade.svg',
+    evidence:        '../assets/images/unit-1/topic-1-5/module-07-zimbabwe-bird.svg',
+    source:          '../assets/images/unit-1/topic-1-5/module-08-scholarship.svg',
+    beInTheRoom:     '../assets/images/unit-1/topic-1-5/module-09-swahili-coast.svg',
+    checkpoint2:     '../assets/images/module-cards/kilwa-kisiwani-mosque.jpg'
   };
 })();

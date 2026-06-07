@@ -41,16 +41,16 @@
   };
 
   lesson.stableImages = {
-    map: '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    contentDelivery: '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    skill: '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_Map_Blank_-_with_blue_sea.svg',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    source: '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
-    beInTheRoom: '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg'
+    map:             '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
+    first10:         '../assets/images/module-cards/mosque-kairouan-800ce.jpg',
+    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wall_of_the_great_enclosure%2C_Great_Zimbabwe.JPG',
+    beSurreal:       'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
+    skill:           '../assets/images/module-cards/kilwa-kisiwani-mosque.jpg',
+    checkpoint1:     '../assets/images/module-cards/persepolis-gate-nations.jpg',
+    evidence:        'https://commons.wikimedia.org/wiki/Special:FilePath/Interior_of_great_enclosure%2CG.Zimbabwe.JPG',
+    source:          'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
+    beInTheRoom:     '../assets/images/module-cards/abbasid-baghdad-9thc.jpg',
+    checkpoint2:     'https://commons.wikimedia.org/wiki/Special:FilePath/Biet_Giorgis%2C_Lalibela%2C_Ethiopia_(24076354516).jpg'
   };
 
   lesson.beInTheRoom = {

@@ -41,16 +41,16 @@
   };
 
   lesson.stableImages = {
-    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
-    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
-    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg'
+    map:             'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
+    first10:         '../assets/images/module-cards/kilwa-kisiwani-mosque.jpg',
+    contentDelivery: '../assets/images/module-cards/angkor-wat-1150ce.jpg',
+    beSurreal:       '../assets/images/module-cards/borobudur-temple-9thc.jpg',
+    skill:           '../assets/images/module-cards/mosque-kairouan-800ce.jpg',
+    checkpoint1:     '../assets/images/module-cards/abbasid-baghdad-9thc.jpg',
+    evidence:        'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
+    source:          '../assets/images/module-cards/persepolis-gate-nations.jpg',
+    beInTheRoom:     '../assets/images/module-cards/lalibela-bete-giyorgis.jpg',
+    checkpoint2:     '../assets/images/module-cards/sahara-caravan-1300ce.jpg'
   };
 
   lesson.beInTheRoom = {

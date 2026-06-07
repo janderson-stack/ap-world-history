@@ -41,16 +41,16 @@
   };
 
   lesson.stableImages = {
-    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_Road_in_7th_century_AD.png',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_Road_in_7th_century_AD.png',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_Road_in_7th_century_AD.png',
-    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_Road_in_7th_century_AD.png'
+    map:             'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
+    first10:         '../assets/images/module-cards/mogao-caves-dunhuang.jpg',
+    contentDelivery: '../assets/images/module-cards/steppe-eurasian-1200ce.jpg',
+    beSurreal:       '../assets/images/module-cards/persepolis-gate-nations.jpg',
+    skill:           'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_Road_in_7th_century_AD.png',
+    checkpoint1:     '../assets/images/module-cards/abbasid-baghdad-9thc.jpg',
+    evidence:        '../assets/images/module-cards/song-dynasty-kaifeng.jpg',
+    source:          'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
+    beInTheRoom:     '../assets/images/module-cards/mosque-kairouan-800ce.jpg',
+    checkpoint2:     '../assets/images/module-cards/sahara-caravan-1300ce.jpg'
   };
 
   lesson.beInTheRoom = {

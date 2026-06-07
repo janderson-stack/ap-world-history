@@ -41,16 +41,16 @@
   };
 
   lesson.stableImages = {
-    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_Map_Blank_-_with_blue_sea.svg',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_Map_Blank_-_with_blue_sea.svg',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_Map_Blank_-_with_blue_sea.svg',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_Map_Blank_-_with_blue_sea.svg',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_Map_Blank_-_with_blue_sea.svg',
-    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/World_Map_Blank_-_with_blue_sea.svg'
+    map:             'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
+    first10:         '../assets/images/module-cards/steppe-eurasian-1200ce.jpg',
+    contentDelivery: '../assets/images/module-cards/kilwa-kisiwani-mosque.jpg',
+    beSurreal:       '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
+    skill:           'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
+    checkpoint1:     '../assets/images/module-cards/mogao-caves-dunhuang.jpg',
+    evidence:        '../assets/images/module-cards/mosque-kairouan-800ce.jpg',
+    source:          'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
+    beInTheRoom:     '../assets/images/module-cards/angkor-wat-1150ce.jpg',
+    checkpoint2:     '../assets/images/module-cards/persepolis-gate-nations.jpg'
   };
 
   lesson.beInTheRoom = {

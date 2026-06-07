@@ -41,16 +41,16 @@
   };
 
   lesson.stableImages = {
-    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
-    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg'
+    map:             'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
+    first10:         'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
+    contentDelivery: '../assets/images/module-cards/steppe-eurasian-1200ce.jpg',
+    beSurreal:       'https://commons.wikimedia.org/wiki/Special:FilePath/FlorentineCodex_BK12_F54_smallpox.jpg',
+    skill:           '../assets/images/module-cards/mogao-caves-dunhuang.jpg',
+    checkpoint1:     '../assets/images/module-cards/persepolis-gate-nations.jpg',
+    evidence:        '../assets/images/module-cards/abbasid-baghdad-9thc.jpg',
+    source:          '../assets/images/module-cards/song-dynasty-kaifeng.jpg',
+    beInTheRoom:     '../assets/images/module-cards/sahara-caravan-1300ce.jpg',
+    checkpoint2:     'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_Road_in_7th_century_AD.png'
   };
 
   lesson.beInTheRoom = {

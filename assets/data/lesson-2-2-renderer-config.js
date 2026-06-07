@@ -41,16 +41,16 @@
   };
 
   lesson.stableImages = {
-    map: 'https://commons.wikimedia.org/wiki/Special:FilePath/YuanEmperorAlbumGenghisPortrait.jpg',
-    first10: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/YuanEmperorAlbumGenghisPortrait.jpg',
-    beSurreal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    skill: 'https://commons.wikimedia.org/wiki/Special:FilePath/YuanEmperorAlbumGenghisPortrait.jpg',
-    checkpoint1: 'https://commons.wikimedia.org/wiki/Special:FilePath/YuanEmperorAlbumGenghisPortrait.jpg',
-    evidence: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
-    source: 'https://commons.wikimedia.org/wiki/Special:FilePath/YuanEmperorAlbumGenghisPortrait.jpg',
-    beInTheRoom: 'https://commons.wikimedia.org/wiki/Special:FilePath/YuanEmperorAlbumGenghisPortrait.jpg',
-    checkpoint2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg'
+    map:             'https://commons.wikimedia.org/wiki/Special:FilePath/YuanEmperorAlbumGenghisPortrait.jpg',
+    first10:         '../assets/images/module-cards/steppe-eurasian-1200ce.jpg',
+    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
+    beSurreal:       '../assets/images/module-cards/mogao-caves-dunhuang.jpg',
+    skill:           '../assets/images/module-cards/song-dynasty-kaifeng.jpg',
+    checkpoint1:     '../assets/images/module-cards/persepolis-gate-nations.jpg',
+    evidence:        'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_Road_in_7th_century_AD.png',
+    source:          '../assets/images/module-cards/abbasid-baghdad-9thc.jpg',
+    beInTheRoom:     '../assets/images/module-cards/mosque-kairouan-800ce.jpg',
+    checkpoint2:     '../assets/images/module-cards/angkor-wat-1150ce.jpg'
   };
 
   lesson.beInTheRoom = {
