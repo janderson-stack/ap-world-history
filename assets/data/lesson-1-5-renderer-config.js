@@ -3,15 +3,15 @@
   if (!lesson) return;
 
   lesson.stableImages = {
-    map:             '../assets/images/unit-1/topic-1-5/module-01-mansa-musa.svg',
-    first10:         '../assets/images/unit-1/topic-1-5/module-02-djenne.svg',
-    contentDelivery: '../assets/images/unit-1/topic-1-5/module-03-great-zimbabwe.svg',
-    beSurreal:       '../assets/images/unit-1/topic-1-5/module-04-timbuktu.svg',
-    skill:           '../assets/images/unit-1/topic-1-5/module-05-indian-ocean.svg',
-    checkpoint1:     '../assets/images/unit-1/topic-1-5/module-06-mali-trade.svg',
-    evidence:        '../assets/images/unit-1/topic-1-5/module-07-zimbabwe-bird.svg',
-    source:          '../assets/images/unit-1/topic-1-5/module-08-scholarship.svg',
-    beInTheRoom:     '../assets/images/unit-1/topic-1-5/module-09-swahili-coast.svg',
-    checkpoint2:     '../assets/images/module-cards/kilwa-kisiwani-mosque.jpg'
+    map:             'https://commons.wikimedia.org/wiki/Special:FilePath/Mansa_Musa.jpg',
+    first10:         'https://commons.wikimedia.org/wiki/Special:FilePath/Great_Mosque_of_Djenn%C3%A9_2.jpg',
+    contentDelivery: 'https://commons.wikimedia.org/wiki/Special:FilePath/Great_Zimbabwe.jpg',
+    beSurreal:       'https://commons.wikimedia.org/wiki/Special:FilePath/Nile_composite_NASA.jpg',
+    skill:           'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_Ocean-CIA_WFB_Map.png',
+    checkpoint1:     'https://commons.wikimedia.org/wiki/Special:FilePath/TabulaRogeriana.jpg',
+    evidence:        'https://commons.wikimedia.org/wiki/Special:FilePath/Zimbabwe_Bird.jpg',
+    source:          'https://commons.wikimedia.org/wiki/Special:FilePath/A_Library_in_Golden_Islamic_Age.jpg',
+    beInTheRoom:     'https://commons.wikimedia.org/wiki/Special:FilePath/Silk_route.jpg',
+    checkpoint2:     'https://commons.wikimedia.org/wiki/Special:FilePath/Map_of_the_Mali_Empire.png'
   };
 })();
