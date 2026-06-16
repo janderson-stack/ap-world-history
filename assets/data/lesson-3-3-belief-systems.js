@@ -37,37 +37,37 @@ window.BEHISTORICAL_LESSON = {
 
   learningTargets: [
     {
-      target: "I can explain how rulers of land-based empires used religion to legitimize their authority and consolidate power.",
-      kc: 'KC-4.1.VI.ii',
-      theme: "Governance"
+      target: "I can explain how the Protestant Reformation marked a break with existing Christian traditions, and how both the Protestant and Catholic reformations contributed to the growth of Christianity.",
+      kc: 'KC-4.1.VI.i',
+      theme: "Cultural Developments and Interactions"
     },
     {
       target: "I can describe the Sunni-Shia divide between the Ottoman and Safavid empires and explain how religious difference drove political conflict.",
       kc: 'KC-4.1.VI.ii',
-      theme: "Governance"
+      theme: "Cultural Developments and Interactions"
     },
     {
-      target: "I can analyze how the Mughal emperors (especially Akbar) approached religious diversity, and explain why different rulers chose accommodation or enforcement.",
+      target: "I can explain how Sikhism developed in South Asia in a context of interactions between Hinduism and Islam.",
       kc: 'KC-4.1.VI.iii',
-      theme: "Governance"
+      theme: "Cultural Developments and Interactions"
     }
   ],
 
   successCriteria: [
     {
-      criteria: "I can give specific examples of rulers claiming religious authority (e.g., Ottoman Sultan as Caliph, Shah Ismail making Shiism the official religion of Persia).",
-      kc: 'KC-4.1.VI.ii',
-      theme: "Governance"
+      criteria: "I can describe a major change introduced by the Protestant Reformation (e.g., Luther's challenge to Church authority and the rise of new Protestant denominations) and explain how the Protestant and Catholic reformations both expanded Christianity.",
+      kc: 'KC-4.1.VI.i',
+      theme: "Cultural Developments and Interactions"
     },
     {
       criteria: "I can explain the Battle of Chaldiran (1514) as both a religious and political conflict between rival empires.",
       kc: 'KC-4.1.VI.ii',
-      theme: "Governance"
+      theme: "Cultural Developments and Interactions"
     },
     {
-      criteria: "I can compare Akbar's policy of religious tolerance (Din-i-Ilahi) to Aurangzeb's return to strict Islamic enforcement, explaining what each approach reveals about imperial power.",
+      criteria: "I can explain how Sikhism, founded by Guru Nanak, emerged from interactions between Hindu and Islamic traditions in South Asia.",
       kc: 'KC-4.1.VI.iii',
-      theme: "Governance"
+      theme: "Cultural Developments and Interactions"
     }
   ],
 

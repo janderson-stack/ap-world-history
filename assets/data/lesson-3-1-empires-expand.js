@@ -47,8 +47,8 @@ window.BEHISTORICAL_LESSON = {
       theme: "Governance"
     },
     {
-      target: "I can explain the historical significance of the Ottoman conquest of Constantinople (1453) and its effects on Eurasian trade and politics.",
-      kc: 'KC-4.3.II',
+      target: "I can explain how political and religious disputes led to rivalries and conflict between land-based empires, such as the Safavid–Mughal conflict and the Songhai Empire's conflict with Morocco.",
+      kc: 'KC-4.3.III.i',
       theme: "Governance"
     }
   ],
@@ -65,8 +65,8 @@ window.BEHISTORICAL_LESSON = {
       theme: "Governance"
     },
     {
-      criteria: "I can explain why 1453 mattered — for trade routes, for Christian Europe, for Ottoman legitimacy, and for the post-Mongol reorganization of Eurasian power.",
-      kc: 'KC-4.3.II',
+      criteria: "I can identify a specific imperial rivalry (e.g., the Safavid–Mughal conflict or the Songhai Empire's conflict with Morocco) and explain how political and religious disputes fueled conflict between states.",
+      kc: 'KC-4.3.III.i',
       theme: "Governance"
     }
   ],

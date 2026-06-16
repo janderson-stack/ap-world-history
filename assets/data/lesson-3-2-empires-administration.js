@@ -37,36 +37,36 @@ window.BEHISTORICAL_LESSON = {
 
   learningTargets: [
     {
-      target: "I can explain how land-based empires used bureaucracies, taxation systems, and military recruitment to consolidate power over diverse populations.",
-      kc: 'KC-4.3.I.C; KC-4.3.I.D',
-      theme: "Governance"
-    },
-    {
-      target: "I can describe at least two specific administrative systems (e.g., devshirme, mansabdar, civil service examination) and explain how they served imperial control.",
+      target: "I can explain how rulers recruited bureaucratic elites and developed military professionals to maintain centralized control over their populations and resources.",
       kc: 'KC-4.3.I.C',
       theme: "Governance"
     },
     {
-      target: "I can explain how rulers accommodated local elites and existing power structures to maintain stability in their empires.",
-      kc: 'KC-4.3.I.C',
+      target: "I can explain how rulers used religious ideas, art, and monumental architecture to legitimize their rule.",
+      kc: 'KC-4.3.I.A',
+      theme: "Governance"
+    },
+    {
+      target: "I can explain how rulers used tribute collection, tax farming, and innovative tax-collection systems to generate revenue and forward state power and expansion.",
+      kc: 'KC-4.3.I.D',
       theme: "Governance"
     }
   ],
 
   successCriteria: [
     {
-      criteria: "I can describe how tribute systems, tax collection, and military conscription connected the imperial center to the periphery.",
-      kc: 'KC-4.3.I.C; KC-4.3.I.D',
-      theme: "Governance"
-    },
-    {
-      criteria: "I can identify specific administrative innovations in at least two empires and explain how they maintained loyalty and extracted resources.",
+      criteria: "I can describe at least two ways rulers recruited bureaucratic elites or military professionals (e.g., the Ottoman devshirme, salaried samurai) and explain how they served centralized control.",
       kc: 'KC-4.3.I.C',
       theme: "Governance"
     },
     {
-      criteria: "I can explain the trade-off between centralization and accommodation — why rulers sometimes gave local elites autonomy rather than imposing direct control.",
-      kc: 'KC-4.3.I.C',
+      criteria: "I can give specific examples of religious ideas, art, or monumental architecture used to legitimize rule (e.g., European notions of divine right, Mughal mausolea and mosques, the palace at Versailles).",
+      kc: 'KC-4.3.I.A',
+      theme: "Governance"
+    },
+    {
+      criteria: "I can describe at least two tax-collection systems (e.g., Mughal zamindar tax collection, Ottoman tax farming, Mexica tribute lists, Ming collection of taxes in hard currency) and explain how they funded state power and expansion.",
+      kc: 'KC-4.3.I.D',
       theme: "Governance"
     }
   ],

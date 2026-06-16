@@ -44,7 +44,7 @@ window.BEHISTORICAL_LESSON = {
     },
     {
       target: 'I can compare how at least two land-based empires administered their territories, explaining what their different approaches reveal about the challenges of governing diverse populations.',
-      kc: 'KC-4.3.II.B',
+      kc: 'KC-4.3',
       theme: 'Governance'
     },
     {
@@ -62,7 +62,7 @@ window.BEHISTORICAL_LESSON = {
     },
     {
       criteria: 'I can identify a specific difference (e.g., Mughal accommodation vs. Ottoman enforcement of Sunni orthodoxy on conquered populations) and explain what accounts for it.',
-      kc: 'KC-4.3.II.B',
+      kc: 'KC-4.3',
       theme: 'Governance'
     },
     {
