@@ -73,22 +73,22 @@ window.BEHISTORICAL_LESSON = {
 
   collegeBoardKeyConcepts: [
     {
-      code: "KC-3.1.I.A",
-      theme: "Governance",
-      text: "Empires gained and consolidated power by using new military technologies including gunpowder weapons such as cannons and matchlock firearms. Land-based empires — the Ottoman, Safavid, Mughal, Qing, and Russian — used these tools to conquer territory and suppress internal opposition.",
-      illustrativeExamples: ["Ottoman Empire", "Safavid Empire", "Mughal Empire", "Qing Dynasty", "Cannon", "Janissaries"]
+      code: 'KC-4.3.II',
+      theme: 'Governance',
+      text: 'Imperial expansion relied on the increased use of gunpowder, cannons, and armed trade to establish large empires in both hemispheres.',
+      illustrativeExamples: []
     },
     {
-      code: "KC-3.1.I.B",
-      theme: "Governance",
-      text: "The Ottoman conquest of Constantinople in 1453 ended the Byzantine Empire and dramatically reshaped Eurasian trade and political power. Ottoman expansion continued into the Balkans, North Africa, and Southwest Asia, making the empire one of the most powerful states in the world by c. 1500.",
-      illustrativeExamples: ["Conquest of Constantinople 1453", "Fall of Byzantine Empire", "Ottoman expansion into Balkans and North Africa"]
+      code: 'KC-4.3.II.B',
+      theme: 'Governance',
+      text: 'Land empires included the Manchu in Central and East Asia; the Mughal in South and Central Asia; the Ottoman in Southern Europe, the Middle East, and North Africa; and the Safavids in the Middle East.',
+      illustrativeExamples: []
     },
     {
-      code: "KC-3.1.I.C",
-      theme: "Governance",
-      text: "Empires recruited military forces from conquered or enslaved populations, incorporating diverse peoples into their armies. The Ottoman devshirme system conscripted Christian boys from the Balkans and trained them as elite soldiers (Janissaries) and administrators, creating loyalty to the sultan rather than to ethnic or regional identities.",
-      illustrativeExamples: ["Devshirme system", "Janissaries", "Enslaved soldiers", "Military recruitment from conquered peoples"]
+      code: 'KC-4.3.III.i',
+      theme: 'Governance',
+      text: 'Political and religious disputes led to rivalries and conflict between states.',
+      illustrativeExamples: ['Safavid–Mughal conflict', 'Songhai Empire’s conflict with Morocco']
     }
   ],
 

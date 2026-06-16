@@ -73,22 +73,22 @@ window.BEHISTORICAL_LESSON = {
 
   collegeBoardKeyConcepts: [
     {
-      code: "KC-3.3.I.A",
-      theme: "Governance",
-      text: "Rulers used religious ideas, symbols, and institutions to legitimize their power. When rulers conquered or unified diverse populations, religion could both unify and divide.",
-      illustrativeExamples: ["Ottoman Sultan as Caliph", "Shah Ismail and Shia Islam", "Akbar's Din-i-Ilahi", "Qing patronage of Tibetan Buddhism"]
+      code: 'KC-4.1.VI.i',
+      theme: 'Cultural Developments and Interactions',
+      text: 'The Protestant Reformation marked a break with existing Christian traditions, and both the Protestant and Catholic reformations contributed to the growth of Christianity.',
+      illustrativeExamples: []
     },
     {
-      code: "KC-3.3.I.B",
-      theme: "Governance",
-      text: "The Ottoman-Safavid conflict shows how sectarian religious difference (Sunni vs. Shia) drove imperial rivalry and warfare. The Battle of Chaldiran (1514) was both a military and religious confrontation.",
-      illustrativeExamples: ["Battle of Chaldiran (1514)", "Sunni vs. Shia divide", "Ottoman-Safavid Wars", "Shah Ismail I"]
+      code: 'KC-4.1.VI.ii',
+      theme: 'Cultural Developments and Interactions',
+      text: 'Political rivalries between the Ottoman and Safavid empires intensified the split within Islam between Sunni and Shi’a.',
+      illustrativeExamples: []
     },
     {
-      code: "KC-3.3.I.C",
-      theme: "Governance",
-      text: "Some rulers adopted syncretic or tolerant religious policies to maintain loyalty among diverse populations; others used religious enforcement to consolidate an identity-based empire.",
-      illustrativeExamples: ["Akbar's Din-i-Ilahi", "Aurangzeb's reimposition of jizya", "Cuius regio, eius religio (Peace of Augsburg)", "Qing tolerance of multiple faiths"]
+      code: 'KC-4.1.VI.iii',
+      theme: 'Cultural Developments and Interactions',
+      text: 'Sikhism developed in South Asia in a context of interactions between Hinduism and Islam.',
+      illustrativeExamples: []
     }
   ],
 

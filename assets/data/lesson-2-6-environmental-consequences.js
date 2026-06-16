@@ -74,22 +74,10 @@ window.BEHISTORICAL_LESSON = {
 
   collegeBoardKeyConcepts: [
     {
-      code: 'KC-2.3.VI.A',
-      theme: 'Environment and Geography',
-      text: 'The expansion of trade networks facilitated the spread of epidemic diseases. The bubonic plague spread from Central Asia along Mongol trade routes, reaching the Middle East, North Africa, and Europe by the mid-14th century.',
-      illustrativeExamples: ['Yersinia pestis endemic in Central Asian rodent populations', 'Mongol Pax Mongolica routes accelerated plague transmission', 'Plague-carrying fleas transported aboard trading ships']
-    },
-    {
-      code: 'KC-2.3.VI.B',
-      theme: 'Social Structures',
-      text: 'The Black Death caused catastrophic population loss across Eurasia and North Africa. It produced severe labor shortages, challenged traditional religious and political authority, and accelerated social change.',
-      illustrativeExamples: ['30–60% of European population killed', 'Similar mortality in Middle East and parts of Asia', 'Labor shortages empowering surviving peasants and workers', 'Flagellant movements and religious upheaval in Europe']
-    },
-    {
-      code: 'KC-2.3.VI.C',
-      theme: 'Environment and Geography',
-      text: 'Increased connectivity along trade routes produced long-term ecological changes, including deforestation for agriculture and ship timber, intensification of farming near trade hubs, and the movement of plant and animal species across ecological boundaries.',
-      illustrativeExamples: ['Deforestation for ship-building timber in coastal regions', 'Agricultural intensification along trade corridors', 'Invasive plant and animal species spreading along trade routes']
+      code: 'KC-3.1.IV',
+      theme: 'Humans and the Environment',
+      text: 'There was continued diffusion of crops and pathogens, with epidemic diseases, including the bubonic plague, along trade routes.',
+      illustrativeExamples: ['Bananas in Africa', 'New rice varieties in East Asia', 'Spread of citrus in the Mediterranean']
     }
   ],
 

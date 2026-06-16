@@ -73,22 +73,22 @@ window.BEHISTORICAL_LESSON = {
 
   collegeBoardKeyConcepts: [
     {
-      code: "KC-2.3.IV.A",
-      theme: "Technology",
-      text: "Trans-Saharan trade was made possible by the domestication and use of the camel as a pack animal suited to desert conditions, the development of an improved saddle, and the organization of large merchant caravans with guides, water supplies, and oasis rest stops.",
-      illustrativeExamples: ["Camel as pack animal", "Improved camel saddle", "Caravan organization", "Oases as waypoints"]
+      code: 'KC-3.1.II.A.ii',
+      theme: 'Technology and Innovation',
+      text: 'The growth of interregional trade was encouraged by innovations in existing transportation technologies.',
+      illustrativeExamples: ['Camel saddle', 'Caravans']
     },
     {
-      code: "KC-2.3.IV.B",
-      theme: "Economic Systems",
-      text: "West African gold — especially from the Wangara goldfields — and Saharan salt from mines like Taghaza were the two complementary commodities that drove trans-Saharan exchange. Gold moved north toward the Mediterranean and the Islamic world; salt moved south to West African agricultural societies that lacked it.",
-      illustrativeExamples: ["Wangara goldfields", "Taghaza salt mines", "Mali Empire's control of trade routes", "North African and Mediterranean demand for gold"]
+      code: 'KC-3.1.I.A.iv',
+      theme: 'Technology and Innovation',
+      text: 'Improved transportation technologies and commercial practices led to an increased volume of trade and expanded the geographical range of existing trade routes, including the trans-Saharan trade network.',
+      illustrativeExamples: []
     },
     {
-      code: "KC-2.3.IV.C",
-      theme: "Cultural Developments and Interactions",
-      text: "Trans-Saharan trade enriched West African states, most notably the Mali Empire. Mansa Musa's hajj of 1324 demonstrated Mali's extraordinary wealth to the Islamic world and Europe. Trade also facilitated the spread of Islam across West Africa through merchants and scholars, making Timbuktu a major center of Islamic learning.",
-      illustrativeExamples: ["Mali Empire", "Mansa Musa's hajj (1324)", "Timbuktu as center of Islamic scholarship", "Spread of Islam through merchants and Sufi networks"]
+      code: 'KC-3.1.I.E.ii',
+      theme: 'Governance',
+      text: 'The expansion of empires—including Mali in West Africa—facilitated Afro-Eurasian trade and communication as new people were drawn into the economies and trade networks.',
+      illustrativeExamples: []
     }
   ],
 

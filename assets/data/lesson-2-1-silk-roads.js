@@ -73,22 +73,22 @@ window.BEHISTORICAL_LESSON = {
 
   collegeBoardKeyConcepts: [
     {
-      code: "KC-2.3.I.B",
-      theme: "Economic Systems",
-      text: "The Silk Roads facilitated the exchange of goods, ideas, and people across Afro-Eurasia. State-building, pastoral nomads acting as intermediaries, and networks of merchants and caravanserais made this overland exchange system possible.",
-      illustrativeExamples: ["Caravanserais", "Pastoral nomads as intermediaries", "Chinese silk and porcelain"]
+      code: 'KC-3.1.I.A.i',
+      theme: 'Economic Systems',
+      text: 'Improved commercial practices led to an increased volume of trade and expanded the geographical range of existing trade routes—including the Silk Roads—promoting the growth of powerful new trading cities.',
+      illustrativeExamples: ['Kashgar', 'Samarkand']
     },
     {
-      code: "KC-2.3.I.C",
-      theme: "Economic Systems",
-      text: "Goods, ideas, and technologies moved across the Silk Roads, including luxury goods, agricultural products, and technologies such as paper, printing, and gunpowder.",
-      illustrativeExamples: ["Silk", "Spices", "Paper", "Gunpowder", "Compass", "Buddhism", "Islam"]
+      code: 'KC-3.1.I.C.i',
+      theme: 'Economic Systems',
+      text: 'The growth of interregional trade in luxury goods was encouraged by innovations in previously existing transportation and commercial technologies, including the caravanserai, forms of credit, and the development of money economies.',
+      illustrativeExamples: ['Bills of exchange', 'Banking houses', 'Use of paper money']
     },
     {
-      code: "KC-2.3.I.D",
-      theme: "Economic Systems",
-      text: "The Silk Roads had significant effects on the societies they connected, including the accumulation of wealth, urbanization along the routes, and the spread of epidemic disease.",
-      illustrativeExamples: ["Black Death", "Urban growth at trade hubs", "Wealth of Central Asian oasis cities"]
+      code: 'KC-3.3.I.B',
+      theme: 'Economic Systems',
+      text: 'Demand for luxury goods increased in Afro-Eurasia. Chinese, Persian, and Indian artisans and merchants expanded their production of textiles and porcelains for export; manufacture of iron and steel expanded in China.',
+      illustrativeExamples: []
     }
   ],
 

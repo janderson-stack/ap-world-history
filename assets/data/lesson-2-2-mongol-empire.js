@@ -73,22 +73,22 @@ window.BEHISTORICAL_LESSON = {
 
   collegeBoardKeyConcepts: [
     {
-      code: "KC-2.3.II.A",
-      theme: "Governance",
-      text: "The Mongols built the largest contiguous land empire in history through military conquest using disciplined cavalry, siege technology, and strategic alliances. Genghis Khan unified the Mongolian steppe peoples and led campaigns of expansion across Central Asia, China, Persia, and Eastern Europe.",
-      illustrativeExamples: ["Genghis Khan", "Cavalry tactics", "Siege warfare", "Khanate system"]
+      code: 'KC-3.2.I.B.iii',
+      theme: 'Governance',
+      text: 'Empires collapsed in different regions of the world and in some areas were replaced by new imperial states, including the Mongol khanates.',
+      illustrativeExamples: []
     },
     {
-      code: "KC-2.3.II.B",
-      theme: "Economic Systems",
-      text: "The Pax Mongolica — the period of relative peace and stability across the Mongol Empire — facilitated the movement of merchants, diplomats, missionaries, and goods across Eurasia. The Yam postal relay system and protection of trade routes enabled unprecedented long-distance exchange.",
-      illustrativeExamples: ["Yam postal system", "Marco Polo", "Protection of the Silk Roads", "Religious tolerance enabling diverse merchants"]
+      code: 'KC-3.1.I.E.i',
+      theme: 'Economic Systems',
+      text: 'The expansion of empires—including the Mongols—facilitated Afro-Eurasian trade and communication as new people were drawn into their conquerors’ economies and trade networks.',
+      illustrativeExamples: []
     },
     {
-      code: "KC-2.3.II.C",
-      theme: "Governance",
-      text: "Mongol conquest had devastating immediate consequences, including the massacre of populations and the destruction of major urban centers. However, Mongol rule also created new connections across Eurasia, facilitating trade, the transmission of technologies, and — unintentionally — the spread of the Black Death.",
-      illustrativeExamples: ["Sack of Baghdad (1258)", "Destruction of the Abbasid Caliphate", "Spread of the Black Death", "Cultural and technological exchange across khanates"]
+      code: 'KC-3.2.II.A.ii',
+      theme: 'Cultural Developments and Interactions',
+      text: 'Interregional contacts and conflicts between states and empires, including the Mongols, encouraged significant technological and cultural transfers.',
+      illustrativeExamples: ['Transfer of Greco-Islamic medical knowledge to western Europe', 'Transfer of numbering systems to Europe', 'Adoption of Uyghur script']
     }
   ],
 

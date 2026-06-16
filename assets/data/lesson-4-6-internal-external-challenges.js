@@ -73,22 +73,16 @@ window.BEHISTORICAL_LESSON = {
 
   collegeBoardKeyConcepts: [
     {
-      code: 'KC-4.6.I.A',
-      theme: 'Resistance',
-      text: 'Indigenous peoples challenged European colonial rule through organized revolts. The Pueblo Revolt of 1680 — organized by Popé — expelled the Spanish from New Mexico for twelve years and forced changes in colonial policy after reconquest.',
-      illustrativeExamples: ['Pueblo Revolt (1680)', 'Popé', 'Tewa peoples', 'New Mexico', 'New Laws of 1542 and their limits']
+      code: 'KC-4.3.III.iii',
+      theme: 'Governance',
+      text: 'State expansion and centralization led to resistance from an array of social, political, and economic groups on a local level.',
+      illustrativeExamples: ['Pueblo Revolts', 'Fronde', 'Cossack revolts', 'Maratha conflict with Mughals', 'Ana Nzinga’s resistance (as ruler of Ndongo and Matamba)', 'Metacom’s War (King Philip’s War)']
     },
     {
-      code: 'KC-4.6.I.B',
-      theme: 'Resistance',
-      text: 'Enslaved Africans resisted colonial rule through maroon communities — autonomous settlements built by escaped enslaved people in remote terrain — as well as through cultural preservation, work slowdowns, and organized revolts.',
-      illustrativeExamples: ['Palmares (Brazil, c. 1605–1694)', 'Zumbi', 'Quilombo', 'Maroons of Jamaica', 'Saramaka (Suriname)']
-    },
-    {
-      code: 'KC-4.6.I.C',
-      theme: 'State Building',
-      text: 'European maritime empires faced external challenges from rival European powers. The Dutch VOC commercially and militarily displaced the Portuguese Estado da India in the Indian Ocean; piracy and privateering served as tools of European rivalry in the Atlantic.',
-      illustrativeExamples: ['Dutch displacement of the Portuguese (c. 1600–1650)', 'VOC vs. Estado da India', 'Sir Francis Drake and privateering', 'Seven Years War (1756–1763)', 'French and British competition in North America']
+      code: 'KC-5.3.III.C',
+      theme: 'Governance',
+      text: 'Enslaved persons challenged existing authorities in the Americas through organized resistance.',
+      illustrativeExamples: ['Establishment of Maroon societies in the Caribbean and Brazil', 'Resistance of enslaved persons in North America']
     }
   ],
 
