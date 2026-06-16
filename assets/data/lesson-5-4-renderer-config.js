@@ -4,16 +4,16 @@
 
   lesson.collegeBoardKeyConcepts = [
     {
-      code: 'KC-5.4.I.A',
-      theme: 'Economic Systems',
-      text: 'Industrialization spread from Britain to Western Europe (Belgium, France, Germany) and North America (United States) during the early-to-mid 19th century, then to Japan after the Meiji Restoration (1868). In each region, industrialization was shaped by local conditions and government policy. Germany and Japan used deliberate state-led industrialization strategies; the United States relied on private enterprise, abundant resources, and protectionist tariffs. By 1900, the United States had surpassed Britain in industrial output.',
-      illustrativeExamples: ['Belgian industrialization (Liège and Charleroi coal basin, 1820s)', 'German railroad network (Prussian state investment, 1840s–60s)', 'US Lowell textile mills and transcontinental railroad (1869)', 'Meiji Restoration (1868)', 'Iwakura Mission (1871–1873)', 'Zaibatsu (Mitsui, Mitsubishi, Sumitomo)', 'Japan defeating Russia (1905)']
+      code: 'KC-5.1.II.B',
+      theme: 'Technology and Innovation',
+      text: 'The rapid development of steam-powered industrial production in European countries and the United States contributed to the increase in these regions’ share of global manufacturing during the first Industrial Revolution. While Middle Eastern and Asian countries continued to produce manufactured goods, these regions’ share in global manufacturing declined.',
+      illustrativeExamples: ['Shipbuilding in India and Southeast Asia', 'Iron works in India', 'Textile production in India and Egypt']
     },
     {
-      code: 'KC-5.4.I.B',
-      theme: 'Economic Systems / Colonialism',
-      text: "Industrialization did NOT spread to most of Asia, Africa, and Latin America during the 19th century. Colonial relationships structured these regions as producers of raw materials and consumers of manufactured goods, preventing domestic industrial development. India's sophisticated textile industry was systematically deindustrialized by British colonial trade policy. Egypt's early industrialization was blocked by the 1838 Treaty of Balta Liman. Countries with political sovereignty could use protective tariffs and state investment to industrialize; colonized territories could not.",
-      illustrativeExamples: ["India's textile deindustrialization", 'British destruction of Indian textile industry through tariff policy', "Muhammad Ali's industrialization in Egypt blocked by Britain's 1838 Treaty of Balta Liman", 'Latin America as raw material supplier (silver, copper, guano, rubber, coffee)', 'China forced open by Treaty of Nanking (1842)', 'Comparative advantage as imperial economic control']
+      code: 'KC-5.1.I.D',
+      theme: 'Technology and Innovation',
+      text: 'As new methods of industrial production became more common in parts of northwestern Europe, they spread to other parts of Europe and the United States, Russia, and Japan.',
+      illustrativeExamples: []
     }
   ];
 

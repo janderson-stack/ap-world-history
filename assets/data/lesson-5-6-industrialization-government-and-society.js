@@ -38,41 +38,59 @@ window.BEHISTORICAL_LESSON = {
   learningTargets: [
     {
       target: "I can explain how industrialization created new social classes — the bourgeoisie and proletariat — and generated competing ideological responses including liberalism, conservatism, utopian socialism, and Marxism, and analyze how these ideologies responded differently to the social disruptions of industrialization.",
-      kc: "KC-5.6.I.A",
-      theme: "Social Structures / Ideology"
+      kc: "KC-5.1.VI.A",
+      theme: "Social Interactions and Organization"
     },
     {
       target: "I can explain how governments responded to industrialization through reform legislation, and analyze how women's roles changed — both in the industrial workforce and in the emergence of the women's suffrage movement — as a consequence of industrial transformation.",
-      kc: "KC-5.6.I.B",
-      theme: "Governance / Social Change"
+      kc: "KC-5.1.VI.B",
+      theme: "Social Interactions and Organization"
     }
   ],
 
   successCriteria: [
     {
       criteria: "I can define bourgeoisie (industrial and commercial middle class, owners of capital) and proletariat (industrial working class, selling labor for wages) and explain how industrialization created these classes. I can identify the key features of liberalism (individual rights, free markets, limited government), conservatism (social stability, tradition, gradual change), utopian socialism (cooperative communities, moral reform), and Marxism (class conflict as historical engine, inevitable proletarian revolution, abolition of private property). I can explain the specific claims of the Communist Manifesto (1848) — the materialist conception of history, the theory of class conflict, and the call for workers to 'unite.' I can compare at least two of these ideologies on the question: what is the cause of industrial poverty, and what is the solution?",
-      kc: "KC-5.6.I.A",
-      theme: "Social Structures / Ideology"
+      kc: "KC-5.1.VI.A",
+      theme: "Social Interactions and Organization"
     },
     {
       criteria: "I can describe at least two specific government responses to industrialization: British reform legislation (Reform Acts of 1832, 1867, 1884 expanding voting rights; Factory Acts limiting child labor and working hours; Poor Law Amendment Act 1834) and Bismarck's social insurance laws in Germany (accident insurance 1871, health insurance 1883, old-age pensions 1889). I can explain women's experience of industrialization — entry into factory labor, exclusion from skilled trades, and the suffrage movement's connection to industrial-era claims about natural rights. I can compare liberal and conservative approaches to government reform.",
-      kc: "KC-5.6.I.B",
-      theme: "Governance / Social Change"
+      kc: "KC-5.1.VI.B",
+      theme: "Social Interactions and Organization"
     }
   ],
 
   collegeBoardKeyConcepts: [
     {
-      code: 'KC-5.6.I.A',
-      theme: 'Social Structures / Ideology',
-      text: "Industrialization created new social classes whose conflicts shaped 19th-century political life. The bourgeoisie — industrial capitalists and commercial middle class — accumulated wealth and political power. The proletariat — industrial working class — labored for wages in factories under difficult conditions. The tension between these classes generated competing ideologies. Liberalism argued for individual rights, free markets, and limited government — the ideology of the rising middle class. Conservatism defended tradition, hierarchy, and social stability against rapid change. Utopian socialists proposed cooperative communities as alternatives to industrial competition. Karl Marx argued in the Communist Manifesto (1848) and Das Kapital (1867) that class conflict was the engine of history, that the bourgeoisie and proletariat were locked in inevitable conflict, and that the proletariat would eventually overthrow capitalism.",
-      illustrativeExamples: ['Bourgeoisie and proletariat as new industrial classes', 'Communist Manifesto (Marx and Engels, 1848)', 'Das Kapital (Marx, 1867)', 'Utopian socialists — Robert Owen (New Lanark), Charles Fourier (phalansteries)', 'Classical liberalism — Adam Smith, John Stuart Mill', 'British Chartist movement (1838–1857)', 'First International (International Workingmen\'s Association, 1864)']
+      code: 'KC-5.1.V.C',
+      theme: 'Governance',
+      text: 'As the influence of the Industrial Revolution grew, a small number of states and governments promoted their own state-sponsored visions of industrialization.',
+      illustrativeExamples: ['Muhammad Ali’s development of a cotton textile industry in Egypt']
     },
     {
-      code: 'KC-5.6.I.B',
-      theme: 'Governance / Social Change',
-      text: "Industrialization generated political pressure for reform. In Britain, the Reform Acts of 1832, 1867, and 1884 progressively extended voting rights to middle-class men and then urban and rural working-class men. Factory Acts (1833, 1844, 1847) regulated child labor and working hours. In Germany, Bismarck introduced Europe's first social insurance system — accident insurance (1871), health insurance (1883), and old-age pensions (1889) — specifically to undercut socialist political appeal by addressing workers' material needs through state programs. Women entered industrial labor in large numbers in textile mills and other factories, but were generally excluded from skilled trades and paid less than male workers. The suffrage movement emerged from the same Enlightenment natural-rights tradition that had driven the American and French revolutions — arguing that the rights of man were also the rights of women.",
-      illustrativeExamples: ['British Reform Acts (1832, 1867, 1884)', 'British Factory Acts (1833, 1844, 1847)', 'Bismarck\'s social insurance laws (1871, 1883, 1889)', 'Chartism (1838–1857)', 'Seneca Falls Convention (1848)', 'Mary Wollstonecraft\'s Vindication of the Rights of Woman (1792)', 'British suffragette movement (1890s–1918)']
+      code: 'KC-5.2.II.A',
+      theme: 'Governance',
+      text: 'The expansion of U.S. and European influence in Asia led to internal reform in Japan that supported industrialization and led to the growing regional power of Japan in the Meiji Era.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.VI.A',
+      theme: 'Social Interactions and Organization',
+      text: 'New social classes, including the middle class and the industrial working class, developed.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.VI.B',
+      theme: 'Social Interactions and Organization',
+      text: 'While women and often children in working-class families typically held wage-earning jobs to supplement their families’ income, middle-class women who did not have the same economic demands to satisfy were increasingly limited to roles in the household or roles focused on child development.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.VI.C',
+      theme: 'Social Interactions and Organization',
+      text: 'The rapid urbanization that accompanied global capitalism at times led to a variety of challenges, including pollution, poverty, increased crime, public health crises, housing shortages, and insufficient infrastructure to accommodate urban growth.',
+      illustrativeExamples: []
     }
   ],
 

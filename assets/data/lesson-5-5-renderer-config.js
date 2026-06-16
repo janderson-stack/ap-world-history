@@ -4,16 +4,22 @@
 
   lesson.collegeBoardKeyConcepts = [
     {
-      code: 'KC-5.5.I.A',
+      code: 'KC-5.1.I.B',
       theme: 'Technology and Innovation',
-      text: 'New technologies — especially the railroad, telegraph, Bessemer steel process, and eventually electricity — transformed industrial economies in the 19th century. Railroads created national and international markets by dramatically reducing transportation costs and travel times. The telegraph enabled real-time commercial coordination. The Bessemer process (1856) made mass-produced steel economical, enabling railroad expansion, urban construction, and industrial machinery. These technologies were interdependent: steam power drove factories and locomotives; railroads required steel rails; steel required coal; coal required railroads to transport it to market.',
-      illustrativeExamples: ["Stephenson's Rocket (1829)", 'Transcontinental railroad, United States (1869)', 'Trans-Siberian Railroad (1891–1916)', 'Samuel Morse telegraph (1844) and transatlantic cable (1866)', 'Bessemer process (1856)', 'Edison electric light (1879)', 'Steam-powered ocean liner']
+      text: 'The development of machines, including steam engines and the internal combustion engine, made it possible to take advantage of both existing and vast newly discovered resources of energy stored in fossil fuels, specifically coal and oil. The fossil fuels revolution greatly increased the energy available to human societies.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.5.I.B',
-      theme: 'Environment / Colonialism',
-      text: "Industrialization transformed global environments. Coal combustion produced air pollution in industrial cities. Demand for industrial raw materials — rubber for machine belts and tires, timber for mine shafts and railroad ties, cotton for textile mills — drove large-scale resource extraction and environmental change across colonized and semi-colonized regions. The rubber boom in the Congo Free State and the Amazon drove violent coercive labor systems. Guano extraction from Peru's Pacific coast islands became a global industry supplying fertilizer to European agriculture.",
-      illustrativeExamples: ['Coal pollution in Manchester and other industrial cities', 'Rubber extraction — Congo Free State (Belgian), Amazon (Brazilian/Peruvian)', 'Guano extraction, Peru (Chincha Islands)', 'Deforestation for railroad ties, mine shaft timber, charcoal', 'Child labor in coal mines', 'Coercive rubber labor systems (Force Publique in the Congo)']
+      code: 'KC-5.1.I.E',
+      theme: 'Technology and Innovation',
+      text: 'The “second industrial revolution” led to new methods in the production of steel, chemicals, electricity, and precision machinery during the second half of the 19th century.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.IV',
+      theme: 'Technology and Innovation',
+      text: 'Railroads, steamships, and the telegraph made exploration, development, and communication possible in interior regions globally, which led to increased trade and migration.',
+      illustrativeExamples: []
     }
   ];
 

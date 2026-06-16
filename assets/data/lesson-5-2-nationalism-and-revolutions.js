@@ -38,57 +38,75 @@ window.BEHISTORICAL_LESSON = {
   learningTargets: [
     {
       target: "I can explain how Enlightenment ideas drove the Atlantic Revolutions and shaped new political systems in the Americas and Europe.",
-      kc: "KC-5.2.I.A",
-      theme: "Governance / Social Structures"
+      kc: "KC-5.3.I.B",
+      theme: "Governance"
     },
     {
       target: "I can explain the causes and significance of the Haitian Revolution as the most radical Atlantic Revolution — the only one that simultaneously challenged colonialism, slavery, and racial hierarchy.",
-      kc: "KC-5.2.I.B",
-      theme: "Social Structures / Governance"
+      kc: "KC-5.3.III.B",
+      theme: "Governance"
     },
     {
       target: "I can explain how nationalism emerged from revolutionary movements and became a destabilizing force in multiethnic empires during the 19th century.",
-      kc: "KC-5.2.I.C",
-      theme: "Governance / Nationalist Movements"
+      kc: "KC-5.3.II.iii",
+      theme: "Governance"
     }
   ],
 
   successCriteria: [
     {
       criteria: "I can describe the American, French, Haitian, and Latin American revolutions; explain one way each drew on Enlightenment ideas; and explain one way each failed to live up to those ideas. I can explain the role of structural conditions (financial crisis, taxation, war debt) alongside Enlightenment ideas in causing each revolution.",
-      kc: "KC-5.2.I.A",
+      kc: "KC-5.3.I.B",
       theme: "Governance"
     },
     {
       criteria: "I can explain why the Haitian Revolution was uniquely radical — because it was simultaneously a revolution against colonialism, slavery, and racial hierarchy. I can identify at least two specific causes of the Haitian Revolution and explain how Haiti's independence on January 1, 1804 challenged the assumptions of every other Atlantic revolutionary state.",
-      kc: "KC-5.2.I.B",
-      theme: "Social Structures"
+      kc: "KC-5.3.III.B",
+      theme: "Governance"
     },
     {
       criteria: "I can define nationalism and explain how it emerged from Atlantic revolutionary movements. I can give at least one specific example of nationalism challenging a multiethnic empire (Greek independence, Italian unification, German unification, Ottoman decline) and explain the mechanism by which nationalist movements destabilized imperial authority.",
-      kc: "KC-5.2.I.C",
+      kc: "KC-5.3.II.iii",
       theme: "Governance"
     }
   ],
 
   collegeBoardKeyConcepts: [
     {
-      code: 'KC-5.2.I.A',
+      code: 'KC-5.3.II.ii',
       theme: 'Governance',
-      text: 'Atlantic Revolutions — American (1776), French (1789), Haitian (1791–1804), and Latin American (1810–1825) — drew on Enlightenment ideas about natural rights, popular sovereignty, and the social contract to challenge monarchies and colonial rule. Each revolution was driven by a combination of Enlightenment ideology AND specific structural conditions: taxation policy, financial crisis, war debt, and class tensions.',
-      illustrativeExamples: ['American Declaration of Independence (1776)', "French Declaration of the Rights of Man and Citizen (1789)", 'Toussaint Louverture', 'Simón Bolívar', "Hidalgo's Grito de Dolores (1810)", 'Seven Years War as structural cause']
+      text: 'People around the world developed a new sense of commonality based on language, religion, social customs, and territory. This was sometimes harnessed by governments to foster a sense of unity.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.2.I.B',
-      theme: 'Social Structures / Governance',
-      text: 'The Haitian Revolution (1791–1804) was the most radical Atlantic Revolution because it was simultaneously a revolution against colonialism, slavery, and racial hierarchy — the only Atlantic revolution led by enslaved and formerly enslaved people who claimed the universal rights that European revolutionaries refused to extend to them. Haiti became the first Black republic in the Western Hemisphere on January 1, 1804.',
-      illustrativeExamples: ['Bois Caïman ceremony (August 1791)', 'Toussaint Louverture', "Napoleon's reimposition of slavery (1802)", "Haiti's independence (January 1, 1804)", 'French reparations demands (150 million francs)', 'First Black republic in the Western Hemisphere']
+      code: 'KC-5.3',
+      theme: 'Governance',
+      text: 'The 18th century marked the beginning of an intense period of revolution and rebellion against existing governments, leading to the establishment of new nation-states around the world.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.2.I.C',
-      theme: 'Governance / Nationalist Movements',
-      text: "Nationalism — the ideology that people sharing a common culture, language, history, or ethnicity should govern themselves — emerged from Atlantic revolutionary movements. By the 19th century, nationalism had become a powerful destabilizing force in multiethnic empires (Ottoman, Habsburg, Russian), fueling independence movements and challenging imperial authority across Europe and beyond.",
-      illustrativeExamples: ['Greek War of Independence (1821–1829)', 'Serbian independence', 'Italian Risorgimento', 'German unification under Bismarck', "Ottoman Empire's decline and nationalist pressures", 'Latin American independence movements']
+      code: 'KC-5.3.IV.A.i',
+      theme: 'Governance',
+      text: 'Discontent with monarchist and imperial rule encouraged the development of systems of government and various ideologies, including democracy and 19th-century liberalism.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.III.B',
+      theme: 'Governance',
+      text: 'Colonial subjects in the Americas led a series of rebellions inspired by democratic ideals. The American Revolution, and its successful establishment of a republic, the United States of America, was a model and inspiration for a number of the revolutions that followed. The American Revolution, the Haitian Revolution, and the Latin American independence movements facilitated the emergence of independent states in the Americas.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.I.B',
+      theme: 'Governance',
+      text: 'The ideas of Enlightenment philosophers, as reflected in revolutionary documents—including the American Declaration of Independence during the American Revolution, the French Declaration of the Rights of Man and of the Citizen during the French Revolution, and Bolívar’s Letter from Jamaica on the eve of the Latin American revolutions—influenced resistance to existing political authority, often in pursuit of independence and democratic ideals.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.II.iii',
+      theme: 'Governance',
+      text: 'Newly imagined national communities often linked this new national identity with borders of the state, and in some cases, nationalists challenged boundaries or sought unification of fragmented regions.',
+      illustrativeExamples: ['Propaganda Movement in the Philippines', 'Māori nationalism and the New Zealand wars in New Zealand', 'Puerto Rico — writings of Lola Rodríguez de Tió', 'German and Italian unifications', 'Balkan nationalisms', 'Ottomanism']
     }
   ],
 

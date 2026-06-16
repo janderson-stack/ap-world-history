@@ -38,41 +38,53 @@ window.BEHISTORICAL_LESSON = {
   learningTargets: [
     {
       target: "I can explain how workers organized through trade unions, strikes, and political parties to improve wages and working conditions, and analyze how government and employer responses — including violent suppression — shaped the development of the labor movement in Britain and the United States.",
-      kc: "KC-5.8.I.A",
-      theme: "Social Movements / Labor"
+      kc: "KC-5.1.V.A",
+      theme: "Social Interactions and Organization"
     },
     {
       target: "I can explain how abolitionism challenged slavery's structural connection to the industrial cotton economy, and how reform movements — including public education, public health reform, and temperance — responded to the social dislocations of industrialization.",
-      kc: "KC-5.8.I.B",
-      theme: "Reform Movements / Social Change"
+      kc: "KC-5.1.V.D",
+      theme: "Social Interactions and Organization"
     }
   ],
 
   successCriteria: [
     {
       criteria: "I can explain why trade unions were illegal under early industrial-era law (Combination Acts in Britain; criminal conspiracy doctrine in the US) and how this legal framework shaped what forms of collective action were available to workers. I can describe three specific labor events and their significance: the Great Railroad Strike of 1877 (first major US labor uprising, broken by state and federal troops); the Haymarket affair of 1886 (bomb at eight-hour workday rally, used to criminalize labor radicalism); and the Pullman Strike of 1894 (nationwide solidarity strike broken by federal troops, Eugene Debs imprisoned). I can explain how the American Federation of Labor (1886) chose 'pure and simple unionism' over political radicalism — and why. I can compare British and American labor movements: why did Britain develop a Labour Party while the United States did not?",
-      kc: "KC-5.8.I.A",
-      theme: "Social Movements / Labor"
+      kc: "KC-5.1.V.A",
+      theme: "Social Interactions and Organization"
     },
     {
       criteria: "I can explain the structural connection between industrial capitalism (specifically the textile industry) and American slavery through the cotton economy — and how abolitionists used this connection in their arguments. I can describe the British abolition of slavery (1833, effective 1838) and the role of the abolitionist movement and the 1831–32 Baptist War. I can explain how the American Cotton Famine (1861–1865) forced British textile mills to diversify cotton sources, restructuring global cotton supply chains. I can give at least two examples of industrial-era reform movements beyond labor and abolitionism (public education reform — Forster Act 1870, mandatory schooling; public health reform — Edwin Chadwick's 1842 report, germ theory, Great Stink/Bazalgette sewers; temperance — WCTU 1874) and explain the connection between each reform and the social dislocations of industrialization.",
-      kc: "KC-5.8.I.B",
-      theme: "Reform Movements / Social Change"
+      kc: "KC-5.1.V.D",
+      theme: "Social Interactions and Organization"
     }
   ],
 
   collegeBoardKeyConcepts: [
     {
-      code: 'KC-5.8.I.A',
-      theme: 'Social Movements / Labor',
-      text: "Workers organized collectively to improve wages and conditions, building trade unions, organizing strikes, and eventually forming labor political parties. In Britain, the Combination Acts (prohibiting union organizing) were repealed in 1824; trade unions grew through the century, contributing to the formation of the Labour Party (1900). In the United States, the legal framework treated union organizing as criminal conspiracy; the Great Railroad Strike (1877), Haymarket affair (1886), and Pullman Strike (1894) were broken by military force, but also demonstrated workers' collective power. The American Federation of Labor (1886) organized skilled workers around specific economic demands. Both countries' labor movements ultimately achieved shorter hours, safer conditions, and the legal right to organize — though the path differed significantly.",
-      illustrativeExamples: ['Combination Acts (Britain 1799–1800) and their repeal (1824)', 'Great Railroad Strike, United States (1877)', 'Haymarket affair, Chicago (1886)', 'Pullman Strike (1894) and Eugene Debs', 'American Federation of Labor (1886)', 'British Labour Party (1900)', 'International Workers\' Day / May Day (1886–)', 'Craft unions vs. industrial unions']
+      code: 'KC-5.1.V.D',
+      theme: 'Social Interactions and Organization',
+      text: 'In response to the social and economic changes brought about by industrial capitalism, some governments, organizations, and individuals promoted various types of political, social, educational, and urban reforms.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.8.I.B',
-      theme: 'Reform Movements / Social Change',
-      text: "Industrialization generated a broad reform impulse addressing the social dislocations it created. Abolitionism challenged slavery's structural role in the industrial cotton economy: British abolition (1833) and American abolition (Thirteenth Amendment, 1865) ended legal slavery in the Western world's major industrial economies. Public education reform produced mandatory schooling laws (Britain's Forster Act 1870; US state laws through the late 19th century), argued on humanitarian and industrial-efficiency grounds. Public health reform — driven by Edwin Chadwick's 1842 report, germ theory (Pasteur, Koch 1860s–1870s), and catastrophes like London's Great Stink (1858) — produced public sewer systems and clean water supplies that dramatically reduced mortality in industrial cities. The temperance movement (Women's Christian Temperance Union, founded 1874) became one of the largest mass movements of the industrial era.",
-      illustrativeExamples: ['British abolition of slavery (1833, effective 1838)', 'Baptist War / Sam Sharpe Rebellion (1831–32)', 'Frederick Douglass and the American abolitionist movement', 'American Civil War and Thirteenth Amendment (1865)', 'Cotton Famine (1861–1865)', "Forster Act / Education Act (Britain 1870)", 'Edwin Chadwick\'s sanitary report (1842)', 'Bazalgette\'s London sewer system', 'Women\'s Christian Temperance Union (WCTU, 1874)']
+      code: 'KC-5.1.V.A',
+      theme: 'Social Interactions and Organization',
+      text: 'In industrialized states, many workers organized themselves, often in labor unions, to improve working conditions, limit hours, and gain higher wages. Workers’ movements and political parties emerged in different areas, promoting alternative visions of society.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.IV.A.ii',
+      theme: 'Social Interactions and Organization',
+      text: 'Discontent with established power structures encouraged the development of various ideologies, including those espoused by Karl Marx, and the ideas of socialism and communism.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.V.B',
+      theme: 'Social Interactions and Organization',
+      text: 'In response to the expansion of industrializing states, some governments in Asia and Africa, including the Ottoman Empire and Qing China, sought to reform and modernize their economies and militaries. Reform efforts were often resisted by some members of government or established elite groups.',
+      illustrativeExamples: []
     }
   ],
 

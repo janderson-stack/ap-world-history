@@ -38,41 +38,47 @@ window.BEHISTORICAL_LESSON = {
   learningTargets: [
     {
       target: "I can explain how industrial capitalism developed new financial institutions — joint-stock companies with limited liability, investment banking, and stock exchanges — and analyze how these institutions made large-scale industrial and infrastructure investment economically possible.",
-      kc: "KC-5.7.I.A",
-      theme: "Economic Systems / Innovation"
+      kc: "KC-5.1.III.B",
+      theme: "Economic Systems"
     },
     {
       target: "I can explain how free trade ideology and the gold standard created an integrated global economy in the 19th century, and analyze how economic imperialism — debt, investment, and trade relationships — extended industrial power over regions that were not directly colonized.",
-      kc: "KC-5.7.I.B",
-      theme: "Economic Systems / Imperialism"
+      kc: "KC-5.1.III.A",
+      theme: "Economic Systems"
     }
   ],
 
   successCriteria: [
     {
       criteria: "I can define joint-stock company, limited liability, stock exchange, and investment banking, and explain how each institution changed the economics of industrial investment. I can explain the specific mechanism of limited liability: before it, investors faced unlimited personal liability for company debts, which limited investment to those who could afford total loss; after it, investors risked only what they invested, enabling mass participation in industrial enterprise. I can identify the UK Companies Act of 1862 as the key legal turning point. I can give at least one specific example of an investment bank (House of Morgan, Deutsche Bank, Rothschilds) and explain its role in financing industrial enterprise.",
-      kc: "KC-5.7.I.A",
-      theme: "Economic Systems / Innovation"
+      kc: "KC-5.1.III.B",
+      theme: "Economic Systems"
     },
     {
       criteria: "I can explain the argument for free trade (comparative advantage — David Ricardo) and its political context: Britain, as the most advanced industrial economy, benefited from free trade because it could undersell domestic producers in every market; countries that were still industrializing used protective tariffs to shield infant industries. I can explain the Corn Laws (1846 repeal) as the defining moment of British free trade policy. I can explain the gold standard as a mechanism for global financial integration and its effect on government economic policy. I can give at least two specific examples of economic imperialism — Latin American debt dependency, Ottoman debt crisis and the Ottoman Public Debt Administration, China's treaty port system — and explain how financial instruments achieved colonial-like control without formal annexation.",
-      kc: "KC-5.7.I.B",
-      theme: "Economic Systems / Imperialism"
+      kc: "KC-5.1.III.A",
+      theme: "Economic Systems"
     }
   ],
 
   collegeBoardKeyConcepts: [
     {
-      code: 'KC-5.7.I.A',
-      theme: 'Economic Systems / Innovation',
-      text: 'Industrial capitalism developed new financial institutions that enabled large-scale investment. Joint-stock companies with limited liability (UK Companies Act 1862) allowed investors to risk only what they invested, enabling mass participation in industrial enterprise. Stock exchanges (London Stock Exchange, New York Stock Exchange) created liquid markets for corporate ownership. Investment banks (House of Morgan, Deutsche Bank, Rothschilds, Crédit Lyonnais) specialized in financing railroads, industrial enterprises, and government bonds. These institutions collectively transformed individual savings into industrial capital at continental and global scale.',
-      illustrativeExamples: ['Joint-stock companies and the VOC/East India Company precedent', 'UK Companies Act 1862 — general limited liability', 'London Stock Exchange (formalized 1801)', 'New York Stock Exchange (1817)', 'House of Morgan — US railroad financing', 'Deutsche Bank — German industrial financing', 'Rothschild banking network — international bond markets', 'Scientific management (Frederick Winslow Taylor, 1911)']
+      code: 'KC-5.1.III.A',
+      theme: 'Economic Systems',
+      text: 'Western European countries began abandoning mercantilism and adopting free trade policies, partly in response to the growing acceptance of Adam Smith’s theories of laissez-faire capitalism and free markets.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.7.I.B',
-      theme: 'Economic Systems / Imperialism',
-      text: "Free trade ideology, championed by Britain as the world's dominant industrial economy, argued that removing tariffs and barriers would increase total global wealth through specialization (comparative advantage). The repeal of British Corn Laws (1846) opened British markets to foreign grain. The gold standard linked major currencies to gold, stabilizing exchange rates and integrating global financial markets. Economic imperialism extended industrial power through debt, investment, and trade relationships: Latin American governments borrowed heavily from British banks, creating dependency; the Ottoman Public Debt Administration (1881) gave European creditors direct control over Ottoman revenue; China's treaty port system opened Chinese markets to foreign goods and capital. These relationships achieved colonial-like control without formal annexation.",
-      illustrativeExamples: ['David Ricardo — comparative advantage', 'Richard Cobden — Anti-Corn Law League', 'Repeal of British Corn Laws (1846)', 'British gold standard (1821); international gold standard (1870s–1890s)', 'Latin American debt to British banks (1820s–)', 'Ottoman Public Debt Administration (1881)', "China's treaty port system (Treaty of Nanking 1842 and subsequent)", 'British investment in Latin American railroads and mining']
+      code: 'KC-5.1.III.B',
+      theme: 'Economic Systems',
+      text: 'The global nature of trade and production contributed to the proliferation of large-scale transnational businesses that relied on new practices in banking and finance.',
+      illustrativeExamples: ['Hong Kong and Shanghai Banking Corporation (HSBC)', 'Unilever, based in England and the Netherlands and operating in British West Africa and the Belgian Congo', 'Stock markets', 'Limited-liability corporations']
+    },
+    {
+      code: 'KC-5.1',
+      theme: 'Economic Systems',
+      text: 'The development of industrial capitalism led to increased standards of living for some, and to continued improvement in manufacturing methods that increased the availability, affordability, and variety of consumer goods.',
+      illustrativeExamples: []
     }
   ],
 

@@ -4,16 +4,34 @@
 
   lesson.collegeBoardKeyConcepts = [
     {
-      code: 'KC-5.6.I.A',
-      theme: 'Social Structures / Ideology',
-      text: "Industrialization created new social classes whose conflicts shaped 19th-century political life. The bourgeoisie — industrial capitalists and commercial middle class — accumulated wealth and political power. The proletariat — industrial working class — labored for wages in factories under difficult conditions. The tension between these classes generated competing ideologies. Liberalism argued for individual rights, free markets, and limited government. Conservatism defended tradition, hierarchy, and social stability. Utopian socialists proposed cooperative communities. Karl Marx argued in the Communist Manifesto (1848) and Das Kapital (1867) that class conflict was the engine of history and that the proletariat would eventually overthrow capitalism.",
-      illustrativeExamples: ['Bourgeoisie and proletariat as new industrial classes', 'Communist Manifesto (Marx and Engels, 1848)', 'Das Kapital (Marx, 1867)', 'Utopian socialists — Robert Owen (New Lanark)', 'Classical liberalism — Adam Smith, John Stuart Mill', 'British Chartist movement (1838–1857)', "First International (1864)"]
+      code: 'KC-5.1.V.C',
+      theme: 'Governance',
+      text: 'As the influence of the Industrial Revolution grew, a small number of states and governments promoted their own state-sponsored visions of industrialization.',
+      illustrativeExamples: ['Muhammad Ali’s development of a cotton textile industry in Egypt']
     },
     {
-      code: 'KC-5.6.I.B',
-      theme: 'Governance / Social Change',
-      text: "Industrialization generated political pressure for reform. In Britain, the Reform Acts of 1832, 1867, and 1884 progressively extended voting rights. Factory Acts regulated child labor and working hours. In Germany, Bismarck introduced Europe's first social insurance system — health insurance (1883) and old-age pensions (1889) — to undercut socialist political appeal. Women entered industrial labor in large numbers but were generally excluded from skilled trades and paid less than male workers. The suffrage movement emerged from the same Enlightenment natural-rights tradition that had driven the American and French revolutions.",
-      illustrativeExamples: ['British Reform Acts (1832, 1867, 1884)', 'British Factory Acts (1833, 1844, 1847)', "Bismarck's social insurance laws (1871, 1883, 1889)", 'Chartism (1838–1857)', 'Seneca Falls Convention (1848)', "Mary Wollstonecraft's Vindication of the Rights of Woman (1792)", 'British suffragette movement (1890s–1918)']
+      code: 'KC-5.2.II.A',
+      theme: 'Governance',
+      text: 'The expansion of U.S. and European influence in Asia led to internal reform in Japan that supported industrialization and led to the growing regional power of Japan in the Meiji Era.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.VI.A',
+      theme: 'Social Interactions and Organization',
+      text: 'New social classes, including the middle class and the industrial working class, developed.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.VI.B',
+      theme: 'Social Interactions and Organization',
+      text: 'While women and often children in working-class families typically held wage-earning jobs to supplement their families’ income, middle-class women who did not have the same economic demands to satisfy were increasingly limited to roles in the household or roles focused on child development.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.VI.C',
+      theme: 'Social Interactions and Organization',
+      text: 'The rapid urbanization that accompanied global capitalism at times led to a variety of challenges, including pollution, poverty, increased crime, public health crises, housing shortages, and insufficient infrastructure to accommodate urban growth.',
+      illustrativeExamples: []
     }
   ];
 

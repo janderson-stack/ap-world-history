@@ -4,16 +4,28 @@
 
   lesson.collegeBoardKeyConcepts = [
     {
-      code: 'KC-5.8.I.A',
-      theme: 'Social Movements / Labor',
-      text: "Workers organized collectively to improve wages and conditions, building trade unions, organizing strikes, and eventually forming labor political parties. In Britain, the Combination Acts were repealed in 1824; trade unions grew through the century, contributing to the formation of the Labour Party (1900). In the United States, the Great Railroad Strike (1877), Haymarket affair (1886), and Pullman Strike (1894) were broken by military force, but also demonstrated workers' collective power. The American Federation of Labor (1886) organized skilled workers around specific economic demands.",
-      illustrativeExamples: ['Combination Acts repeal (Britain 1824)', 'Great Railroad Strike, United States (1877)', 'Haymarket affair, Chicago (1886)', 'Pullman Strike (1894) and Eugene Debs', 'American Federation of Labor (1886)', 'British Labour Party (1900)', "International Workers' Day / May Day (1886–)"]
+      code: 'KC-5.1.V.D',
+      theme: 'Social Interactions and Organization',
+      text: 'In response to the social and economic changes brought about by industrial capitalism, some governments, organizations, and individuals promoted various types of political, social, educational, and urban reforms.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.8.I.B',
-      theme: 'Reform Movements / Social Change',
-      text: "Industrialization generated a broad reform impulse. Abolitionism challenged slavery's structural role in the industrial cotton economy: British abolition (1833) and American abolition (Thirteenth Amendment, 1865) ended legal slavery in the Western world's major industrial economies. Public education reform produced mandatory schooling laws (Britain's Forster Act 1870). Public health reform — driven by Edwin Chadwick's 1842 report and germ theory — produced public sewer systems that dramatically reduced mortality in industrial cities. The temperance movement (Women's Christian Temperance Union, 1874) became one of the largest mass movements of the industrial era.",
-      illustrativeExamples: ['British abolition of slavery (1833, effective 1838)', 'Baptist War / Sam Sharpe Rebellion (1831–32)', 'Frederick Douglass and American abolitionism', 'American Civil War and Thirteenth Amendment (1865)', 'Cotton Famine (1861–1865)', "Forster Act (Britain 1870)", "Edwin Chadwick's sanitary report (1842)", "Bazalgette's London sewer system", 'Women\'s Christian Temperance Union (WCTU, 1874)']
+      code: 'KC-5.1.V.A',
+      theme: 'Social Interactions and Organization',
+      text: 'In industrialized states, many workers organized themselves, often in labor unions, to improve working conditions, limit hours, and gain higher wages. Workers’ movements and political parties emerged in different areas, promoting alternative visions of society.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.IV.A.ii',
+      theme: 'Social Interactions and Organization',
+      text: 'Discontent with established power structures encouraged the development of various ideologies, including those espoused by Karl Marx, and the ideas of socialism and communism.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.V.B',
+      theme: 'Social Interactions and Organization',
+      text: 'In response to the expansion of industrializing states, some governments in Asia and Africa, including the Ottoman Empire and Qing China, sought to reform and modernize their economies and militaries. Reform efforts were often resisted by some members of government or established elite groups.',
+      illustrativeExamples: []
     }
   ];
 
