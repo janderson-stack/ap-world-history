@@ -37,37 +37,37 @@ window.BEHISTORICAL_LESSON = {
 
   learningTargets: [
     {
-      target: "I can explain how European maritime empires used labor systems — encomienda, mita, and chattel slavery — to extract resources from their colonies.",
-      kc: 'KC-4.1.IV.D.i',
-      theme: "Economic Systems"
-    },
-    {
-      target: "I can analyze how colonial administration — viceroyalties, audiencias, and the Catholic Church — maintained imperial control in the Americas.",
+      target: "I can explain how European rulers used mercantilist policies and joint-stock companies to expand and control their economies and claim overseas territories.",
       kc: 'KC-4.1.IV.C',
       theme: "Governance"
     },
     {
-      target: "I can evaluate how the extraction of American silver from Potosí transformed global trade networks through the Manila Galleon trade and the global price revolution.",
+      target: "I can explain how the global circulation of goods — driven by chartered European monopoly companies and the global flow of silver from the Americas — reshaped networks of exchange across Afro-Eurasia.",
       kc: 'KC-4.1.IV',
       theme: "Economic Systems"
+    },
+    {
+      target: "I can explain how the Atlantic trading system moved goods, wealth, and enslaved laborers, and produced a mixing of African, American, and European cultures and peoples.",
+      kc: 'KC-4.1.IV.D.i; KC-4.1.IV.D.ii',
+      theme: "Social Interactions and Organization"
     }
   ],
 
   successCriteria: [
     {
-      criteria: "I can describe at least two labor systems used in Spanish colonial America (encomienda, mita) and explain how each served colonial economic goals, including the role of disease in driving the shift from encomienda to mita and chattel slavery.",
-      kc: 'KC-4.1.IV.D.i',
-      theme: "Economic Systems"
-    },
-    {
-      criteria: "I can explain the role of the viceregal system, audiencias, and the Catholic Church in administering Spanish colonial territories, and describe how these institutions maintained order across vast distances.",
+      criteria: "I can describe mercantilism and the joint-stock company (e.g., the Dutch VOC) and explain how European rulers used them to compete for wealth and overseas territory.",
       kc: 'KC-4.1.IV.C',
       theme: "Governance"
     },
     {
-      criteria: "I can trace how silver from Potosí flowed through the Manila Galleon trade and Seville's Casa de Contratación to connect the Americas, Europe, and Asia, and explain the global price revolution as an effect of silver influx.",
+      criteria: "I can trace how the global flow of silver — especially from Spanish America — and chartered monopoly companies linked the Americas, Europe, and Asia, while regional Afro-Eurasian markets continued to flourish.",
       kc: 'KC-4.1.IV',
       theme: "Economic Systems"
+    },
+    {
+      criteria: "I can explain how the Atlantic trading system moved enslaved laborers and goods and produced a cultural synthesis among African, American, and European peoples.",
+      kc: 'KC-4.1.IV.D.i; KC-4.1.IV.D.ii',
+      theme: "Social Interactions and Organization"
     }
   ],
 

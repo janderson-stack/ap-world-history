@@ -37,19 +37,19 @@ window.BEHISTORICAL_LESSON = {
 
   learningTargets: [
     {
-      target: "I can explain the multiple motivations — religious, economic, and political — that drove European maritime exploration after c. 1450.",
+      target: "I can describe the role of states in sponsoring new transoceanic maritime exploration, and explain the religious, economic, and political motivations behind it.",
       kc: 'KC-4.1.III',
-      theme: "Interaction"
+      theme: "Governance"
     },
     {
       target: "I can describe the key European voyages: Portuguese exploration of the African coast and route to India, Columbus's Caribbean voyage, and Magellan's circumnavigation.",
       kc: 'KC-4.1.III.A; KC-4.1.III.B',
-      theme: "Interaction"
+      theme: "Economic Systems"
     },
     {
-      target: "I can analyze how the Treaty of Tordesillas (1494) reflects European assumptions about power, and explain how different peoples experienced the era of European exploration differently.",
-      kc: 'KC-4.1.III.B',
-      theme: "Interaction"
+      target: "I can explain how English, French, and Dutch states sponsored northern Atlantic crossings in search of alternative routes to Asia, and how the Treaty of Tordesillas (1494) shaped that competition.",
+      kc: 'KC-4.1.III.C',
+      theme: "Economic Systems"
     }
   ],
 
@@ -57,17 +57,17 @@ window.BEHISTORICAL_LESSON = {
     {
       criteria: "I can explain at least two specific motivations for European exploration — including economic incentives (spice trade profits) and religious motivations (conversion, crusading) — and connect each to specific state actions.",
       kc: 'KC-4.1.III',
-      theme: "Interaction"
+      theme: "Governance"
     },
     {
       criteria: "I can trace the key routes: Portuguese south along Africa and around the Cape to India (Dias 1488, da Gama 1498), Columbus to the Caribbean (1492), Magellan's circumnavigation (1519–1522).",
       kc: 'KC-4.1.III.A; KC-4.1.III.B',
-      theme: "Interaction"
+      theme: "Economic Systems"
     },
     {
-      criteria: "I can explain the Treaty of Tordesillas (1494) and what it reveals about European assumptions regarding non-European peoples, and identify at least one perspective from an indigenous or non-European group affected by European exploration.",
-      kc: 'KC-4.1.III.B',
-      theme: "Interaction"
+      criteria: "I can explain how the Treaty of Tordesillas (1494) divided the non-European world between Spain and Portugal, and how English, French, and Dutch states responded by seeking alternative northern routes to Asia.",
+      kc: 'KC-4.1.III.C',
+      theme: "Economic Systems"
     }
   ],
 

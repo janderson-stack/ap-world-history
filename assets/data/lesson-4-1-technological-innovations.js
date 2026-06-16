@@ -39,17 +39,17 @@ window.BEHISTORICAL_LESSON = {
     {
       target: "I can identify and explain the maritime technologies that enabled European oceanic exploration after c. 1450.",
       kc: 'KC-4.1.II.A',
-      theme: "Interaction"
+      theme: "Technology and Innovation"
     },
     {
-      target: "I can explain how cartographic innovations and the printing press contributed to the spread of geographic knowledge that made further exploration possible.",
+      target: "I can explain how knowledge, scientific learning, and technology from the Classical, Islamic, and Asian worlds spread and facilitated European technological developments and innovation.",
       kc: 'KC-4.1.II',
-      theme: "Interaction"
+      theme: "Technology and Innovation"
     },
     {
-      target: "I can analyze how maritime technologies were connected to state-sponsored exploration, especially by Portugal and Spain.",
-      kc: 'KC-4.1.II',
-      theme: "Interaction"
+      target: "I can explain how new tools, innovations in ship design, and an improved understanding of regional wind and current patterns made transoceanic travel and trade possible.",
+      kc: 'KC-4.1.II.A',
+      theme: "Technology and Innovation"
     }
   ],
 
@@ -57,17 +57,17 @@ window.BEHISTORICAL_LESSON = {
     {
       criteria: "I can name at least three specific maritime technologies and explain what navigation problem each one solved for sailors attempting extended oceanic voyages.",
       kc: 'KC-4.1.II.A',
-      theme: "Interaction"
+      theme: "Technology and Innovation"
     },
     {
-      criteria: "I can explain how the printing press changed the distribution of geographic knowledge, and give one specific example of a printed map or geographic text that spread exploration knowledge.",
+      criteria: "I can give a specific example of knowledge or technology from the Classical, Islamic, or Asian world (e.g., the compass, the lateen sail, or Arabic astronomical and mathematical learning) that European navigators adopted.",
       kc: 'KC-4.1.II',
-      theme: "Interaction"
+      theme: "Technology and Innovation"
     },
     {
-      criteria: "I can connect specific maritime technologies to the Portuguese model of systematic exploration and explain why state sponsorship was necessary for these voyages.",
-      kc: 'KC-4.1.II',
-      theme: "Interaction"
+      criteria: "I can name specific ship designs (caravel, carrack, fluyt) and navigational tools (lateen sail, compass, astronomical charts) and explain what each contributed to oceanic travel.",
+      kc: 'KC-4.1.II.A',
+      theme: "Technology and Innovation"
     }
   ],
 

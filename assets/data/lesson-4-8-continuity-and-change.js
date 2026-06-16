@@ -44,7 +44,7 @@ window.BEHISTORICAL_LESSON = {
     {
       target: "I can analyze the major demographic and environmental changes caused by the Columbian Exchange, including the population collapse in the Americas and the spread of new crops globally.",
       kc: 'KC-4.2.II',
-      theme: "Demography and Environment"
+      theme: "Humans and the Environment"
     },
     {
       target: "I can evaluate what continued from c. 1450 — including the Indian Ocean trade, Asian manufacturing dominance, and Islamic commercial networks — and explain why these continuities persisted alongside dramatic change.",
@@ -62,7 +62,7 @@ window.BEHISTORICAL_LESSON = {
     {
       criteria: "I can describe the demographic catastrophe in the Americas (50–90% population loss) and explain how it drove the Atlantic slave trade; I can also identify at least two crops from the Columbian Exchange and explain their global impact.",
       kc: 'KC-4.2.II',
-      theme: "Demography and Environment"
+      theme: "Humans and the Environment"
     },
     {
       criteria: "I can identify at least two specific continuities (Indian Ocean trade, Chinese economic dominance, Islamic commercial networks) and explain the structural factors that sustained them despite European maritime expansion.",
