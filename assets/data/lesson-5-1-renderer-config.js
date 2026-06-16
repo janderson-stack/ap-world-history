@@ -4,16 +4,34 @@
 
   lesson.collegeBoardKeyConcepts = [
     {
-      code: 'KC-5.1.I.A',
-      theme: 'Governance / Social Structures',
-      text: 'Enlightenment thinkers, building on the Scientific Revolution and Renaissance humanism, argued that reason could discover natural laws governing human society and politics. Core concepts included natural rights (Locke), social contract theory (Rousseau), popular sovereignty, separation of powers (Montesquieu), religious tolerance (Voltaire), and free market economics (Smith). These ideas challenged the divine right of kings, hereditary aristocracy, and Church authority, providing intellectual foundations for the Atlantic Revolutions.',
-      illustrativeExamples: ["Locke's Two Treatises of Government (1689)", "Rousseau's Social Contract (1762)", "Montesquieu's Spirit of the Laws (1748)", "Voltaire's Candide (1759)", "Wollstonecraft's Vindication of the Rights of Woman (1792)", "Adam Smith's Wealth of Nations (1776)", "The Encyclopédie (1751–1772)"]
+      code: 'KC-5.3.I.A',
+      theme: 'Cultural Developments and Interactions',
+      text: 'Enlightenment philosophies applied new ways of understanding and empiricist approaches to both the natural world and human relationships; they also reexamined the role that religion played in public life and emphasized the importance of reason. Philosophers developed new political ideas about the individual, natural rights, and the social contract.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.1.I.B',
+      code: 'KC-5.3.I',
       theme: 'Cultural Developments and Interactions',
-      text: 'Enlightenment ideas spread across Europe and the Atlantic world through print culture, salons, coffeehouses, and universities. However, Enlightenment universalism had significant limits: most philosophes excluded women from political rights; enslaved people and colonial subjects were denied the natural rights claimed by white Europeans; and prominent philosophes wrote in racist terms about non-European peoples. These limits made Enlightenment ideas simultaneously revolutionary and exclusionary.',
-      illustrativeExamples: ["Encyclopédie (Diderot and d'Alembert, 1751–1772)", "Parisian salons hosted by women (Marie-Thérèse Rodet Geoffrin)", "Wollstonecraft's Vindication as response to Rousseau's exclusion of women", "Locke's investment in the Royal African Company", "Voltaire's racist descriptions of Africans and Asians"]
+      text: 'The rise and diffusion of Enlightenment thought that questioned established traditions in all areas of life often preceded revolutions and rebellions against existing governments.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.II.i',
+      theme: 'Cultural Developments and Interactions',
+      text: 'Nationalism also became a major force shaping the historical development of states and empires.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.I.C',
+      theme: 'Social Interactions and Organization',
+      text: 'Enlightenment ideas and religious ideals influenced various reform movements. These reform movements contributed to the expansion of rights, as seen in expanded suffrage, the abolition of slavery, and the end of serfdom.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.IV.B',
+      theme: 'Social Interactions and Organization',
+      text: 'Demands for women’s suffrage and an emergent feminism challenged political and gender hierarchies.',
+      illustrativeExamples: ['Mary Wollstonecraft’s A Vindication of the Rights of Woman', 'Olympe de Gouges’s Declaration of the Rights of Woman and of the Female Citizen', 'Seneca Falls Conference (1848), organized by Elizabeth Cady Stanton and Lucretia Mott']
     }
   ];
 

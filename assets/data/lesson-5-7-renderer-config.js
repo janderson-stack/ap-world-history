@@ -4,16 +4,22 @@
 
   lesson.collegeBoardKeyConcepts = [
     {
-      code: 'KC-5.7.I.A',
-      theme: 'Economic Systems / Innovation',
-      text: 'Industrial capitalism developed new financial institutions that enabled large-scale investment. Joint-stock companies with limited liability (UK Companies Act 1862) allowed investors to risk only what they invested, enabling mass participation in industrial enterprise. Stock exchanges (London Stock Exchange, New York Stock Exchange) created liquid markets for corporate ownership. Investment banks (House of Morgan, Deutsche Bank, Rothschilds) specialized in financing railroads and industrial enterprises.',
-      illustrativeExamples: ['Joint-stock companies and VOC precedent', 'UK Companies Act 1862 — general limited liability', 'London Stock Exchange (formalized 1801)', 'New York Stock Exchange (1817)', 'House of Morgan — US railroad financing', 'Deutsche Bank — German industrial financing', 'Rothschild banking network']
+      code: 'KC-5.1.III.A',
+      theme: 'Economic Systems',
+      text: 'Western European countries began abandoning mercantilism and adopting free trade policies, partly in response to the growing acceptance of Adam Smith’s theories of laissez-faire capitalism and free markets.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.7.I.B',
-      theme: 'Economic Systems / Imperialism',
-      text: "Free trade ideology, championed by Britain as the world's dominant industrial economy, argued for comparative advantage and specialization. The repeal of British Corn Laws (1846) opened British markets to foreign grain. The gold standard stabilized exchange rates and integrated global financial markets. Economic imperialism extended industrial power through debt and investment: Latin American governments borrowed from British banks, creating dependency; the Ottoman Public Debt Administration (1881) gave European creditors control over Ottoman revenue; China's treaty port system opened Chinese markets under unequal treaties.",
-      illustrativeExamples: ['David Ricardo — comparative advantage', 'Richard Cobden and the Anti-Corn Law League', 'Repeal of British Corn Laws (1846)', 'British gold standard (1821); international gold standard (1870s–1890s)', 'Latin American debt to British banks', 'Ottoman Public Debt Administration (1881)', "China's treaty port system (Treaty of Nanking 1842)"]
+      code: 'KC-5.1.III.B',
+      theme: 'Economic Systems',
+      text: 'The global nature of trade and production contributed to the proliferation of large-scale transnational businesses that relied on new practices in banking and finance.',
+      illustrativeExamples: ['Hong Kong and Shanghai Banking Corporation (HSBC)', 'Unilever, based in England and the Netherlands and operating in British West Africa and the Belgian Congo', 'Stock markets', 'Limited-liability corporations']
+    },
+    {
+      code: 'KC-5.1',
+      theme: 'Economic Systems',
+      text: 'The development of industrial capitalism led to increased standards of living for some, and to continued improvement in manufacturing methods that increased the availability, affordability, and variety of consumer goods.',
+      illustrativeExamples: []
     }
   ];
 

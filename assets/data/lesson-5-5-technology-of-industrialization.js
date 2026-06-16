@@ -38,41 +38,47 @@ window.BEHISTORICAL_LESSON = {
   learningTargets: [
     {
       target: "I can explain how railroads, the telegraph, the Bessemer process, and electricity transformed industrial economies in the 19th century, and analyze the specific mechanisms by which these technologies accelerated industrial production and market integration.",
-      kc: "KC-5.5.I.A",
+      kc: "KC-5.1.I.E; KC-5.1.IV",
       theme: "Technology and Innovation"
     },
     {
       target: "I can explain the environmental and social consequences of industrial technology, including coal pollution and resource extraction — particularly the extraction of rubber, guano, and timber from colonized regions — and analyze how industrial demand reshaped global environments and labor systems.",
-      kc: "KC-5.5.I.B",
-      theme: "Environment / Colonialism"
+      kc: "KC-5.1.I.B",
+      theme: "Technology and Innovation"
     }
   ],
 
   successCriteria: [
     {
       criteria: "I can explain how railroads created national markets by lowering transportation costs and connecting interior regions to ports. I can describe the Bessemer process (1856) as a technology that made mass production of steel possible, and explain how cheap steel enabled railroads, bridges, and industrial machinery at scale. I can explain how the telegraph (1844–1860s) enabled real-time commercial coordination across continents. I can give at least two specific examples of how 19th-century technologies were interdependent — one technology enabling another (e.g., steam engines enabling railroads, Bessemer steel enabling railroad track production at scale, railroads enabling the coal industry by transporting coal cheaply).",
-      kc: "KC-5.5.I.A",
+      kc: "KC-5.1.I.E; KC-5.1.IV",
       theme: "Technology and Innovation"
     },
     {
       criteria: "I can describe the environmental consequences of industrialization, including coal pollution in British industrial cities and large-scale deforestation. I can explain how industrial demand for rubber (for machine belts, tires, insulation) drove resource extraction in the Congo (Belgian) and Amazon (Brazilian/Peruvian), using coercive labor systems. I can explain how guano (seabird excrement used as fertilizer) became an industrial-scale resource extracted from Peru's Pacific coast, sustaining European agriculture that fed industrial workers. I can make the connection between industrial technology in Europe and environmental and labor transformation in colonized or semi-colonized regions.",
-      kc: "KC-5.5.I.B",
-      theme: "Environment / Colonialism"
+      kc: "KC-5.1.I.B",
+      theme: "Technology and Innovation"
     }
   ],
 
   collegeBoardKeyConcepts: [
     {
-      code: 'KC-5.5.I.A',
+      code: 'KC-5.1.I.B',
       theme: 'Technology and Innovation',
-      text: 'New technologies — especially the railroad, telegraph, Bessemer steel process, and eventually electricity — transformed industrial economies in the 19th century. Railroads created national and international markets by dramatically reducing transportation costs and travel times. The telegraph enabled real-time commercial coordination. The Bessemer process (1856) made mass-produced steel economical, enabling railroad expansion, urban construction, and industrial machinery. These technologies were interdependent: steam power drove factories and locomotives; railroads required steel rails; steel required coal; coal required railroads to transport it to market.',
-      illustrativeExamples: ["Stephenson's Rocket (1829)", 'Transcontinental railroad, United States (1869)', 'Trans-Siberian Railroad (1891–1916)', 'Samuel Morse telegraph (1844) and transatlantic cable (1866)', 'Bessemer process (1856) — mass-produced steel', 'Edison electric light (1879) and AC/DC current', 'Steam-powered ocean liner']
+      text: 'The development of machines, including steam engines and the internal combustion engine, made it possible to take advantage of both existing and vast newly discovered resources of energy stored in fossil fuels, specifically coal and oil. The fossil fuels revolution greatly increased the energy available to human societies.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.5.I.B',
-      theme: 'Environment / Colonialism',
-      text: 'Industrialization transformed global environments. Coal combustion produced air pollution in industrial cities. Demand for industrial raw materials — rubber for machine belts and tires, timber for mine shafts and railroad ties, cotton for textile mills — drove large-scale resource extraction and environmental change across colonized and semi-colonized regions. The rubber boom in the Congo Free State and the Amazon drove violent coercive labor systems. Guano extraction from Peru\'s Pacific coast islands became a global industry supplying fertilizer to European agriculture. Industrial demand made the environmental and labor systems of colonized regions integral to industrial economies.',
-      illustrativeExamples: ['Coal pollution in Manchester and other industrial cities', 'Rubber extraction — Congo Free State (Belgian), Amazon (Brazilian/Peruvian)', 'Guano extraction, Peru (Chincha Islands)', 'Deforestation for railroad ties, mine shaft timber, charcoal', 'Child labor in coal mines', 'Coercive rubber labor systems (Force Publique in the Congo)']
+      code: 'KC-5.1.I.E',
+      theme: 'Technology and Innovation',
+      text: 'The “second industrial revolution” led to new methods in the production of steel, chemicals, electricity, and precision machinery during the second half of the 19th century.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.1.IV',
+      theme: 'Technology and Innovation',
+      text: 'Railroads, steamships, and the telegraph made exploration, development, and communication possible in interior regions globally, which led to increased trade and migration.',
+      illustrativeExamples: []
     }
   ],
 

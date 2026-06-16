@@ -4,16 +4,16 @@
 
   lesson.collegeBoardKeyConcepts = [
     {
-      code: 'KC-5.3.I.A',
-      theme: 'Economic Systems',
-      text: 'The Industrial Revolution began in Britain in the late 18th century due to a combination of factors: abundant coal and iron deposits, geographical advantages (rivers, canals, coastline), political stability and property rights protecting investment, capital from colonial trade, agricultural enclosure that freed up rural labor, and a culture of practical scientific knowledge. No single factor explains British industrialization — the unique combination created conditions that existed nowhere else.',
-      illustrativeExamples: ['Coal deposits (Yorkshire, Midlands, South Wales)', "Watt's steam engine (1769)", 'Enclosure Acts driving rural workers to cities', 'Capital from Atlantic and colonial trade', "Glorious Revolution (1688) and property rights protection", 'Royal Society and patent system', "Arkwright's water frame (1769) and Cromford factory (1771)"]
+      code: 'KC-5.1.I.A',
+      theme: 'Humans and the Environment',
+      text: 'A variety of factors contributed to the growth of industrial production and eventually resulted in the Industrial Revolution, including: Proximity to waterways; access to rivers and canals; Geographical distribution of coal, iron, and timber; Urbanization; Improved agricultural productivity; Legal protection of private property; Access to foreign resources; Accumulation of capital',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.3.I.B',
-      theme: 'Social Structures / Economic Systems',
-      text: 'Early industrialization was characterized by steam power, the factory system, and rapid urbanization. The factory system replaced the domestic putting-out system, concentrating workers and machines under one roof. Manchester grew from 25,000 in 1772 to 300,000 by 1850. Workers — including children — faced long hours, dangerous conditions, and strict discipline. Resistance took the form of Luddite frame-breaking (1811–1816) and early labor organizing (Chartism, trade unions).',
-      illustrativeExamples: ["Watt's steam engine (1769)", "Arkwright's Cromford factory (1771)", 'Manchester as Cottonopolis', 'Child labor — Factory Acts (1833)', 'Luddites (1811–1816)', 'Chartism (1838–1857)', 'Domestic/putting-out system replaced by factory system']
+      code: 'KC-5.1.I.C',
+      theme: 'Humans and the Environment',
+      text: 'The development of the factory system concentrated production in a single location and led to an increasing degree of specialization of labor.',
+      illustrativeExamples: []
     }
   ];
 

@@ -4,22 +4,40 @@
 
   lesson.collegeBoardKeyConcepts = [
     {
-      code: 'KC-5.2.I.A',
+      code: 'KC-5.3.II.ii',
       theme: 'Governance',
-      text: 'Atlantic Revolutions — American (1776), French (1789), Haitian (1791–1804), and Latin American (1810–1825) — drew on Enlightenment ideas about natural rights, popular sovereignty, and the social contract to challenge monarchies and colonial rule. Each revolution was driven by a combination of Enlightenment ideology AND specific structural conditions: taxation policy, financial crisis, war debt, and class tensions.',
-      illustrativeExamples: ['American Declaration of Independence (1776)', "French Declaration of the Rights of Man and Citizen (1789)", 'Toussaint Louverture', 'Simón Bolívar', "Hidalgo's Grito de Dolores (1810)", 'Seven Years War as structural cause']
+      text: 'People around the world developed a new sense of commonality based on language, religion, social customs, and territory. This was sometimes harnessed by governments to foster a sense of unity.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.2.I.B',
-      theme: 'Social Structures / Governance',
-      text: 'The Haitian Revolution (1791–1804) was the most radical Atlantic Revolution because it was simultaneously a revolution against colonialism, slavery, and racial hierarchy — the only Atlantic revolution led by enslaved and formerly enslaved people who claimed the universal rights that European revolutionaries refused to extend to them. Haiti became the first Black republic in the Western Hemisphere on January 1, 1804.',
-      illustrativeExamples: ['Bois Caïman ceremony (August 1791)', 'Toussaint Louverture', "Napoleon's reimposition of slavery (1802)", "Haiti's independence (January 1, 1804)", 'French reparations demands (150 million francs)', 'First Black republic in the Western Hemisphere']
+      code: 'KC-5.3',
+      theme: 'Governance',
+      text: 'The 18th century marked the beginning of an intense period of revolution and rebellion against existing governments, leading to the establishment of new nation-states around the world.',
+      illustrativeExamples: []
     },
     {
-      code: 'KC-5.2.I.C',
-      theme: 'Governance / Nationalist Movements',
-      text: "Nationalism — the ideology that people sharing a common culture, language, history, or ethnicity should govern themselves — emerged from Atlantic revolutionary movements. By the 19th century, nationalism had become a powerful destabilizing force in multiethnic empires (Ottoman, Habsburg, Russian), fueling independence movements and challenging imperial authority across Europe and beyond.",
-      illustrativeExamples: ['Greek War of Independence (1821–1829)', 'Serbian independence', 'Italian Risorgimento', 'German unification under Bismarck', "Ottoman Empire's decline and nationalist pressures", 'Latin American independence movements']
+      code: 'KC-5.3.IV.A.i',
+      theme: 'Governance',
+      text: 'Discontent with monarchist and imperial rule encouraged the development of systems of government and various ideologies, including democracy and 19th-century liberalism.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.III.B',
+      theme: 'Governance',
+      text: 'Colonial subjects in the Americas led a series of rebellions inspired by democratic ideals. The American Revolution, and its successful establishment of a republic, the United States of America, was a model and inspiration for a number of the revolutions that followed. The American Revolution, the Haitian Revolution, and the Latin American independence movements facilitated the emergence of independent states in the Americas.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.I.B',
+      theme: 'Governance',
+      text: 'The ideas of Enlightenment philosophers, as reflected in revolutionary documents—including the American Declaration of Independence during the American Revolution, the French Declaration of the Rights of Man and of the Citizen during the French Revolution, and Bolívar’s Letter from Jamaica on the eve of the Latin American revolutions—influenced resistance to existing political authority, often in pursuit of independence and democratic ideals.',
+      illustrativeExamples: []
+    },
+    {
+      code: 'KC-5.3.II.iii',
+      theme: 'Governance',
+      text: 'Newly imagined national communities often linked this new national identity with borders of the state, and in some cases, nationalists challenged boundaries or sought unification of fragmented regions.',
+      illustrativeExamples: ['Propaganda Movement in the Philippines', 'Māori nationalism and the New Zealand wars in New Zealand', 'Puerto Rico — writings of Lola Rodríguez de Tió', 'German and Italian unifications', 'Balkan nationalisms', 'Ottomanism']
     }
   ];
 
