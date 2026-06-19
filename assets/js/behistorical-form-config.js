@@ -67,6 +67,7 @@ window.BH_FORM = {
     '5.7': '5.7 - Economic Developments and Innovations',
     '5.8': '5.8 - Reactions to the Industrial Economy',
     '5.9': '5.9 - Society and the Industrial Age',
+    '5.10': '5.10 - Continuity and Change in the Industrial Age',
   },
 
   // Must match Google Form multiple-choice option text exactly.
