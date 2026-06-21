@@ -54,8 +54,8 @@
   };
 
   lesson.beInTheRoom = {
-    url: '../beintheroom/unit-2/silk-road-merchant.html',
-    desc: 'Become a Silk Road merchant in the 13th century, negotiate with caravanserai owners, and decide which goods to carry across Central Asia.'
+    url: '../beintheroom/unit-2/samarkand-caravanserai.html',
+    desc: 'You are Yahya al-Tirmizi, trusted advisor to a Samarkand merchant lord. The year is 1220 CE. Your employer wants to know: invest more in the Silk Roads, or begin shifting operations to the Indian Ocean? Use the historical evidence to make your case.'
   };
 
   lesson.beSurreal = {

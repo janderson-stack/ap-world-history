@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | The Crossroads at Samarkand · Topic 2.1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .scenario-shell{max-width:1180px;margin:0 auto;padding:24px}
+
+    /* ── Hero ── */
+    .scenario-hero{
+      background:linear-gradient(180deg,rgba(26,28,29,.84) 0%,rgba(26,28,29,.96) 100%),
+        url('https://commons.wikimedia.org/wiki/Special:FilePath/Registan%2C_Samarkand.jpg') center/cover no-repeat;
+      border-radius:28px;padding:60px 44px 52px;color:var(--warm-paper);
+      box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.32);margin-bottom:28px
+    }
+    .scenario-eyebrow{font-family:"Montserrat",Arial,sans-serif;font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.2em;color:var(--antique-gold);margin-bottom:16px}
+    .scenario-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.4rem,6vw,5rem);line-height:1;margin:0 0 14px;max-width:900px}
+    .scenario-setting{font-family:"Libre Baskerville",Georgia,serif;font-style:italic;color:#c4bba8;font-size:1.05rem;margin:0 0 30px;line-height:1.5}
+    .hero-btn-row{display:flex;flex-wrap:wrap;gap:12px}
+
+    /* ── Section shells ── */
+    .scenario-section{background:var(--warm-paper);border-radius:24px;padding:42px 44px;margin-bottom:22px;box-shadow:var(--soft-shadow);border:1px solid rgba(107,62,31,.12)}
+    .scenario-section-dark{background:linear-gradient(160deg,#1e2022,#252a2c);color:var(--warm-paper);border-radius:24px;padding:42px 44px;margin-bottom:22px;box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.22)}
+    .scenario-section-clean{background:var(--clean-paper);border-radius:24px;padding:42px 44px;margin-bottom:22px;box-shadow:var(--soft-shadow);border:1px solid rgba(107,62,31,.1)}
+
+    /* ── Section headings ── */
+    .s-eyebrow{font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.18em;color:var(--burnished-bronze);margin-bottom:10px}
+    .s-eyebrow-gold{font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.18em;color:var(--antique-gold);margin-bottom:10px}
+    .s-title{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);font-size:clamp(1.45rem,3vw,2.1rem);margin:0 0 22px;line-height:1.2}
+    .s-title-light{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(1.45rem,3vw,2.1rem);margin:0 0 22px;line-height:1.2}
+
+    /* ── Narrative text ── */
+    .narrative{font-family:"Libre Baskerville",Georgia,serif;font-size:1.02rem;line-height:1.74;color:#2c2c2c}
+    .narrative p{margin:0 0 1.1em}
+    .narrative p:last-child{margin-bottom:0}
+    .narrative strong{color:var(--oxidized-brown)}
+    .narrative em{font-style:italic}
+
+    /* ── Pull quote ── */
+    .pull-quote{border-left:5px solid var(--antique-gold);padding:16px 24px;margin:28px 0 22px;font-family:"Libre Baskerville",Georgia,serif;font-size:1.12rem;font-style:italic;color:var(--burnished-bronze);line-height:1.6;background:rgba(201,164,106,.06);border-radius:0 14px 14px 0}
+
+    /* ── Role card internals ── */
+    .role-sub{margin-bottom:26px}
+    .role-sub:last-child{margin-bottom:0}
+    .role-sub-label{font-family:"Montserrat",Arial,sans-serif;font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.16em;color:var(--antique-gold);margin-bottom:10px}
+    .role-text{font-family:"Libre Baskerville",Georgia,serif;font-size:.97rem;line-height:1.68;color:#cfc6b9}
+    .role-text ul{padding-left:20px;margin:8px 0 0}
+    .role-text li{margin-bottom:8px}
+    .role-divider{border:0;border-top:1px solid rgba(201,164,106,.18);margin:26px 0}
+
+    /* ── Challenge section ── */
+    .challenge-q{font-family:"Cinzel",Georgia,serif;color:var(--oxidized-brown);font-size:clamp(1.05rem,2.5vw,1.28rem);line-height:1.48;background:rgba(201,164,106,.09);border-left:5px solid var(--antique-gold);padding:16px 22px;border-radius:0 14px 14px 0;margin:22px 0 30px}
+    .task-list{list-style:none;padding:0;margin:0}
+    .task-list li{display:flex;gap:18px;margin-bottom:20px;align-items:flex-start}
+    .task-num{font-family:"Cinzel",Georgia,serif;font-size:1.6rem;color:var(--antique-gold);flex-shrink:0;line-height:1.1;min-width:30px}
+    .task-body{flex:1;font-family:"Libre Baskerville",Georgia,serif;font-size:1rem;line-height:1.68;color:#2c2c2c}
+    .task-body strong{color:var(--oxidized-brown)}
+    .task-footnote{font-family:"Montserrat",Arial,sans-serif;font-size:.78rem;color:var(--aged-iron);font-style:italic;margin-top:22px;padding-top:18px;border-top:1px solid rgba(107,62,31,.14)}
+
+    /* ── Evidence accordion ── */
+    .evidence-stack{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+    .ev-card{border:1px solid rgba(107,62,31,.16);border-radius:18px;overflow:hidden;background:#fffdf7}
+    .ev-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;cursor:pointer;gap:14px;transition:background .18s}
+    .ev-header:hover{background:#f5ede0}
+    .ev-header-left{flex:1}
+    .ev-card-num{font-family:"Montserrat",Arial,sans-serif;font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.16em;color:var(--burnished-bronze);margin-bottom:5px}
+    .ev-quote{font-family:"Libre Baskerville",Georgia,serif;font-style:italic;color:var(--antique-gold);font-size:1.02rem;line-height:1.42;margin:0}
+    .ev-toggle{font-size:1.5rem;color:var(--antique-gold);flex-shrink:0;transition:transform .22s ease;user-select:none;width:28px;text-align:center}
+    .ev-card.open .ev-toggle{transform:rotate(45deg)}
+    .ev-body{display:none;padding:0 24px 24px;animation:fadeIn .2s ease}
+    .ev-card.open .ev-body{display:block}
+    .ev-body h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);font-size:1.08rem;margin:14px 0 14px;padding-top:4px;border-top:1px solid rgba(107,62,31,.12)}
+    .ev-body p{font-family:"Libre Baskerville",Georgia,serif;font-size:.97rem;line-height:1.7;color:#2c2c2c;margin:0 0 .9em}
+    .ev-body p:last-child{margin-bottom:0}
+    .ev-body strong{color:var(--oxidized-brown)}
+    .consider-strip{background:rgba(201,164,106,.1);border-left:4px solid var(--antique-gold);border-radius:0 12px 12px 0;padding:12px 18px;margin-top:18px;font-family:"Libre Baskerville",Georgia,serif;font-size:.93rem;font-style:italic;color:var(--oxidized-brown);line-height:1.55}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── Thinking moves ── */
+    .thinking-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+    .thinking-move{background:#fffdf7;border:1px solid rgba(107,62,31,.13);border-radius:16px;padding:20px;display:flex;gap:16px;align-items:flex-start}
+    .thinking-move.full{grid-column:1/-1}
+    .tm-num{font-family:"Cinzel",Georgia,serif;font-size:2rem;color:var(--antique-gold);flex-shrink:0;line-height:1;min-width:34px}
+    .tm-body strong{font-family:"Montserrat",Arial,sans-serif;font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.09em;color:var(--oxidized-brown);display:block;margin-bottom:6px}
+    .tm-body p{font-family:"Libre Baskerville",Georgia,serif;font-size:.92rem;line-height:1.58;color:#3a3a3a;margin:0}
+
+    /* ── Bridge / submit ── */
+    .bridge-section{background:linear-gradient(160deg,#1e2022,#252a2c);border-radius:24px;padding:48px 44px;margin-bottom:22px;box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.28);text-align:center}
+    .bridge-section h2{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(1.3rem,3vw,1.9rem);margin:0 0 14px}
+    .bridge-section p{font-family:"Libre Baskerville",Georgia,serif;font-size:1rem;line-height:1.68;color:#cfc6b9;max-width:720px;margin:0 auto 32px}
+    .bridge-btn-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+    .btn-primary-pill{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#8C5A2B,#6B3E1F);color:#fff;border:0;border-radius:999px;padding:15px 32px;font-family:"Montserrat",Arial,sans-serif;font-weight:900;font-size:.83rem;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;text-decoration:none;transition:.18s ease;box-shadow:0 4px 18px rgba(107,62,31,.35)}
+    .btn-primary-pill:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(107,62,31,.45)}
+    .btn-outline-pill{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--antique-gold);border:2px solid var(--antique-gold);border-radius:999px;padding:13px 30px;font-family:"Montserrat",Arial,sans-serif;font-weight:900;font-size:.83rem;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;text-decoration:none;transition:.18s ease}
+    .btn-outline-pill:hover{background:rgba(201,164,106,.12);transform:translateY(-2px)}
+
+    /* ── Footer ── */
+    .scenario-footer{border-top:1px solid rgba(107,62,31,.16);padding:22px 0;text-align:center;font-family:"Montserrat",Arial,sans-serif;font-size:.75rem;color:var(--aged-iron);letter-spacing:.08em}
+    .scenario-footer a{color:var(--burnished-bronze);text-decoration:none}
+    .scenario-footer a:hover{text-decoration:underline}
+
+    /* ── Responsive ── */
+    @media(max-width:768px){
+      .scenario-shell{padding:12px}
+      .scenario-hero{padding:32px 20px 28px}
+      .scenario-section,.scenario-section-dark,.scenario-section-clean,.bridge-section{padding:26px 20px}
+      .thinking-grid{grid-template-columns:1fr}
+      .thinking-move.full{grid-column:auto}
+      .bridge-btn-row{flex-direction:column;align-items:center}
+    }
+  </style>
+</head>
+<body>
+<div class="scenario-shell">
+
+  <!-- NAV -->
+  <nav class="topbar">
+    <div class="nav">
+      <a class="brand-mini" href="../../index.html">
+        <img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo">
+        <span>BeHistorical</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">BeInTheRoom Hub</a>
+        <a href="../../unit-2/lesson-2-1-silk-roads.html">Back to 2.1</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="scenario-hero">
+    <div class="scenario-eyebrow">BeInTheRoom &nbsp;·&nbsp; Unit 2 &nbsp;·&nbsp; Topic 2.1 — The Silk Roads</div>
+    <h1>The Crossroads at Samarkand</h1>
+    <p class="scenario-setting">Samarkand, Central Asia &nbsp;·&nbsp; c. 1220 CE &nbsp;·&nbsp; You are Yahya al-Tirmizi, trusted advisor to a Khwarazmian merchant lord</p>
+    <div class="hero-btn-row">
+      <a class="btn" href="#the-room">Enter the Room</a>
+      <a class="btn secondary" href="#the-challenge">The Challenge</a>
+      <a class="btn secondary" href="#evidence-cards">Evidence</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── SECTION 1: THE ROOM ── -->
+    <section class="scenario-section" id="the-room">
+      <div class="s-eyebrow">The Room</div>
+      <h2 class="s-title">The Scene</h2>
+      <div class="narrative">
+        <p>The air smells of cardamom and sawdust.</p>
+        <p>You are standing in the inner courtyard of a caravanserai just outside the walls of Samarkand — the city the poets call <em>"the crossroads of the world."</em> It is 1220 CE. The morning sun is already baking the mud-brick walls, and around you is controlled chaos: camel drivers arguing over feed costs, a Chinese silk merchant unrolling bolts of fabric the color of deep water, a Persian banker counting silver dirhams into a leather pouch, a Mongol envoy watching everything with flat, patient eyes.</p>
+        <p>Your employer — <strong>Nur al-Din ibn Masud</strong>, one of the wealthiest merchant lords in Transoxiana — has summoned you to his second-floor chamber. He trades in silk, Chinese porcelain, Persian glassware, and Indian pepper. Three generations of his family have built their fortune on the Silk Roads, and the caravanserai you are standing in? He owns it.</p>
+        <p>But things are changing.</p>
+        <p>Nur al-Din has heard rumors: the Mongols under Chinggis Khan are consolidating power to the east and north. Some merchants say the roads will soon be safer than ever — the Mongols impose brutal order, punishing bandits with death. Others say the Mongol advance itself is the danger. Meanwhile, merchants from Hormuz are pressing Nur al-Din to shift his operations southward toward the Indian Ocean routes, where Arab dhow captains have been carrying goods from China to East Africa for centuries.</p>
+        <p>Nur al-Din doesn't fear change — he has profited from it before. But this morning, he wants your counsel on a single, pressing question:</p>
+      </div>
+      <div class="pull-quote">"Where should we put our silver? Do we double our investment in the overland routes — more caravanserai, more banking houses, stronger ties to the Silk Roads — or do we begin shifting our operations toward the sea?"</div>
+      <div class="narrative"><p>He pours two cups of tea and waits for you to speak.</p></div>
+    </section>
+
+    <!-- ── SECTION 2: YOUR ROLE ── -->
+    <section class="scenario-section-dark" id="your-role">
+      <div class="s-eyebrow-gold">Your Role</div>
+      <h2 class="s-title-light">Yahya al-Tirmizi</h2>
+
+      <div class="role-sub">
+        <div class="role-sub-label">Name &amp; Background</div>
+        <p class="role-text">You were trained in Merv as an accountant before becoming Nur al-Din's chief advisor. You have traveled the Silk Roads three times, once as far as Dunhuang on the edge of China. You have also spent one season in Hormuz watching dhow captains negotiate with Indian textile merchants.</p>
+      </div>
+
+      <hr class="role-divider">
+
+      <div class="role-sub">
+        <div class="role-sub-label">What You Know</div>
+        <ul class="role-text">
+          <li>The caravanserai network is profitable but expensive to maintain. Bills of exchange and banking houses have made long-distance overland trade more efficient in the last generation — but they only work if the road is safe and cities like Samarkand remain politically stable.</li>
+          <li>Samarkand's markets are cosmopolitan because merchants from East, West, and South all pass through. That diversity is wealth — but it also creates competition.</li>
+          <li>The Mongols have already destroyed several cities to your north. Some of your contacts in Bukhara have fled. Others say the Mongols, once they conquer, are reliable protectors of trade.</li>
+          <li>Paper money is moving through the Chinese sections of the route. It makes transactions faster. But it only holds value if the issuing authority is trusted.</li>
+        </ul>
+      </div>
+
+      <hr class="role-divider">
+
+      <div class="role-sub">
+        <div class="role-sub-label">Loyalties &amp; Pressures</div>
+        <ul class="role-text">
+          <li>You owe your livelihood to Nur al-Din. Your advice must be practical and grounded in evidence.</li>
+          <li>You know that your role perspective matters — you have seen the routes. But you also know you have blind spots. You have never sailed the Indian Ocean yourself.</li>
+          <li>There is a Mongol envoy in the courtyard. You do not know if he is listening.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: THE CHALLENGE ── -->
+    <section class="scenario-section" id="the-challenge">
+      <div class="s-eyebrow">The Challenge</div>
+      <h2 class="s-title">Your Task</h2>
+      <p class="narrative" style="margin-bottom:0">Nur al-Din has asked you a direct question:</p>
+      <div class="challenge-q">Invest more deeply in the Silk Roads overland network, or begin shifting operations toward the Indian Ocean?</div>
+      <p style="font-family:'Libre Baskerville',Georgia,serif;font-size:1rem;line-height:1.65;color:#2c2c2c;margin:0 0 24px">Write your advice to Nur al-Din. Your response should do all of the following:</p>
+      <ol class="task-list">
+        <li>
+          <span class="task-num">1</span>
+          <span class="task-body"><strong>Take a clear position</strong> — recommend one direction over the other, or propose a specific balance between them.</span>
+        </li>
+        <li>
+          <span class="task-num">2</span>
+          <span class="task-body"><strong>Use at least two specific pieces of evidence</strong> from what you know about trade conditions in 1220 CE to support your recommendation. Be specific — name technologies, commercial practices, trade goods, or places.</span>
+        </li>
+        <li>
+          <span class="task-num">3</span>
+          <span class="task-body"><strong>Acknowledge your role</strong> — Yahya al-Tirmizi has particular knowledge and particular limits. How does who you are shape what you can and cannot see?</span>
+        </li>
+        <li>
+          <span class="task-num">4</span>
+          <span class="task-body"><strong>Name one tradeoff</strong> — What does your recommended path give up? What's the cost of your advice?</span>
+        </li>
+        <li>
+          <span class="task-num">5</span>
+          <span class="task-body"><strong>Address the opposing view</strong> — Someone who disagreed with you would say what, exactly? And how would you respond?</span>
+        </li>
+      </ol>
+      <p class="task-footnote">There is no single correct answer. Nur al-Din will weigh your reasoning, not just your conclusion.</p>
+    </section>
+
+    <!-- ── SECTION 4: EVIDENCE CARDS ── -->
+    <section class="scenario-section-clean" id="evidence-cards">
+      <div class="s-eyebrow">Evidence Cards</div>
+      <h2 class="s-title">Historical Context</h2>
+      <p style="font-family:'Libre Baskerville',Georgia,serif;font-size:.98rem;line-height:1.65;color:#3a3a3a;margin:0 0 6px">Three evidence cards are available. Open each to find historical context you can use in your response.</p>
+
+      <div class="evidence-stack">
+
+        <!-- Card 1 -->
+        <div class="ev-card" id="ec1">
+          <div class="ev-header" onclick="toggleEvCard('ec1')" role="button" aria-expanded="false" aria-controls="ec1-body">
+            <div class="ev-header-left">
+              <div class="ev-card-num">Evidence Card 1 &nbsp;·&nbsp; The Caravanserai Network</div>
+              <p class="ev-quote">"The road is only as good as where you can sleep."</p>
+            </div>
+            <span class="ev-toggle" aria-hidden="true">+</span>
+          </div>
+          <div class="ev-body" id="ec1-body">
+            <h3>The Caravanserai Network</h3>
+            <p>By 1200 CE, a dense network of caravanserai — roadside inns typically spaced a day's journey apart — stretched from the eastern Mediterranean to the edges of China. A well-maintained caravanserai offered stables, food, water, and locked storage. They made long-distance overland travel practical for merchants who couldn't afford to hire private armed guards.</p>
+            <p>But caravanserai were expensive. They required local political support to maintain — a powerful regional ruler had to want them to exist. When political stability collapsed (as it had repeatedly in Central Asia), caravanserai fell into disrepair, bandits grew bolder, and merchants looked for alternatives.</p>
+            <p>The caravanserai model also clustered wealth in cities like Samarkand, Kashgar, and Merv — cities that grew powerful precisely because they were stops on the route. When trade flowed, these cities flourished. When it stopped, they could collapse within a generation.</p>
+            <div class="consider-strip">Consider: What does the caravanserai model require to function? What happens to it when those conditions are absent?</div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="ev-card" id="ec2">
+          <div class="ev-header" onclick="toggleEvCard('ec2')" role="button" aria-expanded="false" aria-controls="ec2-body">
+            <div class="ev-header-left">
+              <div class="ev-card-num">Evidence Card 2 &nbsp;·&nbsp; Bills of Exchange and the Commercial Revolution</div>
+              <p class="ev-quote">"I carry wealth that weighs nothing."</p>
+            </div>
+            <span class="ev-toggle" aria-hidden="true">+</span>
+          </div>
+          <div class="ev-body" id="ec2-body">
+            <h3>Bills of Exchange and the New Commercial Revolution</h3>
+            <p>One of the most significant commercial innovations of the post-1200 Silk Roads was the widespread adoption of <strong>bills of exchange</strong> — documents that functioned like checks or promissory notes. Rather than physically transport silver or gold across thousands of miles (dangerous, heavy, and vulnerable to theft), a merchant could deposit funds with a banking house in Samarkand, receive a bill of exchange, and collect equivalent funds from a partner banking house in Baghdad, Beijing, or Cairo.</p>
+            <p>This innovation transformed trade. Transaction costs fell. The volume of goods that could be exchanged in a single season increased. Banking houses in major trading cities grew rich and powerful — they were now essential infrastructure for long-distance commerce.</p>
+            <p>Paper money, first developed in Tang Dynasty China and expanded under the Song Dynasty, worked on a similar logic: trust the symbol instead of the substance. But paper money only held its value if the issuing authority maintained political stability. If the dynasty collapsed or the banking house failed, the paper was worthless.</p>
+            <div class="consider-strip">Consider: What kinds of political and institutional conditions must exist for bills of exchange and paper money to function? What does this tell you about the relationship between trade and governance?</div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="ev-card" id="ec3">
+          <div class="ev-header" onclick="toggleEvCard('ec3')" role="button" aria-expanded="false" aria-controls="ec3-body">
+            <div class="ev-header-left">
+              <div class="ev-card-num">Evidence Card 3 &nbsp;·&nbsp; Demand, Luxury Goods, and the Logic of the Silk Roads</div>
+              <p class="ev-quote">"They do not need silk in Persia. They want it."</p>
+            </div>
+            <span class="ev-toggle" aria-hidden="true">+</span>
+          </div>
+          <div class="ev-body" id="ec3-body">
+            <h3>Demand, Luxury Goods, and the Logic of the Silk Roads</h3>
+            <p>Trade along the Silk Roads was not primarily about necessities — it was about luxury goods whose value depended on their distance from origin. Chinese silk was valuable in Persia precisely because Persians could not easily produce it. Persian glassware was sought in China because it was rare there. Indian pepper and spices, cotton textiles, and dyes moved west because Europeans and Middle Easterners were willing to pay enormous premiums for them.</p>
+            <p>This luxury trade logic shaped everything: the goods that moved, the routes that thrived, the cities that grew. It also created vulnerability. If a region developed its own silk industry (as several did over time), the trade value of imported silk dropped. If a new route opened, the merchants on the old route lost leverage.</p>
+            <p>By 1200, Chinese artisans and Persian glassmakers had both expanded production for export specifically because demand was high across Afro-Eurasia. Iron and steel production in China was also growing to supply the tools and weapons that trade caravans needed. This export-oriented production was a sign of trade network health — but also of interdependence that could become fragility.</p>
+            <div class="consider-strip">Consider: What does the luxury-goods logic tell you about the sustainability of the Silk Roads model? What would have to change for this system to break down?</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 5: THINKING MOVES ── -->
+    <section class="scenario-section-clean" id="thinking-moves">
+      <div class="s-eyebrow">Before You Write</div>
+      <h2 class="s-title">Five Thinking Moves</h2>
+      <div class="thinking-grid">
+
+        <div class="thinking-move">
+          <span class="tm-num">1</span>
+          <div class="tm-body">
+            <strong>Claim first.</strong>
+            <p>What do you actually recommend? Don't build to a conclusion — start there and defend it. Nur al-Din doesn't have time for a hedge.</p>
+          </div>
+        </div>
+
+        <div class="thinking-move">
+          <span class="tm-num">2</span>
+          <div class="tm-body">
+            <strong>Evidence is specific.</strong>
+            <p>"Trade was growing" is not evidence. "The adoption of bills of exchange reduced transaction costs and increased the volume of goods that could move in a single season" is evidence. Name the thing. Name the place. Name the practice.</p>
+          </div>
+        </div>
+
+        <div class="thinking-move">
+          <span class="tm-num">3</span>
+          <div class="tm-body">
+            <strong>Your role is a lens, not a costume.</strong>
+            <p>You aren't Yahya al-Tirmizi to pretend — you are him to think. How does your particular knowledge (overland routes, one season in Hormuz) shape what you can and cannot confidently claim? Acknowledging your limits is analytical, not weak.</p>
+          </div>
+        </div>
+
+        <div class="thinking-move">
+          <span class="tm-num">4</span>
+          <div class="tm-body">
+            <strong>Tradeoffs are real.</strong>
+            <p>Every recommendation costs something. If you say "stay with the Silk Roads," what do you give up? If you say "shift to the Indian Ocean," what are you risking? Nur al-Din needs to know what he's paying for your advice.</p>
+          </div>
+        </div>
+
+        <div class="thinking-move full">
+          <span class="tm-num">5</span>
+          <div class="tm-body">
+            <strong>The opposing view has a point.</strong>
+            <p>A good advisor doesn't dismiss dissent — they engage it. What would a merchant from Hormuz say to you right now? What is genuinely right about their position, even if you ultimately disagree?</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 6: SUBMIT + COACH BRIDGE ── -->
+    <section class="bridge-section" id="submit-coach">
+      <h2>Submit Your Advice → Then Talk to the Coach</h2>
+      <p>You've drafted your counsel to Nur al-Din. Submit your thinking to the Google Form below — then open the Historical Thinking Coach in MagicSchool. The coach won't grade you. It won't write for you. It will ask you one question at a time — the kind Nur al-Din would ask if he pushed back. When the coach tells you your thinking is strong, take your response to Canvas and submit.</p>
+      <div class="bridge-btn-row">
+        <a class="btn-primary-pill" href="https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+2&entry.187055090=Topic+2.1&entry.1549761827=2-1-beintheroom&entry.2107637366=BeInTheRoom&entry.1963461515=Causation" target="_blank" rel="noopener">Submit to Form</a>
+        <a class="btn-outline-pill" href="https://student.magicschool.ai/s/login?joinCode=czwb9Q" target="_blank" rel="noopener">Open the Historical Thinking Coach</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="scenario-footer">
+    <a href="../../unit-2/lesson-2-1-silk-roads.html">← Back to Topic 2.1</a>
+    &nbsp;&nbsp;·&nbsp;&nbsp;
+    BeHistorical · AP World History: Modern · Topic 2.1 The Silk Roads · BeInTheRoom
+    &nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="../index.html">BeInTheRoom Hub</a>
+  </footer>
+
+</div>
+<script>
+  function toggleEvCard(id) {
+    const card = document.getElementById(id);
+    const isOpen = card.classList.contains('open');
+    card.classList.toggle('open');
+    const header = card.querySelector('.ev-header');
+    header.setAttribute('aria-expanded', String(!isOpen));
+  }
+</script>
+</body>
+</html>
