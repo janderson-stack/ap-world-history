@@ -140,11 +140,8 @@ window.BEHISTORICAL_LESSON = {
 
   first10: {
     title: "First & 10: How Much Really Changed?",
-    embedUrl: "",
-    note: "Deep-dive First & 10 page for 5.10 is coming soon — continue with the lesson path below.",
-    paragraphs: [
-      "The deep-dive First & 10 reading for Topic 5.10 is coming soon. For now, continue with the lesson path below — the Map, Content Delivery lecture cards, BeSurreal, AP Skill Builder, Evidence Lab, Primary Source, and Checkpoints all build the same 'extent of change' argument this reading will support."
-    ]
+    embedUrl: "first-and-10-topic-5-10-continuity-and-change-in-the-industrial-age-capture.html",
+    note: "Read the First & 10 narrative, answer the three questions, build your AI Coach prompt, then return to the 5.10 lesson path."
   },
 
   lecture: {
