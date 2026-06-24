@@ -2,31 +2,51 @@
  * ─── BEHISTORICAL FORM CONFIG ────────────────────────────────────────────────
  * File: assets/js/behistorical-form-config.js
  *
- * Load this script BEFORE the topic data script on every lesson page:
- *   <script src="../assets/js/behistorical-form-config.js?v=1"></script>
+ * Centralised Google Form prefill configuration.
+ * Load BEFORE any renderer or lesson script that needs form URLs:
+ *   <script src="../assets/js/behistorical-form-config.js?v=3"></script>
  *
- * Entry IDs (from Google Form prefill link — do not modify):
- *   entry.821183375  = Student Name       (student fills in)
- *   entry.1794755975 = Class Period        (student fills in)
- *   entry.187055090  = Topic              (pre-filled per lesson)
- *   entry.2107637366 = Response Type      (pre-filled per capture point)
- *   entry.1818136905 = Student Response   (student fills in)
- *   entry.1452763218 = Revision Notes     (student fills in, optional)
- *   entry.1652722657 = Confidence 1–5     (student fills in)
+ * Entry IDs (from the Google Form — do not modify):
+ *   entry.125385659  = Unit             (pre-filled per lesson)
+ *   entry.187055090  = Topic            (pre-filled per lesson)
+ *   entry.1549761827 = Prompt ID        (pre-filled per capture point)
+ *   entry.2107637366 = Response Type    (pre-filled per capture point)
+ *   entry.1963461515 = Skill Focus      (checkbox — repeat per skill)
+ *   entry.1794755975 = Class Period     (student selects)
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 window.BH_FORM = {
+
   baseURL: 'https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform',
 
   fields: {
+    unit:         'entry.125385659',
     topic:        'entry.187055090',
+    promptId:     'entry.1549761827',
     responseType: 'entry.2107637366',
+    skillFocus:   'entry.1963461515',
+    classPeriod:  'entry.1794755975',
   },
 
-  // Must match Google Form dropdown labels exactly.
-  // Verify each string against the live form before deploying a new lesson.
+  units: {
+    1: 'Unit 1 - The Global Tapestry',
+    2: 'Unit 2 - Networks of Exchange',
+    3: 'Unit 3 - Land-Based Empires',
+    4: 'Unit 4 - Transoceanic Interconnections',
+    5: 'Unit 5 - Revolutions',
+    6: 'Unit 6 - Consequences of Industrialization',
+    7: 'Unit 7 - Global Conflict',
+    8: 'Unit 8 - Cold War and Decolonization',
+    9: 'Unit 9 - Globalization',
+  },
+
   topics: {
+    'f1': 'Foundations 1 - Geography',
+    'f2': 'Foundations 2 - Belief Systems',
+    'f3': 'Foundations 3 - States & Power',
+    'f4': 'Foundations 4 - Trade Networks',
+    'f5': 'Foundations 5 - World at 1200',
     '1.1': '1.1 - Song China',
     '1.2': '1.2 - Dar al-Islam',
     '1.3': '1.3 - South and Southeast Asia',
@@ -34,11 +54,6 @@ window.BH_FORM = {
     '1.5': '1.5 - Africa',
     '1.6': '1.6 - Eurasian Connections',
     '1.7': '1.7 - Cross-Cultural Exchanges',
-    'foundations-1': 'Foundations 1 - Geography',
-    'foundations-2': 'Foundations 2 - Belief Systems',
-    'foundations-3': 'Foundations 3 - States & Power',
-    'foundations-4': 'Foundations 4 - Trade Networks',
-    'foundations-5': 'Foundations 5 - World at 1200',
     '2.1': '2.1 - The Silk Roads',
     '2.2': '2.2 - The Mongol Empire',
     '2.3': '2.3 - Exchange in the Indian Ocean',
@@ -68,10 +83,43 @@ window.BH_FORM = {
     '5.8': '5.8 - Reactions to the Industrial Economy',
     '5.9': '5.9 - Society and the Industrial Age',
     '5.10': '5.10 - Continuity and Change in the Industrial Age',
+    '6.1': '6.1 - Rationales for Imperialism',
+    '6.2': '6.2 - State Expansion',
+    '6.3': '6.3 - Indigenous Responses to State Expansion',
+    '6.4': '6.4 - Global Economic Development',
+    '6.5': '6.5 - Economic Imperialism',
+    '6.6': '6.6 - Causes of Migration',
+    '6.7': '6.7 - Effects of Migration',
+    '6.8': '6.8 - Causation in the Imperial Age',
+    '7.1': '7.1 - Shifting Power',
+    '7.2': '7.2 - Causes of World War I',
+    '7.3': '7.3 - Conducting World War I',
+    '7.4': '7.4 - Economy in the Interwar Period',
+    '7.5': '7.5 - Unresolved Tensions After World War I',
+    '7.6': '7.6 - Causes of World War II',
+    '7.7': '7.7 - Conducting World War II',
+    '7.8': '7.8 - Mass Atrocities',
+    '7.9': '7.9 - Causation in Global Conflict',
+    '8.1': '8.1 - Setting the Stage for the Cold War',
+    '8.2': '8.2 - The Cold War',
+    '8.3': '8.3 - Effects of the Cold War',
+    '8.4': '8.4 - Spread of Communism',
+    '8.5': '8.5 - Decolonization',
+    '8.6': '8.6 - Newly Independent States',
+    '8.7': '8.7 - Global Resistance to Established Power',
+    '8.8': '8.8 - End of the Cold War',
+    '8.9': '8.9 - Causation in the Cold War and Decolonization',
+    '9.1': '9.1 - Advances in Technology and Exchange',
+    '9.2': '9.2 - Technology and Disease',
+    '9.3': '9.3 - Debates About the Environment',
+    '9.4': '9.4 - Economics in the Global Age',
+    '9.5': '9.5 - Calls for Reform and Responses',
+    '9.6': '9.6 - Globalized Culture',
+    '9.7': '9.7 - Resistance to Globalization',
+    '9.8': '9.8 - Institutions in a Globalized World',
+    '9.9': '9.9 - Continuity and Change in a Globalized World',
   },
 
-  // Must match Google Form multiple-choice option text exactly.
-  // Always use these keys in lesson pages — never hardcode the string directly.
   responseTypes: {
     first10:       'First and 10',
     skillBuilder:  'AP Skill Builder',
@@ -80,23 +128,50 @@ window.BH_FORM = {
     primarySource: 'Primary Source',
     beInTheRoom:   'BeInTheRoom',
     checkpoint2:   'Checkpoint 2',
-  }
+  },
+
+  slugs: {
+    first10:       'first10',
+    skillBuilder:  'ap-skill-builder',
+    checkpoint1:   'checkpoint-1',
+    evidenceLab:   'evidence-lab',
+    primarySource: 'primary-source',
+    beInTheRoom:   'beintheroom',
+    checkpoint2:   'checkpoint-2',
+  },
 };
 
 /**
- * buildFormURL(topic, responseType)
- * Returns a Google Form prefill URL with Topic + Response Type pre-populated.
- * The student fills in: Name, Period, Response, Revision Notes, Confidence.
+ * buildFormURL(topicKey, responseTypeKey)
  *
- * Usage in lesson pages:
- *   buildFormURL(BH_FORM.topics['1.1'], BH_FORM.responseTypes.first10)
- *   buildFormURL(BH_FORM.topics['1.1'], BH_FORM.responseTypes.checkpoint2)
+ * Returns a fully-prefilled Google Form URL.
+ *
+ *   topicKey       — key into BH_FORM.topics, e.g. '1.1', 'f3'
+ *   responseTypeKey — key into BH_FORM.responseTypes, e.g. 'first10', 'checkpoint1'
+ *
+ * Derived automatically:
+ *   Unit       — from the numeric prefix of topicKey
+ *   Prompt ID  — {topicKey}-{slug}
+ *   Skill Focus — from BH_FORM.skills[topicKey][responseTypeKey] (if defined)
  */
-function buildFormURL(topic, responseType) {
-  const params = new URLSearchParams({
-    usp: 'pp_url',
-    [BH_FORM.fields.topic]:        topic,
-    [BH_FORM.fields.responseType]: responseType,
-  });
-  return `${BH_FORM.baseURL}?${params.toString()}`;
+function buildFormURL(topicKey, responseTypeKey) {
+  var topic = BH_FORM.topics[topicKey] || topicKey;
+  var responseType = BH_FORM.responseTypes[responseTypeKey] || responseTypeKey;
+  var slug = BH_FORM.slugs[responseTypeKey] || responseTypeKey;
+  var promptId = topicKey + '-' + slug;
+
+  var unitNum = topicKey.match(/^(\d+)\./);
+  var unit = unitNum ? (BH_FORM.units[unitNum[1]] || '') : '';
+
+  var skills = (BH_FORM.skills && BH_FORM.skills[topicKey] && BH_FORM.skills[topicKey][responseTypeKey]) || [];
+
+  var params = new URLSearchParams();
+  params.set('usp', 'pp_url');
+  if (unit) params.set(BH_FORM.fields.unit, unit);
+  params.set(BH_FORM.fields.topic, topic);
+  params.set(BH_FORM.fields.promptId, promptId);
+  params.set(BH_FORM.fields.responseType, responseType);
+  skills.forEach(function (s) { params.append(BH_FORM.fields.skillFocus, s); });
+
+  return BH_FORM.baseURL + '?' + params.toString();
 }

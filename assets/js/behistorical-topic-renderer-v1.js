@@ -83,42 +83,23 @@ window.submitResponseToGoogleForm = function(responseId, formUrl) {
 // Auto-generate captureUrls for any topic that has BH_FORM loaded
 // and hasn't already defined captureUrls in its renderer-config.
 function autoBuildCaptureUrls() {
-  if (!window.BH_FORM || L.captureUrls) return;
+  if (!window.BH_FORM || typeof buildFormURL !== 'function' || L.captureUrls) return;
 
-  const topicKey   = (L.meta.topic || '').replace('Topic ', '').trim(); // 'Topic 1.4' → '1.4'
-  const topicLabel = BH_FORM.topics[topicKey];
-  if (!topicLabel) return;
+  const topicKey = (L.meta.topic || '').replace('Topic ', '').trim();
+  if (!topicKey || !BH_FORM.topics[topicKey]) return;
 
-  const formBase  = BH_FORM.baseURL;
-  const unitLabel = 'Unit 1 - The Global Tapestry';
-  const skillFocusEntry = 'entry.1963461515';
-  const enc = v => encodeURIComponent(v).replace(/%20/g, '+');
-
-  const skillTags = {
-    skillBuilder:  ['Argumentation', 'Evidence Usage'],
-    checkpoint1:   ['Argumentation', 'Evidence Usage'],
-    evidenceLab:   ['Evidence Usage', 'Sourcing'],
-    primarySource: ['Sourcing', 'Contextualization'],
-    checkpoint2:   ['Complexity', 'Claims & Thesis']
-  };
-
-  function buildUrl(promptId, responseType, skillKey) {
-    const skillParams = (skillTags[skillKey] || []).map(t => `&${skillFocusEntry}=${enc(t)}`).join('');
-    return `${formBase}?usp=pp_url&entry.125385659=${enc(unitLabel)}&entry.187055090=${enc(topicLabel)}&entry.1549761827=${enc(promptId)}&entry.2107637366=${enc(responseType)}${skillParams}`;
+  function submitBtn(elemId, responseTypeKey) {
+    var url = buildFormURL(topicKey, responseTypeKey);
+    return `<button class="btn secondary" type="button" onclick="submitResponseToGoogleForm('${elemId}','${url}')">Submit to Form</button>`;
   }
 
-  function submitBtn(elemId, promptId, responseType, skillKey) {
-    return `<button class="btn secondary" type="button" onclick="submitResponseToGoogleForm('${elemId}','${buildUrl(promptId, responseType, skillKey)}')">Submit to Form</button>`;
-  }
-
-  const t = topicKey;
   L.captureUrls = {
     first10:       '',
-    skillBuilder:  submitBtn('skill-builder-response',  `${t}-skill-builder`,  'AP Skill Builder', 'skillBuilder'),
-    checkpoint1:   submitBtn('checkpoint-one-response', `${t}-checkpoint-1`,   'Checkpoint 1',     'checkpoint1'),
-    evidenceLab:   submitBtn('evidence-response',       `${t}-evidence-lab`,   'Evidence Lab',     'evidenceLab'),
-    primarySource: submitBtn('primary-source-response', `${t}-primary-source`, 'Primary Source',   'primarySource'),
-    checkpoint2:   submitBtn('checkpoint-two-response', `${t}-checkpoint-2`,   'Checkpoint 2',     'checkpoint2')
+    skillBuilder:  submitBtn('skill-builder-response',  'skillBuilder'),
+    checkpoint1:   submitBtn('checkpoint-one-response', 'checkpoint1'),
+    evidenceLab:   submitBtn('evidence-response',       'evidenceLab'),
+    primarySource: submitBtn('primary-source-response', 'primarySource'),
+    checkpoint2:   submitBtn('checkpoint-two-response', 'checkpoint2')
   };
 }
 
