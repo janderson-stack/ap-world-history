@@ -332,7 +332,12 @@ function buildGooglePrompt(){
   var q5=document.getElementById('q5').value||'(no response)';
   document.getElementById('google-output').value='Question 1:\n'+q1+'\n\nQuestion 2:\n'+q2+'\n\nQuestion 3:\n'+q3+'\n\nQuestion 4:\n'+q4+'\n\nQuestion 5:\n'+q5;
 }
-function submitToGoogleForm(){var c=document.getElementById('google-output').value;navigator.clipboard.writeText(c).catch(function(){});var tl=(window.BH_FORM&&BH_FORM.topics[TOPIC_KEY])||TOPIC_LABEL;var u=window.BH_FORM?BH_FORM.baseURL+'?usp=pp_url&entry.187055090='+encodeURIComponent(tl).replace(/%20/g,'+')+'&entry.2107637366=First+and+10':'';if(u)window.open(u,'_blank','noopener');}
+function submitToGoogleForm() {
+  var content = document.getElementById('google-output') ? document.getElementById('google-output').value : '';
+  if (content) { try { navigator.clipboard.writeText(content); } catch(e) {} }
+  var u = (window.BH_FORM && typeof buildFormURL === 'function') ? buildFormURL(TOPIC_KEY, 'first10') : '';
+  if (u) window.open(u, '_blank', 'noopener');
+}
 function buildAiPrompt(){
   var q1=document.getElementById('q1').value||'(no response)';
   var q2=document.getElementById('q2').value||'(no response)';
@@ -343,6 +348,6 @@ function buildAiPrompt(){
 }
 function copyAiPrompt(){var c=document.getElementById('ai-output').value;navigator.clipboard.writeText(c).catch(function(){});}
 </script>
-<script src="../assets/js/behistorical-form-config.js?v=unified-v1"></script>
+<script src="../assets/js/behistorical-form-config.js?v=unified-v2"></script>
 </body>
 </html>
