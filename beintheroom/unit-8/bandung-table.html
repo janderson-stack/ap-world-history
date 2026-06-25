@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | The Bandung Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .role-shell{max-width:1180px;margin:0 auto;padding:24px}
+    .role-hero{background:linear-gradient(180deg,rgba(26,28,29,.92),rgba(43,47,49,.96)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Kwame_Nkrumah.jpg') center/cover;border-radius:28px;padding:42px 28px;color:var(--warm-paper);box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.35)}
+    .role-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.2rem,6vw,5rem);line-height:1.02;margin:10px 0}
+    .role-hero p{max-width:900px;font-size:1.04rem;line-height:1.65}
+    .role-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:24px 0}
+    .role-card{grid-column:span 6;background:var(--clean-paper);border:1px solid var(--paper-line);border-radius:20px;padding:22px;box-shadow:var(--soft-shadow)}
+    .role-card.full{grid-column:1/-1}.role-card.third{grid-column:span 4}.role-card.quarter{grid-column:span 3}
+    .role-card h2,.role-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0}
+    .decision-card,.selectable-chip{cursor:pointer;transition:.18s ease;border-top:6px solid var(--aged-iron)}
+    .decision-card:hover,.decision-card.selected,.selectable-chip:hover,.selectable-chip.selected{transform:translateY(-3px);border-top-color:var(--antique-gold);box-shadow:0 20px 54px rgba(0,0,0,.18)}
+    .tag{display:inline-flex;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);padding:5px 9px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin:4px 5px 4px 0}
+    .micro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .micro-card{background:#f7efe3;border:1px solid rgba(107,62,31,.16);border-radius:14px;padding:12px;font-size:.92rem;line-height:1.45}
+    .micro-card strong{display:block;color:var(--oxidized-brown);font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+    .coach-box{background:#f6efe3;border-left:6px solid var(--burnished-bronze);border-radius:16px;padding:18px;margin:12px 0;line-height:1.6}
+    .choice-summary{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border:1px solid rgba(201,164,106,.38);border-left:7px solid var(--antique-gold);border-radius:18px;padding:18px;margin:14px 0 18px}
+    .choice-summary h3{color:var(--antique-gold);margin:0 0 10px}
+    .choice-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .choice-summary-item{background:rgba(255,253,247,.08);border:1px solid rgba(210,180,140,.2);border-radius:14px;padding:12px}
+    .choice-summary-label{display:block;font-family:"Montserrat",Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;font-weight:900;color:var(--muted-sandstone);margin-bottom:6px}
+    .choice-summary-value{font-family:"Montserrat",Arial,sans-serif;font-weight:900;color:var(--warm-paper)}
+    .choice-summary-detail{font-size:.92rem;line-height:1.45;margin:8px 0 0;color:#f5f0e7}
+    .response-area{min-height:170px;width:100%;border:1px solid rgba(26,28,29,.18);border-radius:14px;padding:14px;font-family:"Libre Baskerville",Georgia,serif;line-height:1.6;background:#fffdf7}
+    .response-area:focus{outline:none;box-shadow:var(--focus-ring);border-color:var(--antique-gold)}
+    .selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.78rem;margin-top:12px}
+    .canvas-box{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border-radius:20px;padding:22px;border:1px solid rgba(201,164,106,.35)}
+    .canvas-box h3{color:var(--antique-gold)}
+    .evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .selectable-chip{background:#fffdf7;border:1px solid rgba(107,62,31,.18);border-top:5px solid var(--aged-iron);border-radius:16px;padding:14px;min-height:120px}
+    .selectable-chip h4{margin:0 0 6px;font-family:"Montserrat",Arial,sans-serif;color:var(--blackened-steel)}
+    .selectable-chip p{font-size:.9rem;line-height:1.45;margin:0}
+    .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
+    .field-grid label{font-family:"Montserrat",Arial,sans-serif;font-size:.74rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown)}
+    .small-input{width:100%;border:1px solid rgba(26,28,29,.18);border-radius:12px;padding:10px;background:#fffdf7;margin-top:6px}
+    .copy-box{white-space:pre-wrap;background:#151718;color:#f5f0e7;border-radius:16px;border:1px solid rgba(201,164,106,.35);padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86rem;line-height:1.5;max-height:360px;overflow:auto}
+    .tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+    .stage-label{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--burnished-bronze);font-size:.72rem;margin-bottom:8px}
+    .context-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+    .context-card{background:#f7efe3;border:1px solid rgba(107,62,31,.2);border-radius:14px;padding:14px}
+    .context-card h4{font-family:"Cinzel",Georgia,serif;color:var(--oxidized-brown);margin:0 0 8px;font-size:.9rem}
+    .context-card p{font-size:.86rem;line-height:1.5;margin:0}
+    @media(max-width:900px){.role-card,.role-card.third,.role-card.quarter{grid-column:1/-1}.role-shell{padding:12px}.choice-summary-grid,.field-grid,.micro-grid,.evidence-grid,.context-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="role-shell">
+    <nav class="topbar"><div class="nav"><a class="brand-mini" href="../../index.html"><img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a><div class="nav-links"><a href="../index.html">BeInTheRoom Hub</a><a href="../../unit-8/lesson-8-2-the-cold-war.html">Back to 8.2</a></div></div></nav>
+
+    <header class="role-hero">
+      <div class="eyebrow">BeInTheRoom · Unit 8 · Topic 8.2</div>
+      <h1>The Bandung Table</h1>
+      <p>Bandung, Indonesia, April 1955. Twenty-nine newly independent and decolonizing nations are gathering for a conference that no superpower convened and no superpower controls. You are a senior advisor in President Sukarno's foreign ministry. The question is not whether to hold the conference — it's what the conference should become. You have three decisions to make, and no perfect answer to any of them.</p>
+      <div><a class="btn" href="#roles">Choose a Role</a><a class="btn secondary" href="#ai-coach">AI Coach</a><a class="btn secondary" href="#reflection">AP Reflection</a></div>
+    </header>
+
+    <main>
+      <section class="role-grid">
+        <article class="role-card full">
+          <div class="stage-label">Enter the Room</div>
+          <h2>Historical Situation</h2>
+          <p>The year is 1955. A decade after the end of World War II, the world's political map is changing faster than any previous generation has seen. India won independence from Britain in 1947. Indonesia won independence from the Netherlands in 1949. Ghana — still called the Gold Coast — is marching toward independence under Kwame Nkrumah, who many of you know from the pan-African organizing circles of the 1940s. Dozens of other nations are at various stages of the same process.</p>
+          <p>The Cold War is already ten years old. The Korean War killed over three million people and ended in a stalemate. The United States offers development aid — but tied to anti-communist alignment. The Soviet Union offers development aid — but tied to ideological solidarity with Moscow. Both superpowers frame their own agenda as the path to freedom and prosperity for the developing world. Both want your loyalty. Neither is asking what you want.</p>
+          <p>Sukarno has called a conference in Bandung to create space for a different conversation. Twenty-nine nations are coming. The world is watching. You have three decisions to shape before the closing communiqué is written.</p>
+          <div class="context-grid">
+            <div class="context-card">
+              <h4>Decision (a): Conference Direction</h4>
+              <p>Should Bandung produce a formal, permanent non-aligned bloc with organizational structure — or stay a loose forum of shared principles with no binding commitments?</p>
+            </div>
+            <div class="context-card">
+              <h4>Decision (b): Superpower Aid</h4>
+              <p>Both the U.S. and Soviet Union are offering development aid to newly independent states. Accept aid with conditions attached — or refuse both and absorb the economic cost of true independence?</p>
+            </div>
+            <div class="context-card">
+              <h4>Decision (c): The Communiqué</h4>
+              <p>How strongly should the closing statement condemn colonialism "in all its manifestations"? Some delegates argue Soviet domination of Eastern Europe is also colonialism. Others worry that language will alienate the socialist nations in the room.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="roles">
+        <article class="role-card full">
+          <div class="stage-label">Step 1</div>
+          <h2>Choose Your Historical Perspective</h2>
+          <p>Select one role. You are reasoning from inside a historical position — shaped by your nation's experience of colonialism, your beliefs about what independence means, and the information available in April 1955. No hindsight framing. You know what has happened. You do not know what will happen.</p>
+          <div id="role-options"></div>
+          <div class="selection-status" id="role-status">No role selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="dilemma">
+        <article class="role-card full">
+          <div class="stage-label">Step 2</div>
+          <h2>The Situation Before You</h2>
+          <p>You are advising Sukarno's delegation on all three Bandung decisions. But your most important recommendation concerns the fundamental question: what should the Non-Aligned Movement be? Choose the direction you believe newly independent nations should take.</p>
+          <p>Your answer to this question will shape how you approach all three conference decisions.</p>
+        </article>
+        <article class="role-card quarter decision-card" onclick="selectDecision('formalbloc',event)">
+          <h3>Build a Formal Non-Aligned Bloc</h3>
+          <p>Establish Bandung as the founding moment of a permanent, structured organization. Non-alignment needs institutional power to resist superpower pressure. Principles alone are not enough.</p>
+        </article>
+        <article class="role-card quarter decision-card" onclick="selectDecision('principlesforum',event)">
+          <h3>Keep Bandung a Principles Forum</h3>
+          <p>Adopt the ten principles of peaceful coexistence and leave Bandung as a moral statement, not an institution. A loose forum is more inclusive and harder for superpowers to co-opt or disrupt.</p>
+        </article>
+        <article class="role-card quarter decision-card" onclick="selectDecision('selectivewest',event)">
+          <h3>Conditional Western Alignment</h3>
+          <p>Accept U.S. development aid on the best terms available. Economic development is the priority, and ideological purity cannot feed a country. Negotiate the best deal possible without full military commitment.</p>
+        </article>
+        <article class="role-card quarter decision-card" onclick="selectDecision('hardline',event)">
+          <h3>Hard-Line Anti-Colonialism</h3>
+          <p>Refuse all superpower aid. Adopt language condemning colonialism in ALL its forms — including Soviet domination of Eastern Europe. True independence means economic and ideological independence from both blocs.</p>
+        </article>
+        <article class="role-card full">
+          <div class="selection-status" id="decision-status">No direction selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="evidence">
+        <article class="role-card full">
+          <div class="stage-label">Step 3</div>
+          <h2>Choose Your Evidence</h2>
+          <p>Select at least two evidence chips. Strong arguments do not just name facts — they explain why the evidence supports the role's position and chosen direction. Remember: you are reasoning from April 1955. Korea has just ended. Ghana is not yet independent. You know what happened. You do not know what comes next.</p>
+          <div class="evidence-grid" id="evidence-options"></div>
+          <div class="selection-status" id="evidence-status">No evidence selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid">
+        <article class="role-card full">
+          <div class="stage-label">Step 4</div>
+          <h2>Build Your Position</h2>
+          <p>Write from your selected role. Recommend a direction for the Non-Aligned Movement and explain how it applies to at least two of the three Bandung decisions. Your argument must use at least two pieces of evidence, acknowledge at least one tradeoff, and address the belief system your role brings to the table — not just the strategy.</p>
+          <div class="choice-summary" id="choice-summary">
+            <h3>Your Current Position</h3>
+            <div class="choice-summary-grid">
+              <div class="choice-summary-item">
+                <span class="choice-summary-label">Historical Role</span>
+                <div class="choice-summary-value" id="summary-role">No role selected yet.</div>
+                <p class="choice-summary-detail" id="summary-role-detail">Choose a role above to see your perspective here.</p>
+              </div>
+              <div class="choice-summary-item">
+                <span class="choice-summary-label">Recommended Direction</span>
+                <div class="choice-summary-value" id="summary-decision">No direction selected yet.</div>
+                <p class="choice-summary-detail" id="summary-decision-detail">Choose a direction above to see your recommendation here.</p>
+              </div>
+            </div>
+          </div>
+          <div class="field-grid">
+            <div><label for="tradeoff-input">Tradeoff or risk</label><input class="small-input" id="tradeoff-input" placeholder="What could go wrong, or who might be harmed by this approach?"></div>
+            <div><label for="opposition-input">Opposing role or viewpoint</label><input class="small-input" id="opposition-input" placeholder="Which role at the table would disagree with you, and why?"></div>
+          </div>
+          <textarea class="response-area" id="decision-response" placeholder="From the perspective of my role, I recommend that the Bandung Conference..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('decision-response')">Save Draft</button>
+            <button class="btn secondary" onclick="generateCoachPrompts()">Generate Coach Questions</button>
+          </div>
+          <div class="check-result" id="decision-response-result"></div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="ai-coach">
+        <article class="role-card full">
+          <div class="stage-label">Step 5</div>
+          <h2>MagicSchool AI Coach Bridge</h2>
+          <p>Use this copy block with your MagicSchool chatbot. The AI coach will question your reasoning and help you revise — it will not write your final answer.</p>
+          <div class="tool-row">
+            <button class="btn" onclick="buildMagicSchoolPayload()">Build MagicSchool Copy Block</button>
+            <button class="btn secondary" onclick="copyMagicSchoolPayload()">Copy for MagicSchool</button>
+            <a class="btn secondary" href="https://student.magicschool.ai/s/login?joinCode=czwb9Q" target="_blank" rel="noopener">Open MagicSchool</a>
+          </div>
+          <div id="coach-output" class="coach-box">Select a role, direction, evidence, and draft your argument. Then build the MagicSchool copy block.</div>
+          <div class="copy-box" id="magic-copy">MagicSchool copy block will appear here.</div>
+          <div class="check-result" id="magic-copy-result"></div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="reflection">
+        <article class="role-card full">
+          <div class="stage-label">Step 6</div>
+          <h2>Step Out of the Room: AP Reflection</h2>
+          <p>Now leave the role and write as a historian. Use what you experienced in this scenario to explain broader patterns about ideology, identity, and resistance to existing orders in the Cold War era.</p>
+          <div class="coach-box">
+            <strong>AP Reflection Prompt</strong><br>
+            Explain what this scenario reveals about how newly independent nations understood the Cold War's ideological struggle and the role of groups and individuals in opposing existing economic, political, and social orders. In your response, use at least two specific historical details from the scenario — including at least one reference to Sukarno or Kwame Nkrumah — and connect them to the Non-Aligned Movement's role as an alternative to the binary Cold War order. (Note: Nkrumah was a key voice in pan-African and non-alignment circles even before Ghanaian independence in 1957.)
+          </div>
+          <textarea class="response-area" id="reflection-response" placeholder="This scenario reveals that by April 1955, newly independent nations..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('reflection-response')">Save Draft</button>
+            <button class="btn secondary" onclick="copyResponse('reflection-response')">Copy Reflection</button>
+            <button class="btn secondary" onclick="selfCheckReflection()">Run Self-Check</button>
+          </div>
+          <div class="check-result" id="reflection-response-result"></div>
+        </article>
+        <article class="role-card full canvas-box">
+          <h3>Next Step: Submit in Canvas</h3>
+          <p>Organize your thinking here — submit your final response in Canvas. The roleplay is the learning process; the reflection is the assessment artifact.</p>
+          <p><strong>Suggested Canvas title:</strong> Topic 8.2 BeInTheRoom Reflection — The Bandung Table</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+<script>
+const roles = {
+  indonesian: {
+    name: 'Indonesian Foreign Ministry Senior Advisor',
+    status: 'Career diplomat from the independence generation',
+    power: 'Drafts the conference agenda and Sukarno\'s talking points; direct line to the president; shapes which decisions come to the table and which stay off it.',
+    goals: 'Position Indonesia as the moral and organizational leader of the newly decolonized world; prevent Bandung from being hijacked by either superpower\'s agenda; establish Sukarno as a global statesman.',
+    fears: 'The United States accusing non-alignment of being pro-communist; the Soviet Union co-opting the conference agenda; domestic military opposition to Sukarno undermining his international standing.',
+    lens: 'Indonesia\'s independence was won through armed struggle against Dutch colonial rule. Non-alignment is not neutrality — it is sovereignty. No foreign power has the right to tell Indonesia which side of the Cold War to join.',
+    challenge: 'Sukarno\'s domestic popularity depends partly on economic development, and development requires capital. Both superpowers offer capital with conditions. True independence may require economic sacrifice.'
+  },
+  indian: {
+    name: 'Indian Panchsheel Delegate',
+    status: 'Senior diplomat from India\'s Ministry of External Affairs, representing Nehru\'s "Panchsheel" principles',
+    power: 'India is the conference\'s most influential non-superpower participant; Nehru\'s endorsement can shape the final communiqué and the movement\'s philosophical direction.',
+    goals: 'Establish non-alignment as a principled philosophy of peaceful coexistence — not merely political opportunism; prevent the conference from becoming purely anti-Western, which would drive India toward Soviet dependency.',
+    fears: 'The conference fracturing over whether Soviet domination of Eastern Europe counts as colonialism; radical language that alienates Western democracies and their development aid; a non-aligned movement that has no coherent ideology.',
+    lens: 'India\'s Panchsheel — five principles of peaceful coexistence — offers a philosophical framework that transcends the Cold War binary. Non-alignment is a positive vision of a world order based on sovereignty and mutual respect, not just a rejection of blocs.',
+    challenge: 'India needs U.S. and Western aid for development. True non-alignment may mean refusing aid India cannot afford to refuse. And Nehru privately knows that the movement\'s idealism may not survive contact with superpower pressure.'
+  },
+  westAfrican: {
+    name: 'West African Pan-African Observer',
+    status: 'Representative of the Gold Coast independence movement, channeling Kwame Nkrumah\'s pan-African vision',
+    power: 'Moral authority of representing Africa\'s vanguard independence movement; pan-African networks built in the 1940s with Nehru, Nkrumah, and others in London and New York.',
+    goals: 'Ensure that Bandung is not just an Asian conference — that Africa\'s voice is heard; frame colonialism as an economic system of extraction, not just a political arrangement; push for language that connects the Cold War to the history of European empire.',
+    fears: 'Bandung producing a statement that condemns political colonialism but leaves economic dependency intact; the Non-Aligned Movement becoming a forum for Asian nations that forgets African liberation; accepting superpower aid that reproduces colonial dependency under a new name.',
+    lens: 'Nkrumah — whose Gold Coast will become Ghana in 1957, making it the first sub-Saharan African colony to win independence — has argued for years that colonialism is fundamentally an economic system. The Cold War is colonialism in a new form: both superpowers want raw materials, markets, and strategic position. Refusing both is the only path to true independence.',
+    challenge: 'The Gold Coast is not yet independent, limiting formal standing. And Nkrumah\'s vision of pan-African unity is aspirational — African states are at very different stages of independence, and their interests are not identical.'
+  },
+  pakistani: {
+    name: 'Pakistani Military Diplomat',
+    status: 'Senior diplomat representing Pakistan\'s government, which joined SEATO — the U.S.-led Southeast Asia Treaty Organization — in 1954',
+    power: 'Pakistan\'s SEATO membership gives it direct access to U.S. military and economic aid; presence at Bandung allows Pakistan to shape whether the conference adopts language that would embarrass its Western alignment.',
+    goals: 'Protect Pakistan\'s relationship with the United States; prevent Bandung from adopting language that would define SEATO membership as incompatible with the spirit of non-alignment; ensure the conference doesn\'t alienate the Western powers whose aid Pakistan depends on.',
+    fears: 'Being isolated at the conference as a Western proxy; Pakistani delegates walking out — or being publicly criticized by Sukarno or Nehru; conference language condemning military blocs that would implicitly condemn Pakistan\'s SEATO membership.',
+    lens: 'Pakistan faces a real security threat from India — a much larger neighbor with whom it has already fought one war. The U.S. alliance is not ideology; it is survival. Non-alignment is a luxury that nations without existential security threats can afford.',
+    challenge: 'Pakistan\'s SEATO membership is the elephant in the room. Most delegates know it. Sukarno invited Pakistan precisely to make the conference appear inclusive — but Pakistan\'s presence also makes the conference\'s "non-aligned" claim harder to sustain.'
+  }
+};
+
+const decisions = {
+  formalbloc: 'Build a Formal Non-Aligned Bloc',
+  principlesforum: 'Keep Bandung a Principles Forum',
+  selectivewest: 'Conditional Western Alignment',
+  hardline: 'Hard-Line Anti-Colonialism'
+};
+
+const decisionDetails = {
+  formalbloc: 'Establish Bandung as the founding moment of a permanent, structured Non-Aligned Movement with regular summits, a secretariat, and coordinated positions on international issues. Principles alone are not enough — the movement needs institutional power to resist superpower pressure.',
+  principlesforum: 'Adopt the ten principles of peaceful coexistence (the Dasa Sila) as a moral statement and leave Bandung as a high-profile forum, not a formal institution. A loose framework is more inclusive, harder for superpowers to co-opt, and does not require members to subordinate their national interests to bloc positions.',
+  selectivewest: 'Accept U.S. development aid on the best terms negotiable, without committing to military alliance or anti-communist alignment. Economic development is the most urgent priority for newly independent states — ideological purity cannot feed a country or build infrastructure.',
+  hardline: 'Refuse all superpower aid and adopt closing language that condemns colonialism in all its forms — explicitly including Soviet domination of Eastern Europe and U.S. economic imperialism. True independence requires refusing both blocs, even at significant economic cost.'
+};
+
+const evidenceBank = {
+  economicdependence: {
+    title: 'Economic Dependence of New States',
+    desc: 'Most newly independent nations inherited economies built to supply raw materials to colonial powers. They have few factories, limited infrastructure, and severe capital shortages. Development requires foreign investment — and both superpowers know it.'
+  },
+  colonialrule: {
+    title: 'Shared Memory of Colonial Rule',
+    desc: 'Every nation at Bandung has lived under foreign rule — military occupation, resource extraction, cultural suppression, and the legal fiction that colonized peoples were not ready for self-government. This shared experience is the conference\'s most powerful common ground.'
+  },
+  koreashadow: {
+    title: 'Korea as a Warning (1950–1953)',
+    desc: 'The Korean War — a proxy conflict between U.S.-backed South Korea and Soviet/Chinese-backed North Korea — killed over three million people and ended with the peninsula divided exactly where it started. Korea is the most visible evidence of what bloc membership costs.'
+  },
+  sukarnoopeningaddress: {
+    title: 'Sukarno\'s Opening Address',
+    desc: 'Sukarno\'s April 18, 1955 speech invoked the moral weight of the nations in the room: "We are living in a world of nuclear giants and ethical infants." He argued that the Bandung nations represented the majority of humanity and had the right to define a different future.'
+  },
+  nehrupanchsheel: {
+    title: 'Nehru\'s Panchsheel Principles (1954)',
+    desc: 'India and China signed the Panchsheel agreement in 1954, establishing five principles of peaceful coexistence: mutual respect for sovereignty, non-aggression, non-interference, equality, and peaceful coexistence. Nehru argued these could replace Cold War bloc logic.'
+  },
+  nkrumahlens: {
+    title: 'Nkrumah\'s Pan-African Critique',
+    desc: 'Kwame Nkrumah (whose Gold Coast will become Ghana in 1957) has argued since the 1940s that colonialism is fundamentally an economic system. "Seek ye first the political kingdom," he said — but political independence without economic independence is incomplete. The Cold War is a new competition for the same resources.'
+  },
+  sovietaid: {
+    title: 'Soviet Development Aid Offer',
+    desc: 'The Soviet Union is offering technical assistance, industrial investment, and political solidarity to newly independent states — explicitly presenting itself as the anti-colonial power that has no history of empire in Asia or Africa. The offer comes with expectations of ideological alignment.'
+  },
+  usaid: {
+    title: 'U.S. Foreign Aid (Mutual Security Program)',
+    desc: 'The United States offers economic aid under the Mutual Security Program — but the conditions require recipients to support U.S. foreign policy positions and demonstrate opposition to communism. Countries that accept are expected to be "with us" in the Cold War.'
+  },
+  seatopakistan: {
+    title: 'Pakistan\'s SEATO Membership (1954)',
+    desc: 'Pakistan joined the Southeast Asia Treaty Organization — a U.S.-led military alliance — in 1954. Its presence at Bandung tests whether the "non-aligned" conference can include nations that have already chosen a Cold War side. Several delegates argue it cannot.'
+  },
+  easterneurope: {
+    title: 'Soviet Control of Eastern Europe',
+    desc: 'By 1955, Soviet-aligned communist governments control Poland, East Germany, Hungary, Romania, Bulgaria, and Czechoslovakia — installed after WWII by Soviet military presence. Some delegates argue this is colonialism. Others argue that calling it colonialism will shatter the conference\'s unity with socialist nations.'
+  },
+  tenprinciples: {
+    title: 'The Ten Principles of Bandung (Dasa Sila)',
+    desc: 'The draft closing communiqué includes ten principles: respect for sovereignty, non-aggression, non-interference, equality, peaceful coexistence, respect for human rights, respect for the UN Charter, and condemnation of colonialism. These principles are broad enough for most nations to sign — but vague enough to mean different things to different delegates.'
+  },
+  coldwarframe: {
+    title: 'The Cold War\'s Binary Framing',
+    desc: 'Both the United States and the Soviet Union frame the global choice in binary terms: you are either for freedom (U.S.) or for liberation from capitalism (USSR). Neither superpower acknowledges a third option. Bandung\'s existence is itself a challenge to this framing.'
+  }
+};
+
+let selectedRole = '';
+let selectedDecision = '';
+let selectedEvidence = [];
+let latestPayload = '';
+
+function renderRoles() {
+  document.getElementById('role-options').innerHTML = Object.entries(roles).map(([id, r]) =>
+    `<article class="role-card third decision-card" onclick="selectRole('${id}',event)">
+      <h3>${r.name}</h3>
+      <span class="tag">${r.status}</span>
+      <p>${r.lens}</p>
+      <div class="micro-grid">
+        <div class="micro-card"><strong>Goal</strong>${r.goals}</div>
+        <div class="micro-card"><strong>Fear</strong>${r.fears}</div>
+        <div class="micro-card"><strong>Power</strong>${r.power}</div>
+      </div>
+    </article>`
+  ).join('');
+}
+
+function renderEvidence() {
+  document.getElementById('evidence-options').innerHTML = Object.entries(evidenceBank).map(([id, e]) =>
+    `<article class="selectable-chip" onclick="toggleEvidence('${id}',event)">
+      <h4>${e.title}</h4>
+      <p>${e.desc}</p>
+    </article>`
+  ).join('');
+}
+
+function updateChoiceSummary() {
+  const roleEl = document.getElementById('summary-role');
+  const roleDetailEl = document.getElementById('summary-role-detail');
+  const decisionEl = document.getElementById('summary-decision');
+  const decisionDetailEl = document.getElementById('summary-decision-detail');
+  if (selectedRole) {
+    roleEl.textContent = roles[selectedRole].name;
+    roleDetailEl.textContent = roles[selectedRole].lens;
+  } else {
+    roleEl.textContent = 'No role selected yet.';
+    roleDetailEl.textContent = 'Choose a role above to see your perspective here.';
+  }
+  if (selectedDecision) {
+    decisionEl.textContent = decisions[selectedDecision];
+    decisionDetailEl.textContent = decisionDetails[selectedDecision];
+  } else {
+    decisionEl.textContent = 'No direction selected yet.';
+    decisionDetailEl.textContent = 'Choose a direction above to see your recommendation here.';
+  }
+}
+
+function selectRole(id, event) {
+  selectedRole = id;
+  document.getElementById('role-status').textContent = 'Selected role: ' + roles[id].name;
+  document.querySelectorAll('#role-options .decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  updateChoiceSummary();
+  saveState();
+}
+
+function selectDecision(id, event) {
+  selectedDecision = id;
+  document.getElementById('decision-status').textContent = 'Selected direction: ' + decisions[id];
+  document.querySelectorAll('#dilemma .decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  updateChoiceSummary();
+  saveState();
+}
+
+function toggleEvidence(id, event) {
+  if (selectedEvidence.includes(id)) {
+    selectedEvidence = selectedEvidence.filter(x => x !== id);
+    event.currentTarget.classList.remove('selected');
+  } else {
+    selectedEvidence.push(id);
+    event.currentTarget.classList.add('selected');
+  }
+  document.getElementById('evidence-status').textContent = selectedEvidence.length
+    ? 'Selected evidence: ' + selectedEvidence.map(x => evidenceBank[x].title).join(', ')
+    : 'No evidence selected yet.';
+  saveState();
+}
+
+function generateCoachPrompts() {
+  const box = document.getElementById('coach-output');
+  if (!selectedRole || !selectedDecision) {
+    box.textContent = 'Choose both a role and a direction before generating coaching questions.';
+    return;
+  }
+  const r = roles[selectedRole];
+  box.innerHTML = `<strong>Coaching questions for ${r.name}</strong><ul>
+    <li>What does your role believe about the relationship between political independence and economic independence — and how does that belief shape your three Bandung decisions?</li>
+    <li>Which evidence chip best supports your recommended direction, and why? Push beyond naming it — explain the causal connection.</li>
+    <li>Nkrumah and Nehru both believed in non-alignment, but for somewhat different reasons. How does your role relate to each of their positions?</li>
+    <li>The Korean War just ended in 1953 with the peninsula still divided. How does that outcome inform your view of what joining a superpower bloc costs?</li>
+    <li>How does your argument connect to the AP key concept: groups and individuals opposing and promoting alternatives to the existing economic, political, and social orders?</li>
+  </ul>`;
+}
+
+function buildMagicSchoolPayload() {
+  const role = selectedRole ? roles[selectedRole] : null;
+  const selectedEvidenceText = selectedEvidence.map(id => `- ${evidenceBank[id].title}: ${evidenceBank[id].desc}`).join('\n') || 'No evidence selected yet.';
+  const draft = document.getElementById('decision-response').value.trim() || 'No first draft written yet.';
+  const tradeoff = document.getElementById('tradeoff-input').value.trim() || 'Not identified yet.';
+  const opposition = document.getElementById('opposition-input').value.trim() || 'Not identified yet.';
+  latestPayload = `You are the BeInTheRoom Historical Thinking Coach for AP World History. Do not write my final answer. Ask me one question at a time to help me better understand my role, evidence, tradeoff, and historical reasoning. Push me to explain because, not just name facts.
+
+Scenario: The Bandung Table — Topic 8.2 The Cold War
+Setting: Bandung, Indonesia, April 1955. Twenty-nine newly independent and decolonizing nations are gathering for the Asian-African Conference. No superpower convened this meeting. The question is what the Non-Aligned Movement should become.
+Central question: What direction should the Bandung Conference take — and how should newly independent nations relate to Cold War superpower competition?
+CDI alignment: This scenario is about what new nations BELIEVE about themselves and the world order — ideology and identity, not just strategy.
+
+My role: ${role ? role.name : 'No role selected'}
+Role status: ${role ? role.status : 'No role selected'}
+Role goals: ${role ? role.goals : 'No role selected'}
+Role fears: ${role ? role.fears : 'No role selected'}
+Role power/limits: ${role ? role.power : 'No role selected'}
+Role lens: ${role ? role.lens : 'No role selected'}
+
+My recommended direction: ${selectedDecision ? decisions[selectedDecision] : 'No direction selected'}
+Direction detail: ${selectedDecision ? decisionDetails[selectedDecision] : 'No direction selected'}
+
+Evidence I selected:
+${selectedEvidenceText}
+
+My tradeoff or risk: ${tradeoff}
+Opposing role or viewpoint: ${opposition}
+
+My first draft argument:
+${draft}
+
+Please coach me through these stages:
+1. Help me clarify what my role believes about the relationship between independence, identity, and the Cold War — not just what it wants strategically.
+2. Ask me which evidence best supports my position on the three Bandung decisions and why.
+3. Challenge me to explain one tradeoff or weakness in my recommended direction.
+4. Ask me how an opposing role at the table would respond to my argument.
+5. Help me revise into a stronger 4-6 sentence historically grounded argument that connects to the AP key concept: groups and individuals opposing existing orders.
+6. End by asking me to step out of character and explain what this scenario reveals about the ideological struggle of the Cold War and the Non-Aligned Movement's significance.`;
+
+  document.getElementById('magic-copy').textContent = latestPayload;
+  generateCoachPrompts();
+  return latestPayload;
+}
+
+function copyMagicSchoolPayload() {
+  const payload = latestPayload || buildMagicSchoolPayload();
+  navigator.clipboard.writeText(payload)
+    .then(() => document.getElementById('magic-copy-result').textContent = 'MagicSchool coach block copied. Paste it into your MagicSchool chatbot.')
+    .catch(() => document.getElementById('magic-copy-result').textContent = 'Copy failed. Select the copy block and copy manually.');
+}
+
+function saveDraft(id) {
+  const t = document.getElementById(id);
+  localStorage.setItem('beintheroom-bandung-table-' + id, t.value || '');
+  const r = document.getElementById(id + '-result');
+  if (r) r.textContent = 'Draft saved on this device.';
+  saveState();
+}
+
+function copyResponse(id) {
+  const t = document.getElementById(id);
+  navigator.clipboard.writeText(t.value || '')
+    .then(() => { const r = document.getElementById(id + '-result'); if (r) r.textContent = 'Reflection copied.'; })
+    .catch(() => { const r = document.getElementById(id + '-result'); if (r) r.textContent = 'Copy failed. Select and copy manually.'; });
+}
+
+function selfCheckReflection() {
+  const t = document.getElementById('reflection-response');
+  const text = (t.value || '').toLowerCase();
+  const terms = ['sukarno', 'nkrumah', 'nehru', 'bandung', 'non-aligned', 'indonesia', 'ghana', 'india', 'cold war', 'colonialism', 'self-determination', 'sovereignty', 'capitalism', 'communism', 'superpower', 'ideology', 'independence', 'panchsheel', 'bloc', 'economic'];
+  const found = terms.filter(term => text.includes(term));
+  document.getElementById('reflection-response-result').textContent = `Self-check: ${text.split(/\s+/).filter(Boolean).length} words; historical terms found: ${found.length ? found.join(', ') : 'none yet'}. Aim for at least two specific historical details, at least one reference to Sukarno or Nkrumah, and one explanation of broader significance for the Cold War era.`;
+}
+
+function saveState() {
+  localStorage.setItem('beintheroom-bandung-table-state', JSON.stringify({
+    selectedRole, selectedDecision, selectedEvidence,
+    tradeoff: document.getElementById('tradeoff-input')?.value || '',
+    opposition: document.getElementById('opposition-input')?.value || ''
+  }));
+}
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('beintheroom-bandung-table-state') || '{}');
+    selectedRole = saved.selectedRole || '';
+    selectedDecision = saved.selectedDecision || '';
+    selectedEvidence = Array.isArray(saved.selectedEvidence) ? saved.selectedEvidence : [];
+    if (saved.tradeoff) document.getElementById('tradeoff-input').value = saved.tradeoff;
+    if (saved.opposition) document.getElementById('opposition-input').value = saved.opposition;
+  } catch(e) {}
+}
+
+function applySavedSelections() {
+  if (selectedRole) {
+    document.getElementById('role-status').textContent = 'Selected role: ' + roles[selectedRole].name;
+    const roleCards = [...document.querySelectorAll('#role-options .decision-card')];
+    const roleIndex = Object.keys(roles).indexOf(selectedRole);
+    if (roleCards[roleIndex]) roleCards[roleIndex].classList.add('selected');
+  }
+  if (selectedDecision) {
+    document.getElementById('decision-status').textContent = 'Selected direction: ' + decisions[selectedDecision];
+    const decisionCards = [...document.querySelectorAll('#dilemma .decision-card')];
+    const decisionIndex = Object.keys(decisions).indexOf(selectedDecision);
+    if (decisionCards[decisionIndex]) decisionCards[decisionIndex].classList.add('selected');
+  }
+  if (selectedEvidence.length) {
+    const evidenceCards = [...document.querySelectorAll('#evidence-options .selectable-chip')];
+    Object.keys(evidenceBank).forEach((id, i) => {
+      if (selectedEvidence.includes(id) && evidenceCards[i]) evidenceCards[i].classList.add('selected');
+    });
+    document.getElementById('evidence-status').textContent = 'Selected evidence: ' + selectedEvidence.map(x => evidenceBank[x].title).join(', ');
+  }
+  updateChoiceSummary();
+}
+
+function loadDrafts() {
+  ['decision-response', 'reflection-response'].forEach(id => {
+    const saved = localStorage.getItem('beintheroom-bandung-table-' + id);
+    if (saved) document.getElementById(id).value = saved;
+  });
+}
+
+document.addEventListener('input', e => {
+  if (e.target && ['tradeoff-input', 'opposition-input'].includes(e.target.id)) saveState();
+});
+
+renderRoles();
+renderEvidence();
+loadState();
+loadDrafts();
+applySavedSelections();
+</script>
+</body>
+</html>

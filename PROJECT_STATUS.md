@@ -42,6 +42,22 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **Step 0 gate:** PASS — premise directly enacts KC-6.2.II (imperial exhaustion → dissolution of empires) and KC-6.2.IV.C.i (superpower balance of power shift). All four decision options exercise Governance/state-formation pairs from the CED thematic focus.
 
+### Topic 8.2 — The Cold War (built 2026-06-25)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-8/lesson-8-2-the-cold-war.html` | DONE |
+| Topic data | `assets/data/lesson-8-2-the-cold-war.js` | DONE |
+| Renderer config | `assets/data/lesson-8-2-renderer-config.js` | DONE |
+| First & 10 reading | `unit-8/first-and-10-topic-8-2-cold-war.html` | DONE |
+| First & 10 capture wrapper | `unit-8/first-and-10-topic-8-2-cold-war-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-8/bandung-table.html` | DONE |
+| Unit 8 index link | `unit-8/index.html` (Topic 8.2 card href updated) | DONE |
+
+**BeInTheRoom scenario frame:** "The Bandung Table" — Bandung, Indonesia, April 1955, as a senior advisor in Sukarno's foreign ministry during the first Afro-Asian Conference (29 nations). Decision points: formal non-aligned bloc vs. loose principles forum; acceptance of superpower aid with conditions; how hard to condemn all colonialism (including Soviet). Four roles: Indonesian Foreign Ministry advisor, Indian Panchsheel delegate (Nehru), West African Pan-African observer (Nkrumah continuity hook), Pakistani military diplomat (SEATO-aligned, creates tension).
+
+**Step 0 gate:** PASS — premise directly enacts KC-6.2.V.B (groups and individuals, including the Non-Aligned Movement, opposing and promoting alternatives to existing orders). The Bandung setting cannot be transplanted without changing the CDI theme it exercises.
+
 ---
 
 ### Open Revision Tasks (from the audit)
