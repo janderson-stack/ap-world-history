@@ -94,6 +94,26 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **Step 0 gate:** PASS — premise directly enacts KC-6.3.I.A.ii (communist government control of national economy through Great Leap Forward, repressive policies, negative repercussions for population). The county party secretary's dilemma IS the CED key concept made visible from inside the system. Cannot be transplanted to a different topic without changing the ECN theme it exercises. Reflection prompt explicitly bridges both LO D KCs: asks students to explain the gap between the causes of China's communist revolution (1949 promises) and the consequences of communist government (1959 famine), connecting KC-6.2.I.i and KC-6.3.I.A.ii.
 
+### Topic 8.5 — Decolonization After 1900 (built 2026-06-25)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-8/lesson-8-5-decolonization.html` | DONE |
+| Topic data | `assets/data/lesson-8-5-decolonization.js` | DONE |
+| Renderer config | `assets/data/lesson-8-5-renderer-config.js` | DONE |
+| First & 10 reading | `unit-8/first-and-10-topic-8-5-decolonization.html` | DONE |
+| First & 10 capture wrapper | `unit-8/first-and-10-topic-8-5-decolonization-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-8/positive-action.html` | DONE |
+| Unit 8 index link | `unit-8/index.html` (Topic 8.5 card href updated) | DONE |
+
+**BeInTheRoom scenario frame:** "Positive Action" — Accra, Gold Coast, January 1950, as a senior strategist in Nkrumah's Convention People's Party. The CPP is deciding whether to launch Positive Action (nonviolent strikes and boycotts) against the British colonial government, which has offered limited constitutional reforms through the Coussey Committee. Three decisions: (a) method — launch full Positive Action, limited strike with safety valves, accept Coussey reforms, or threaten escalation to armed resistance; (b) response to Nkrumah's certain arrest; (c) Cold War positioning to prevent the communist-subversion label. Four roles: CPP Political Strategist, UGCC Moderate, Gold Coast Market Woman, British Colonial Secretary's Advisor. 12 evidence chips: Accra riots 1948, Indian precedent (INC/Gandhi/1947), CPP mass organizational base, Coussey Report, Indochina cost (armed struggle), Cold War framing risk, cocoa economy leverage, 1945 Manchester Pan-African Congress, British post-war politics (Labour/war-weariness), Nkrumah's certain arrest, Gold Coast electorate, CPP-UGCC split.
+
+**Step 0 gate:** PASS — premise directly enacts KC-6.2.II.A (Kwame Nkrumah in British Gold Coast seeking independence) and LO F (compare processes by which peoples pursued independence after 1900). The Accra/January 1950 CPP strategist setting cannot be transplanted without changing the GOV/comparison theme it exercises. Reflection prompt explicitly requires comparison with Algeria or Vietnam (armed struggle cases from KC-6.2.II.B), feeding Checkpoint 2's comparison requirement.
+
+**Continuity hooks:** Nkrumah's third recurrence across Unit 8 — referenced as background figure in 8.1 (empire exhaustion context), present at the Bandung Table in 8.2 (Pan-African observer role), now central protagonist in 8.5 (his own independence struggle). Ho Chi Minh from 8.4 appears as a comparison reference in the evidence bank (Indochina cost chip). Reflection prompt looks forward to Ghana 1957 and Topic 8.6 (newly independent states).
+
+**CED text constraints:** All verbatim CED text reproduced in both `lesson-8-5-decolonization.js` and `lesson-8-5-renderer-config.js` (RUNTIME-AUTHORITATIVE), including exact KC codes (KC-6.2.II.A, KC-6.2.II.B, KC-6.2.I.C — note KC-6.2.I.C, not KC-6.2.II.C), "British Gold Coast (Ghana)" exact, "French empire" lowercase, "Québécois" with accent.
+
 ---
 
 ### Open Revision Tasks (from the audit)
