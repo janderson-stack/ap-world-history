@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeInTheRoom | A Line Through Punjab | BeHistorical</title>
+  <style>
+    /* ── Design System ─────────────────────────────────────────────── */
+    :root {
+      --black-steel:#1A1C1D;
+      --gold:#C9A46A;
+      --warm-paper:#F5F0E7;
+      --clean-paper:#FFFDF7;
+      --aged-iron:#5A5F5C;
+      --bronze:#8C5A2B;
+      --ox-brown:#6B3E1F;
+      --danger:#8B1A1A;
+      --success:#1A4A1A;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Georgia',serif;background:var(--black-steel);color:var(--warm-paper);min-height:100vh;}
+
+    /* ── Typography ─────────────────────────────────────────────────── */
+    h1,h2,h3{font-family:'Georgia',serif;font-weight:700;}
+    .eyebrow{font-family:sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+
+    /* ── Top Bar ────────────────────────────────────────────────────── */
+    .topbar{background:#111315;border-bottom:1px solid rgba(201,164,106,0.18);padding:0.6rem 1.4rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+    .topbar-brand{font-family:sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--gold);}
+    .topbar-back{font-family:sans-serif;font-size:0.78rem;font-weight:600;color:var(--warm-paper);text-decoration:none;opacity:0.7;transition:opacity .2s;}
+    .topbar-back:hover{opacity:1;}
+
+    /* ── Hero / Scenario Header ─────────────────────────────────────── */
+    .scenario-hero{background:linear-gradient(160deg,#111315 0%,#1e1206 100%);border-bottom:2px solid var(--gold);padding:2.8rem 1.4rem 2.2rem;}
+    .scenario-hero .inner{max-width:820px;margin:0 auto;}
+    .scenario-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(201,164,106,0.12);border:1px solid rgba(201,164,106,0.3);border-radius:3px;padding:0.3rem 0.8rem;font-family:sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+    .scenario-hero h1{font-size:clamp(1.6rem,4vw,2.4rem);color:var(--warm-paper);line-height:1.2;margin-bottom:0.6rem;}
+    .scenario-hero h1 em{color:var(--gold);font-style:normal;}
+    .scenario-date{font-family:sans-serif;font-size:0.82rem;color:var(--aged-iron);margin-bottom:1.2rem;letter-spacing:0.04em;}
+    .scenario-premise{font-size:1.02rem;line-height:1.7;color:rgba(245,240,231,0.88);max-width:700px;}
+
+    /* ── Layout Shell ───────────────────────────────────────────────── */
+    .page-body{max-width:880px;margin:0 auto;padding:2rem 1.4rem 4rem;}
+
+    /* ── Step Labels ────────────────────────────────────────────────── */
+    .step-label{display:flex;align-items:center;gap:0.7rem;margin:2.4rem 0 1rem;}
+    .step-num{width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--black-steel);font-family:sans-serif;font-size:0.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .step-title{font-family:sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+
+    /* ── Cards ──────────────────────────────────────────────────────── */
+    .card{background:rgba(255,253,247,0.04);border:1px solid rgba(201,164,106,0.15);border-radius:6px;padding:1.4rem 1.6rem;margin-bottom:1rem;}
+    .card h3{font-size:1rem;color:var(--warm-paper);margin-bottom:0.5rem;}
+    .card p{font-size:0.92rem;line-height:1.65;color:rgba(245,240,231,0.82);}
+
+    /* ── Role Selector ──────────────────────────────────────────────── */
+    .role-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.8rem;margin-bottom:1.2rem;}
+    .role-btn{background:rgba(255,253,247,0.04);border:2px solid rgba(201,164,106,0.2);border-radius:6px;padding:1rem 1.1rem;cursor:pointer;transition:all .2s;text-align:left;}
+    .role-btn:hover{border-color:var(--gold);background:rgba(201,164,106,0.08);}
+    .role-btn.selected{border-color:var(--gold);background:rgba(201,164,106,0.14);}
+    .role-btn .role-name{font-family:sans-serif;font-size:0.82rem;font-weight:700;color:var(--gold);margin-bottom:0.3rem;}
+    .role-btn .role-desc{font-size:0.78rem;line-height:1.5;color:rgba(245,240,231,0.72);}
+
+    /* ── Evidence Chips ─────────────────────────────────────────────── */
+    .evidence-intro{font-size:0.88rem;line-height:1.6;color:rgba(245,240,231,0.78);margin-bottom:1rem;}
+    .evidence-grid{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;}
+    .chip{display:inline-flex;align-items:center;gap:0.35rem;background:rgba(255,253,247,0.05);border:1px solid rgba(201,164,106,0.22);border-radius:20px;padding:0.35rem 0.75rem;font-family:sans-serif;font-size:0.73rem;font-weight:600;color:rgba(245,240,231,0.8);cursor:pointer;transition:all .2s;user-select:none;}
+    .chip:hover{border-color:var(--gold);color:var(--gold);}
+    .chip.selected{background:rgba(201,164,106,0.18);border-color:var(--gold);color:var(--gold);}
+    .chip-reveal{background:rgba(255,253,247,0.03);border:1px solid rgba(201,164,106,0.12);border-radius:4px;padding:0.9rem 1.1rem;margin-top:0.7rem;font-size:0.85rem;line-height:1.65;color:rgba(245,240,231,0.82);display:none;}
+    .chip-reveal.visible{display:block;}
+
+    /* ── Decision Section ───────────────────────────────────────────── */
+    .decision-context{font-size:0.9rem;line-height:1.68;color:rgba(245,240,231,0.82);margin-bottom:1.2rem;padding:1rem 1.2rem;background:rgba(139,26,26,0.08);border-left:3px solid rgba(139,26,26,0.5);border-radius:0 4px 4px 0;}
+    .decision-options{display:flex;flex-direction:column;gap:0.65rem;margin-bottom:1rem;}
+    .decision-opt{background:rgba(255,253,247,0.04);border:2px solid rgba(201,164,106,0.18);border-radius:5px;padding:0.9rem 1.1rem;cursor:pointer;transition:all .2s;text-align:left;width:100%;}
+    .decision-opt:hover{border-color:var(--gold);background:rgba(201,164,106,0.07);}
+    .decision-opt.selected{border-color:var(--gold);background:rgba(201,164,106,0.12);}
+    .decision-opt .opt-label{font-family:sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem;}
+    .decision-opt .opt-text{font-size:0.87rem;line-height:1.55;color:rgba(245,240,231,0.85);}
+    .consequence-block{background:rgba(26,28,29,0.6);border:1px solid rgba(201,164,106,0.25);border-radius:5px;padding:1rem 1.2rem;margin-top:0.8rem;display:none;}
+    .consequence-block.visible{display:block;}
+    .consequence-block .con-head{font-family:sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+    .consequence-block p{font-size:0.86rem;line-height:1.6;color:rgba(245,240,231,0.82);}
+
+    /* ── Self-Check / Textarea ──────────────────────────────────────── */
+    .self-check{background:rgba(201,164,106,0.06);border:1px solid rgba(201,164,106,0.2);border-radius:5px;padding:1.1rem 1.3rem;margin-bottom:1rem;}
+    .self-check p{font-size:0.86rem;line-height:1.6;color:rgba(245,240,231,0.8);margin-bottom:0.6rem;}
+    .self-check ul{padding-left:1.3rem;}
+    .self-check li{font-size:0.84rem;line-height:1.55;color:rgba(245,240,231,0.75);margin-bottom:0.3rem;}
+    .prompt-block{margin-bottom:0.6rem;}
+    .prompt-block p{font-size:0.9rem;line-height:1.65;color:rgba(245,240,231,0.85);margin-bottom:0.5rem;}
+    textarea{width:100%;background:rgba(255,253,247,0.05);border:1px solid rgba(201,164,106,0.25);border-radius:4px;padding:0.8rem;font-size:0.88rem;line-height:1.6;color:var(--warm-paper);font-family:'Georgia',serif;resize:vertical;min-height:140px;}
+    textarea::placeholder{color:var(--aged-iron);}
+    textarea:focus{outline:none;border-color:var(--gold);}
+
+    /* ── Buttons ────────────────────────────────────────────────────── */
+    .btn{display:inline-flex;align-items:center;gap:0.45rem;font-family:sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;border:none;border-radius:3px;padding:0.65rem 1.3rem;cursor:pointer;transition:all .2s;text-decoration:none;}
+    .btn-gold{background:var(--gold);color:var(--black-steel);}
+    .btn-gold:hover{background:var(--bronze);color:var(--warm-paper);}
+    .btn-outline{background:transparent;border:2px solid rgba(201,164,106,0.4);color:var(--gold);}
+    .btn-outline:hover{border-color:var(--gold);background:rgba(201,164,106,0.1);}
+    .btn-ms{background:#5B4FBE;color:#fff;}
+    .btn-ms:hover{background:#4740a0;}
+    .btn-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:0.8rem;}
+
+    /* ── MagicSchool Block ──────────────────────────────────────────── */
+    .ms-block{background:rgba(91,79,190,0.1);border:1px solid rgba(91,79,190,0.3);border-radius:6px;padding:1.2rem 1.4rem;margin-top:1.2rem;}
+    .ms-block h4{font-family:sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#a89fe8;margin-bottom:0.5rem;}
+    .ms-block p{font-size:0.84rem;line-height:1.6;color:rgba(245,240,231,0.78);margin-bottom:0.7rem;}
+    .ms-prompt{background:rgba(0,0,0,0.3);border:1px solid rgba(91,79,190,0.25);border-radius:4px;padding:0.8rem 1rem;font-size:0.8rem;line-height:1.6;color:rgba(245,240,231,0.82);white-space:pre-wrap;margin-bottom:0.7rem;max-height:220px;overflow-y:auto;}
+
+    /* ── Progress Bar ───────────────────────────────────────────────── */
+    .progress-bar{background:rgba(255,255,255,0.08);border-radius:20px;height:6px;margin:1rem 0 0.4rem;}
+    .progress-fill{background:var(--gold);height:6px;border-radius:20px;transition:width .4s ease;}
+    .progress-label{font-family:sans-serif;font-size:0.7rem;color:var(--aged-iron);letter-spacing:0.06em;}
+
+    /* ── Section Divider ────────────────────────────────────────────── */
+    .divider{border:none;border-top:1px solid rgba(201,164,106,0.15);margin:2rem 0;}
+
+    /* ── Reflection Block ───────────────────────────────────────────── */
+    .reflection-block{background:rgba(201,164,106,0.05);border:1px solid rgba(201,164,106,0.2);border-radius:6px;padding:1.4rem 1.6rem;margin-top:1.4rem;}
+    .reflection-block h3{font-family:sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+    .reflection-block p{font-size:0.88rem;line-height:1.68;color:rgba(245,240,231,0.82);margin-bottom:0.6rem;}
+
+    /* ── Footer ─────────────────────────────────────────────────────── */
+    .scenario-footer{background:#111315;border-top:1px solid rgba(201,164,106,0.15);padding:1.2rem 1.4rem;text-align:center;}
+    .scenario-footer a{font-family:sans-serif;font-size:0.78rem;color:var(--gold);text-decoration:none;margin:0 0.8rem;opacity:0.8;}
+    .scenario-footer a:hover{opacity:1;}
+
+    /* ── CED Tag ────────────────────────────────────────────────────── */
+    .ced-tag{display:inline-block;background:rgba(201,164,106,0.1);border:1px solid rgba(201,164,106,0.25);border-radius:3px;padding:0.18rem 0.5rem;font-family:sans-serif;font-size:0.67rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-right:0.35rem;vertical-align:middle;}
+
+    @media(max-width:600px){
+      .role-grid{grid-template-columns:1fr;}
+      .scenario-hero{padding:2rem 1rem 1.6rem;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <span class="topbar-brand">BeInTheRoom</span>
+  <a class="topbar-back" href="../../unit-8/lesson-8-6-newly-independent-states.html">← Return to 8.6 Lesson</a>
+</div>
+
+<!-- Hero -->
+<div class="scenario-hero">
+  <div class="inner">
+    <div class="scenario-tag">BeInTheRoom &nbsp;·&nbsp; Topic 8.6 &nbsp;·&nbsp; AP World History</div>
+    <h1>A <em>Line Through Punjab</em></h1>
+    <div class="scenario-date">New Delhi, India &nbsp;·&nbsp; September 1947</div>
+    <p class="scenario-premise">
+      India has been independent for thirty-eight days. The Radcliffe Line — drawn in six weeks and announced only on 17 August, three days after independence — has published the boundary between India and Pakistan. Across Punjab and Bengal, millions of people are moving. Hindus and Sikhs crossing east; Muslims crossing west. In Punjab the movement is becoming a catastrophe: columns of refugees stretching miles, intercommunal attacks on the roads, villages burning, trains arriving at stations filled with the dead. The Punjab Boundary Force — the British-commanded unit meant to hold the line — is overwhelmed and will formally disband within weeks.
+      <br><br>
+      You are a senior civil servant in the Indian Administrative Service, serving on the Emergency Committee of the Cabinet chaired by Prime Minister Jawaharlal Nehru. The committee has been in session for hours. The question before you is not whether the crisis is terrible — that is not in dispute. The question is what the Government of India can actually do about it, right now, with the forces and resources it has, and what the consequences of each course of action will be for the hundreds of thousands of people still in motion.
+    </p>
+  </div>
+</div>
+
+<!-- Main Body -->
+<div class="page-body">
+
+  <!-- Progress -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div class="progress-label" id="progress-label">Step 1 of 6 — Choose Your Role</div>
+
+  <!-- ────────────────────────────────── STEP 1: ROLE ─── -->
+  <div id="step-role">
+    <div class="step-label">
+      <div class="step-num">1</div>
+      <div class="step-title">Choose Your Role</div>
+    </div>
+    <p style="font-size:0.88rem;line-height:1.65;color:rgba(245,240,231,0.78);margin-bottom:1rem;">Each role on the Emergency Committee holds different information, different obligations, and different instincts about what the government should do. Your choice shapes which pressures you feel most directly throughout the scenario.</p>
+    <div class="role-grid">
+      <button class="role-btn" data-role="icsadvisor" onclick="selectRole(this)">
+        <div class="role-name">ICS Senior Advisor</div>
+        <div class="role-desc">Indian Civil Service — logistics and administration. You know how many trains are running, how many camps exist, what the police and army can actually deliver. Your obligation is to Nehru's government and to the people moving.</div>
+      </button>
+      <button class="role-btn" data-role="armyofficer" onclick="selectRole(this)">
+        <div class="role-name">Army Liaison Officer</div>
+        <div class="role-desc">You have just come from Punjab. You know firsthand that the Punjab Boundary Force is at breaking point, that split-unit loyalties complicate everything, and that army units cannot be in two places at once. You are the military reality check in the room.</div>
+      </button>
+      <button class="role-btn" data-role="rehabcommissioner" onclick="selectRole(this)">
+        <div class="role-name">Rehabilitation Commissioner</div>
+        <div class="role-desc">Your job is what happens after people arrive — camps, food, housing, property. You are focused on the people who have already crossed and on what it will take to settle them. You are thinking about months and years, not just days.</div>
+      </button>
+      <button class="role-btn" data-role="liaisonofficer" onclick="selectRole(this)">
+        <div class="role-name">India–Pakistan Liaison</div>
+        <div class="role-desc">You have been in contact with your counterparts in Lahore. You know what Pakistan's government is saying in public and something of what it is thinking privately. You are the only person in this room who has a working relationship with the other side.</div>
+      </button>
+    </div>
+    <div id="role-detail" style="display:none;" class="card"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="goToEvidence()" id="btn-to-evidence" disabled>Continue to Evidence →</button>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────── STEP 2: EVIDENCE ─── -->
+  <div id="step-evidence" style="display:none;">
+    <div class="step-label">
+      <div class="step-num">2</div>
+      <div class="step-title">Examine the Evidence</div>
+    </div>
+    <p class="evidence-intro">The Emergency Committee has assembled reports, cables, and intelligence summaries on the crisis. Select at least four chips to read. The evidence you choose shapes how you will reason through the decisions ahead.</p>
+    <div class="evidence-grid" id="evidence-chips"></div>
+    <div id="chip-reveal-area"></div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goToRole()">← Back</button>
+      <button class="btn btn-gold" onclick="goToDecision1()" id="btn-to-d1" disabled>Continue to Decision 1 →</button>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────── STEP 3: DECISION 1 ─── -->
+  <div id="step-decision1" style="display:none;">
+    <div class="step-label">
+      <div class="step-num">3</div>
+      <div class="step-title">Decision 1 — Protection of the Columns</div>
+    </div>
+    <div class="decision-context">
+      <strong>The immediate crisis:</strong> Columns of refugees — some stretching twenty or thirty miles — are moving across Punjab in both directions. Attacks on the columns are killing hundreds of people per day. The army and police available are not sufficient to escort all columns and also maintain order in cities like Amritsar and Lahore simultaneously. The question before the committee is where to concentrate what protection exists.
+    </div>
+    <div class="decision-options" id="d1-options">
+      <button class="decision-opt" data-choice="escortboth" onclick="selectDecision(1, this)">
+        <div class="opt-label">Option A — Escort Both Directions</div>
+        <div class="opt-text">Divide available forces to provide some protection to columns moving in both directions simultaneously. Accept that coverage will be thin and response times slow, but demonstrate that India's government is protecting all communities regardless of religion.</div>
+      </button>
+      <button class="decision-opt" data-choice="concentratecities" onclick="selectDecision(1, this)">
+        <div class="opt-label">Option B — Concentrate on Urban Centers</div>
+        <div class="opt-text">Pull army and police to hold Amritsar and other major cities; prevent them from becoming sites of mass communal violence. Accept that columns in rural Punjab will have less protection in the short term, but preserve order in cities that represent India's new secular-state claim.</div>
+      </button>
+      <button class="decision-opt" data-choice="militarycorridors" onclick="selectDecision(1, this)">
+        <div class="opt-label">Option C — Establish Military Corridors</div>
+        <div class="opt-text">Designate and announce specific protected roads for refugee movement, concentrate all available forces on those corridors, and require columns to use only designated routes. Accept that movement outside corridors will be unprotected, but make the protection that exists reliable instead of spread thin.</div>
+      </button>
+      <button class="decision-opt" data-choice="requestjointbf" onclick="selectDecision(1, this)">
+        <div class="opt-label">Option D — Urgently Request Punjab Boundary Force Reinforcement</div>
+        <div class="opt-text">Rather than redeploy Indian forces, send an urgent signal to Pakistan requesting immediate joint reinforcement of the Punjab Boundary Force before it fully collapses. Accept the delay this involves, but build the cooperative mechanism that long-term stability requires.</div>
+      </button>
+    </div>
+    <div class="consequence-block" id="d1-consequence"></div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goToEvidence()">← Back</button>
+      <button class="btn btn-gold" onclick="goToDecision2()" id="btn-to-d2" disabled>Continue to Decision 2 →</button>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────── STEP 4: DECISION 2 ─── -->
+  <div id="step-decision2" style="display:none;">
+    <div class="step-label">
+      <div class="step-num">4</div>
+      <div class="step-title">Decision 2 — Evacuee Property</div>
+    </div>
+    <div class="decision-context">
+      <strong>The property problem:</strong> Muslims crossing into Pakistan are leaving homes, farms, and businesses in India. Hindus and Sikhs crossing into India are leaving homes, farms, and businesses in Pakistan. In both countries, the arriving communities are desperate and the departing communities' property is being looted or seized by others. The question is what legal framework India should establish immediately for the property of those who have left — which will also determine what India can ask Pakistan to do for the property of those who left Pakistan.
+    </div>
+    <div class="decision-options" id="d2-options">
+      <button class="decision-opt" data-choice="holdintrust" onclick="selectDecision(2, this)">
+        <div class="opt-label">Option A — Hold Evacuee Property in Trust</div>
+        <div class="opt-text">Declare all evacuee property to be held in government trust, with legal title preserved for original owners or their heirs. Prevent looting through legal deterrent and government custodianship. Accept that this is extremely difficult to enforce in practice and may create false hope of return.</div>
+      </button>
+      <button class="decision-opt" data-choice="immediaterequisition" onclick="selectDecision(2, this)">
+        <div class="opt-label">Option B — Requisition for Immediate Resettlement</div>
+        <div class="opt-text">Requisition evacuee property immediately for use by arriving Hindu and Sikh refugees. Solve the acute housing and land problem now by reallocating what exists. Accept that this makes return permanently impossible and requires reciprocal action from Pakistan for Muslims' properties there.</div>
+      </button>
+      <button class="decision-opt" data-choice="bilateralexchange" onclick="selectDecision(2, this)">
+        <div class="opt-label">Option C — Pursue Bilateral Property Exchange Agreement</div>
+        <div class="opt-text">Negotiate with Pakistan a formal agreement to exchange equivalent property values between the two countries — what Pakistan holds for India's Muslims exchanged against what India holds for Pakistan's Hindus and Sikhs. Accept that negotiations take time and people need shelter now.</div>
+      </button>
+      <button class="decision-opt" data-choice="deferlegislation" onclick="selectDecision(2, this)">
+        <div class="opt-label">Option D — Defer Legislation Pending Survey</div>
+        <div class="opt-text">Impose an immediate moratorium on all transfers or sales of evacuee property, but defer the permanent legal framework until a proper survey of evacuee property on both sides can be conducted. Accept that this delays resolution but prevents irreversible decisions made in crisis.</div>
+      </button>
+    </div>
+    <div class="consequence-block" id="d2-consequence"></div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goToDecision1()">← Back</button>
+      <button class="btn btn-gold" onclick="goToDecision3()" id="btn-to-d3" disabled>Continue to Decision 3 →</button>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────── STEP 5: DECISION 3 ─── -->
+  <div id="step-decision3" style="display:none;">
+    <div class="step-label">
+      <div class="step-num">5</div>
+      <div class="step-title">Decision 3 — Coordination with Pakistan</div>
+    </div>
+    <div class="decision-context">
+      <strong>The two-country problem:</strong> The crisis is happening on both sides of a border between two newly sovereign states that have just separated after a contested partition. Effective response to the refugee emergency requires coordination — people are crossing from one country into the other. But India and Pakistan are simultaneously competitors, have incompatible claims over Kashmir, and each government is under pressure from its own communal majority not to appear to be protecting the other's nationals at the expense of its own. Nehru wants to demonstrate that India's secular-state model can manage this; Pakistani Prime Minister Liaquat Ali Khan faces the same pressures in reverse.
+    </div>
+    <div class="decision-options" id="d3-options">
+      <button class="decision-opt" data-choice="jointmachinery" onclick="selectDecision(3, this)">
+        <div class="opt-label">Option A — Establish Joint India–Pakistan Emergency Machinery</div>
+        <div class="opt-text">Propose to Pakistan a formal joint emergency committee with Indian and Pakistani civil servants working side by side on refugee movement, property, and protection. Accept that this requires Pakistan's agreement and that the optics of joint machinery may be politically difficult for both governments.</div>
+      </button>
+      <button class="decision-opt" data-choice="unilateralaction" onclick="selectDecision(3, this)">
+        <div class="opt-label">Option B — Unilateral Action, Parallel Coordination</div>
+        <div class="opt-text">Each government manages its own side of the border — India handles refugees arriving in India and the property they left behind; Pakistan does the same. Use diplomatic back-channels to coordinate movement timing and prevent traffic collisions at border crossings, but do not create formal joint machinery. Accept that this may mean the crisis on each side is handled differently and inconsistently.</div>
+      </button>
+      <button class="decision-opt" data-choice="un-mediation" onclick="selectDecision(3, this)">
+        <div class="opt-label">Option C — Request International Mediation</div>
+        <div class="opt-text">Invite the United Nations or ICRC to mediate the refugee crisis, providing international legitimacy and perhaps resources, and reducing the bilateral political risk of either government appearing to yield to the other. Accept that international involvement in a domestic crisis sets a precedent that both sovereigns may later regret.</div>
+      </button>
+      <button class="decision-opt" data-choice="nehruliaquat" onclick="selectDecision(3, this)">
+        <div class="opt-label">Option D — Nehru–Liaquat Direct Summit</div>
+        <div class="opt-text">Recommend that Prime Ministers Nehru and Liaquat Ali Khan meet directly, outside the bureaucracy, to agree on joint principles for managing the crisis. Accept that a summit takes time to arrange and that its failure would be worse politically than not holding it.</div>
+      </button>
+    </div>
+    <div class="consequence-block" id="d3-consequence"></div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goToDecision2()">← Back</button>
+      <button class="btn btn-gold" onclick="goToReflection()" id="btn-to-ref" disabled>Continue to Reflection →</button>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────── STEP 6: REFLECTION ─── -->
+  <div id="step-reflection" style="display:none;">
+    <div class="step-label">
+      <div class="step-num">6</div>
+      <div class="step-title">Reflection &amp; Writing</div>
+    </div>
+
+    <!-- Self-Check -->
+    <div class="self-check">
+      <p><strong>Self-Check: Are these ideas in your thinking?</strong></p>
+      <ul>
+        <li>The Partition of India and the creation of Pakistan were the direct result of the redrawing of political boundaries as colonial authority withdrew (KC-6.2.III.A.i).</li>
+        <li>The Radcliffe Line — drawn in six weeks by a colonial official who had never been to India — produced the population displacement you just managed. The boundary decision and the human consequences were inseparable (KC-6.2.III.A.ii).</li>
+        <li>The Emergency Committee's decisions had to balance the impossible: protecting all communities, establishing a secular-state legitimacy, managing an acute crisis with inadequate resources, and coordinating with a newly sovereign rival state.</li>
+        <li>The scale: estimates of 10–20 million people displaced; an estimated 200,000 to 2 million killed. These are not statistics — they are the consequence of a political decision (where to draw the line) made in six weeks.</li>
+        <li>Nehru's government had to make permanent decisions about property, resettlement, and coordination that would shape the relationship between India and Pakistan — and between the two communities — for generations.</li>
+      </ul>
+    </div>
+
+    <!-- Decision Reflection Writing -->
+    <div class="reflection-block">
+      <h3>Part 1 — Your Decision Set</h3>
+      <div class="prompt-block">
+        <p>Look back at your three decisions. Explain the logic of your choices as a set. What theory were you applying about what a newly independent state can and should do in a crisis created by the boundary that defined its independence? What did you prioritize, and what did you accept as the cost?</p>
+        <p style="font-size:0.8rem;color:var(--aged-iron);margin-top:0.3rem;">Organize your thinking here — submit your final work in Canvas.</p>
+      </div>
+      <textarea id="decision-response" placeholder="Write your response here..." oninput="saveDraft('decision')"></textarea>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CED Connection -->
+    <div class="reflection-block">
+      <h3>Part 2 — Connecting to the CED</h3>
+      <div class="prompt-block">
+        <p>The College Board says: <span class="ced-tag">KC-6.2.III.A.ii</span> <em>"The redrawing of political boundaries in some cases led to conflict as well as population displacement and/or resettlements, including those related to the Partition of India and the creation of the state of Israel."</em></p>
+        <p>Based on what you experienced in this scenario, explain <strong>specifically</strong> how the Radcliffe Line decision produced the crisis you just tried to manage. What was the connection between the political decision (where to draw the boundary) and the human consequences (conflict, displacement, resettlement)? Then explain one way in which your decisions today will shape the resettlement — that is, how government choices in the crisis itself become part of the historical consequence.</p>
+        <p style="font-size:0.8rem;color:var(--aged-iron);margin-top:0.3rem;">Organize your thinking here — submit your final work in Canvas.</p>
+      </div>
+      <textarea id="reflection-response" placeholder="Write your response here..." oninput="saveDraft('reflection')"></textarea>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Comparison Extension -->
+    <div class="reflection-block">
+      <h3>Extension — Comparison with Israel/Palestine</h3>
+      <div class="prompt-block">
+        <p>The CED also identifies the creation of the state of Israel in 1948 as a case of boundary redrawing leading to conflict and population displacement (the Nakba: approximately 700,000 Palestinian Arabs displaced). Using what you know about both cases, identify <strong>one similarity and one difference</strong> in how boundary redrawing produced conflict and displacement in the Partition of India (1947) and the creation of Israel (1948). What does the comparison reveal about the pattern the CED is pointing to?</p>
+        <p style="font-size:0.8rem;color:var(--aged-iron);margin-top:0.3rem;">Optional — for extended analysis. Organize your thinking here — submit your final work in Canvas.</p>
+      </div>
+      <textarea id="comparison-response" placeholder="Write your comparison here..." style="min-height:100px;" oninput="saveDraft('comparison')"></textarea>
+    </div>
+
+    <hr class="divider">
+
+    <!-- MagicSchool Coaching Block -->
+    <div class="ms-block">
+      <h4>AI Coach — Deepen Your Analysis</h4>
+      <p>Use this prompt with your AI Coach to push your thinking further. It will ask you follow-up questions based on what you've written — not give you the answer.</p>
+      <div class="ms-prompt" id="ms-prompt-text">You are a Socratic AP World History coach. The student has just completed a historical simulation called "A Line Through Punjab," set in New Delhi, September 1947. They played the role of a senior civil servant advising the Emergency Committee of the Cabinet (chaired by Prime Minister Nehru) on how to manage the crisis produced by the Partition of India and the Radcliffe Line.
+
+The simulation covered three decisions: (1) protection of refugee columns in Punjab — whether to escort both directions, concentrate on cities, establish military corridors, or request joint Boundary Force reinforcement; (2) evacuee property — whether to hold in trust, requisition for resettlement, pursue a bilateral exchange agreement, or defer legislation; (3) coordination with Pakistan — whether to establish joint machinery, act unilaterally with parallel coordination, request international mediation, or convene a Nehru–Liaquat summit.
+
+The CED key concepts this scenario directly exercises are:
+- KC-6.2.III.A.i: The redrawing of political boundaries after the withdrawal of former colonial authorities led to the creation of new states (here: Pakistan and India, boundary drawn by the Radcliffe Commission).
+- KC-6.2.III.A.ii: The redrawing of political boundaries in some cases led to conflict as well as population displacement and/or resettlements, including those related to the Partition of India and the creation of the state of Israel.
+- LO G: Explain how political changes in the period from c. 1900 to the present led to territorial, demographic, and nationalist developments.
+
+Your coaching task: Do NOT give the student a completed essay or a list of correct answers. Instead, ask ONE follow-up question at a time to deepen their analysis. Progress through these stages only as their responses improve:
+
+Stage 1 — Establish the mechanism: Ask the student to explain the specific connection between the Radcliffe Line decision and the population movement — why did the boundary produce displacement rather than just separation?
+
+Stage 2 — Scale and evidence: Ask the student to incorporate specific evidence from the scenario (scale of movement, timeline of the Radcliffe Line's announcement, Punjab Boundary Force capacity) to support their claim.
+
+Stage 3 — Government choices as consequences: Ask the student to explain how one of their simulation decisions would itself become part of the historical consequence of the Partition — i.e., how government choices in the crisis shaped what "resettlement" meant.
+
+Stage 4 — Comparison: Ask the student to apply their analysis to the Israel/Palestine comparison — what is structurally similar between the two cases, and what is different?
+
+Stage 5 — Synthesis: Ask the student to draft a thesis-level sentence explaining the relationship between political decisions (boundary drawing), demographic consequences (displacement), and nationalist developments (new state identities) using both Partition and Israel/Palestine as evidence.
+
+Stage 6 — Self-assessment: Ask the student whether their written response actually demonstrates the argument they just articulated to you, and what they would revise.
+
+Begin by asking the student to share what they wrote for Part 1 (their decision logic) and then ask your Stage 1 question.</div>
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="copyMsPrompt()">Copy AI Coach Prompt</button>
+        <a class="btn btn-ms" href="https://student.magicschool.ai/s/login?joinCode=czwb9Q" target="_blank" rel="noopener">Open MagicSchool</a>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div style="text-align:center;padding:1rem 0;">
+      <a class="btn btn-gold" href="../../unit-8/lesson-8-6-newly-independent-states.html">← Return to 8.6 Lesson Path</a>
+    </div>
+  </div>
+
+</div><!-- /page-body -->
+
+<!-- Footer -->
+<div class="scenario-footer">
+  <a href="../../unit-8/lesson-8-6-newly-independent-states.html">← 8.6 Lesson</a>
+  <a href="../../unit-8/index.html">Unit 8 Index</a>
+  <a href="../../index.html">Home</a>
+</div>
+
+<script>
+  /* ── State ───────────────────────────────────────────────────────── */
+  const STATE_KEY = 'beintheroom-line-through-punjab-state';
+  const DRAFT_DECISION_KEY = 'beintheroom-line-through-punjab-decision-response';
+  const DRAFT_REFLECTION_KEY = 'beintheroom-line-through-punjab-reflection-response';
+  const DRAFT_COMPARISON_KEY = 'beintheroom-line-through-punjab-comparison-response';
+
+  let state = { role: null, evidence: [], decisions: {} };
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STATE_KEY);
+      if (raw) state = JSON.parse(raw);
+    } catch(e) {}
+    const dd = localStorage.getItem(DRAFT_DECISION_KEY);
+    const dr = localStorage.getItem(DRAFT_REFLECTION_KEY);
+    const dc = localStorage.getItem(DRAFT_COMPARISON_KEY);
+    if (dd) { const el = document.getElementById('decision-response'); if(el) el.value = dd; }
+    if (dr) { const el = document.getElementById('reflection-response'); if(el) el.value = dr; }
+    if (dc) { const el = document.getElementById('comparison-response'); if(el) el.value = dc; }
+  }
+
+  function saveState() {
+    try { localStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function saveDraft(type) {
+    try {
+      if (type === 'decision') localStorage.setItem(DRAFT_DECISION_KEY, document.getElementById('decision-response').value);
+      if (type === 'reflection') localStorage.setItem(DRAFT_REFLECTION_KEY, document.getElementById('reflection-response').value);
+      if (type === 'comparison') localStorage.setItem(DRAFT_COMPARISON_KEY, document.getElementById('comparison-response').value);
+    } catch(e) {}
+  }
+
+  /* ── Role Data ───────────────────────────────────────────────────── */
+  const ROLES = {
+    icsadvisor: { name: 'ICS Senior Advisor', detail: 'You have the logistics picture. You know what the railway schedule can realistically move, how many camps have been set up (and how many are inadequate), and what the police establishment looks like on the ground. Your instinct is to build systems — legal frameworks, administrative machinery — that will outlast the immediate crisis. You have spent your career serving the colonial administration and are now serving India\'s new government; you understand both what the state can do and what it cannot.' },
+    armyofficer: { name: 'Army Liaison Officer', detail: 'You have been in Punjab. You know that the Punjab Boundary Force — the British-commanded joint India-Pakistan unit assigned to hold the border region — is at the point of collapse. You know that some Indian and Pakistani units have followed their communal loyalties rather than their orders. You know that army protection of the columns is real but thin, and that concentrating forces means exposing other areas. You are the committee\'s reality check on military capacity.' },
+    rehabcommissioner: { name: 'Rehabilitation Commissioner', detail: 'Your mandate is the long game: what happens to the people who have arrived and the people still arriving. You are thinking about camp conditions, food supply, seed for the next planting season, housing in urban areas that cannot absorb hundreds of thousands of new residents, and the legal status of the property the refugees left behind in Pakistan. You know that the decisions made in the next weeks will determine whether resettlement succeeds or produces permanent displacement camps.' },
+    liaisonofficer: { name: 'India–Pakistan Liaison Officer', detail: 'You have a working relationship with your counterpart in Lahore. You know that the Pakistani government is under the same pressures in reverse — protecting its arriving Muslim refugees, managing the property of departing Hindus and Sikhs, and dealing with its own communal violence. You also know that India and Pakistan are heading toward a confrontation over Kashmir, which will make cooperation on refugees harder the longer it is deferred. You are the only person in this room who sees both sides of the border.' }
+  };
+
+  /* ── Evidence Data ───────────────────────────────────────────────── */
+  const EVIDENCE = [
+    { id: 'scaleofmovement', label: 'Scale of Movement', text: 'Estimates of the total number of people who crossed the India–Pakistan border in Punjab and Bengal in 1947 range from 10 to 20 million. The movement was not orderly: many people left with hours of notice, or no notice, after violence in their village or a rumor of approaching attacks. The Punjab portion of the movement was the most concentrated and the most violent.' },
+    { id: 'radcliffeline', label: 'The Radcliffe Line', text: 'Cyril Radcliffe, a British lawyer who had never been to India, chaired the boundary commission. He was given six weeks to draw the boundary between India and Pakistan through Punjab and Bengal. The boundary was announced on 17 August 1947 — two days after India\'s independence and one day after Pakistan\'s. Hundreds of thousands of people had already begun moving before the line was made public, based on rumor and fear. The line itself divided irrigation systems, railway lines, and communities that had been integrated for generations.' },
+    { id: 'boundaryforcecapacity', label: 'Punjab Boundary Force', text: 'The Punjab Boundary Force was a 55,000-strong mixed Indian and Pakistani unit under British command, assigned to maintain order in the 12 districts straddling the new boundary. It was responsible for a zone through which approximately 4.5 million people were moving simultaneously. The force was vastly undermanned for the task, suffered from split loyalties as communal violence intensified, and formally disbanded in late September 1947.' },
+    { id: 'communalviolence', label: 'Patterns of Communal Violence', text: 'Violence was not random. It followed patterns: attacks on columns moving in the opposite direction, reprisal cycles in which an attack on one community in one village produced an attack on the other community in a neighboring village, targeted killings of young men to eliminate future fighters, and attacks on trains. The violence was worst in the Lahore-Amritsar corridor and in rural Punjab. The scale of organized killing in some areas exceeded the capacity of local police or army units to contain.' },
+    { id: 'evacuee-property', label: 'Evacuee Property', text: 'The property left behind by departing communities represented a massive economic resource in both countries. In India, Muslim evacuees left approximately 4.7 million acres of agricultural land and urban property. Hindu and Sikh evacuees left similar amounts in Pakistan. This property was immediately subject to looting, squatting, and informal seizure. Both governments faced intense pressure from arriving refugees to provide land and housing immediately — which meant allocating evacuee property before any legal framework existed.' },
+    { id: 'secularclaim', label: 'Nehru\'s Secular-State Commitment', text: 'Prime Minister Nehru\'s government was explicitly committed to a secular-state model: India would be defined by citizenship, not religion. This distinguished India\'s model from Pakistan\'s (established as an Islamic state). The Partition crisis tested this commitment directly: if India\'s government appeared to protect only Hindus and Sikhs at the expense of Muslims, the secular-state claim would be undermined at the moment of independence. Nehru personally intervened in multiple episodes to defend Indian Muslims against mob violence.' },
+    { id: 'campsconditions', label: 'Camp Conditions', text: 'Refugee camps were severely inadequate. The largest camps — at Kurukshetra and at Walton in Pakistan — each held hundreds of thousands of people in conditions with insufficient food, water, and sanitation. Epidemic disease was an acute risk. Camp administration was improvised. Many refugees preferred to keep moving toward their ancestral communities rather than stop in camps, making organized assistance difficult.' },
+    { id: 'sikhcommunity', label: 'Sikh Community Position', text: 'The Sikh community was disproportionately affected by Partition because the Sikh population was concentrated in exactly the districts the Radcliffe Line divided. Sikh leaders had advocated during the independence negotiations for a Sikh homeland (Khalistan); this was not achieved. The Sikh community\'s position within India\'s new secular-state framework was therefore politically sensitive: any government decision that appeared to deprioritize Sikh refugee protection would face intense backlash.' },
+    { id: 'kashmirshadow', label: 'Kashmir and India–Pakistan Relations', text: 'India and Pakistan were simultaneously managing the refugee crisis and moving toward a confrontation over the princely state of Kashmir, whose Hindu Maharaja had not yet acceded to either country. The Pakistan-backed tribal invasion of Kashmir (which would trigger the First Kashmir War) began in October 1947 — just weeks after this committee meeting. Cooperation with Pakistan on refugees was therefore taking place in the shadow of an imminent armed conflict.' },
+    { id: 'wwii-displaced', label: 'WWII Displaced Persons Precedent', text: 'Europe after World War II had generated approximately 11 million displaced persons, managed by the UNRRA (United Nations Relief and Rehabilitation Administration) and later the IRO (International Refugee Organization). India\'s government was aware of this precedent but the international machinery was not designed for a bilateral partition crisis, and India\'s own sovereignty considerations made inviting international administration politically complicated.' },
+    { id: 'armycapacity', label: 'Army Capacity and Split Loyalties', text: 'The British Indian Army had been divided between India and Pakistan on partition. Both new armies were therefore below full strength and in the process of reorganization. Additionally, some units had followed their officers\' communal loyalties rather than orders during the worst violence. This made it difficult to rely on any given unit to protect members of the community against which it held grievances.' },
+    { id: 'worldjudgment', label: 'World Judgment of the New State', text: 'Both India and Pakistan were watched by the world press and by the United Nations. How the new states managed this crisis would shape international opinion about whether they were capable of self-governance — which had direct implications for the decolonization movements elsewhere in Asia and Africa. Nehru was acutely conscious that India\'s secular-state model was being judged in real time.' }
+  ];
+
+  /* ── Decision Consequences ───────────────────────────────────────── */
+  const CONSEQUENCES = {
+    1: {
+      escortboth: { head: 'Consequence — Escort Both Directions', text: 'Dividing forces provides some protection everywhere but decisive protection nowhere. Columns continue to be attacked, but the attacks are somewhat reduced in areas with army presence. Cities develop their own violence without sufficient force to contain it. The Emergency Committee notes that "thin everywhere" may be the honest assessment of what India can do, but it does not stop the killing. The world press reports mass violence continuing despite Indian government claims of control.' },
+      concentratecities: { head: 'Consequence — Urban Centers Held', text: 'Major cities including Amritsar are largely held. The secular-state claim in urban areas — where the press and international observers are present — is partially maintained. But in rural Punjab, columns moving without protection suffer severe attacks. The international press reports rural massacres. The Sikh community leadership protests that rural Sikhs have been abandoned. The army\'s presence in cities means the columns must fend for themselves.' },
+      militarycorridors: { head: 'Consequence — Military Corridors Established', text: 'Designated roads become protected and movement along them is significantly safer. However, many refugees cannot reach the designated corridors, and movement outside them is entirely unprotected. The corridors create a dual reality: organized, relatively safe movement for those who can access the designated routes, and complete vulnerability for those who cannot. The system eventually works but requires weeks to establish, and the worst violence occurs in the interim.' },
+      requestjointbf: { head: 'Consequence — Joint Reinforcement Request', text: 'India sends an urgent signal to Pakistan requesting joint reinforcement of the Punjab Boundary Force. Pakistan responds cautiously — its own government is under pressure from the same communities on its side. The negotiation takes days. During that time, the Boundary Force continues to erode. When the joint response arrives, it prevents the complete collapse but cannot recover the ground lost in the interval. The experience demonstrates that bilateral coordination is possible but slow.' }
+    },
+    2: {
+      holdintrust: { head: 'Consequence — Property Held in Trust', text: 'The Evacuee Property Act establishes government custodianship. In practice, the custodianship is difficult to enforce: squatters occupy property, local officials allocate it informally, and arriving refugees occupy whatever is available. The "trust" framework provides legal protection on paper that cannot always be enforced in reality. Some original owners who remain in India (Muslims who chose not to leave) find their property protected; others find it has been occupied despite the law.' },
+      immediaterequisition: { head: 'Consequence — Immediate Resettlement', text: 'Evacuee property is requisitioned and allocated to arriving Hindu and Sikh refugees. The acute housing and land crisis is addressed: people have somewhere to go. Pakistan takes the same approach for its arriving Muslim refugees. The bilateral symmetry means that neither country can claim the moral high ground — and both abandon any realistic prospect of return for those who left. The decisions made in September 1947 become permanent within months.' },
+      bilateralexchange: { head: 'Consequence — Exchange Agreement Negotiations', text: 'India proposes bilateral property exchange negotiations to Pakistan. Pakistan agrees in principle. The negotiations proceed slowly and produce a formal agreement that establishes property values on each side but is extremely difficult to implement in practice. Many refugees receive financial compensation rather than their actual property; the compensation is set at values that fail to reflect what the property was worth. The framework is humane in concept but inadequate in execution.' },
+      deferlegislation: { head: 'Consequence — Moratorium Imposed', text: 'A moratorium halts formal transfers. Informal occupation continues because the government cannot enforce the moratorium everywhere simultaneously. When the survey is eventually conducted, it reveals a complex situation: much property has already been occupied, improved, or transferred informally. The survey takes months. In the interim, arriving refugees live in legal uncertainty. The moratorium intended to prevent irreversible decisions ends up preserving a confused situation that itself becomes irreversible.' }
+    },
+    3: {
+      jointmachinery: { head: 'Consequence — Joint Emergency Committee', text: 'India and Pakistan establish the Joint Emergency Committee (the Historical "Inter-Dominion Committee"). Indian and Pakistani civil servants work together on refugee movement, property documentation, and border crossing protocols. The machinery is slow to establish and operates under constant political pressure from both sides, but it produces coordination that reduces the worst bilateral gaps. The Nehru-Liaquat relationship — strained but functional — holds the machinery together. It is imperfect but it exists.' },
+      unilateralaction: { head: 'Consequence — Parallel Unilateral Management', text: 'Each government manages its own side. Back-channel coordination prevents the worst misalignments — columns are not sent across the border simultaneously in ways that produce head-on collisions. But without formal joint machinery, inconsistencies multiply: India\'s approach to evacuee property differs from Pakistan\'s; camp conditions on each side develop differently; the two governments publicly contradict each other on violence statistics. The crisis is managed but not jointly managed.' },
+      'un-mediation': { head: 'Consequence — International Mediation', text: 'India requests ICRC involvement. The ICRC deploys personnel to camps on both sides and provides some resources and coordination. But the ICRC\'s mandate is humanitarian, not political — it cannot resolve the property question or force either government to coordinate. International involvement provides additional resources and some accountability pressure, but also creates precedents that both governments are uncomfortable with: the idea that their management of their own citizens requires international oversight.' },
+      nehruliaquat: { head: 'Consequence — Nehru–Liaquat Summit', text: 'After days of negotiation, Nehru and Liaquat Ali Khan meet. The summit produces a joint statement on principles: protection of minorities on both sides, orderly movement, and joint machinery for property. The statement is politically significant — it commits both prime ministers publicly. But implementation falls to the civil servants and army officers who do not share the prime ministers\' relationship. The summit is not enough on its own; it requires the machinery to follow.' }
+    }
+  };
+
+  /* ── Navigation Functions ────────────────────────────────────────── */
+  function showStep(stepId, progressPct, progressText) {
+    ['step-role','step-evidence','step-decision1','step-decision2','step-decision3','step-reflection'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+    document.getElementById(stepId).style.display = 'block';
+    document.getElementById('progress-fill').style.width = progressPct + '%';
+    document.getElementById('progress-label').textContent = progressText;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function goToRole() { showStep('step-role', 0, 'Step 1 of 6 — Choose Your Role'); }
+  function goToEvidence() { showStep('step-evidence', 20, 'Step 2 of 6 — Examine the Evidence'); renderEvidenceChips(); }
+  function goToDecision1() { showStep('step-decision1', 40, 'Step 3 of 6 — Decision 1: Protection of the Columns'); restoreDecision(1); }
+  function goToDecision2() { showStep('step-decision2', 60, 'Step 4 of 6 — Decision 2: Evacuee Property'); restoreDecision(2); }
+  function goToDecision3() { showStep('step-decision3', 80, 'Step 5 of 6 — Decision 3: Coordination with Pakistan'); restoreDecision(3); }
+  function goToReflection() { showStep('step-reflection', 100, 'Step 6 of 6 — Reflection & Writing'); loadDrafts(); }
+
+  /* ── Role Selection ──────────────────────────────────────────────── */
+  function selectRole(btn) {
+    document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const roleKey = btn.dataset.role;
+    state.role = roleKey;
+    saveState();
+    const detail = document.getElementById('role-detail');
+    const r = ROLES[roleKey];
+    detail.innerHTML = '<h3>' + r.name + '</h3><p>' + r.detail + '</p>';
+    detail.style.display = 'block';
+    document.getElementById('btn-to-evidence').disabled = false;
+  }
+
+  /* ── Evidence Chips ──────────────────────────────────────────────── */
+  function renderEvidenceChips() {
+    const grid = document.getElementById('evidence-chips');
+    const revealArea = document.getElementById('chip-reveal-area');
+    grid.innerHTML = '';
+    revealArea.innerHTML = '';
+    EVIDENCE.forEach(ev => {
+      const chip = document.createElement('button');
+      chip.className = 'chip' + (state.evidence.includes(ev.id) ? ' selected' : '');
+      chip.textContent = ev.label;
+      chip.onclick = () => toggleChip(ev.id, chip, ev.text, ev.label);
+      grid.appendChild(chip);
+    });
+    // Restore selected chip reveals
+    state.evidence.forEach(id => {
+      const ev = EVIDENCE.find(e => e.id === id);
+      if (ev) appendReveal(id, ev.label, ev.text);
+    });
+    updateEvidenceBtn();
+  }
+
+  function appendReveal(id, label, text) {
+    const revealArea = document.getElementById('chip-reveal-area');
+    if (document.getElementById('reveal-' + id)) return;
+    const div = document.createElement('div');
+    div.className = 'chip-reveal visible';
+    div.id = 'reveal-' + id;
+    div.innerHTML = '<strong>' + label + ':</strong> ' + text;
+    revealArea.appendChild(div);
+  }
+
+  function removeReveal(id) {
+    const el = document.getElementById('reveal-' + id);
+    if (el) el.remove();
+  }
+
+  function toggleChip(id, chipEl, text, label) {
+    if (state.evidence.includes(id)) {
+      state.evidence = state.evidence.filter(e => e !== id);
+      chipEl.classList.remove('selected');
+      removeReveal(id);
+    } else {
+      state.evidence.push(id);
+      chipEl.classList.add('selected');
+      appendReveal(id, label, text);
+    }
+    saveState();
+    updateEvidenceBtn();
+  }
+
+  function updateEvidenceBtn() {
+    document.getElementById('btn-to-d1').disabled = state.evidence.length < 4;
+  }
+
+  /* ── Decision Selection ──────────────────────────────────────────── */
+  function selectDecision(num, btn) {
+    const group = document.querySelectorAll('#d' + num + '-options .decision-opt');
+    group.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const choice = btn.dataset.choice;
+    state.decisions[num] = choice;
+    saveState();
+    // Show consequence
+    const consBlock = document.getElementById('d' + num + '-consequence');
+    const cons = CONSEQUENCES[num][choice];
+    if (cons) {
+      consBlock.innerHTML = '<div class="con-head">' + cons.head + '</div><p>' + cons.text + '</p>';
+      consBlock.classList.add('visible');
+    }
+    const nextBtn = document.getElementById('btn-to-d' + (num + 1)) || document.getElementById('btn-to-ref');
+    if (nextBtn) nextBtn.disabled = false;
+  }
+
+  function restoreDecision(num) {
+    const choice = state.decisions[num];
+    if (!choice) return;
+    const opts = document.querySelectorAll('#d' + num + '-options .decision-opt');
+    opts.forEach(b => {
+      if (b.dataset.choice === choice) {
+        b.classList.add('selected');
+        const cons = CONSEQUENCES[num][choice];
+        if (cons) {
+          const consBlock = document.getElementById('d' + num + '-consequence');
+          consBlock.innerHTML = '<div class="con-head">' + cons.head + '</div><p>' + cons.text + '</p>';
+          consBlock.classList.add('visible');
+        }
+      }
+    });
+    const nextBtn = document.getElementById('btn-to-d' + (num + 1)) || document.getElementById('btn-to-ref');
+    if (nextBtn) nextBtn.disabled = false;
+  }
+
+  /* ── Draft Persistence ───────────────────────────────────────────── */
+  function loadDrafts() {
+    const dd = localStorage.getItem(DRAFT_DECISION_KEY);
+    const dr = localStorage.getItem(DRAFT_REFLECTION_KEY);
+    const dc = localStorage.getItem(DRAFT_COMPARISON_KEY);
+    if (dd) document.getElementById('decision-response').value = dd;
+    if (dr) document.getElementById('reflection-response').value = dr;
+    if (dc) document.getElementById('comparison-response').value = dc;
+  }
+
+  /* ── MagicSchool Prompt ──────────────────────────────────────────── */
+  function copyMsPrompt() {
+    const text = document.getElementById('ms-prompt-text').textContent;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+
+  /* ── Init ────────────────────────────────────────────────────────── */
+  loadState();
+  // Restore role button state
+  if (state.role) {
+    const btn = document.querySelector('[data-role="' + state.role + '"]');
+    if (btn) {
+      btn.classList.add('selected');
+      const r = ROLES[state.role];
+      const detail = document.getElementById('role-detail');
+      detail.innerHTML = '<h3>' + r.name + '</h3><p>' + r.detail + '</p>';
+      detail.style.display = 'block';
+      document.getElementById('btn-to-evidence').disabled = false;
+    }
+  }
+</script>
+</body>
+</html>

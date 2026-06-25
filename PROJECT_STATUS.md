@@ -114,6 +114,28 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **CED text constraints:** All verbatim CED text reproduced in both `lesson-8-5-decolonization.js` and `lesson-8-5-renderer-config.js` (RUNTIME-AUTHORITATIVE), including exact KC codes (KC-6.2.II.A, KC-6.2.II.B, KC-6.2.I.C — note KC-6.2.I.C, not KC-6.2.II.C), "British Gold Coast (Ghana)" exact, "French empire" lowercase, "Québécois" with accent.
 
+### Topic 8.6 — Newly Independent States (built 2026-06-25)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-8/lesson-8-6-newly-independent-states.html` | DONE |
+| Topic data | `assets/data/lesson-8-6-newly-independent-states.js` | DONE |
+| Renderer config | `assets/data/lesson-8-6-renderer-config.js` | DONE |
+| First & 10 reading | `unit-8/first-and-10-topic-8-6-newly-independent-states.html` | DONE |
+| First & 10 capture wrapper | `unit-8/first-and-10-topic-8-6-newly-independent-states-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-8/line-through-punjab.html` | DONE |
+| Unit 8 index link | `unit-8/index.html` (Topic 8.6 card href updated) | DONE |
+
+**Dual-LO topic structure:** Topic 8.6 carries two thematic focus / LO pairs — GOV / LO G (boundary redrawing → new states + conflict/displacement: KC-6.2.III.A.i and KC-6.2.III.A.ii) and ECN / LO H (economic changes and continuities from decolonization: KC-6.3.I.C with all four illustrative examples verbatim, and KC-6.2.III.B with all three illustrative examples verbatim). Both pairs are represented in `lesson-8-6-newly-independent-states.js` `collegeBoardKeyConcepts` array (8 entries) and reproduced verbatim in `lesson-8-6-renderer-config.js` (RUNTIME-AUTHORITATIVE). Renderer constraint finding: `normalizedKeyConcepts()` iterates the full array with no entry-count limit; both pairs and all examples render via standard `cb-card` elements with no renderer modification required.
+
+**Checkpoint structure for dual-LO:** CP1 covers LT3 / LO H (economic changes and continuities — state-led development examples and migration continuity); CP2 covers LT1+LT2 / LO G (political changes → territorial, demographic, and nationalist developments — new state creation and conflict/displacement from boundary redrawing).
+
+**BeInTheRoom scenario frame:** "A Line Through Punjab" — New Delhi, September 1947, as a senior ICS civil servant advising the Emergency Committee of the Cabinet (chaired by Nehru). Crisis-response variant (matching 8.4 "Harvest Report" structure — inside a system, not between competing nations). Four roles: ICS Senior Advisor, Army Liaison Officer, Rehabilitation Commissioner, India–Pakistan Liaison Officer. 12 evidence chips: scale of movement, Radcliffe Line process, Punjab Boundary Force capacity, communal violence patterns, evacuee property, Nehru's secular-state commitment, camp conditions, Sikh community position, Kashmir shadow, WWII displaced persons precedent, army capacity/split loyalties, world judgment of new state. Three decisions: (a) protection of refugee columns — escort both directions, concentrate on cities, establish military corridors, or request joint BF reinforcement; (b) evacuee property — hold in trust, immediate requisition, bilateral exchange agreement, or defer legislation; (c) coordination with Pakistan — joint emergency machinery, unilateral parallel action, UN/ICRC mediation, or Nehru–Liaquat summit.
+
+**Step 0 gate:** PASS — premise directly enacts KC-6.2.III.A.ii (boundary redrawing → conflict, population displacement, resettlement in the Partition of India) and LO G (political changes leading to territorial, demographic, and nationalist developments). The Emergency Committee / Radcliffe Line / September 1947 setting cannot be transplanted without changing the GOV theme it exercises. Reflection prompt explicitly connects the Radcliffe Line decision to the displacement crisis and requires comparison with Israel/Palestine 1948 (the other KC-6.2.III.A.ii illustrative example).
+
+**Continuity hooks:** Nehru's third recurrence in Unit 8 — background figure in 8.1 (empire exhaustion context), Indian delegation at Bandung in 8.2, now Prime Minister chairing the Emergency Committee in 8.6. Muslim League from 8.5 lecture (demand for Pakistan as separate state) lands here as the partition it produced. Evidence chip "Kashmir shadow" looks forward to Topic 8.7 (resistance and realignment) and the India–Pakistan conflict that follows.
+
 ---
 
 ### Open Revision Tasks (from the audit)
