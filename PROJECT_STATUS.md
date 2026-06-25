@@ -74,6 +74,26 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **Step 0 gate:** PASS — premise directly enacts KC-6.2.IV.D (proxy wars between and within postcolonial states in Africa) and LO C (compare how U.S. and Soviet Union sought to maintain influence). The Angolan Independence Day setting is the moment where both superpowers' methods are simultaneously visible and the student must reason through the comparison from the inside. Continuity hook to Bandung 1955 (Topic 8.2): the reflection prompt explicitly asks whether the non-alignment promise survives contact with a real war.
 
+### Topic 8.4 — Spread of Communism After 1900 (built 2026-06-25)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-8/lesson-8-4-spread-of-communism.html` | DONE |
+| Topic data | `assets/data/lesson-8-4-spread-of-communism.js` | DONE |
+| Renderer config | `assets/data/lesson-8-4-renderer-config.js` | DONE |
+| First & 10 reading | `unit-8/first-and-10-topic-8-4-spread-of-communism.html` | DONE |
+| First & 10 capture wrapper | `unit-8/first-and-10-topic-8-4-spread-of-communism-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-8/harvest-report.html` | DONE |
+| Unit 8 index link | `unit-8/index.html` (Topic 8.4 card href updated) | DONE |
+
+**Dual-LO topic structure:** Topic 8.4 carries two thematic focus / LO pairs — ECN / LO D (China's adoption of communism: KC-6.2.I.i and KC-6.3.I.A.ii) and SIO / LO E (redistribution movements: KC-6.2.II.D.i with all four illustrative examples verbatim). Both pairs are represented in `lesson-8-4-spread-of-communism.js` `collegeBoardKeyConcepts` array (7 entries) and reproduced verbatim in `lesson-8-4-renderer-config.js`. Renderer constraint finding: `normalizedKeyConcepts()` iterates the full array with no entry-count limit; both pairs and all four illustrative examples render via standard `cb-card` elements with no renderer modification required.
+
+**Checkpoint structure for dual-LO:** CP1 covers LT3 / LO E (redistribution movements — causes and effects of at least two CED examples); CP2 covers LT1+LT2 / LO D (China causation — both causes of 1949 revolution and consequences of Great Leap Forward).
+
+**BeInTheRoom scenario frame:** "The Harvest Report" — Henan Province, China, autumn 1959, as the county party secretary holding an autumn harvest report showing 40% of the spring-reported figure. Decision points require reasoning from inside the system (pressure from party above + villages below), not between competing nations or factions. Three decisions: (a) what to report to the province; (b) what to submit to grain procurement quota; (c) what to tell the villages. Four roles: County Party Secretary, Village Production Team Leader, Provincial Agricultural Inspector, County Agricultural Bureau Chief. Frame explicitly breaks the "caught between superpowers" structure used in 8.1–8.3 — this is "caught inside the system."
+
+**Step 0 gate:** PASS — premise directly enacts KC-6.3.I.A.ii (communist government control of national economy through Great Leap Forward, repressive policies, negative repercussions for population). The county party secretary's dilemma IS the CED key concept made visible from inside the system. Cannot be transplanted to a different topic without changing the ECN theme it exercises. Reflection prompt explicitly bridges both LO D KCs: asks students to explain the gap between the causes of China's communist revolution (1949 promises) and the consequences of communist government (1959 famine), connecting KC-6.2.I.i and KC-6.3.I.A.ii.
+
 ---
 
 ### Open Revision Tasks (from the audit)
