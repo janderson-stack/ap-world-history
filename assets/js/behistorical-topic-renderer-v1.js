@@ -1,6 +1,6 @@
 // behistorical-topic-renderer-v1.js
 // BeHistorical AP World History — Shared Topic Renderer
-// Updated: MagicSchool bridge added to First & 10 and both Checkpoints
+// Updated: Capture reduced to 4 touchpoints (First & 10, Checkpoint 1, BeInTheRoom, Checkpoint 2) — June 2026
 
 const L = window.BEHISTORICAL_LESSON;
 const byId = id => document.getElementById(id);
@@ -95,10 +95,7 @@ function autoBuildCaptureUrls() {
 
   L.captureUrls = {
     first10:       '',
-    skillBuilder:  submitBtn('skill-builder-response',  'skillBuilder'),
     checkpoint1:   submitBtn('checkpoint-one-response', 'checkpoint1'),
-    evidenceLab:   submitBtn('evidence-response',       'evidenceLab'),
-    primarySource: submitBtn('primary-source-response', 'primarySource'),
     checkpoint2:   submitBtn('checkpoint-two-response', 'checkpoint2')
   };
 }
