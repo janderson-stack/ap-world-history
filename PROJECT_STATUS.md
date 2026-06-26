@@ -158,6 +158,30 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **Continuity hooks:** Connects to 8.5 "Positive Action" (Accra 1950 — Gold Coast evidence chip and extension question: "Does the Gold Coast playbook survive contact with a state willing to fire on crowds?"). Mandela's fourth recurrence in Unit 8 — named CED figure in KC-6.2.V.A, evidence chip `mandelalife` in the scenario, protagonist of the historical debate. Extension comparison prompt: Accra 1950 (Nkrumah / Positive Action) vs. Johannesburg 1961 (ANC underground debate).
 
+### Topic 8.8 — End of the Cold War (built 2026-06-26)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-8/lesson-8-8-end-of-cold-war.html` | DONE |
+| Topic data | `assets/data/lesson-8-8-end-of-cold-war.js` | DONE |
+| Renderer config | `assets/data/lesson-8-8-renderer-config.js` | DONE |
+| First & 10 reading | `unit-8/first-and-10-topic-8-8-end-of-cold-war.html` | DONE |
+| First & 10 capture wrapper | `unit-8/first-and-10-topic-8-8-end-of-cold-war-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-8/kremlin-ledger.html` | DONE |
+| Unit 8 index link | `unit-8/index.html` (Topic 8.8 card href updated) | DONE |
+
+**Single-LO, single-KC topic structure:** Topic 8.8 carries one thematic focus / LO pair — GOV / LO J ("Explain the causes of the end of the Cold War."). One KC: KC-6.2.IV.E ("Advances in U.S. military and technological development, the Soviet Union's costly and ultimately failed invasion of Afghanistan, and public discontent and economic weakness in communist countries led to the end of the Cold War and the collapse of the Soviet Union."). `collegeBoardKeyConcepts` array has 3 entries (thematic focus + LO J + KC-6.2.IV.E — NO illustrative examples for any entry). Content figures (Gorbachev, Reagan, SDI, Berlin Wall) are lecture content only; they must never be labeled as CED illustrative examples. This constraint is enforced in the renderer config header comment and codified in `lesson-8-8-renderer-config.js`.
+
+**Three learning targets (three causal strands of KC-6.2.IV.E):** LT1 — U.S. military and technological development (SDI mechanism, microelectronics gap, defense spending spiral); LT2 — Soviet invasion of Afghanistan (direct costs, signal to Eastern European satellites, CIA Operation Cyclone); LT3 — public discontent and economic weakness in communist countries (glasnost/perestroika unintended consequences, 1989 Eastern European revolutions, 1991 Soviet dissolution).
+
+**Checkpoint structure:** CP1 covers LT1+LT2 ("The Two External Pressures" — explain U.S. military/tech AND Afghanistan as two distinct causal mechanisms + how they compounded each other); CP2 covers all LTs / full LO J synthesis ("Explaining the Causes of the End of the Cold War" — at least two causal strands, mechanism for each, explicit significance claim, counterargument to significance claim).
+
+**BeInTheRoom scenario frame:** "The Kremlin Ledger" — Moscow, March 1985, as a senior advisor preparing Gorbachev's first strategic review. Unit 8 frame inversion: after seven topics of peoples caught between the superpowers (8.1–8.7), the student now sits inside one superpower as it strains. Decision points map 1:1 onto the three KC-6.2.IV.E causal strands: D1 (how to respond to SDI and U.S. military buildup) = Strand 1; D2 (what to do in Afghanistan) = Strand 2; D3 (what kind of domestic reform to pursue) = Strand 3. Four roles: Senior KGB Economic Analyst, Deputy Defense Minister, General Staff Officer (Afghanistan), Senior Gosplan Official. 12 evidence chips: `sdiannouncement`, `defenseburden`, `afghancasualties`, `ciasupport`, `consumershortages`, `glasnostconcept`, `pastreforms`, `easterneuropewatch`, `techgap`, `chinacomparison`, `gorbachevmandate`, `afghanexit`. No-hindsight constraint: student reasons from March 1985 only; Soviet dissolution must not be presented as foreseeable. Consequence reveals emphasize tradeoffs and tensions, not a scripted path to collapse.
+
+**Step 0 gate:** PASS — Moscow/March 1985/Gorbachev's first strategic review is the historical moment where all three KC-6.2.IV.E causal strands converge simultaneously. D1 = Strand 1 (U.S. military/tech pressure), D2 = Strand 2 (Afghanistan costs), D3 = Strand 3 (reform vs. public discontent/economic weakness). Cannot be transplanted to a different topic without changing the GOV theme it exercises.
+
+**Continuity hooks:** Extension question explicitly connects to "The Harvest Report" (Topic 8.4, Henan Province 1959) — both scenarios feature a command-economy system where local/national actors face structural resource constraints they cannot admit. The 1959 county party secretary's falsified grain numbers and Gorbachev's 1985 defense-burden dilemma share the same structural logic: a system that cannot produce what it promises. Coaching prompt stage 6 (Harvest Report connection) asks students to articulate this structural continuity across the KC-6.3.I.A.ii / KC-6.2.IV.E bridge.
+
 ---
 
 ### Open Revision Tasks (from the audit)
