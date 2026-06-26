@@ -136,6 +136,28 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **Continuity hooks:** Nehru's third recurrence in Unit 8 — background figure in 8.1 (empire exhaustion context), Indian delegation at Bandung in 8.2, now Prime Minister chairing the Emergency Committee in 8.6. Muslim League from 8.5 lecture (demand for Pakistan as separate state) lands here as the partition it produced. Evidence chip "Kashmir shadow" looks forward to Topic 8.7 (resistance and realignment) and the India–Pakistan conflict that follows.
 
+### Topic 8.7 — Global Resistance to Established Power Structures After 1900 (built 2026-06-26)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-8/lesson-8-7-global-resistance.html` | DONE |
+| Topic data | `assets/data/lesson-8-7-global-resistance.js` | DONE |
+| Renderer config | `assets/data/lesson-8-7-renderer-config.js` | DONE |
+| First & 10 reading | `unit-8/first-and-10-topic-8-7-global-resistance.html` | DONE |
+| First & 10 capture wrapper | `unit-8/first-and-10-topic-8-7-global-resistance-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-8/after-sharpeville.html` | DONE |
+| Unit 8 index link | `unit-8/index.html` (Topic 8.7 card href updated) | DONE |
+
+**Single-LO topic structure:** Topic 8.7 carries one thematic focus / LO pair — CDI / LO I ("Explain various reactions to existing power structures in the period after 1900."). Four KCs: KC-6.2.V (umbrella framing), KC-6.2.V.A (nonviolent challenge — Gandhi, MLK, Mandela named in KC text), KC-6.2.V.C (militarized states intensifying conflict — Chile/Pinochet, Spain/Franco, Uganda/Amin, military–industrial complex with verbatim en dash), KC-6.2.V.D (movements using violence against civilians — Shining Path, Al-Qaeda). `collegeBoardKeyConcepts` array has 6 entries (thematic focus + LO + 4 KCs); `normalizedKeyConcepts()` iterates without count limit — all 6 render correctly with no renderer modification.
+
+**Checkpoint structure:** CP1 covers LT1 / KC-6.2.V.A (nonviolent challenge — explain how at least two of the three named individuals promoted nonviolence and why it was a strategic choice); CP2 covers all LTs / LO I synthesis (explain various reactions using evidence from at least two of the three KC categories — V.A, V.C, V.D).
+
+**BeInTheRoom scenario frame:** "After Sharpeville" — Johannesburg, South Africa, June 1961. Fifteen months after the Sharpeville Massacre, the apartheid state has banned the ANC and imprisoned its leadership. Student is a strategist in the banned ANC's underground leadership circle as the movement debates its path — the real historical debate from which Umkhonto we Sizwe (MK) emerged. Four roles: ANC Strategist (Chief Albert Luthuli's inner circle), Luthuli Peace Prize Delegate, Mass Organizer, External Relations Officer. 12 evidence chips: Sharpeville massacre (1960), ANC banning + PAC banning, Luthuli's peace commitment, Gandhian satyagraha origins (South Africa 1906–1915), Indian precedent (1947 independence), Gold Coast precedent (Ghana 1957), state willingness to fire, MK/sabotage idea (property-only framing), Cold War context, international opinion, newly independent Africa as audience, Mandela's organizing life. Three decisions: (a) method — strict nonviolence / allow infrastructure sabotage (no civilian targets) / defer / mass resistance; (b) response to state escalation — continue public / go underground / dual tracks / exile-based; (c) international strategy — sanctions campaign / Afro-Asian bloc focus / internal focus / Cold War neutrality. Design boundary strictly observed: KC-6.2.V.D is lecture-only; Option B in Decision 1 explicitly frames MK as property/infrastructure sabotage, not violence against people.
+
+**Step 0 gate:** PASS — premise directly enacts KC-6.2.V.A (nonviolence debate within ANC — Mandela is a named CED figure in this KC) and KC-6.2.V.C (apartheid state's militarized escalation after Sharpeville narrows the movement's available options). The June 1961 Johannesburg underground leadership setting cannot be transplanted without changing the CDI theme it exercises. Reflection prompt explicitly connects KC-6.2.V.A and KC-6.2.V.C: Part 2 asks how the apartheid state's response (V.C) affected the movement's options (V.A).
+
+**Continuity hooks:** Connects to 8.5 "Positive Action" (Accra 1950 — Gold Coast evidence chip and extension question: "Does the Gold Coast playbook survive contact with a state willing to fire on crowds?"). Mandela's fourth recurrence in Unit 8 — named CED figure in KC-6.2.V.A, evidence chip `mandelalife` in the scenario, protagonist of the historical debate. Extension comparison prompt: Accra 1950 (Nkrumah / Positive Action) vs. Johannesburg 1961 (ANC underground debate).
+
 ---
 
 ### Open Revision Tasks (from the audit)
