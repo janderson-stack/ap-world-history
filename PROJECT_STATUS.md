@@ -182,6 +182,32 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **Continuity hooks:** Extension question explicitly connects to "The Harvest Report" (Topic 8.4, Henan Province 1959) — both scenarios feature a command-economy system where local/national actors face structural resource constraints they cannot admit. The 1959 county party secretary's falsified grain numbers and Gorbachev's 1985 defense-burden dilemma share the same structural logic: a system that cannot produce what it promises. Coaching prompt stage 6 (Harvest Report connection) asks students to articulate this structural continuity across the KC-6.3.I.A.ii / KC-6.2.IV.E bridge.
 
+### Topic 8.9 — Causation in the Age of the Cold War and Decolonization (built 2026-06-26)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-8/lesson-8-9-causation-capstone.html` | DONE |
+| Topic data | `assets/data/lesson-8-9-causation-capstone.js` | DONE |
+| Renderer config | `assets/data/lesson-8-9-renderer-config.js` | DONE |
+| First & 10 reading | `unit-8/first-and-10-topic-8-9-causation-capstone.html` | DONE |
+| First & 10 capture wrapper | `unit-8/first-and-10-topic-8-9-causation-capstone-capture.html` | DONE |
+| BeInTheRoom scenario | N/A — capstone topic, no BeInTheRoom per capstone rule | N/A |
+| Unit 8 index link | `unit-8/index.html` (Topic 8.9 card href updated) | DONE |
+
+**UNIT 8 COMPLETE — 9/9 topics built.**
+
+**Capstone topic — 6-module variant (deviation from 10-module standard):** Topic 8.9 is a synthesis/capstone lesson. Per capstone rule, it compresses to synthesis work only: Module 01 (First & 10), Module 02 (Content Delivery jump), Module 03 (Unit Review), Module 04 (Hemispheric Effects Matrix), Module 05 (AP Skill Builder), Module 06 (Checkpoint 2). No Map module, no BeSurreal, no Evidence Lab, no Primary Source, no BeInTheRoom, no Checkpoint 1. The 6-module array is set via `lesson.modules` in the renderer config, which the renderer supports via `L.modules || defaultModules()`.
+
+**CED constraints (Topic 8.9):** No thematic focus block listed for this topic in the CED. Learning Objective K is the only LO: "Explain the extent to which the effects of the Cold War were similar in the Eastern and Western Hemispheres." Five KCs (no illustrative examples for any): KC-6.2 (umbrella), KC-6.2.II (anti-imperialism → dissolution), KC-6.2.IV.C (Cold War extended beyond ideology), KC-6.3 (role of state + new institutions), KC-6.3.I (states responded in a variety of ways). All verbatim in both data file and renderer config.
+
+**Hemispheric Effects Matrix (custom module 04):** 4 rows (economic, political, social, cultural) × 2 columns (Eastern/Western hemispheres). Each row has a rating select (Largely Similar / Mixed / Largely Different), a justification textarea, a Save Row button (localStorage via `saveMatrixRow89()`), and a static `<a class="btn-capture">` anchor tag. Synthesis field at bottom with Save Synthesis + capture buttons. Draft persistence: `response-area` class auto-load + `loadMatrixDrafts89()` called via `setTimeout` after `renderMatrix89()` sets modal innerHTML. All matrix render functions defined as `window.*` globals in `lesson-8-9-renderer-config.js`.
+
+**Unit Review module (module 03):** `renderUnitReview89()` returns an 8-card grid (Topics 8.1–8.8), each with topic label, title, 2–3 sentence summary, and a "Matrix evidence" hint line.
+
+**AI coaching touchpoints:** First & 10 (3-question check section + AI Coach prompt builder) and Checkpoint 2 (full LO K LEQ). No BeInTheRoom touchpoint. MagicSchool URL: `https://student.magicschool.ai/s/login?joinCode=czwb9Q`.
+
+**Step 0 gate:** N/A — capstone topics have no BeInTheRoom scenario.
+
 ---
 
 ### Open Revision Tasks (from the audit)
