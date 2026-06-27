@@ -243,6 +243,8 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **No fixes were applied.** All nine renderer configs are CED-compliant as written. Cache-busting bumps are not required (no config files were edited).
 
+**Cache-bust follow-up (2026-06-27):** Zero renderer configs were modified by the audit, so zero lesson shells required a cache-bust. No shell edits were made. **Unit 8 audit cycle CLOSED.**
+
 ---
 
 ### Open Revision Tasks (from the audit)
