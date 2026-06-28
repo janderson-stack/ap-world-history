@@ -247,6 +247,34 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 ---
 
+## Unit 9 — Globalization
+
+### Topic 9.1 — Advances in Technology and Exchange After 1900 (built 2026-06-28)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-9/lesson-9-1-technology-exchange.html` | DONE |
+| Topic data | `assets/data/lesson-9-1-technology-exchange.js` | DONE |
+| Renderer config | `assets/data/lesson-9-1-renderer-config.js` | DONE |
+| First & 10 reading | `unit-9/first-and-10-topic-9-1-technology-exchange.html` | DONE |
+| First & 10 capture wrapper | `unit-9/first-and-10-topic-9-1-technology-exchange-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-9/green-revolution-india.html` | DONE |
+| Unit 9 index link | `unit-9/index.html` (Topic 9.1 card href updated) | DONE |
+
+**Single-LO topic structure:** Topic 9.1 carries one thematic focus / LO pair — TEC / LO A ("Explain how the development of new technologies changed the world from 1900 to the present."). Five KCs (no illustrative examples for any): KC-6.1.I.A (communication/transportation), KC-6.1.I.D (energy/petroleum/nuclear), KC-6.1.III.B (birth control/fertility), KC-6.1.I.B (Green Revolution/commercial agriculture), KC-6.1.I.C (medical innovations/vaccines/antibiotics). `collegeBoardKeyConcepts` array has 7 entries (thematic focus + LO A + 5 KCs). Topic 9.1 has NO illustrative examples in the CED.
+
+**Three learning targets:** LT1 — communication and transportation technologies (KC-6.1.I.A); LT2 — energy technologies and the Green Revolution (KC-6.1.I.D + KC-6.1.I.B); LT3 — medical innovations and birth control (KC-6.1.I.C + KC-6.1.III.B).
+
+**Checkpoint structure:** CP1 covers LT1+LT2 ("Communication, Transportation, and Energy" — explain how at least two new technologies changed the world, with intended purpose AND at least one unintended consequence); CP2 covers all LTs / full LO A synthesis ("Change Over Time — Technology's Intended and Unintended Consequences" — change-over-time argument using at least one intended and one unintended consequence, drawing from at least two technology categories).
+
+**BeInTheRoom scenario frame:** "The Wheat Decision" — New Delhi, 1966. Two failed monsoons. India depends on American PL-480 grain shipments. Student is an advisor in the Ministry of Food and Agriculture deciding whether to adopt imported high-yield Mexican wheat seed. Consequence-forecasting frame: decisions require weighing immediate survival against long-term dependence (fertilizer imports, groundwater depletion, smallholder displacement). Four roles: Agricultural Scientist (Swaminathan Ally), Planning Commission Official, Smallholder Farmer Representative, External Affairs Ministry Advisor. Three decision points: D1 (adopt at scale / pilot program / refuse); D2 (large farms first / broader distribution / cooperative model); D3 (accept dependence / mitigate / conditional / reject). 8 evidence chips. 3 reflection prompts connecting to intended/unintended consequences theme.
+
+**Step 0 gate:** PASS — premise directly enacts KC-6.1.I.B (Green Revolution spreading chemically and genetically modified agriculture to sustain growing population). The 1966 New Delhi wheat-adoption crisis cannot be transplanted without changing the TEC theme it exercises. Decision points force students to reason through the exact causal chain the CED describes: intended consequence (sustained growing population) and unintended consequences (chemical dependence, smallholder displacement, food sovereignty loss).
+
+**Known dependency:** Google Form dropdown (`behistorical-form-config.js`) already includes `'9.1': '9.1 - Advances in Technology and Exchange'` in topics and `9: 'Unit 9 - Globalization'` in units. No form config update required.
+
+---
+
 ### Open Revision Tasks (from the audit)
 
 - **DRIFT — `beintheroom/unit-1/khmer-court.html` (Topic 1.3):** Its central dilemma is a generic state-priorities allocation (temples / military / agriculture / trade) that is structurally identical to `song-court.html` and fails the transplant test; Topic 1.3's listed CDI-G / GOV-H pairing (belief systems shaping state power) drives only one of four options, and its reflection prompt is generic. Recommended: retire it as superseded by `angkor-council.html` (which the lesson actually links), or redesign its decision points and reflection around religion-as-state-power per LO G/H.

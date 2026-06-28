@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | The Wheat Decision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .role-shell{max-width:1180px;margin:0 auto;padding:24px}
+    .role-hero{background:linear-gradient(180deg,rgba(26,28,29,.92),rgba(43,47,49,.96)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Norman_Borlaug.jpg') center/cover;border-radius:28px;padding:42px 28px;color:var(--warm-paper);box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.35)}
+    .role-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.2rem,6vw,5rem);line-height:1.02;margin:10px 0}
+    .role-hero p{max-width:900px;font-size:1.04rem;line-height:1.65}
+    .role-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:24px 0}
+    .role-card{grid-column:span 6;background:var(--clean-paper);border:1px solid var(--paper-line);border-radius:20px;padding:22px;box-shadow:var(--soft-shadow)}
+    .role-card.full{grid-column:1/-1}.role-card.third{grid-column:span 4}.role-card.quarter{grid-column:span 3}
+    .role-card h2,.role-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0}
+    .decision-card,.selectable-chip{cursor:pointer;transition:.18s ease;border-top:6px solid var(--aged-iron)}
+    .decision-card:hover,.decision-card.selected,.selectable-chip:hover,.selectable-chip.selected{transform:translateY(-3px);border-top-color:var(--antique-gold);box-shadow:0 20px 54px rgba(0,0,0,.18)}
+    .tag{display:inline-flex;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);padding:5px 9px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin:4px 5px 4px 0}
+    .micro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .micro-card{background:#f7efe3;border:1px solid rgba(107,62,31,.16);border-radius:14px;padding:12px;font-size:.92rem;line-height:1.45}
+    .micro-card strong{display:block;color:var(--oxidized-brown);font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+    .coach-box{background:#f6efe3;border-left:6px solid var(--burnished-bronze);border-radius:16px;padding:18px;margin:12px 0;line-height:1.6}
+    .choice-summary{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border:1px solid rgba(201,164,106,.38);border-left:7px solid var(--antique-gold);border-radius:18px;padding:18px;margin:14px 0 18px}
+    .choice-summary h3{color:var(--antique-gold);margin:0 0 10px}
+    .choice-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .choice-summary-item{background:rgba(255,253,247,.08);border:1px solid rgba(210,180,140,.2);border-radius:14px;padding:12px}
+    .choice-summary-label{display:block;font-family:"Montserrat",Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;font-weight:900;color:var(--muted-sandstone);margin-bottom:6px}
+    .choice-summary-value{font-family:"Montserrat",Arial,sans-serif;font-weight:900;color:var(--warm-paper)}
+    .choice-summary-detail{font-size:.92rem;line-height:1.45;margin:8px 0 0;color:#f5f0e7}
+    .response-area{min-height:170px;width:100%;border:1px solid rgba(26,28,29,.18);border-radius:14px;padding:14px;font-family:"Libre Baskerville",Georgia,serif;line-height:1.6;background:#fffdf7}
+    .response-area:focus{outline:none;box-shadow:var(--focus-ring);border-color:var(--antique-gold)}
+    .selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.78rem;margin-top:12px}
+    .canvas-box{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border-radius:20px;padding:22px;border:1px solid rgba(201,164,106,.35)}
+    .canvas-box h3{color:var(--antique-gold)}
+    .evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .selectable-chip{background:#fffdf7;border:1px solid rgba(107,62,31,.18);border-top:5px solid var(--aged-iron);border-radius:16px;padding:14px;min-height:120px}
+    .selectable-chip h4{margin:0 0 6px;font-family:"Montserrat",Arial,sans-serif;color:var(--blackened-steel)}
+    .selectable-chip p{font-size:.9rem;line-height:1.45;margin:0}
+    .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
+    .field-grid label{font-family:"Montserrat",Arial,sans-serif;font-size:.74rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown)}
+    .small-input{width:100%;border:1px solid rgba(26,28,29,.18);border-radius:12px;padding:10px;background:#fffdf7;margin-top:6px}
+    .copy-box{white-space:pre-wrap;background:#151718;color:#f5f0e7;border-radius:16px;border:1px solid rgba(201,164,106,.35);padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86rem;line-height:1.5;max-height:360px;overflow:auto}
+    .tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+    .stage-label{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--burnished-bronze);font-size:.72rem;margin-bottom:8px}
+    .crisis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+    .crisis-card{background:#f7efe3;border:1px solid rgba(107,62,31,.2);border-radius:14px;padding:14px}
+    .crisis-card h4{font-family:"Cinzel",Georgia,serif;color:var(--oxidized-brown);margin:0 0 8px;font-size:.9rem}
+    .crisis-card p{font-size:.86rem;line-height:1.5;margin:0}
+    @media(max-width:900px){.role-card,.role-card.third,.role-card.quarter{grid-column:1/-1}.role-shell{padding:12px}.choice-summary-grid,.field-grid,.micro-grid,.evidence-grid,.crisis-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="role-shell">
+    <nav class="topbar"><div class="nav"><a class="brand-mini" href="../../index.html"><img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a><div class="nav-links"><a href="../index.html">BeInTheRoom Hub</a><a href="../../unit-9/lesson-9-1-technology-exchange.html">Back to 9.1</a></div></div></nav>
+
+    <header class="role-hero">
+      <div class="eyebrow">BeInTheRoom · Unit 9 · Topic 9.1</div>
+      <h1>The Wheat Decision</h1>
+      <p>New Delhi, 1966. Two consecutive failed monsoons have left India dependent on emergency American grain shipments to avoid famine. Food Minister C. Subramaniam must decide whether to approve the mass import of roughly 18,000 tons of Mexican high-yield dwarf wheat seed — developed by Norman Borlaug and championed in India by agricultural scientist M.S. Swaminathan — and the fertilizer, irrigation, and pricing reforms required to make it work. You are an advisor in the Ministry of Food and Agriculture, briefing the minister before he faces the cabinet. Can you see the benefits of this technology? Can you see the costs?</p>
+      <div><a class="btn" href="#roles">Choose a Role</a><a class="btn secondary" href="#ai-coach">AI Coach</a><a class="btn secondary" href="#reflection">AP Reflection</a></div>
+    </header>
+
+    <main>
+      <section class="role-grid">
+        <article class="role-card full">
+          <div class="stage-label">Enter the Room</div>
+          <h2>Historical Situation</h2>
+          <p>India in 1966 is a nation on the edge. Two consecutive monsoon failures have devastated harvests. The government depends on American PL-480 food aid — "ship-to-mouth" shipments that arrive just in time to prevent starvation but come with political conditions that humiliate a proud, newly independent democracy. President Lyndon Johnson has used the food shipments as leverage, sometimes delaying authorization to pressure India on foreign policy issues including the Vietnam War.</p>
+          <p>The alternative is a technological gamble. Norman Borlaug's high-yield dwarf wheat varieties have produced extraordinary results in Mexico, but they have never been tested at scale in India. The seeds require chemical fertilizers, controlled irrigation, and modern pricing systems that India's agriculture does not yet have. Adopting them means transforming Indian farming — not just planting different seeds.</p>
+          <p>Food Minister C. Subramaniam and agricultural scientist M.S. Swaminathan believe India can grow its way out of famine dependence. But the cabinet is divided. The costs are enormous, the risks are real, and the consequences — intended and unintended — will reshape Indian agriculture for generations.</p>
+        </article>
+      </section>
+
+      <section class="role-grid" id="roles">
+        <article class="role-card full">
+          <div class="stage-label">Step 1</div>
+          <h2>Choose Your Historical Perspective</h2>
+          <p>Select one role. You are not pretending to be yourself in the past. You are reasoning from inside a historical position — shaped by power, institutional loyalty, and the information available in 1966 India. There is no hindsight here. You cannot know that the Green Revolution will work. You cannot know its long-term consequences.</p>
+          <div id="role-options"></div>
+          <div class="selection-status" id="role-status">No role selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="decision1">
+        <article class="role-card full">
+          <div class="stage-label">Step 2 — Decision 1</div>
+          <h2>Adopt at Scale, Pilot Regionally, or Refuse the Imported Seed?</h2>
+          <p>The ministry has three paths. Each has a real defender's case — and each carries consequences that extend far beyond the immediate harvest.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="1" onclick="selectDecision('adopt',event)">
+          <h3>Adopt at Scale</h3>
+          <p>Import the full 18,000 tons of Mexican dwarf wheat seed. Commit to the fertilizer, irrigation, and pricing reforms required to make it work. Accept the risk that the seeds may fail in Indian conditions — but act now, because famine will not wait for pilot programs.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="1" onclick="selectDecision('pilot',event)">
+          <h3>Pilot Regionally</h3>
+          <p>Import a smaller quantity and test the new varieties in Punjab and Haryana — regions with existing irrigation. Use the results to decide whether to scale up. This is slower but reduces the risk of catastrophic failure if the seeds do not perform as expected.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="1" onclick="selectDecision('refuse',event)">
+          <h3>Refuse the Imported Seed</h3>
+          <p>Reject dependency on foreign seed varieties. Invest instead in improving India's indigenous crop varieties and traditional farming methods. Accept continued PL-480 dependence in the short term to preserve agricultural sovereignty in the long term.</p>
+        </article>
+        <article class="role-card full">
+          <div class="selection-status" id="decision1-status">No decision selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="decision2">
+        <article class="role-card full">
+          <div class="stage-label">Step 2 — Decision 2</div>
+          <h2>Who Gets the Seed and Fertilizer First?</h2>
+          <p>Resources are limited. The new seeds require fertilizer and irrigation that India cannot provide everywhere at once. The question is not just what to adopt — but who benefits first, and who waits.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="2" onclick="selectDecision2('largefarms',event)">
+          <h3>Punjab's Large Irrigated Farms</h3>
+          <p>Concentrate seed and fertilizer in Punjab and Haryana — regions with existing irrigation infrastructure and large commercial farms. This produces the fastest yield gains and the quickest famine relief, but concentrates benefits among farmers who are already better off.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="2" onclick="selectDecision2('broader',event)">
+          <h3>Broader Distribution Including Smallholders</h3>
+          <p>Distribute seed and fertilizer more widely, including to smallholder farmers in drier regions. This is slower, riskier, and more expensive — but it avoids concentrating all gains among large commercial farms and reduces the risk of deepening rural inequality.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="2" onclick="selectDecision2('cooperative',event)">
+          <h3>Cooperative Distribution Model</h3>
+          <p>Channel seed and fertilizer through farmer cooperatives. Cooperatives can pool resources, share irrigation access, and negotiate prices collectively. But building cooperative infrastructure takes time India may not have.</p>
+        </article>
+        <article class="role-card full">
+          <div class="selection-status" id="decision2-status">No decision selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="decision3">
+        <article class="role-card full">
+          <div class="stage-label">Step 2 — Decision 3</div>
+          <h2>Accept the Dependence?</h2>
+          <p>High-yield varieties require chemical fertilizers, controlled irrigation, and repeated seed purchase. The technology that promises to end food dependence on America creates a new dependence — on inputs India does not yet produce. Name the long-term tradeoff before recommending.</p>
+        </article>
+        <article class="role-card quarter decision-card" data-decision="3" onclick="selectDecision3('acceptdep',event)">
+          <h3>Accept — Feed People Now</h3>
+          <p>The immediate crisis outweighs long-term concerns. Accept the dependence on fertilizer and seed imports. Build domestic production capacity later, after the famine threat is gone.</p>
+        </article>
+        <article class="role-card quarter decision-card" data-decision="3" onclick="selectDecision3('mitigate',event)">
+          <h3>Accept with Mitigation</h3>
+          <p>Adopt the new seeds, but simultaneously invest in domestic fertilizer production, seed-breeding programs, and soil conservation. Accept short-term dependence while building long-term self-sufficiency.</p>
+        </article>
+        <article class="role-card quarter decision-card" data-decision="3" onclick="selectDecision3('conditional',event)">
+          <h3>Conditional Acceptance</h3>
+          <p>Adopt only if the government commits to a 10-year plan for domestic input production. Set specific milestones for reducing import dependence. If the milestones are not met, reconsider the program.</p>
+        </article>
+        <article class="role-card quarter decision-card" data-decision="3" onclick="selectDecision3('reject',event)">
+          <h3>Reject the Dependence</h3>
+          <p>The history of colonialism teaches that dependence on foreign inputs leads to foreign control. India must develop its own agricultural solutions, even if they take longer and produce smaller yields in the short term.</p>
+        </article>
+        <article class="role-card full">
+          <div class="selection-status" id="decision3-status">No decision selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="evidence">
+        <article class="role-card full">
+          <div class="stage-label">Step 3</div>
+          <h2>Choose Your Evidence</h2>
+          <p>Select at least two evidence chips. Strong arguments do not just name facts — they explain why the evidence supports the role's position and the chosen decisions. Remember: you are reasoning from 1966, with the knowledge available at that time. No hindsight framing.</p>
+          <div class="evidence-grid" id="evidence-options"></div>
+          <div class="selection-status" id="evidence-status">No evidence selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid">
+        <article class="role-card full">
+          <div class="stage-label">Step 4</div>
+          <h2>Build Your Position</h2>
+          <p>Write from your selected role. Brief the minister on your three recommendations and explain why. Your argument must use at least two pieces of evidence and name at least one long-term tradeoff or risk.</p>
+          <div class="choice-summary" id="choice-summary">
+            <h3>Your Current Position</h3>
+            <div class="choice-summary-grid">
+              <div class="choice-summary-item">
+                <span class="choice-summary-label">Historical Role</span>
+                <div class="choice-summary-value" id="summary-role">No role selected yet.</div>
+                <p class="choice-summary-detail" id="summary-role-detail">Choose a role above to see your perspective here.</p>
+              </div>
+              <div class="choice-summary-item">
+                <span class="choice-summary-label">Adoption Decision</span>
+                <div class="choice-summary-value" id="summary-decision1">No decision selected yet.</div>
+                <p class="choice-summary-detail" id="summary-decision1-detail">Choose a path above.</p>
+              </div>
+            </div>
+          </div>
+          <div class="field-grid">
+            <div><label for="tradeoff-input">Long-term tradeoff or risk</label><input class="small-input" id="tradeoff-input" placeholder="What long-term consequence of your recommendation would a historian writing in 2000 point to?"></div>
+            <div><label for="opposition-input">Opposing viewpoint</label><input class="small-input" id="opposition-input" placeholder="Which role in the ministry would disagree with you, and why?"></div>
+          </div>
+          <textarea class="response-area" id="decision-response" placeholder="From the perspective of my role, I recommend to the minister that India should..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('decision-response')">Save Draft</button>
+            <button class="btn secondary" onclick="generateCoachPrompts()">Generate Coach Questions</button>
+          </div>
+          <div class="check-result" id="decision-response-result"></div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="ai-coach">
+        <article class="role-card full">
+          <div class="stage-label">Step 5</div>
+          <h2>MagicSchool AI Coach Bridge</h2>
+          <p>Use this copy block with your MagicSchool chatbot. The AI coach will question your reasoning and help you revise — it will not write your final answer.</p>
+          <div class="tool-row">
+            <button class="btn" onclick="buildMagicSchoolPayload()">Build MagicSchool Copy Block</button>
+            <button class="btn secondary" onclick="copyMagicSchoolPayload()">Copy for MagicSchool</button>
+            <a class="btn secondary" href="https://student.magicschool.ai/s/login?joinCode=czwb9Q" target="_blank" rel="noopener">Open MagicSchool</a>
+          </div>
+          <div id="coach-output" class="coach-box">Select a role, make your three decisions, choose evidence, and draft your argument. Then build the MagicSchool copy block.</div>
+          <div class="copy-box" id="magic-copy">MagicSchool copy block will appear here.</div>
+          <div class="check-result" id="magic-copy-result"></div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="reflection">
+        <article class="role-card full">
+          <div class="stage-label">Step 6</div>
+          <h2>Step Out of the Room: AP Reflection</h2>
+          <p>Now leave the role and write as a historian. Use what you experienced in this scenario to explain broader patterns of technological change and its intended and unintended consequences.</p>
+          <div class="coach-box">
+            <strong>Reflection Prompt 1</strong><br>
+            What evidence most shaped your recommendation, and what evidence did you have to set aside?
+          </div>
+          <textarea class="response-area" id="reflection1-response" placeholder="The evidence that most shaped my recommendation was..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('reflection1-response')">Save Draft</button>
+            <button class="btn secondary" onclick="copyResponse('reflection1-response')">Copy</button>
+          </div>
+          <div class="check-result" id="reflection1-response-result"></div>
+
+          <div class="coach-box" style="margin-top:18px;">
+            <strong>Reflection Prompt 2</strong><br>
+            What unintended consequence of your choice would a historian writing in 2000 point to?
+          </div>
+          <textarea class="response-area" id="reflection2-response" placeholder="A historian writing in 2000 would point to..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('reflection2-response')">Save Draft</button>
+            <button class="btn secondary" onclick="copyResponse('reflection2-response')">Copy</button>
+          </div>
+          <div class="check-result" id="reflection2-response-result"></div>
+
+          <div class="coach-box" style="margin-top:18px;">
+            <strong>Reflection Prompt 3</strong><br>
+            State the strongest argument <em>against</em> your recommendation in one sentence — then explain why you still made it.
+          </div>
+          <textarea class="response-area" id="reflection3-response" placeholder="The strongest argument against my recommendation is..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('reflection3-response')">Save Draft</button>
+            <button class="btn secondary" onclick="copyResponse('reflection3-response')">Copy</button>
+            <button class="btn secondary" onclick="selfCheckReflection()">Run Self-Check</button>
+          </div>
+          <div class="check-result" id="reflection3-response-result"></div>
+        </article>
+        <article class="role-card full canvas-box">
+          <h3>Next Step: Submit in Canvas</h3>
+          <p>Organize your thinking here — submit your final response in Canvas. The roleplay is the learning process; the reflection is the assessment artifact.</p>
+          <p><strong>Suggested Canvas title:</strong> Topic 9.1 BeInTheRoom Reflection — The Wheat Decision</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+<script>
+const roles = {
+  agscientist: {
+    name: 'Agricultural Scientist (Swaminathan Ally)',
+    status: 'Indian agronomist who has tested Borlaug\'s seeds in field trials',
+    power: 'Scientific expertise and field data showing yield results from small-scale Indian trials. Direct communication with Norman Borlaug.',
+    goals: 'Convince the ministry to adopt high-yield varieties at scale. Prove that India can feed itself without dependence on American food aid.',
+    fears: 'Political caution will delay adoption until famine has already struck. The pilot-program approach wastes time India does not have.',
+    lens: 'You have seen the data. The Mexican dwarf wheat produces two to three times the yield of traditional varieties in Indian test plots. The science works. The question is whether the government has the will to act on it.',
+    challenge: 'You may underestimate the social and economic disruption of transforming Indian agriculture. High yields in a test plot are not the same as high yields across millions of small farms with inconsistent water, soil, and market access.'
+  },
+  planningofficial: {
+    name: 'Planning Commission Official',
+    status: 'Senior economist in India\'s central planning apparatus',
+    power: 'Control over budget allocation and five-year plan priorities. Can accelerate or block fertilizer imports and irrigation investment.',
+    goals: 'Ensure that agricultural reform fits within India\'s broader development strategy. Balance food production against industrial investment.',
+    fears: 'Diverting resources to agriculture will slow industrialization. India\'s long-term future depends on industrial capacity, not just farming.',
+    lens: 'You think in systems. The Green Revolution is not just seeds — it is fertilizer factories, irrigation canals, transport networks, pricing policy, and credit systems. Adopting at scale without the infrastructure to support it risks catastrophic waste.',
+    challenge: 'Your systems thinking may produce paralysis. While you plan the perfect infrastructure, people are hungry. The minister needs a decision, not a five-year blueprint.'
+  },
+  smallfarmer: {
+    name: 'Smallholder Farmer Representative',
+    status: 'Voice for India\'s millions of subsistence farmers with less than 5 acres',
+    power: 'Moral authority and political weight — smallholders are the majority of India\'s farming population and a crucial electoral constituency.',
+    goals: 'Ensure that any new agricultural program reaches small farmers, not just large commercial operations. Protect traditional farming knowledge.',
+    fears: 'The new seeds will benefit rich farmers with irrigation and credit access while smallholders are priced out of competitive markets. Chemical inputs will degrade soil that small farms depend on.',
+    lens: 'You have watched government programs before. They promise universal benefit and deliver concentrated gains. The farmers who need help most are the last to receive it.',
+    challenge: 'Your advocacy for equity may slow adoption in ways that cost lives. If the seeds go to Punjab\'s large farms first, more wheat reaches the national market faster — even if the distribution is unfair.'
+  },
+  foreignpolicy: {
+    name: 'External Affairs Ministry Advisor',
+    status: 'Diplomat tracking India\'s relationship with the United States and food aid politics',
+    power: 'Intelligence on American intentions and leverage over the diplomatic framing of agricultural reform.',
+    goals: 'End India\'s dependence on PL-480 food aid, which gives the United States political leverage over Indian foreign policy. Preserve India\'s non-aligned stance.',
+    fears: 'Continued PL-480 dependence will compromise India\'s sovereignty. Johnson has already used food shipments as a diplomatic weapon.',
+    lens: 'You see the wheat decision as a sovereignty question, not just an agricultural one. Every shipload of American grain that India accepts is a concession of independence.',
+    challenge: 'You may prioritize sovereignty over speed. Ending PL-480 dependence is a worthy goal, but it means nothing if millions starve while India develops self-sufficiency.'
+  }
+};
+
+const decisions1 = {
+  adopt: { name: 'Adopt at Scale', detail: 'Import the full 18,000 tons of Mexican dwarf wheat seed and commit to the fertilizer, irrigation, and pricing reforms required to make it work.' },
+  pilot: { name: 'Pilot Regionally', detail: 'Import a smaller quantity and test in Punjab and Haryana first. Use results to decide on scaling.' },
+  refuse: { name: 'Refuse the Imported Seed', detail: 'Reject foreign seed dependency. Invest in indigenous varieties and traditional methods. Accept continued PL-480 dependence short-term.' }
+};
+
+const decisions2 = {
+  largefarms: { name: 'Punjab\'s Large Irrigated Farms', detail: 'Concentrate in Punjab and Haryana for fastest yield gains, accepting unequal distribution.' },
+  broader: { name: 'Broader Distribution Including Smallholders', detail: 'Distribute more widely including smallholders in drier regions — slower but more equitable.' },
+  cooperative: { name: 'Cooperative Distribution Model', detail: 'Channel through farmer cooperatives to pool resources and share access.' }
+};
+
+const decisions3 = {
+  acceptdep: { name: 'Accept — Feed People Now', detail: 'Accept input dependence. Build domestic capacity later, after the famine threat passes.' },
+  mitigate: { name: 'Accept with Mitigation', detail: 'Adopt new seeds while simultaneously investing in domestic fertilizer production and soil conservation.' },
+  conditional: { name: 'Conditional Acceptance', detail: 'Adopt only with a 10-year plan for reducing import dependence. Set milestones.' },
+  reject: { name: 'Reject the Dependence', detail: 'Develop India\'s own solutions. Accept slower yields to preserve agricultural sovereignty.' }
+};
+
+const evidenceBank = {
+  monsoonfailure: {
+    title: 'Two Failed Monsoons (1965–66)',
+    desc: 'India\'s 1965 and 1966 monsoons both failed, devastating harvests and leaving an estimated 100 million people at risk of famine. The crisis was immediate and existential.'
+  },
+  pl480: {
+    title: 'PL-480 Dependence and Political Strings',
+    desc: 'India depended on American PL-480 food shipments. President Johnson deliberately slowed shipment authorizations to pressure India on Vietnam policy — a practice called "short-tether" diplomacy that humiliated India\'s government.'
+  },
+  mexicanwheat: {
+    title: 'Mexican Wheat Yield Results',
+    desc: 'Norman Borlaug\'s dwarf wheat varieties had tripled yields in Mexican test fields. Initial Indian trials by M.S. Swaminathan\'s team showed similar promise — but these were controlled plots, not national-scale agriculture.'
+  },
+  fertilizerreq: {
+    title: 'Fertilizer and Irrigation Requirements',
+    desc: 'High-yield varieties required chemical fertilizers (which India did not yet produce domestically) and controlled irrigation (which only parts of Punjab and Haryana had). Without both, the seeds would produce no better than traditional varieties.'
+  },
+  smallholdervoice: {
+    title: 'Voices of Smallholder Farmers',
+    desc: 'India\'s farming population was overwhelmingly smallholders with less than 5 acres, limited irrigation, and no access to credit for purchasing fertilizer. Government programs historically reached these farmers last.'
+  },
+  skepticwarning: {
+    title: 'The Skeptic\'s Warning: Soil, Water, and Chemical Dependence',
+    desc: 'Agricultural scientists outside the Borlaug circle warned that chemical-intensive farming would degrade soil over time, deplete groundwater, and create permanent dependence on purchased inputs — transforming farming from a self-sustaining activity into an industrial system.'
+  },
+  foodsovereignty: {
+    title: 'India\'s Independence and Food Sovereignty',
+    desc: 'India had been independent for less than 20 years. The memory of colonial extraction was fresh. Dependence on foreign food aid — or foreign seed and fertilizer — raised deep questions about whether political independence meant anything without economic self-sufficiency.'
+  },
+  popgrowth: {
+    title: 'Population Growth Projections',
+    desc: 'India\'s population was growing at roughly 2.5% per year in the mid-1960s. Demographers projected that without dramatic increases in food production, India would face chronic famine by the 1970s regardless of short-term aid.'
+  }
+};
+
+let selectedRole = '';
+let selectedDec1 = '';
+let selectedDec2 = '';
+let selectedDec3 = '';
+let selectedEvidence = [];
+let latestPayload = '';
+
+function renderRoles() {
+  document.getElementById('role-options').innerHTML = Object.entries(roles).map(([id, r]) =>
+    `<article class="role-card third decision-card" onclick="selectRole('${id}',event)">
+      <h3>${r.name}</h3>
+      <span class="tag">${r.status}</span>
+      <p>${r.lens}</p>
+      <div class="micro-grid">
+        <div class="micro-card"><strong>Goal</strong>${r.goals}</div>
+        <div class="micro-card"><strong>Fear</strong>${r.fears}</div>
+        <div class="micro-card"><strong>Power</strong>${r.power}</div>
+      </div>
+    </article>`
+  ).join('');
+}
+
+function renderEvidence() {
+  document.getElementById('evidence-options').innerHTML = Object.entries(evidenceBank).map(([id, e]) =>
+    `<article class="selectable-chip" onclick="toggleEvidence('${id}',event)">
+      <h4>${e.title}</h4>
+      <p>${e.desc}</p>
+    </article>`
+  ).join('');
+}
+
+function updateChoiceSummary() {
+  const roleEl = document.getElementById('summary-role');
+  const roleDetailEl = document.getElementById('summary-role-detail');
+  const dec1El = document.getElementById('summary-decision1');
+  const dec1DetailEl = document.getElementById('summary-decision1-detail');
+  if (selectedRole) {
+    roleEl.textContent = roles[selectedRole].name;
+    roleDetailEl.textContent = roles[selectedRole].lens;
+  } else {
+    roleEl.textContent = 'No role selected yet.';
+    roleDetailEl.textContent = 'Choose a role above to see your perspective here.';
+  }
+  if (selectedDec1) {
+    dec1El.textContent = decisions1[selectedDec1].name;
+    dec1DetailEl.textContent = decisions1[selectedDec1].detail;
+  } else {
+    dec1El.textContent = 'No decision selected yet.';
+    dec1DetailEl.textContent = 'Choose a path above.';
+  }
+}
+
+function selectRole(id, event) {
+  selectedRole = id;
+  document.getElementById('role-status').textContent = 'Selected role: ' + roles[id].name;
+  document.querySelectorAll('#roles .decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  updateChoiceSummary();
+  saveState();
+}
+
+function selectDecision(id, event) {
+  selectedDec1 = id;
+  document.getElementById('decision1-status').textContent = 'Selected: ' + decisions1[id].name;
+  document.querySelectorAll('#decision1 .decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  updateChoiceSummary();
+  saveState();
+}
+
+function selectDecision2(id, event) {
+  selectedDec2 = id;
+  document.getElementById('decision2-status').textContent = 'Selected: ' + decisions2[id].name;
+  document.querySelectorAll('#decision2 .decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  saveState();
+}
+
+function selectDecision3(id, event) {
+  selectedDec3 = id;
+  document.getElementById('decision3-status').textContent = 'Selected: ' + decisions3[id].name;
+  document.querySelectorAll('#decision3 .decision-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  saveState();
+}
+
+function toggleEvidence(id, event) {
+  if (selectedEvidence.includes(id)) {
+    selectedEvidence = selectedEvidence.filter(x => x !== id);
+    event.currentTarget.classList.remove('selected');
+  } else {
+    selectedEvidence.push(id);
+    event.currentTarget.classList.add('selected');
+  }
+  document.getElementById('evidence-status').textContent = selectedEvidence.length
+    ? 'Selected evidence: ' + selectedEvidence.map(x => evidenceBank[x].title).join(', ')
+    : 'No evidence selected yet.';
+  saveState();
+}
+
+function generateCoachPrompts() {
+  const box = document.getElementById('coach-output');
+  if (!selectedRole || !selectedDec1) {
+    box.textContent = 'Choose both a role and at least Decision 1 before generating coaching questions.';
+    return;
+  }
+  const r = roles[selectedRole];
+  box.innerHTML = `<strong>Coaching questions for ${r.name}</strong><ul>
+    <li>What does your role want and fear — and how does the famine crisis of 1966 shape your options?</li>
+    <li>Which evidence chip best supports your adoption decision, and why?</li>
+    <li>Who benefits first from your distribution recommendation (Decision 2), and what tradeoff does that create?</li>
+    <li>What long-term dependence does your recommendation create — and is that dependence acceptable? Why or why not?</li>
+    <li>How does your argument connect to the key concept: "The Green Revolution and commercial agriculture increased productivity and sustained the earth's growing population as it spread chemically and genetically modified forms of agriculture"?</li>
+  </ul>`;
+}
+
+function buildMagicSchoolPayload() {
+  const role = selectedRole ? roles[selectedRole] : null;
+  const selectedEvidenceText = selectedEvidence.map(id => `- ${evidenceBank[id].title}: ${evidenceBank[id].desc}`).join('\n') || 'No evidence selected yet.';
+  const draft = document.getElementById('decision-response').value.trim() || 'No first draft written yet.';
+  const tradeoff = document.getElementById('tradeoff-input').value.trim() || 'Not identified yet.';
+  const opposition = document.getElementById('opposition-input').value.trim() || 'Not identified yet.';
+  latestPayload = `You are the BeInTheRoom Historical Thinking Coach for AP World History. Do not write my final answer. Ask me one question at a time to help me better understand my role, evidence, tradeoff, and historical reasoning. Push me to explain because, not just name facts.
+
+Scenario: The Wheat Decision — Topic 9.1 Advances in Technology and Exchange After 1900
+Setting: New Delhi, 1966. Two failed monsoons. India depends on American PL-480 grain to avoid famine. The ministry must decide whether to adopt imported high-yield dwarf wheat seed at scale.
+Central question: Should India adopt the Green Revolution — and accept the dependence that comes with it?
+
+My role: ${role ? role.name : 'No role selected'}
+Role status: ${role ? role.status : 'No role selected'}
+Role goals: ${role ? role.goals : 'No role selected'}
+Role fears: ${role ? role.fears : 'No role selected'}
+Role power/limits: ${role ? role.power : 'No role selected'}
+
+Decision 1 (Adopt/Pilot/Refuse): ${selectedDec1 ? decisions1[selectedDec1].name : 'No decision selected'}
+Decision 2 (Distribution): ${selectedDec2 ? decisions2[selectedDec2].name : 'No decision selected'}
+Decision 3 (Dependence): ${selectedDec3 ? decisions3[selectedDec3].name : 'No decision selected'}
+
+Evidence I selected:
+${selectedEvidenceText}
+
+My long-term tradeoff or risk: ${tradeoff}
+Opposing viewpoint: ${opposition}
+
+My first draft argument:
+${draft}
+
+Please coach me through these stages:
+1. Help me clarify what my role wants and fears in 1966 India.
+2. Ask me which evidence is strongest for my position and why.
+3. Challenge me to explain one long-term tradeoff or unintended consequence of my recommendation.
+4. Ask me how an opposing role in the ministry would respond.
+5. Help me revise into a stronger 4-6 sentence historically grounded argument.
+6. End by asking me to step out of character and explain what this scenario reveals about how technology shapes human development with both intended and unintended consequences (the TEC thematic focus).`;
+
+  document.getElementById('magic-copy').textContent = latestPayload;
+  generateCoachPrompts();
+  return latestPayload;
+}
+
+function copyMagicSchoolPayload() {
+  const payload = latestPayload || buildMagicSchoolPayload();
+  navigator.clipboard.writeText(payload)
+    .then(() => document.getElementById('magic-copy-result').textContent = 'MagicSchool coach block copied. Paste it into your MagicSchool chatbot.')
+    .catch(() => document.getElementById('magic-copy-result').textContent = 'Copy failed. Select the copy block and copy manually.');
+}
+
+function saveDraft(id) {
+  const t = document.getElementById(id);
+  localStorage.setItem('beintheroom-wheat-decision-' + id, t.value || '');
+  const r = document.getElementById(id + '-result');
+  if (r) r.textContent = 'Draft saved on this device.';
+  saveState();
+}
+
+function copyResponse(id) {
+  const t = document.getElementById(id);
+  navigator.clipboard.writeText(t.value || '')
+    .then(() => { const r = document.getElementById(id + '-result'); if (r) r.textContent = 'Response copied.'; })
+    .catch(() => { const r = document.getElementById(id + '-result'); if (r) r.textContent = 'Copy failed. Select and copy manually.'; });
+}
+
+function selfCheckReflection() {
+  const texts = ['reflection1-response', 'reflection2-response', 'reflection3-response']
+    .map(id => (document.getElementById(id).value || '').toLowerCase()).join(' ');
+  const terms = ['green revolution', 'wheat', 'borlaug', 'swaminathan', 'india', 'famine', 'monsoon', 'fertilizer', 'irrigation', 'smallholder', 'commercial agriculture', 'high-yield', 'unintended', 'intended', 'dependence', 'soil', 'chemical', 'pl-480', 'sovereignty', 'population', 'productivity'];
+  const found = terms.filter(term => texts.includes(term));
+  document.getElementById('reflection3-response-result').textContent = `Self-check: historical terms found: ${found.length ? found.join(', ') : 'none yet'}. Aim for at least two specific historical details and one explanation of intended vs. unintended consequences.`;
+}
+
+function saveState() {
+  localStorage.setItem('beintheroom-wheat-decision-state', JSON.stringify({
+    selectedRole, selectedDec1, selectedDec2, selectedDec3, selectedEvidence,
+    tradeoff: document.getElementById('tradeoff-input')?.value || '',
+    opposition: document.getElementById('opposition-input')?.value || ''
+  }));
+}
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('beintheroom-wheat-decision-state') || '{}');
+    selectedRole = saved.selectedRole || '';
+    selectedDec1 = saved.selectedDec1 || '';
+    selectedDec2 = saved.selectedDec2 || '';
+    selectedDec3 = saved.selectedDec3 || '';
+    selectedEvidence = Array.isArray(saved.selectedEvidence) ? saved.selectedEvidence : [];
+    if (saved.tradeoff) document.getElementById('tradeoff-input').value = saved.tradeoff;
+    if (saved.opposition) document.getElementById('opposition-input').value = saved.opposition;
+  } catch(e) {}
+}
+
+function applySavedSelections() {
+  if (selectedRole) {
+    document.getElementById('role-status').textContent = 'Selected role: ' + roles[selectedRole].name;
+    const roleCards = [...document.querySelectorAll('#roles .decision-card')];
+    const roleIndex = Object.keys(roles).indexOf(selectedRole);
+    if (roleCards[roleIndex]) roleCards[roleIndex].classList.add('selected');
+  }
+  if (selectedDec1) {
+    document.getElementById('decision1-status').textContent = 'Selected: ' + decisions1[selectedDec1].name;
+    const d1Cards = [...document.querySelectorAll('#decision1 .decision-card')];
+    const d1Index = Object.keys(decisions1).indexOf(selectedDec1);
+    if (d1Cards[d1Index]) d1Cards[d1Index].classList.add('selected');
+  }
+  if (selectedDec2) {
+    document.getElementById('decision2-status').textContent = 'Selected: ' + decisions2[selectedDec2].name;
+    const d2Cards = [...document.querySelectorAll('#decision2 .decision-card')];
+    const d2Index = Object.keys(decisions2).indexOf(selectedDec2);
+    if (d2Cards[d2Index]) d2Cards[d2Index].classList.add('selected');
+  }
+  if (selectedDec3) {
+    document.getElementById('decision3-status').textContent = 'Selected: ' + decisions3[selectedDec3].name;
+    const d3Cards = [...document.querySelectorAll('#decision3 .decision-card')];
+    const d3Index = Object.keys(decisions3).indexOf(selectedDec3);
+    if (d3Cards[d3Index]) d3Cards[d3Index].classList.add('selected');
+  }
+  if (selectedEvidence.length) {
+    const evidenceCards = [...document.querySelectorAll('#evidence-options .selectable-chip')];
+    Object.keys(evidenceBank).forEach((id, i) => {
+      if (selectedEvidence.includes(id) && evidenceCards[i]) evidenceCards[i].classList.add('selected');
+    });
+    document.getElementById('evidence-status').textContent = 'Selected evidence: ' + selectedEvidence.map(x => evidenceBank[x].title).join(', ');
+  }
+  updateChoiceSummary();
+}
+
+function loadDrafts() {
+  ['decision-response', 'reflection1-response', 'reflection2-response', 'reflection3-response'].forEach(id => {
+    const saved = localStorage.getItem('beintheroom-wheat-decision-' + id);
+    if (saved) document.getElementById(id).value = saved;
+  });
+}
+
+document.addEventListener('input', e => {
+  if (e.target && ['tradeoff-input', 'opposition-input'].includes(e.target.id)) saveState();
+});
+
+renderRoles();
+renderEvidence();
+loadState();
+loadDrafts();
+applySavedSelections();
+</script>
+</body>
+</html>
