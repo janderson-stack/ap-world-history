@@ -273,6 +273,30 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **Known dependency:** Google Form dropdown (`behistorical-form-config.js`) already includes `'9.1': '9.1 - Advances in Technology and Exchange'` in topics and `9: 'Unit 9 - Globalization'` in units. No form config update required.
 
+### Topic 9.2 — Technological Advances and Limitations After 1900: Disease (built 2026-06-28)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-9/lesson-9-2-disease.html` | DONE |
+| Topic data | `assets/data/lesson-9-2-disease.js` | DONE |
+| Renderer config | `assets/data/lesson-9-2-renderer-config.js` | DONE |
+| First & 10 reading | `unit-9/first-and-10-topic-9-2-disease.html` | DONE |
+| First & 10 capture wrapper | `unit-9/first-and-10-topic-9-2-disease-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-9/influenza-1918.html` | DONE |
+| Unit 9 index link | `unit-9/index.html` (Topic 9.2 card href updated) | DONE |
+
+**Single-LO topic structure:** Topic 9.2 carries one thematic focus / LO pair — ENV / LO B ("Explain how environmental factors affected human populations over time."). Four KCs: KC-6.1.III (umbrella — diseases and medical/scientific developments), KC-6.1.III.A (diseases of poverty persisted, emergent epidemics emerged, diseases of longevity rose). `collegeBoardKeyConcepts` array has 4 entries (thematic focus + LO B + 2 KCs). **Topic 9.2 HAS illustrative examples** — exactly 8 in three named groups on KC-6.1.III.A: Diseases associated with poverty (Malaria, Tuberculosis, Cholera), Emergent epidemic diseases (1918 influenza pandemic, Ebola, HIV/AIDS), Diseases associated with increased longevity (Heart disease, Alzheimer's disease). Group labels rendered as `<strong>` HTML items in the flat `illustrativeExamples` array.
+
+**Three learning targets (three disease categories of KC-6.1.III.A):** LT1 — diseases of poverty (malaria, TB, cholera — environmental conditions sustaining them); LT2 — emergent epidemics (1918 influenza, Ebola, HIV/AIDS — population density and travel networks); LT3 — diseases of longevity (heart disease, Alzheimer's — increased life expectancy).
+
+**Checkpoint structure:** CP1 covers LT1+LT2 ("Diseases of Poverty and Emergent Epidemics" — explain environmental factors sustaining at least one disease of poverty AND shaping at least one emergent epidemic); CP2 covers all LTs / full LO B synthesis ("Environment, Disease, and Population — A Causation Argument" — draw from at least two of three disease categories, explain causal mechanism for each).
+
+**BeInTheRoom scenario frame:** "The Closing Order" — a mid-sized U.S. city, autumn 1918, during the influenza pandemic. Student is an advisor to the city's Health Commissioner deciding whether to issue closure orders. Four roles: City Health Officer, Liberty Loan Committee Chair, Army Camp Medical Officer, Downtown Business Association President. Three decision points: D1 (close now / wait / targeted measures); D2 (cancel parade / allow parade / modify parade); D3 (lift now / hold longer / phased / conditional). 8 evidence chips (army camp crowding, urban density, early vs delayed cities, parade density, wartime pressure, autumn wave, economic cost, second wave risk). 3 reflection prompts connecting environmental factors to disease outcomes.
+
+**Step 0 gate:** PASS — premise directly enacts KC-6.1.III.A (emergent epidemic diseases as threats to human populations, leading to social disruption) and the ENV thematic focus (environment shapes human societies). The autumn 1918 closure-order dilemma cannot be transplanted without changing the ENV theme it exercises. Every decision point is anchored in environmental and population factors: density, crowding, movement, seasonality.
+
+**Known dependency:** Google Form dropdown (`behistorical-form-config.js`) already includes `'9.2': '9.2 - Technology and Disease'` in topics. No form config update required.
+
 ---
 
 ### Open Revision Tasks (from the audit)

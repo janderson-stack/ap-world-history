@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | The Closing Order</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <!-- Step 0 Theme Alignment Gate (ENV):
+       Topic 9.2 thematic focus: Humans and the Environment (ENV) —
+       "The environment shapes human societies, and as populations grow and change,
+       these populations in turn shape their environments."
+       Topic 9.2 LO B: "Explain how environmental factors affected human populations over time."
+       Alignment: This scenario's premise and every decision point turn on environmental
+       and population factors — urban crowding, troop movement, density, seasonality —
+       determining how an epidemic disease affects a human population. The dilemma cannot
+       be transplanted to another topic without losing the ENV theme. Gate satisfied. -->
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .role-shell{max-width:1180px;margin:0 auto;padding:24px}
+    .role-hero{background:linear-gradient(180deg,rgba(26,28,29,.92),rgba(43,47,49,.96)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Emergency_hospital_during_Influenza_epidemic%2C_Camp_Funston%2C_Kansas_-_NCP_1603.jpg') center/cover;border-radius:28px;padding:42px 28px;color:var(--warm-paper);box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.35)}
+    .role-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.2rem,6vw,5rem);line-height:1.02;margin:10px 0}
+    .role-hero p{max-width:900px;font-size:1.04rem;line-height:1.65}
+    .role-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:24px 0}
+    .role-card{grid-column:span 6;background:var(--clean-paper);border:1px solid var(--paper-line);border-radius:20px;padding:22px;box-shadow:var(--soft-shadow)}
+    .role-card.full{grid-column:1/-1}.role-card.third{grid-column:span 4}.role-card.quarter{grid-column:span 3}
+    .role-card h2,.role-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0}
+    .decision-card,.selectable-chip{cursor:pointer;transition:.18s ease;border-top:6px solid var(--aged-iron)}
+    .decision-card:hover,.decision-card.selected,.selectable-chip:hover,.selectable-chip.selected{transform:translateY(-3px);border-top-color:var(--antique-gold);box-shadow:0 20px 54px rgba(0,0,0,.18)}
+    .tag{display:inline-flex;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);padding:5px 9px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin:4px 5px 4px 0}
+    .micro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .micro-card{background:#f7efe3;border:1px solid rgba(107,62,31,.16);border-radius:14px;padding:12px;font-size:.92rem;line-height:1.45}
+    .micro-card strong{display:block;color:var(--oxidized-brown);font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+    .coach-box{background:#f6efe3;border-left:6px solid var(--burnished-bronze);border-radius:16px;padding:18px;margin:12px 0;line-height:1.6}
+    .choice-summary{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border:1px solid rgba(201,164,106,.38);border-left:7px solid var(--antique-gold);border-radius:18px;padding:18px;margin:14px 0 18px}
+    .choice-summary h3{color:var(--antique-gold);margin:0 0 10px}
+    .choice-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .choice-summary-item{background:rgba(255,253,247,.08);border:1px solid rgba(210,180,140,.2);border-radius:14px;padding:12px}
+    .choice-summary-label{display:block;font-family:"Montserrat",Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;font-weight:900;color:var(--muted-sandstone);margin-bottom:6px}
+    .choice-summary-value{font-family:"Montserrat",Arial,sans-serif;font-weight:900;color:var(--warm-paper)}
+    .choice-summary-detail{font-size:.92rem;line-height:1.45;margin:8px 0 0;color:#f5f0e7}
+    .response-area{min-height:170px;width:100%;border:1px solid rgba(26,28,29,.18);border-radius:14px;padding:14px;font-family:"Libre Baskerville",Georgia,serif;line-height:1.6;background:#fffdf7}
+    .response-area:focus{outline:none;box-shadow:var(--focus-ring);border-color:var(--antique-gold)}
+    .selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.78rem;margin-top:12px}
+    .canvas-box{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border-radius:20px;padding:22px;border:1px solid rgba(201,164,106,.35)}
+    .canvas-box h3{color:var(--antique-gold)}
+    .evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .selectable-chip{background:#fffdf7;border:1px solid rgba(107,62,31,.18);border-top:5px solid var(--aged-iron);border-radius:16px;padding:14px;min-height:120px}
+    .selectable-chip h4{margin:0 0 6px;font-family:"Montserrat",Arial,sans-serif;color:var(--blackened-steel)}
+    .selectable-chip p{font-size:.9rem;line-height:1.45;margin:0}
+    .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
+    .field-grid label{font-family:"Montserrat",Arial,sans-serif;font-size:.74rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown)}
+    .small-input{width:100%;border:1px solid rgba(26,28,29,.18);border-radius:12px;padding:10px;background:#fffdf7;margin-top:6px}
+    .copy-box{white-space:pre-wrap;background:#151718;color:#f5f0e7;border-radius:16px;border:1px solid rgba(201,164,106,.35);padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86rem;line-height:1.5;max-height:360px;overflow:auto}
+    .tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+    .stage-label{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--burnished-bronze);font-size:.72rem;margin-bottom:8px}
+    @media(max-width:900px){.role-card,.role-card.third,.role-card.quarter{grid-column:1/-1}.role-shell{padding:12px}.choice-summary-grid,.field-grid,.micro-grid,.evidence-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="role-shell">
+    <nav class="topbar"><div class="nav"><a class="brand-mini" href="../../index.html"><img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a><div class="nav-links"><a href="../index.html">BeInTheRoom Hub</a><a href="../../unit-9/lesson-9-2-disease.html">Back to 9.2</a></div></div></nav>
+
+    <header class="role-hero">
+      <div class="eyebrow">BeInTheRoom · Unit 9 · Topic 9.2</div>
+      <h1>The Closing Order</h1>
+      <p>A mid-sized U.S. city, autumn 1918. Cases of a severe respiratory illness are appearing in the city's hospitals. Nearby army training camps are overcrowded, and troops pass through the city by rail daily. A major Liberty Loan war-bond parade — expected to draw tens of thousands into dense street crowds — is scheduled for this week. You are an advisor to the city's Health Commissioner. The commissioner must decide: issue emergency closure orders now, or wait for more confirmed cases? Cancel the parade, or let patriotic duty prevail? And when the closures finally come, how long do you hold?</p>
+      <div><a class="btn" href="#roles">Choose a Role</a><a class="btn secondary" href="#ai-coach">AI Coach</a><a class="btn secondary" href="#reflection">AP Reflection</a></div>
+    </header>
+
+    <main>
+      <section class="role-grid">
+        <article class="role-card full">
+          <div class="stage-label">Enter the Room</div>
+          <h2>Historical Situation</h2>
+          <p>In the autumn of 1918, a devastating strain of influenza is sweeping across the world. The war in Europe has concentrated millions of soldiers in crowded training camps, troop ships, and trenches — ideal conditions for respiratory disease transmission. The virus has already torn through military installations, and cases are now appearing in civilian populations across the United States.</p>
+          <p>Your city sits along a major rail corridor. Army camps nearby house thousands of soldiers in close quarters. Troops move through the city's train station daily. The first civilian cases arrived in early autumn, and hospital admissions are climbing. The city's physicians are reporting a pattern unlike ordinary influenza: rapid onset, severe pneumonia, high mortality among young adults.</p>
+          <p>The Health Commissioner faces enormous pressure from multiple directions. The war effort demands public morale and economic activity. A Liberty Loan parade — a massive public event to sell war bonds — is scheduled. Business owners fear the economic damage of closures. But the evidence from other cities suggests that density and public gatherings accelerate transmission dramatically. Cities that acted early — closing schools, banning gatherings, enforcing quarantines — appear to have experienced significantly lower per-capita mortality than those that delayed. The question is whether your city will act before the curve climbs, or after.</p>
+          <p><em>Note: Specific mortality figures referenced in this scenario are drawn from the documented historical contrast between cities that acted early and those that delayed during the 1918 pandemic. Exact numbers should be verified against primary sources before use in formal writing.</em></p>
+        </article>
+      </section>
+
+      <section class="role-grid" id="roles">
+        <article class="role-card full">
+          <div class="stage-label">Step 1</div>
+          <h2>Choose Your Historical Perspective</h2>
+          <p>Select one role. You are reasoning from inside a historical position in autumn 1918 — shaped by wartime pressures, limited medical knowledge, and the information available at the time. You do not know how long the pandemic will last or how many it will kill. You cannot see the future.</p>
+          <div id="role-options"></div>
+          <div class="selection-status" id="role-status">No role selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="decision1">
+        <article class="role-card full">
+          <div class="stage-label">Step 2 — Decision 1</div>
+          <h2>Issue Closure Orders Now, or Wait for Confirmation?</h2>
+          <p>Cases are appearing. Nearby army camps are crowded and troops move through the city by rail. The pattern from other cities suggests early action saves lives — but acting now means economic disruption, public anger, and the political risk of overreacting if the outbreak proves mild.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="1" onclick="selectDecision('closenow',event)">
+          <h3>Close Now — Act Before the Curve</h3>
+          <p>Issue immediate closure orders: close schools, theaters, churches, and all indoor public gatherings. Ban large outdoor assemblies. The evidence from other cities shows that early intervention reduces per-capita mortality. Acting on density and crowding before the curve climbs is the strongest tool available.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="1" onclick="selectDecision('waitconfirm',event)">
+          <h3>Wait for More Confirmed Cases</h3>
+          <p>The current case count may not justify the economic and social disruption of city-wide closures. Wait until the hospitals report a clear surge before acting. This avoids panic and preserves public trust — but risks allowing transmission to accelerate before controls are in place.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="1" onclick="selectDecision('targeted',event)">
+          <h3>Targeted Measures Only</h3>
+          <p>Issue advisories and close the most crowded venues — military barracks, hospitals, and schools — but keep businesses, churches, and public life open. Balance the public health risk against the economic and social cost of full closure.</p>
+        </article>
+        <article class="role-card full">
+          <div class="selection-status" id="decision1-status">No decision selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="decision2">
+        <article class="role-card full">
+          <div class="stage-label">Step 2 — Decision 2</div>
+          <h2>The Liberty Loan Parade</h2>
+          <p>A major war-bond parade expecting tens of thousands of people in dense street crowds is scheduled for this week. The parade is a patriotic event — it funds the war effort, demonstrates public morale, and carries the weight of national duty. Canceling it risks accusations of disloyalty and undermining the war effort. But dense crowds during a respiratory pandemic create ideal conditions for mass transmission.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="2" onclick="selectDecision2('cancelparade',event)">
+          <h3>Cancel the Parade</h3>
+          <p>Dense crowds in a respiratory pandemic are a transmission accelerator. The science is clear: tens of thousands packed into city streets will spread the virus to thousands of households within days. Cancel the parade and redirect war-bond sales to other channels. Public health outweighs public morale.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="2" onclick="selectDecision2('allowparade',event)">
+          <h3>Allow the Parade</h3>
+          <p>The war effort cannot pause for an illness that may prove no worse than ordinary influenza. Canceling the parade signals weakness to the enemy and disloyalty at home. Millions of soldiers are fighting overseas — the home front must hold. Advise attendees to cover their coughs, but let the parade proceed.</p>
+        </article>
+        <article class="role-card third decision-card" data-decision="2" onclick="selectDecision2('modifyparade',event)">
+          <h3>Modify — Reduce Scale and Duration</h3>
+          <p>Shorten the parade route, limit the number of marching units, discourage spectators from lingering, and distribute public health guidance. This preserves the patriotic event while reducing (but not eliminating) the density risk.</p>
+        </article>
+        <article class="role-card full">
+          <div class="selection-status" id="decision2-status">No decision selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="decision3">
+        <article class="role-card full">
+          <div class="stage-label">Step 2 — Decision 3</div>
+          <h2>When to Lift Restrictions</h2>
+          <p>After weeks of closures, case counts are declining. Economic and social pressure to reopen is intense. Businesses are losing revenue. Families are isolated. Churches and schools have been closed for weeks. The city's political leadership is demanding a reopening date. But public health officers warn that lifting restrictions too early — while the virus is still circulating — risks a second wave as people re-crowd into the spaces that were closed.</p>
+        </article>
+        <article class="role-card quarter decision-card" data-decision="3" onclick="selectDecision3('liftnow',event)">
+          <h3>Lift Now — Relieve the Strain</h3>
+          <p>Cases are declining. The worst appears to be over. Reopen schools, churches, and businesses immediately. The economic and social cost of continued closure now outweighs the public health benefit.</p>
+        </article>
+        <article class="role-card quarter decision-card" data-decision="3" onclick="selectDecision3('holdlonger',event)">
+          <h3>Hold Longer — Guard Against a Second Wave</h3>
+          <p>Declining cases do not mean the virus is gone. Premature reopening will re-crowd the exact spaces that closures were designed to empty. Hold restrictions for at least two additional weeks beyond the peak decline to ensure the virus has fully receded.</p>
+        </article>
+        <article class="role-card quarter decision-card" data-decision="3" onclick="selectDecision3('phased',event)">
+          <h3>Phased Reopening</h3>
+          <p>Reopen outdoor spaces and low-density businesses first. Keep schools, theaters, and churches closed for another week. Monitor case counts daily. If numbers spike, re-close immediately.</p>
+        </article>
+        <article class="role-card quarter decision-card" data-decision="3" onclick="selectDecision3('conditional',event)">
+          <h3>Conditional — Tie Reopening to Data</h3>
+          <p>Announce specific thresholds: reopen when hospital admissions fall below a stated number for a stated number of consecutive days. Remove the decision from political pressure by anchoring it to measurable data.</p>
+        </article>
+        <article class="role-card full">
+          <div class="selection-status" id="decision3-status">No decision selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="evidence">
+        <article class="role-card full">
+          <div class="stage-label">Step 3</div>
+          <h2>Choose Your Evidence</h2>
+          <p>Select at least two evidence chips. Strong arguments do not just name facts — they explain why the evidence supports the role's position and the chosen decisions. Remember: you are reasoning from autumn 1918, with the knowledge available at that time.</p>
+          <div class="evidence-grid" id="evidence-options"></div>
+          <div class="selection-status" id="evidence-status">No evidence selected yet.</div>
+        </article>
+      </section>
+
+      <section class="role-grid">
+        <article class="role-card full">
+          <div class="stage-label">Step 4</div>
+          <h2>Build Your Position</h2>
+          <p>Write from your selected role. Brief the Health Commissioner on your three recommendations and explain why. Your argument must use at least two pieces of evidence and name at least one environmental or population factor that shapes your recommendation.</p>
+          <div class="choice-summary" id="choice-summary">
+            <h3>Your Current Position</h3>
+            <div class="choice-summary-grid">
+              <div class="choice-summary-item">
+                <span class="choice-summary-label">Historical Role</span>
+                <div class="choice-summary-value" id="summary-role">No role selected yet.</div>
+                <p class="choice-summary-detail" id="summary-role-detail">Choose a role above to see your perspective here.</p>
+              </div>
+              <div class="choice-summary-item">
+                <span class="choice-summary-label">Closure Decision</span>
+                <div class="choice-summary-value" id="summary-decision1">No decision selected yet.</div>
+                <p class="choice-summary-detail" id="summary-decision1-detail">Choose a path above.</p>
+              </div>
+            </div>
+          </div>
+          <div class="field-grid">
+            <div><label for="tradeoff-input">Environmental or population factor</label><input class="small-input" id="tradeoff-input" placeholder="Which environmental factor — density, crowding, movement, seasonality — most shaped your recommendation?"></div>
+            <div><label for="opposition-input">Opposing viewpoint</label><input class="small-input" id="opposition-input" placeholder="Which role would disagree with you, and why?"></div>
+          </div>
+          <textarea class="response-area" id="decision-response" placeholder="From the perspective of my role, I recommend to the Health Commissioner that the city should..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('decision-response')">Save Draft</button>
+            <button class="btn secondary" onclick="generateCoachPrompts()">Generate Coach Questions</button>
+          </div>
+          <div class="check-result" id="decision-response-result"></div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="ai-coach">
+        <article class="role-card full">
+          <div class="stage-label">Step 5</div>
+          <h2>MagicSchool AI Coach Bridge</h2>
+          <p>Use this copy block with your MagicSchool chatbot. The AI coach will question your reasoning and help you revise — it will not write your final answer.</p>
+          <div class="tool-row">
+            <button class="btn" onclick="buildMagicSchoolPayload()">Build MagicSchool Copy Block</button>
+            <button class="btn secondary" onclick="copyMagicSchoolPayload()">Copy for MagicSchool</button>
+            <a class="btn secondary" href="https://student.magicschool.ai/s/login?joinCode=czwb9Q" target="_blank" rel="noopener">Open MagicSchool</a>
+          </div>
+          <div id="coach-output" class="coach-box">Select a role, make your three decisions, choose evidence, and draft your argument. Then build the MagicSchool copy block.</div>
+          <div class="copy-box" id="magic-copy">MagicSchool copy block will appear here.</div>
+          <div class="check-result" id="magic-copy-result"></div>
+        </article>
+      </section>
+
+      <section class="role-grid" id="reflection">
+        <article class="role-card full">
+          <div class="stage-label">Step 6</div>
+          <h2>Step Out of the Room: AP Reflection</h2>
+          <p>Now leave the role and write as a historian. Use what you experienced in this scenario to explain broader patterns of how environmental factors affect human populations through disease.</p>
+          <div class="coach-box">
+            <strong>Reflection Prompt 1</strong><br>
+            Which environmental or population factor most shaped your recommendation, and what evidence did you have to set aside?
+          </div>
+          <textarea class="response-area" id="reflection1-response" placeholder="The environmental factor that most shaped my recommendation was..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('reflection1-response')">Save Draft</button>
+            <button class="btn secondary" onclick="copyResponse('reflection1-response')">Copy</button>
+          </div>
+          <div class="check-result" id="reflection1-response-result"></div>
+
+          <div class="coach-box" style="margin-top:18px;">
+            <strong>Reflection Prompt 2</strong><br>
+            How would a historian explain the <em>difference in outcomes</em> between a city that acted early and one that delayed — in terms of environmental and population conditions, not just leadership?
+          </div>
+          <textarea class="response-area" id="reflection2-response" placeholder="A historian would explain the difference by pointing to..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('reflection2-response')">Save Draft</button>
+            <button class="btn secondary" onclick="copyResponse('reflection2-response')">Copy</button>
+          </div>
+          <div class="check-result" id="reflection2-response-result"></div>
+
+          <div class="coach-box" style="margin-top:18px;">
+            <strong>Reflection Prompt 3</strong><br>
+            State the strongest argument <em>against</em> your recommendation in one sentence — then explain why you still made it.
+          </div>
+          <textarea class="response-area" id="reflection3-response" placeholder="The strongest argument against my recommendation is..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="saveDraft('reflection3-response')">Save Draft</button>
+            <button class="btn secondary" onclick="copyResponse('reflection3-response')">Copy</button>
+            <button class="btn secondary" onclick="selfCheckReflection()">Run Self-Check</button>
+          </div>
+          <div class="check-result" id="reflection3-response-result"></div>
+        </article>
+        <article class="role-card full canvas-box">
+          <h3>Next Step: Submit in Canvas</h3>
+          <p>Organize your thinking here — submit your final response in Canvas. The roleplay is the learning process; the reflection is the assessment artifact.</p>
+          <p><strong>Suggested Canvas title:</strong> Topic 9.2 BeInTheRoom Reflection — The Closing Order</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+<script>
+const roles = {
+  healthofficer: {
+    name: 'City Health Officer',
+    status: 'Senior physician in the city health department, reporting directly to the Health Commissioner',
+    power: 'Medical expertise and access to hospital admission data. Authority to recommend closure orders and quarantine measures.',
+    goals: 'Minimize deaths by acting on the epidemiological evidence. Convince the Commissioner to issue closure orders before the curve climbs.',
+    fears: 'Political pressure will override the medical evidence. If the Commissioner delays, thousands of preventable deaths will follow.',
+    lens: 'You read the hospital reports. You see the pattern forming. The cases are doubling. The patients are young — 20 to 40, not the elderly. This is not ordinary influenza. Every day of delay is a day the virus spreads unchecked through crowded streets.',
+    challenge: 'Your medical authority may not be enough to overcome wartime political pressure. The Commissioner answers to the mayor, and the mayor answers to the war-bond committee. Your science is sound, but so is the political calculus against you.'
+  },
+  warbondchair: {
+    name: 'Liberty Loan Committee Chair',
+    status: 'Prominent civic leader organizing the war-bond parade, connected to federal war-finance leadership',
+    power: 'Political influence, business-community support, and a direct line to Washington. The parade is a federal priority.',
+    goals: 'Hold the parade. Sell war bonds. Maintain public morale. The war effort depends on home-front unity.',
+    fears: 'Canceling the parade signals weakness and disloyalty. If bond sales collapse, soldiers overseas lose material support.',
+    lens: 'You see a city that must choose between caution and duty. Soldiers are dying in trenches overseas. A parade is the least the home front can do. This illness may be no worse than seasonal grippe — and even if it is, the war effort cannot pause.',
+    challenge: 'You may be placing patriotic duty above public health. If the parade becomes a superspreading event, the deaths that follow will be traced directly to your insistence on holding it.'
+  },
+  armycamp: {
+    name: 'Army Camp Medical Officer',
+    status: 'Military physician stationed at the nearby training camp, where illness has already spread rapidly',
+    power: 'Firsthand experience with the outbreak in a densely crowded military environment. Data on case counts and mortality among soldiers.',
+    goals: 'Warn the city about what is coming. The camp has already seen what happens when this virus hits a dense, crowded population.',
+    fears: 'The city will repeat the camp\'s mistake — waiting too long to isolate and separate. By the time civilian authorities act, transmission will be uncontrollable.',
+    lens: 'You have watched soldiers die at a rate you have never seen before. Healthy men — strong, young, fit — developing pneumonia and dying within 48 hours. The barracks are full. The morgue is full. And the troops keep arriving by train, passing through the city on their way to the next camp or the next ship.',
+    challenge: 'Military secrecy and wartime censorship limit what you can say publicly. Your warnings may be dismissed as alarmist by civilian authorities who have not yet seen what you have seen.'
+  },
+  businessowner: {
+    name: 'Downtown Business Association President',
+    status: 'Spokesperson for the city\'s merchants, restaurant owners, and theater operators',
+    power: 'Economic influence, voter base, and direct access to the mayor. The business community funds political campaigns.',
+    goals: 'Keep the city open. Closures will bankrupt small businesses, eliminate wages for workers, and destroy livelihoods.',
+    fears: 'Prolonged closures will cause economic devastation that outlasts the epidemic itself. Working families will suffer more from lost wages than from a respiratory illness.',
+    lens: 'You represent people who live paycheck to paycheck. A week of closure means a week without income — no rent paid, no food bought, no bills covered. The cure may be worse than the disease.',
+    challenge: 'Your economic argument is real, but it may underestimate the severity of the epidemic. If the city stays open and the death toll climbs, the economic damage from mass illness and death may exceed the damage from closures.'
+  }
+};
+
+const decisions1 = {
+  closenow: { name: 'Close Now — Act Before the Curve', detail: 'Issue immediate closure orders for schools, theaters, churches, and all public gatherings. Act on density before transmission accelerates.' },
+  waitconfirm: { name: 'Wait for More Confirmed Cases', detail: 'Hold off on city-wide closures until hospitals report a clear surge. Avoid premature disruption.' },
+  targeted: { name: 'Targeted Measures Only', detail: 'Close the most crowded venues — barracks, hospitals, schools — but keep businesses and churches open.' }
+};
+
+const decisions2 = {
+  cancelparade: { name: 'Cancel the Parade', detail: 'Dense crowds in a respiratory pandemic are a transmission accelerator. Cancel and redirect war-bond sales.' },
+  allowparade: { name: 'Allow the Parade', detail: 'The war effort cannot pause. Let the parade proceed with public health advisories.' },
+  modifyparade: { name: 'Modify — Reduce Scale and Duration', detail: 'Shorten the route, limit units, discourage lingering. Reduce but do not eliminate the density risk.' }
+};
+
+const decisions3 = {
+  liftnow: { name: 'Lift Now — Relieve the Strain', detail: 'Cases are declining. Reopen immediately to relieve economic and social pressure.' },
+  holdlonger: { name: 'Hold Longer — Guard Against a Second Wave', detail: 'Maintain restrictions at least two weeks beyond peak decline to ensure the virus has fully receded.' },
+  phased: { name: 'Phased Reopening', detail: 'Reopen outdoor and low-density spaces first. Monitor daily. Re-close if numbers spike.' },
+  conditional: { name: 'Conditional — Tie Reopening to Data', detail: 'Announce specific hospital-admission thresholds. Reopen only when data confirms sustained decline.' }
+};
+
+const evidenceBank = {
+  campcrowding: {
+    title: 'Army Camp Crowding',
+    desc: 'Nearby military training camps housed thousands of soldiers in barracks designed for hundreds. Respiratory illness spread through the camps with devastating speed, and troops moved through the city by rail daily, carrying the virus with them.'
+  },
+  urbandensity: {
+    title: 'Urban Density and Tenement Conditions',
+    desc: 'The city\'s working-class neighborhoods were densely packed. Multiple families shared small apartments with poor ventilation. Crowded streetcars carried workers to factories. These conditions created ideal transmission environments for a respiratory virus.'
+  },
+  earlyvsdelayed: {
+    title: 'Early-Acting vs. Delayed Cities',
+    desc: 'Reports from other U.S. cities suggest that those which implemented closure orders and gathering bans early in the outbreak experienced significantly lower per-capita mortality than those that delayed. The timing of intervention — not just the intervention itself — appears to determine outcomes.'
+  },
+  paradedensity: {
+    title: 'The War-Bond Parade and Crowd Density',
+    desc: 'The scheduled Liberty Loan parade is expected to draw tens of thousands of spectators into dense street-level crowds. A respiratory virus transmits most efficiently in exactly these conditions: large numbers of people, close proximity, sustained exposure, outdoor but still crowded.'
+  },
+  wartimepressure: {
+    title: 'Wartime Pressure and Censorship',
+    desc: 'The federal government has prioritized wartime morale. Newspapers are discouraged from publishing alarming stories about illness on the home front. Public health officials face political pressure to downplay the outbreak and avoid actions that could be seen as undermining the war effort.'
+  },
+  autumnwave: {
+    title: 'The Autumn Wave and Seasonality',
+    desc: 'The current outbreak is the second wave of the 1918 influenza. A milder first wave appeared in the spring. The autumn wave is proving far more lethal. As temperatures drop, people spend more time indoors in closer quarters, accelerating transmission.'
+  },
+  economiccost: {
+    title: 'Economic and Social Cost of Closure',
+    desc: 'Prolonged closures mean lost wages for workers, lost revenue for businesses, and social isolation for families. Working-class households have no savings to sustain them through weeks without income. The economic damage of closure is real and falls hardest on those least able to bear it.'
+  },
+  secondwaverisk: {
+    title: 'The Second-Wave Warning',
+    desc: 'Public health officers in other cities warn that lifting restrictions too early — while the virus is still circulating in the population — risks a second surge as people re-crowd into the spaces that were closed. Premature reopening may undo the gains that closures achieved.'
+  }
+};
+
+let selectedRole = '';
+let selectedDec1 = '';
+let selectedDec2 = '';
+let selectedDec3 = '';
+let selectedEvidence = [];
+let latestPayload = '';
+
+function renderRoles() {
+  document.getElementById('role-options').innerHTML = Object.entries(roles).map(([id, r]) =>
+    `<article class="role-card third decision-card" onclick="selectRole('${id}',event)">
+      <h3>${r.name}</h3>
+      <span class="tag">${r.status}</span>
+      <p>${r.lens}</p>
+      <div class="micro-grid">
+        <div class="micro-card"><strong>Goal</strong>${r.goals}</div>
+        <div class="micro-card"><strong>Fear</strong>${r.fears}</div>
+        <div class="micro-card"><strong>Power</strong>${r.power}</div>
+      </div>
+    </article>`
+  ).join('');
+}
+
+function renderEvidence() {
+  document.getElementById('evidence-options').innerHTML = Object.entries(evidenceBank).map(([id, e]) =>
+    `<article class="selectable-chip" onclick="toggleEvidence('${id}',event)">
+      <h4>${e.title}</h4>
+      <p>${e.desc}</p>
+    </article>`
+  ).join('');
+}
+
+function updateChoiceSummary() {
+  var roleEl = document.getElementById('summary-role');
+  var roleDetailEl = document.getElementById('summary-role-detail');
+  var dec1El = document.getElementById('summary-decision1');
+  var dec1DetailEl = document.getElementById('summary-decision1-detail');
+  if (selectedRole) {
+    roleEl.textContent = roles[selectedRole].name;
+    roleDetailEl.textContent = roles[selectedRole].lens;
+  } else {
+    roleEl.textContent = 'No role selected yet.';
+    roleDetailEl.textContent = 'Choose a role above to see your perspective here.';
+  }
+  if (selectedDec1) {
+    dec1El.textContent = decisions1[selectedDec1].name;
+    dec1DetailEl.textContent = decisions1[selectedDec1].detail;
+  } else {
+    dec1El.textContent = 'No decision selected yet.';
+    dec1DetailEl.textContent = 'Choose a path above.';
+  }
+}
+
+function selectRole(id, event) {
+  selectedRole = id;
+  document.getElementById('role-status').textContent = 'Selected role: ' + roles[id].name;
+  document.querySelectorAll('#roles .decision-card').forEach(function(c) { c.classList.remove('selected'); });
+  event.currentTarget.classList.add('selected');
+  updateChoiceSummary();
+  saveState();
+}
+
+function selectDecision(id, event) {
+  selectedDec1 = id;
+  document.getElementById('decision1-status').textContent = 'Selected: ' + decisions1[id].name;
+  document.querySelectorAll('#decision1 .decision-card').forEach(function(c) { c.classList.remove('selected'); });
+  event.currentTarget.classList.add('selected');
+  updateChoiceSummary();
+  saveState();
+}
+
+function selectDecision2(id, event) {
+  selectedDec2 = id;
+  document.getElementById('decision2-status').textContent = 'Selected: ' + decisions2[id].name;
+  document.querySelectorAll('#decision2 .decision-card').forEach(function(c) { c.classList.remove('selected'); });
+  event.currentTarget.classList.add('selected');
+  saveState();
+}
+
+function selectDecision3(id, event) {
+  selectedDec3 = id;
+  document.getElementById('decision3-status').textContent = 'Selected: ' + decisions3[id].name;
+  document.querySelectorAll('#decision3 .decision-card').forEach(function(c) { c.classList.remove('selected'); });
+  event.currentTarget.classList.add('selected');
+  saveState();
+}
+
+function toggleEvidence(id, event) {
+  if (selectedEvidence.includes(id)) {
+    selectedEvidence = selectedEvidence.filter(function(x) { return x !== id; });
+    event.currentTarget.classList.remove('selected');
+  } else {
+    selectedEvidence.push(id);
+    event.currentTarget.classList.add('selected');
+  }
+  document.getElementById('evidence-status').textContent = selectedEvidence.length
+    ? 'Selected evidence: ' + selectedEvidence.map(function(x) { return evidenceBank[x].title; }).join(', ')
+    : 'No evidence selected yet.';
+  saveState();
+}
+
+function generateCoachPrompts() {
+  var box = document.getElementById('coach-output');
+  if (!selectedRole || !selectedDec1) {
+    box.textContent = 'Choose both a role and at least Decision 1 before generating coaching questions.';
+    return;
+  }
+  var r = roles[selectedRole];
+  box.innerHTML = '<strong>Coaching questions for ' + r.name + '</strong><ul>' +
+    '<li>What environmental or population factor — density, crowding, movement, seasonality — most shapes your recommendation, and why?</li>' +
+    '<li>Which evidence chip best supports your closure decision, and how does it connect to environmental conditions?</li>' +
+    '<li>What is the strongest argument for allowing the parade to proceed? What is the strongest argument against?</li>' +
+    '<li>If you lift restrictions too early, what happens? If you hold too long, what happens? How do you weigh these risks?</li>' +
+    '<li>How does your argument connect to the CED statement: "Diseases associated with poverty persisted while other diseases emerged as new epidemics and threats to human populations, in some cases leading to social disruption"?</li>' +
+    '</ul>';
+}
+
+function buildMagicSchoolPayload() {
+  var role = selectedRole ? roles[selectedRole] : null;
+  var selectedEvidenceText = selectedEvidence.map(function(id) { return '- ' + evidenceBank[id].title + ': ' + evidenceBank[id].desc; }).join('\n') || 'No evidence selected yet.';
+  var draft = (document.getElementById('decision-response').value || '').trim() || 'No first draft written yet.';
+  var tradeoff = (document.getElementById('tradeoff-input').value || '').trim() || 'Not identified yet.';
+  var opposition = (document.getElementById('opposition-input').value || '').trim() || 'Not identified yet.';
+  latestPayload = 'You are the BeInTheRoom Historical Thinking Coach for AP World History. Do not write my final answer. Ask me one question at a time to help me better understand my role, evidence, environmental factors, and historical reasoning. Push me to explain because, not just name facts.\n\n' +
+    'Scenario: The Closing Order — Topic 9.2 Technological Advances and Limitations After 1900: Disease\n' +
+    'Setting: A mid-sized U.S. city, autumn 1918. Influenza cases are appearing. Army camps nearby are crowded. A Liberty Loan war-bond parade is scheduled. The Health Commissioner must decide whether to issue closure orders.\n' +
+    'Central question: Should the city close now — acting on density and crowding before the curve climbs — or wait?\n\n' +
+    'My role: ' + (role ? role.name : 'No role selected') + '\n' +
+    'Role status: ' + (role ? role.status : 'No role selected') + '\n' +
+    'Role goals: ' + (role ? role.goals : 'No role selected') + '\n' +
+    'Role fears: ' + (role ? role.fears : 'No role selected') + '\n' +
+    'Role power/limits: ' + (role ? role.power : 'No role selected') + '\n\n' +
+    'Decision 1 (Close/Wait/Targeted): ' + (selectedDec1 ? decisions1[selectedDec1].name : 'No decision selected') + '\n' +
+    'Decision 2 (Parade): ' + (selectedDec2 ? decisions2[selectedDec2].name : 'No decision selected') + '\n' +
+    'Decision 3 (When to Lift): ' + (selectedDec3 ? decisions3[selectedDec3].name : 'No decision selected') + '\n\n' +
+    'Evidence I selected:\n' + selectedEvidenceText + '\n\n' +
+    'Environmental/population factor I identified: ' + tradeoff + '\n' +
+    'Opposing viewpoint: ' + opposition + '\n\n' +
+    'My first draft argument:\n' + draft + '\n\n' +
+    'Please coach me through these stages:\n' +
+    '1. Help me clarify what my role wants and fears in autumn 1918.\n' +
+    '2. Ask me which evidence is strongest for my position and why.\n' +
+    '3. Challenge me to explain how a specific environmental or population factor shaped the outbreak\'s severity.\n' +
+    '4. Ask me how an opposing role would respond to my recommendation.\n' +
+    '5. Help me revise into a stronger 4-6 sentence historically grounded argument.\n' +
+    '6. End by asking me to step out of character and explain what this scenario reveals about how environmental factors affect human populations through disease (the ENV thematic focus).';
+
+  document.getElementById('magic-copy').textContent = latestPayload;
+  generateCoachPrompts();
+  return latestPayload;
+}
+
+function copyMagicSchoolPayload() {
+  var payload = latestPayload || buildMagicSchoolPayload();
+  navigator.clipboard.writeText(payload)
+    .then(function() { document.getElementById('magic-copy-result').textContent = 'MagicSchool coach block copied. Paste it into your MagicSchool chatbot.'; })
+    .catch(function() { document.getElementById('magic-copy-result').textContent = 'Copy failed. Select the copy block and copy manually.'; });
+}
+
+function saveDraft(id) {
+  var t = document.getElementById(id);
+  localStorage.setItem('beintheroom-closing-order-' + id, t.value || '');
+  var r = document.getElementById(id + '-result');
+  if (r) r.textContent = 'Draft saved on this device.';
+  saveState();
+}
+
+function copyResponse(id) {
+  var t = document.getElementById(id);
+  navigator.clipboard.writeText(t.value || '')
+    .then(function() { var r = document.getElementById(id + '-result'); if (r) r.textContent = 'Response copied.'; })
+    .catch(function() { var r = document.getElementById(id + '-result'); if (r) r.textContent = 'Copy failed. Select and copy manually.'; });
+}
+
+function selfCheckReflection() {
+  var texts = ['reflection1-response', 'reflection2-response', 'reflection3-response']
+    .map(function(id) { return (document.getElementById(id).value || '').toLowerCase(); }).join(' ');
+  var terms = ['influenza', '1918', 'pandemic', 'density', 'crowding', 'camp', 'parade', 'closure', 'quarantine', 'transmission', 'environmental', 'population', 'sanitation', 'second wave', 'social disruption', 'mortality', 'public health', 'war', 'troop'];
+  var found = terms.filter(function(term) { return texts.includes(term); });
+  document.getElementById('reflection3-response-result').textContent = 'Self-check: historical terms found: ' + (found.length ? found.join(', ') : 'none yet') + '. Aim for at least two specific historical details and one explanation of how an environmental factor shaped the disease outcome.';
+}
+
+function saveState() {
+  localStorage.setItem('beintheroom-closing-order-state', JSON.stringify({
+    selectedRole: selectedRole,
+    selectedDec1: selectedDec1,
+    selectedDec2: selectedDec2,
+    selectedDec3: selectedDec3,
+    selectedEvidence: selectedEvidence,
+    tradeoff: (document.getElementById('tradeoff-input') || {}).value || '',
+    opposition: (document.getElementById('opposition-input') || {}).value || ''
+  }));
+}
+
+function loadState() {
+  try {
+    var saved = JSON.parse(localStorage.getItem('beintheroom-closing-order-state') || '{}');
+    selectedRole = saved.selectedRole || '';
+    selectedDec1 = saved.selectedDec1 || '';
+    selectedDec2 = saved.selectedDec2 || '';
+    selectedDec3 = saved.selectedDec3 || '';
+    selectedEvidence = Array.isArray(saved.selectedEvidence) ? saved.selectedEvidence : [];
+    if (saved.tradeoff) document.getElementById('tradeoff-input').value = saved.tradeoff;
+    if (saved.opposition) document.getElementById('opposition-input').value = saved.opposition;
+  } catch(e) {}
+}
+
+function applySavedSelections() {
+  if (selectedRole) {
+    document.getElementById('role-status').textContent = 'Selected role: ' + roles[selectedRole].name;
+    var roleCards = Array.prototype.slice.call(document.querySelectorAll('#roles .decision-card'));
+    var roleIndex = Object.keys(roles).indexOf(selectedRole);
+    if (roleCards[roleIndex]) roleCards[roleIndex].classList.add('selected');
+  }
+  if (selectedDec1) {
+    document.getElementById('decision1-status').textContent = 'Selected: ' + decisions1[selectedDec1].name;
+    var d1Cards = Array.prototype.slice.call(document.querySelectorAll('#decision1 .decision-card'));
+    var d1Index = Object.keys(decisions1).indexOf(selectedDec1);
+    if (d1Cards[d1Index]) d1Cards[d1Index].classList.add('selected');
+  }
+  if (selectedDec2) {
+    document.getElementById('decision2-status').textContent = 'Selected: ' + decisions2[selectedDec2].name;
+    var d2Cards = Array.prototype.slice.call(document.querySelectorAll('#decision2 .decision-card'));
+    var d2Index = Object.keys(decisions2).indexOf(selectedDec2);
+    if (d2Cards[d2Index]) d2Cards[d2Index].classList.add('selected');
+  }
+  if (selectedDec3) {
+    document.getElementById('decision3-status').textContent = 'Selected: ' + decisions3[selectedDec3].name;
+    var d3Cards = Array.prototype.slice.call(document.querySelectorAll('#decision3 .decision-card'));
+    var d3Index = Object.keys(decisions3).indexOf(selectedDec3);
+    if (d3Cards[d3Index]) d3Cards[d3Index].classList.add('selected');
+  }
+  if (selectedEvidence.length) {
+    var evidenceCards = Array.prototype.slice.call(document.querySelectorAll('#evidence-options .selectable-chip'));
+    Object.keys(evidenceBank).forEach(function(id, i) {
+      if (selectedEvidence.includes(id) && evidenceCards[i]) evidenceCards[i].classList.add('selected');
+    });
+    document.getElementById('evidence-status').textContent = 'Selected evidence: ' + selectedEvidence.map(function(x) { return evidenceBank[x].title; }).join(', ');
+  }
+  updateChoiceSummary();
+}
+
+function loadDrafts() {
+  ['decision-response', 'reflection1-response', 'reflection2-response', 'reflection3-response'].forEach(function(id) {
+    var saved = localStorage.getItem('beintheroom-closing-order-' + id);
+    if (saved) document.getElementById(id).value = saved;
+  });
+}
+
+document.addEventListener('input', function(e) {
+  if (e.target && ['tradeoff-input', 'opposition-input'].includes(e.target.id)) saveState();
+});
+
+renderRoles();
+renderEvidence();
+loadState();
+loadDrafts();
+applySavedSelections();
+</script>
+</body>
+</html>
