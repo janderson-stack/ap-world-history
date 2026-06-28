@@ -297,6 +297,30 @@ Full report: [`docs/beintheroom-theme-audit.md`](docs/beintheroom-theme-audit.md
 
 **Known dependency:** Google Form dropdown (`behistorical-form-config.js`) already includes `'9.2': '9.2 - Technology and Disease'` in topics. No form config update required.
 
+### Topic 9.3 — Technological Advances—Debates About the Environment After 1900 (built 2026-06-28)
+
+| Deliverable | File | Status |
+|---|---|---|
+| Lesson shell | `unit-9/lesson-9-3-environment.html` | DONE |
+| Topic data | `assets/data/lesson-9-3-environment.js` | DONE |
+| Renderer config | `assets/data/lesson-9-3-renderer-config.js` | DONE |
+| First & 10 reading | `unit-9/first-and-10-topic-9-3-environment.html` | DONE |
+| First & 10 capture wrapper | `unit-9/first-and-10-topic-9-3-environment-capture.html` | DONE |
+| BeInTheRoom scenario | `beintheroom/unit-9/climate-summit.html` | DONE |
+| Unit 9 index link | `unit-9/index.html` (Topic 9.3 card href updated) | DONE |
+
+**Single-LO topic structure:** Topic 9.3 carries one thematic focus / LO pair — ENV / LO C ("Explain the causes and effects of environmental changes in the period from 1900 to the present."). Two KCs: KC-6.1.II.A (environmental degradation and resource competition) and KC-6.1.II.B (greenhouse gases and climate debate). `collegeBoardKeyConcepts` array has 4 entries (thematic focus + LO C + 2 KCs). **Topic 9.3 has NO illustrative examples** — all `illustrativeExamples` arrays are empty. Narrative-prose examples (Amazon, Sahel, Aral Sea, Kyoto Protocol, Paris Agreement, etc.) appear in lecture content only and are never labeled as CED illustrative examples.
+
+**Three learning targets (KC-6.1.II.A splits into two, KC-6.1.II.B is one):** LT1 — causes and effects of environmental degradation (deforestation, desertification, air quality, freshwater — KC-6.1.II.A first clause); LT2 — intensified resource competition (KC-6.1.II.A second clause); LT3 — greenhouse gases, pollutants, and the climate debate (KC-6.1.II.B).
+
+**Checkpoint structure:** CP1 covers LT1+LT2 ("Environmental Degradation and Resource Competition" — explain at least one form of degradation with its cause and effect, plus how it intensified competition); CP2 covers all LTs / full LO C synthesis ("Causes and Effects of Environmental Change — A Causation Argument" — address at least one form of degradation AND the climate debate, with causal mechanism for each).
+
+**BeInTheRoom scenario frame:** "The Emissions Table" — an international climate summit, late 20th century. Student advises the delegation of a rapidly industrializing developing nation sitting on the central climate fault line: needs continued growth, is feeling environmental effects, and is being asked to cut emissions it did not historically cause. Four roles: Chief Economic Advisor, Environment Ministry Director, Foreign Affairs Strategist, National Energy Commission Chair. Three decision points: D1 (what emissions commitment to bring — aggressive / conditional / modest); D2 (the historical-responsibility argument — press equity / accept shared / pragmatic middle); D3 (binding vs. voluntary targets — binding / voluntary / hybrid). 8 evidence chips (rising greenhouse gases, historical emissions gap, environmental degradation effects, economic cost of transition, renewable energy opportunity, Kyoto/Paris precedents, climate vulnerability, sovereignty and development rights). 3 reflection prompts. Specific statistics and treaty terms flagged for Phase 2 verification.
+
+**Step 0 gate:** PASS — premise directly enacts KC-6.1.II.B (debates about the nature and causes of climate change) and the ENV thematic focus (populations shape their environments). Every decision point turns on weighing the causes and effects of environmental change and resolving the climate debate the CED names. The summit-delegation dilemma cannot be transplanted to another topic without losing the ENV theme.
+
+**Known dependency:** Google Form dropdown (`behistorical-form-config.js`) already includes `'9.3': '9.3 - Debates About the Environment'` in topics. No form config update required.
+
 ---
 
 ### Open Revision Tasks (from the audit)

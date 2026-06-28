@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeInTheRoom | The Emissions Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/behistorical.css">
+  <link rel="stylesheet" href="../../assets/css/behistorical-brand-lock.css">
+  <!-- Step 0 Theme Alignment Gate (ENV):
+       Topic 9.3 thematic focus: Humans and the Environment (ENV) —
+       "The environment shapes human societies, and as populations grow and change,
+       these populations in turn shape their environments."
+       Topic 9.3 LO C: "Explain the causes and effects of environmental changes in
+       the period from 1900 to the present."
+       Anchor KC: KC-6.1.II.B — "The release of greenhouse gases and pollutants into
+       the atmosphere contributed to debates about the nature and causes of climate change."
+       Alignment: This scenario's premise and every decision point turn on weighing
+       the causes and effects of environmental change and resolving the climate-change
+       debate the CED names. The dilemma cannot be transplanted to another topic
+       without losing the ENV theme. Gate satisfied. -->
+  <style>
+    :root{--focus-ring:0 0 0 4px rgba(201,164,106,.35)}
+    .role-shell{max-width:1180px;margin:0 auto;padding:24px}
+    .role-hero{background:linear-gradient(180deg,rgba(26,28,29,.92),rgba(43,47,49,.96)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Greenhouse_Gas_by_Sector.png') center/cover;border-radius:28px;padding:42px 28px;color:var(--warm-paper);box-shadow:var(--soft-shadow);border:1px solid rgba(201,164,106,.35)}
+    .role-hero h1{font-family:"Cinzel",Georgia,serif;color:var(--antique-gold);font-size:clamp(2.2rem,6vw,5rem);line-height:1.02;margin:10px 0}
+    .role-hero p{max-width:900px;font-size:1.04rem;line-height:1.65}
+    .role-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:24px 0}
+    .role-card{grid-column:span 6;background:var(--clean-paper);border:1px solid var(--paper-line);border-radius:20px;padding:22px;box-shadow:var(--soft-shadow)}
+    .role-card.full{grid-column:1/-1}.role-card.third{grid-column:span 4}.role-card.quarter{grid-column:span 3}
+    .role-card h2,.role-card h3{font-family:"Cinzel",Georgia,serif;color:var(--blackened-steel);margin-top:0}
+    .decision-card,.selectable-chip{cursor:pointer;transition:.18s ease;border-top:6px solid var(--aged-iron)}
+    .decision-card:hover,.decision-card.selected,.selectable-chip:hover,.selectable-chip.selected{transform:translateY(-3px);border-top-color:var(--antique-gold);box-shadow:0 20px 54px rgba(0,0,0,.18)}
+    .tag{display:inline-flex;border-radius:999px;background:#f1e6d3;color:var(--oxidized-brown);padding:5px 9px;font-family:"Montserrat",Arial,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin:4px 5px 4px 0}
+    .micro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .micro-card{background:#f7efe3;border:1px solid rgba(107,62,31,.16);border-radius:14px;padding:12px;font-size:.92rem;line-height:1.45}
+    .micro-card strong{display:block;color:var(--oxidized-brown);font-family:"Montserrat",Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+    .coach-box{background:#f6efe3;border-left:6px solid var(--burnished-bronze);border-radius:16px;padding:18px;margin:12px 0;line-height:1.6}
+    .choice-summary{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border:1px solid rgba(201,164,106,.38);border-left:7px solid var(--antique-gold);border-radius:18px;padding:18px;margin:14px 0 18px}
+    .choice-summary h3{color:var(--antique-gold);margin:0 0 10px}
+    .choice-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .choice-summary-item{background:rgba(255,253,247,.08);border:1px solid rgba(210,180,140,.2);border-radius:14px;padding:12px}
+    .choice-summary-label{display:block;font-family:"Montserrat",Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;font-weight:900;color:var(--muted-sandstone);margin-bottom:6px}
+    .choice-summary-value{font-family:"Montserrat",Arial,sans-serif;font-weight:900;color:var(--warm-paper)}
+    .choice-summary-detail{font-size:.92rem;line-height:1.45;margin:8px 0 0;color:#f5f0e7}
+    .response-area{min-height:170px;width:100%;border:1px solid rgba(26,28,29,.18);border-radius:14px;padding:14px;font-family:"Libre Baskerville",Georgia,serif;line-height:1.6;background:#fffdf7}
+    .response-area:focus{outline:none;box-shadow:var(--focus-ring);border-color:var(--antique-gold)}
+    .selection-status{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown);font-size:.78rem;margin-top:12px}
+    .canvas-box{background:linear-gradient(180deg,var(--blackened-steel),var(--charcoal-steel));color:var(--warm-paper);border-radius:20px;padding:22px;border:1px solid rgba(201,164,106,.35)}
+    .canvas-box h3{color:var(--antique-gold)}
+    .evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .selectable-chip{background:#fffdf7;border:1px solid rgba(107,62,31,.18);border-top:5px solid var(--aged-iron);border-radius:16px;padding:14px;min-height:120px}
+    .selectable-chip h4{margin:0 0 6px;font-family:"Montserrat",Arial,sans-serif;color:var(--blackened-steel)}
+    .selectable-chip p{font-size:.9rem;line-height:1.45;margin:0}
+    .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
+    .field-grid label{font-family:"Montserrat",Arial,sans-serif;font-size:.74rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--oxidized-brown)}
+    .small-input{width:100%;border:1px solid rgba(26,28,29,.18);border-radius:12px;padding:10px;background:#fffdf7;margin-top:6px}
+    .copy-box{white-space:pre-wrap;background:#151718;color:#f5f0e7;border-radius:16px;border:1px solid rgba(201,164,106,.35);padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86rem;line-height:1.5;max-height:360px;overflow:auto}
+    .tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+    .stage-label{font-family:"Montserrat",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--burnished-bronze);font-size:.72rem;margin-bottom:8px}
+    @media(max-width:900px){.role-card,.role-card.third,.role-card.quarter{grid-column:1/-1}.role-shell{padding:12px}.choice-summary-grid,.field-grid,.micro-grid,.evidence-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="role-shell">
+    <nav class="topbar"><div class="nav"><a class="brand-mini" href="../../index.html"><img src="../../assets/logos/behistorical-logo.jpeg" alt="BeHistorical logo"><span>BeHistorical</span></a><div class="nav-links"><a href="../index.html">BeInTheRoom Hub</a><a href="../../unit-9/lesson-9-3-environment.html">Back to 9.3</a></div></div></nav>
+
+    <header class="role-hero">
+      <div class="eyebrow">BeInTheRoom · Unit 9 · Topic 9.3</div>
+      <h1>The Emissions Table</h1>
+      <p>An international climate summit, late 20th century. The scientific evidence is clear: the release of greenhouse gases from burning fossil fuels is warming the planet. Deforestation is accelerating. Air quality is declining. Fresh water is under strain. The world's nations have gathered to negotiate a response. You advise the delegation of a rapidly industrializing developing nation — a nation that needs continued economic growth, is already feeling the effects of environmental change, and is being asked to cut emissions it did not historically cause. The wealthy industrialized nations that produced most of the world's cumulative emissions want everyone at the table to commit. What do you bring?</p>
+      <div><a class="btn" href="#roles">Choose a Role</a><a class="btn secondary" href="#ai-coach">AI Coach</a><a class="btn secondary" href="#reflection">AP Reflection</a></div>
+    </header>
+
+    <main>
+      <section class="role-grid">
+        <article class="role-card full">
+          <div class="stage-label">Enter the Room</div>
+          <h2>Historical Situation</h2>
+          <p>By the late 20th century, the evidence was accumulating. Carbon dioxide concentrations in the atmosphere had risen sharply since the Industrial Revolution, driven by the burning of coal, oil, and natural gas. Global average temperatures were climbing. The Intergovernmental Panel on Climate Change (IPCC) had issued reports linking human activity to observed warming. Deforestation in the Amazon and Southeast Asia was releasing stored carbon while eliminating forests that absorbed it. Desertification was expanding across the Sahel. Air pollution choked cities from Beijing to Mexico City. Freshwater supplies were under strain from irrigation, industry, and growing urban populations.</p>
+          <p>International negotiations had begun. The question was no longer whether the environment was changing — it was who should bear the cost of responding. Wealthy industrialized nations — the United States, Western Europe, Japan — had produced the vast majority of cumulative greenhouse gas emissions over the previous century. They had industrialized first, grown wealthy on fossil fuels, and now wanted the world to cut emissions. Developing nations — China, India, Brazil, Indonesia, and dozens of others — argued that they needed the same opportunity to industrialize and lift their populations out of poverty. Why should they pay for a problem they did not create?</p>
+          <p>This is the fault line that ran through every international climate negotiation from the 1990s onward. You sit on the developing-nation side of the table. Your country is growing. Your people are demanding electricity, transportation, and economic opportunity. But your country is also vulnerable: rising sea levels threaten your coastline, changing rainfall patterns disrupt agriculture, and air pollution is already a public health crisis. The environmental effects are real and getting worse. The question is what commitment you bring to the table — and at what cost.</p>
+        </article>
+
+        <!-- ROLES -->
+        <article class="role-card full" id="roles">
+          <div class="stage-label">Step 1 — Choose a Historical Perspective</div>
+          <h2>Who Are You at the Table?</h2>
+          <p>Select one role. Each shapes how you weigh the tradeoffs between economic growth, environmental protection, and international equity.</p>
+          <div class="role-grid" style="margin:0">
+            <div class="role-card decision-card" onclick="selectRole('economic')">
+              <span class="tag">Role A</span>
+              <h3>Chief Economic Advisor</h3>
+              <p>You advise on growth strategy. Your nation's GDP is rising, millions are exiting poverty, and industrialization is accelerating. You see the climate commitment as a potential brake on development. Your priority is protecting economic growth while managing international pressure.</p>
+            </div>
+            <div class="role-card decision-card" onclick="selectRole('environment')">
+              <span class="tag">Role B</span>
+              <h3>Environment Ministry Director</h3>
+              <p>You manage your nation's environmental policy. You see the effects of degradation daily: deforestation, water scarcity, air pollution, crop failures from changing weather. You believe your nation must act — but you also know the political cost of slowing growth.</p>
+            </div>
+            <div class="role-card decision-card" onclick="selectRole('foreign')">
+              <span class="tag">Role C</span>
+              <h3>Foreign Affairs Strategist</h3>
+              <p>You navigate international negotiations. You see the summit as a test of global equity: the nations that caused the problem should pay the most. You want a commitment that protects your nation's sovereignty and development rights while securing technology transfer and climate financing from wealthy nations.</p>
+            </div>
+            <div class="role-card decision-card" onclick="selectRole('energy')">
+              <span class="tag">Role D</span>
+              <h3>National Energy Commission Chair</h3>
+              <p>You oversee energy planning. Your nation depends on coal and oil for most of its electricity and transport. You see the potential of solar and wind energy but know the transition is expensive and slow. You must balance the promise of renewable energy against the reality of current dependence on fossil fuels.</p>
+            </div>
+          </div>
+          <p class="selection-status" id="role-status">No role selected yet.</p>
+        </article>
+
+        <!-- DECISION 1 -->
+        <article class="role-card full" id="decision1">
+          <div class="stage-label">Step 2 — Decision Point 1</div>
+          <h2>What Emissions Commitment Do You Bring to the Table?</h2>
+          <p>The summit chair asks each delegation to state its emissions commitment. Your choice will shape both the environmental outcome and your nation's economic trajectory. What do you recommend?</p>
+          <div class="micro-grid">
+            <div class="micro-card decision-card" onclick="selectDecision('d1','aggressive')">
+              <strong>Option A — Aggressive Cuts</strong>
+              Commit to significant emissions reductions on a fixed timeline. This positions your nation as an environmental leader and strengthens international goodwill — but it constrains industrial growth, raises energy costs, and may slow the economic development your population demands.
+            </div>
+            <div class="micro-card decision-card" onclick="selectDecision('d1','conditional')">
+              <strong>Option B — Conditional Commitment</strong>
+              Commit to reductions only if wealthy industrialized nations provide financial and technological support for the transition. This links your commitment to equity: they caused most historical emissions, so they should fund the shift. But it makes your commitment dependent on others' follow-through.
+            </div>
+            <div class="micro-card decision-card" onclick="selectDecision('d1','modest')">
+              <strong>Option C — Modest Pledge</strong>
+              Offer a modest, voluntary emissions target that protects economic growth. This preserves development flexibility but contributes to continued environmental degradation and draws criticism from nations already suffering climate effects.
+            </div>
+          </div>
+          <p class="selection-status" id="d1-status">No decision selected yet.</p>
+        </article>
+
+        <!-- DECISION 2 -->
+        <article class="role-card full" id="decision2">
+          <div class="stage-label">Step 3 — Decision Point 2</div>
+          <h2>The Historical-Responsibility Argument</h2>
+          <p>A wealthy industrialized nation's delegate argues that climate change is a global problem requiring shared sacrifice — every nation must cut emissions proportionally. Your delegation must respond. The core question: who caused this problem, and who should pay to fix it?</p>
+          <div class="micro-grid">
+            <div class="micro-card decision-card" onclick="selectDecision('d2','equity')">
+              <strong>Option A — Press the Equity Argument</strong>
+              Insist that industrialized nations bear the primary burden. They produced most cumulative emissions over the past century. They grew wealthy on fossil fuels. Developing nations should not sacrifice their development to fix a problem they did not create. Demand technology transfer and climate financing before committing.
+            </div>
+            <div class="micro-card decision-card" onclick="selectDecision('d2','shared')">
+              <strong>Option B — Accept Shared Responsibility</strong>
+              Acknowledge that while historical responsibility matters, climate change affects everyone — and your nation's own emissions are rising rapidly. Accept a shared framework that differentiates by capacity rather than history alone. This builds diplomatic credibility but may mean faster emissions cuts than your economy can easily absorb.
+            </div>
+            <div class="micro-card decision-card" onclick="selectDecision('d2','pragmatic')">
+              <strong>Option C — Pragmatic Middle Ground</strong>
+              Acknowledge historical responsibility publicly but focus the negotiation on practical mechanisms: per-capita targets rather than absolute cuts, graduated timelines, and measurable technology-transfer commitments. This avoids the ideological confrontation while still advancing your nation's interests.
+            </div>
+          </div>
+          <p class="selection-status" id="d2-status">No decision selected yet.</p>
+        </article>
+
+        <!-- DECISION 3 -->
+        <article class="role-card full" id="decision3">
+          <div class="stage-label">Step 4 — Decision Point 3</div>
+          <h2>Binding vs. Voluntary Targets</h2>
+          <p>The summit must decide on enforcement. Binding targets carry legal obligations and verification mechanisms — they produce stronger environmental outcomes but constrain national sovereignty and economic flexibility. Voluntary pledges preserve flexibility but may not produce sufficient emissions reductions. What framework do you support?</p>
+          <div class="micro-grid">
+            <div class="micro-card decision-card" onclick="selectDecision('d3','binding')">
+              <strong>Option A — Binding Targets</strong>
+              Support legally binding, verifiable emissions targets for all parties. This produces the strongest environmental outcome and holds every nation accountable. But it constrains your nation's flexibility, subjects your development plans to international oversight, and may be politically impossible to ratify at home.
+            </div>
+            <div class="micro-card decision-card" onclick="selectDecision('d3','voluntary')">
+              <strong>Option B — Voluntary Pledges</strong>
+              Support voluntary national pledges with periodic review. This preserves sovereignty and allows each nation to set targets it can achieve. But critics argue that voluntary commitments lack teeth — nations may set weak targets, miss them without consequence, and produce an agreement that looks good but changes little.
+            </div>
+            <div class="micro-card decision-card" onclick="selectDecision('d3','hybrid')">
+              <strong>Option C — Hybrid Framework</strong>
+              Support binding targets for wealthy industrialized nations (who caused most historical emissions) and voluntary pledges for developing nations (who need growth flexibility). This differentiates by responsibility and capacity but creates a two-tier system that some will call unfair in either direction.
+            </div>
+          </div>
+          <p class="selection-status" id="d3-status">No decision selected yet.</p>
+        </article>
+
+        <!-- EVIDENCE -->
+        <article class="role-card full" id="evidence">
+          <div class="stage-label">Step 5 — Select Your Evidence</div>
+          <h2>Evidence Bank</h2>
+          <p>Select the evidence cards that best support your recommendations. Use them to build your position in the next step.</p>
+          <div class="evidence-grid">
+            <div class="selectable-chip" onclick="toggleEvidence('ghg')" id="chip-ghg">
+              <h4>Rising Greenhouse Gases</h4>
+              <p>Atmospheric CO₂ concentrations have risen sharply since the Industrial Revolution, with the steepest increase after 1950. The scientific consensus links this rise to fossil fuel combustion and deforestation. [Phase 2: verify specific concentration figures before publication]</p>
+            </div>
+            <div class="selectable-chip" onclick="toggleEvidence('historical')" id="chip-historical">
+              <h4>Historical Emissions Gap</h4>
+              <p>Industrialized nations produced the vast majority of cumulative greenhouse gas emissions from the 18th century through the late 20th century. The United States and Western Europe industrialized first and emitted the most over the longest period. Developing nations' per-capita emissions remain far lower. [Phase 2: verify specific percentage figures]</p>
+            </div>
+            <div class="selectable-chip" onclick="toggleEvidence('degradation')" id="chip-degradation">
+              <h4>Environmental Degradation Effects</h4>
+              <p>Deforestation in the Amazon and Southeast Asia, desertification across the Sahel, air pollution in industrializing cities, and freshwater depletion from irrigation and urbanization are all measurable effects of human activity — the degradation the CED names in KC-6.1.II.A.</p>
+            </div>
+            <div class="selectable-chip" onclick="toggleEvidence('transition')" id="chip-transition">
+              <h4>Economic Cost of Energy Transition</h4>
+              <p>Shifting from fossil fuels to renewable energy requires massive investment in infrastructure, retraining, and technology. For developing nations, the cost competes directly with spending on poverty reduction, healthcare, and education. The transition is possible but expensive, and the cost falls hardest on nations that can least afford it.</p>
+            </div>
+            <div class="selectable-chip" onclick="toggleEvidence('renewable')" id="chip-renewable">
+              <h4>Renewable Energy Opportunity</h4>
+              <p>Solar and wind energy costs have fallen dramatically since the late 20th century. Developing nations with abundant sunlight and wind resources could leapfrog fossil fuel infrastructure — building clean energy systems without repeating the industrialized world's carbon-intensive path. But the upfront investment remains a barrier.</p>
+            </div>
+            <div class="selectable-chip" onclick="toggleEvidence('kyotoparis')" id="chip-kyotoparis">
+              <h4>Kyoto and Paris Precedents</h4>
+              <p>The Kyoto Protocol (1997) set binding targets for industrialized nations but exempted developing countries; the U.S. never ratified it. The Paris Agreement (2015) adopted voluntary national pledges from nearly all nations but lacked binding enforcement. Both frameworks revealed the tension between environmental ambition and national interest. [Phase 2: verify specific treaty terms]</p>
+            </div>
+            <div class="selectable-chip" onclick="toggleEvidence('vulnerability')" id="chip-vulnerability">
+              <h4>Climate Vulnerability</h4>
+              <p>Many developing nations are disproportionately vulnerable to climate effects: rising sea levels threaten coastal and island nations, changing rainfall patterns disrupt agriculture, and extreme weather events hit communities with the least infrastructure to absorb them. The nations least responsible for emissions often face the greatest consequences.</p>
+            </div>
+            <div class="selectable-chip" onclick="toggleEvidence('sovereignty')" id="chip-sovereignty">
+              <h4>Sovereignty and Development Rights</h4>
+              <p>Developing nations have argued that binding international emissions targets infringe on national sovereignty and the right to develop. Industrialized nations used fossil fuels freely during their own development. Requiring developing nations to limit emissions before achieving comparable living standards raises fundamental questions of global equity.</p>
+            </div>
+          </div>
+          <p class="selection-status" id="evidence-status">No evidence selected yet.</p>
+        </article>
+
+        <!-- BUILD POSITION -->
+        <article class="role-card full" id="position">
+          <div class="stage-label">Step 6 — Build Your Position</div>
+          <h2>Your Recommendation to the Delegation</h2>
+          <div class="choice-summary" id="summary-box">
+            <h3>Your Choices So Far</h3>
+            <div class="choice-summary-grid">
+              <div class="choice-summary-item"><span class="choice-summary-label">Role</span><span class="choice-summary-value" id="sum-role">—</span></div>
+              <div class="choice-summary-item"><span class="choice-summary-label">Emissions Commitment</span><span class="choice-summary-value" id="sum-d1">—</span></div>
+              <div class="choice-summary-item"><span class="choice-summary-label">Responsibility Argument</span><span class="choice-summary-value" id="sum-d2">—</span></div>
+              <div class="choice-summary-item"><span class="choice-summary-label">Targets Framework</span><span class="choice-summary-value" id="sum-d3">—</span></div>
+            </div>
+            <p class="choice-summary-detail" id="sum-evidence">Evidence: none selected</p>
+          </div>
+          <p>Write your recommendation to the delegation leader. Explain <strong>what commitment your nation should make, why it is the right choice, and what environmental and economic tradeoffs it involves.</strong> Use the evidence you selected.</p>
+          <textarea class="response-area" id="position-text" placeholder="Write your recommendation here..."></textarea>
+          <div class="tool-row">
+            <button class="btn" onclick="savePosition()">Save Draft</button>
+            <a class="btn-capture" href="https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+9+-+Globalization&entry.187055090=9.3+-+Debates+About+the+Environment&entry.2107637366=BeInTheRoom" target="_blank" rel="noopener">Submit to Form</a>
+          </div>
+        </article>
+
+        <!-- AI COACH -->
+        <article class="role-card full canvas-box" id="ai-coach">
+          <div class="stage-label">Step 7 — AI Coach</div>
+          <h3>MagicSchool AI Coach</h3>
+          <p>Build a coaching prompt from your choices and recommendation. The AI Coach will question, challenge, and push your reasoning — it will not write your answer for you.</p>
+          <div class="coach-box">
+            <p class="stage-label">Coaching Stages</p>
+            <p><strong>Stage 1 — Evidence Check:</strong> Does your recommendation use specific environmental evidence (degradation, emissions, effects)?</p>
+            <p><strong>Stage 2 — Tradeoff Analysis:</strong> Have you explained what your nation gains AND what it risks with this commitment?</p>
+            <p><strong>Stage 3 — Historical Responsibility:</strong> Does your argument address who caused the emissions problem and who should bear the cost?</p>
+            <p><strong>Stage 4 — Opposing View:</strong> What would a wealthy industrialized nation say in response to your position? Can you answer it?</p>
+            <p><strong>Stage 5 — ENV Connection:</strong> How does your recommendation connect to the ENV thematic focus — that populations shape their environments?</p>
+            <p><strong>Stage 6 — Topic 9.2 Bridge:</strong> Topic 9.2 showed how the environment shaped human populations through disease. Topic 9.3 reverses the direction. Can you articulate the difference?</p>
+          </div>
+          <div id="coach-output" class="copy-box" style="min-height:80px;margin-top:12px">Click "Build Coach Prompt" to generate your coaching prompt.</div>
+          <div class="tool-row">
+            <button class="btn" onclick="buildMagicSchoolPayload()">Build Coach Prompt</button>
+            <button class="btn secondary" onclick="copyCoachPrompt()">Copy Prompt</button>
+            <button class="btn secondary" onclick="window.open('https://student.magicschool.ai/s/login?joinCode=czwb9Q','_blank','noopener')">Open MagicSchool</button>
+          </div>
+        </article>
+
+        <!-- REFLECTION -->
+        <article class="role-card full" id="reflection">
+          <div class="stage-label">Step 8 — Step Out of the Room</div>
+          <h2>AP Reflection</h2>
+          <p>Now step out of character. Answer these reflection prompts as a student of AP World History, not as a summit advisor.</p>
+
+          <div class="coach-box">
+            <p><strong>Reflection 1:</strong> Which environmental <em>effect</em> most justified the cost of action in your recommendation, and what evidence did you set aside?</p>
+          </div>
+          <textarea class="response-area" id="reflect1" placeholder="Write your reflection here..."></textarea>
+
+          <div class="coach-box" style="margin-top:18px">
+            <p><strong>Reflection 2:</strong> How would a historian explain why these climate debates were so hard to resolve — in terms of the <em>causes</em> of the problem and who bore responsibility for them?</p>
+          </div>
+          <textarea class="response-area" id="reflect2" placeholder="Write your reflection here..."></textarea>
+
+          <div class="coach-box" style="margin-top:18px">
+            <p><strong>Reflection 3:</strong> State the strongest argument <em>against</em> your recommendation in one sentence — then explain why you still made it.</p>
+          </div>
+          <textarea class="response-area" id="reflect3" placeholder="Write your reflection here..."></textarea>
+
+          <div class="tool-row">
+            <button class="btn" onclick="saveReflections()">Save Reflections</button>
+            <a class="btn-capture" href="https://docs.google.com/forms/d/e/1FAIpQLSe_0wBPNvSivuE0ea3fhty43c4PDNfE-tEWsGsZYyh0gFCxxw/viewform?usp=pp_url&entry.125385659=Unit+9+-+Globalization&entry.187055090=9.3+-+Debates+About+the+Environment&entry.2107637366=BeInTheRoom" target="_blank" rel="noopener">Submit to Form</a>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+    <footer class="footer" style="margin-top:24px">
+      <div class="footer-brand">BeHistorical</div>
+      <p>BeInTheRoom · Unit 9 · Topic 9.3 — Technological Advances—Debates About the Environment After 1900</p>
+    </footer>
+  </div>
+
+  <script>
+    var roles = {
+      economic: { label: 'Chief Economic Advisor', short: 'Economic Advisor' },
+      environment: { label: 'Environment Ministry Director', short: 'Environment Director' },
+      foreign: { label: 'Foreign Affairs Strategist', short: 'Foreign Affairs' },
+      energy: { label: 'National Energy Commission Chair', short: 'Energy Chair' }
+    };
+    var decisions = {
+      d1: {
+        aggressive: { label: 'Aggressive Cuts', detail: 'Committed to significant emissions reductions on a fixed timeline — environmental leadership at the cost of constrained growth.' },
+        conditional: { label: 'Conditional Commitment', detail: 'Committed to reductions only if wealthy nations provide financial and technological support for the transition.' },
+        modest: { label: 'Modest Pledge', detail: 'Offered a modest voluntary target that protects economic growth but draws criticism for insufficient action.' }
+      },
+      d2: {
+        equity: { label: 'Press the Equity Argument', detail: 'Insisted that industrialized nations bear the primary burden based on historical emissions responsibility.' },
+        shared: { label: 'Accept Shared Responsibility', detail: 'Accepted a shared framework differentiated by capacity rather than history alone.' },
+        pragmatic: { label: 'Pragmatic Middle Ground', detail: 'Acknowledged historical responsibility publicly while focusing on practical mechanisms like per-capita targets.' }
+      },
+      d3: {
+        binding: { label: 'Binding Targets', detail: 'Supported legally binding, verifiable emissions targets for all parties.' },
+        voluntary: { label: 'Voluntary Pledges', detail: 'Supported voluntary national pledges with periodic review — preserves sovereignty, weaker enforcement.' },
+        hybrid: { label: 'Hybrid Framework', detail: 'Supported binding targets for industrialized nations and voluntary pledges for developing nations.' }
+      }
+    };
+    var evidenceBank = {
+      ghg: 'Rising Greenhouse Gases',
+      historical: 'Historical Emissions Gap',
+      degradation: 'Environmental Degradation Effects',
+      transition: 'Economic Cost of Energy Transition',
+      renewable: 'Renewable Energy Opportunity',
+      kyotoparis: 'Kyoto and Paris Precedents',
+      vulnerability: 'Climate Vulnerability',
+      sovereignty: 'Sovereignty and Development Rights'
+    };
+
+    var state = {
+      role: null,
+      d1: null,
+      d2: null,
+      d3: null,
+      evidence: []
+    };
+
+    function loadState() {
+      try {
+        var r = localStorage.getItem('beintheroom-emissions-table-role');
+        if (r && roles[r]) { state.role = r; highlightRole(r); }
+        ['d1','d2','d3'].forEach(function(d) {
+          var v = localStorage.getItem('beintheroom-emissions-table-' + d);
+          if (v && decisions[d][v]) { state[d] = v; highlightDecision(d, v); }
+        });
+        var ev = localStorage.getItem('beintheroom-emissions-table-evidence');
+        if (ev) { state.evidence = JSON.parse(ev); state.evidence.forEach(function(e) { highlightEvidence(e); }); }
+        updateSummary();
+        var pos = localStorage.getItem('beintheroom-emissions-table-position');
+        if (pos) document.getElementById('position-text').value = pos;
+        ['reflect1','reflect2','reflect3'].forEach(function(id) {
+          var v = localStorage.getItem('beintheroom-emissions-table-' + id);
+          if (v) document.getElementById(id).value = v;
+        });
+      } catch(e) {}
+    }
+
+    function selectRole(key) {
+      state.role = key;
+      document.querySelectorAll('#roles .decision-card').forEach(function(c) { c.classList.remove('selected'); });
+      highlightRole(key);
+      document.getElementById('role-status').textContent = 'Selected: ' + roles[key].label;
+      try { localStorage.setItem('beintheroom-emissions-table-role', key); } catch(e) {}
+      updateSummary();
+    }
+    function highlightRole(key) {
+      var cards = document.querySelectorAll('#roles .decision-card');
+      var idx = { economic:0, environment:1, foreign:2, energy:3 };
+      if (cards[idx[key]]) cards[idx[key]].classList.add('selected');
+    }
+
+    function selectDecision(group, key) {
+      state[group] = key;
+      var container = document.getElementById(group === 'd1' ? 'decision1' : group === 'd2' ? 'decision2' : 'decision3');
+      container.querySelectorAll('.decision-card').forEach(function(c) { c.classList.remove('selected'); });
+      highlightDecision(group, key);
+      document.getElementById(group + '-status').textContent = 'Selected: ' + decisions[group][key].label;
+      try { localStorage.setItem('beintheroom-emissions-table-' + group, key); } catch(e) {}
+      updateSummary();
+    }
+    function highlightDecision(group, key) {
+      var container = document.getElementById(group === 'd1' ? 'decision1' : group === 'd2' ? 'decision2' : 'decision3');
+      var keys = Object.keys(decisions[group]);
+      var cards = container.querySelectorAll('.decision-card');
+      var idx = keys.indexOf(key);
+      if (cards[idx]) cards[idx].classList.add('selected');
+    }
+
+    function toggleEvidence(key) {
+      var idx = state.evidence.indexOf(key);
+      if (idx > -1) { state.evidence.splice(idx, 1); document.getElementById('chip-' + key).classList.remove('selected'); }
+      else { state.evidence.push(key); highlightEvidence(key); }
+      document.getElementById('evidence-status').textContent = state.evidence.length ? 'Selected: ' + state.evidence.map(function(e) { return evidenceBank[e]; }).join(', ') : 'No evidence selected yet.';
+      try { localStorage.setItem('beintheroom-emissions-table-evidence', JSON.stringify(state.evidence)); } catch(e) {}
+      updateSummary();
+    }
+    function highlightEvidence(key) {
+      var el = document.getElementById('chip-' + key);
+      if (el) el.classList.add('selected');
+    }
+
+    function updateSummary() {
+      document.getElementById('sum-role').textContent = state.role ? roles[state.role].label : '—';
+      document.getElementById('sum-d1').textContent = state.d1 ? decisions.d1[state.d1].label : '—';
+      document.getElementById('sum-d2').textContent = state.d2 ? decisions.d2[state.d2].label : '—';
+      document.getElementById('sum-d3').textContent = state.d3 ? decisions.d3[state.d3].label : '—';
+      document.getElementById('sum-evidence').textContent = state.evidence.length ? 'Evidence: ' + state.evidence.map(function(e) { return evidenceBank[e]; }).join(', ') : 'Evidence: none selected';
+    }
+
+    function savePosition() {
+      var text = document.getElementById('position-text').value;
+      try { localStorage.setItem('beintheroom-emissions-table-position', text); } catch(e) {}
+      alert('Draft saved.');
+    }
+
+    function saveReflections() {
+      ['reflect1','reflect2','reflect3'].forEach(function(id) {
+        try { localStorage.setItem('beintheroom-emissions-table-' + id, document.getElementById(id).value); } catch(e) {}
+      });
+      alert('Reflections saved.');
+    }
+
+    function buildMagicSchoolPayload() {
+      var roleName = state.role ? roles[state.role].label : '(no role selected)';
+      var d1Text = state.d1 ? decisions.d1[state.d1].label + ' — ' + decisions.d1[state.d1].detail : '(no decision)';
+      var d2Text = state.d2 ? decisions.d2[state.d2].label + ' — ' + decisions.d2[state.d2].detail : '(no decision)';
+      var d3Text = state.d3 ? decisions.d3[state.d3].label + ' — ' + decisions.d3[state.d3].detail : '(no decision)';
+      var evText = state.evidence.length ? state.evidence.map(function(e) { return evidenceBank[e]; }).join(', ') : '(none selected)';
+      var posText = document.getElementById('position-text').value || '(no recommendation written)';
+
+      var prompt =
+        'I am completing a BeInTheRoom activity for AP World History Topic 9.3: Technological Advances—Debates About the Environment After 1900.\n\n' +
+        'SCENARIO: The Emissions Table — I advise the delegation of a rapidly industrializing developing nation at an international climate summit.\n\n' +
+        'MY ROLE: ' + roleName + '\n\n' +
+        'DECISION 1 (Emissions Commitment): ' + d1Text + '\n\n' +
+        'DECISION 2 (Historical Responsibility): ' + d2Text + '\n\n' +
+        'DECISION 3 (Binding vs. Voluntary): ' + d3Text + '\n\n' +
+        'EVIDENCE SELECTED: ' + evText + '\n\n' +
+        'MY RECOMMENDATION:\n' + posText + '\n\n' +
+        'Please act as my BeHistorical AI Coach. Use the 6-stage coaching sequence:\n' +
+        '1. Evidence Check — Does my recommendation use specific environmental evidence?\n' +
+        '2. Tradeoff Analysis — Have I explained what my nation gains AND risks?\n' +
+        '3. Historical Responsibility — Does my argument address who caused the emissions problem?\n' +
+        '4. Opposing View — What would a wealthy industrialized nation say in response?\n' +
+        '5. ENV Connection — How does my recommendation connect to the ENV thematic focus?\n' +
+        '6. Topic 9.2 Bridge — Can I articulate the difference between 9.2 (environment shapes populations) and 9.3 (populations shape environment)?\n\n' +
+        'Ask me ONE question at a time. Do not write my answer for me.';
+
+      document.getElementById('coach-output').textContent = prompt;
+    }
+
+    function copyCoachPrompt() {
+      var text = document.getElementById('coach-output').textContent;
+      navigator.clipboard.writeText(text).catch(function() {});
+    }
+
+    loadState();
+  </script>
+</body>
+</html>
