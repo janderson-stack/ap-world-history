@@ -38,7 +38,7 @@
   lesson.first10 = {
     ...lesson.first10,
     title: 'First & 10: The World That Song Built',
-    embedUrl: 'first-and-10-topic-1-1-song-china-capture.html?v=copy-submit-v1',
+    embedUrl: 'first-and-10-topic-1-1-song-china-capture.html?v=audit-fix-v1',
     note: 'Use the embedded rich narrative reading window below. Answer the three questions, build your AI Coach prompt, then return to the 1.1 lesson path.'
   };
 
@@ -106,9 +106,9 @@
       cardDesc: 'Culture, economy, commercialization, and influence.',
       learningTargets: [lesson.learningTargets[1].target, lesson.learningTargets[2].target],
       successCriteria: [lesson.successCriteria[1].criteria, lesson.successCriteria[2].criteria],
-      prompt: 'Explain how cultural traditions and economic developments helped Song China influence East Asia and become more commercialized.',
+      prompt: 'How did Song China\'s economic innovations — including new agricultural techniques, manufacturing advances, and the commercialization of its economy — affect not only Chinese society but also trade across the wider Afro-Eurasian world? In your response, connect at least one Song development to the Indian Ocean trade networks or Silk Road exchange routes that linked China to South Asia, Southeast Asia, the Islamic world, and beyond.',
       responseType: 'Checkpoint 2',
-      terms: ['Confucianism', 'Buddhism', 'Champa rice', 'Grand Canal', 'paper money', 'commercialization', 'urbanization', 'printing'],
+      terms: ['Confucianism', 'Buddhism', 'Champa rice', 'Grand Canal', 'paper money', 'commercialization', 'urbanization', 'printing', 'Indian Ocean trade networks', 'Silk Road connections'],
       focus: ['Use one cultural example.', 'Use one economic or technological example.', 'Explain the connection to East Asian influence, population growth, commercial expansion, or trade networks.']
     }
   ];
